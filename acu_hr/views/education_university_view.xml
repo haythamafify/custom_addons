@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+
+        <!-- Tree View -->
+        <record id="view_university_tree" model="ir.ui.view">
+            <field name="name">education.university.tree</field>
+            <field name="model">education.university</field>
+            <field name="arch" type="xml">
+                <tree string="Universities">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_university_form" model="ir.ui.view">
+            <field name="name">education.university.form</field>
+            <field name="model">education.university</field>
+            <field name="arch" type="xml">
+                <form string="University">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_university" model="ir.actions.act_window">
+            <field name="name">Universities</field>
+            <field name="res_model">education.university</field>
+            <field name="view_id" ref="view_university_tree"/>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_university_root" name="Education"/>
+        <menuitem id="menu_university" name="Universities" parent="menu_university_root" action="action_university"/>
+
+    </data>
+</odoo>

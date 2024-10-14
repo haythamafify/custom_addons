@@ -1,0 +1,95 @@
+<odoo>
+
+    <!-- Tree View Definition -->
+    <record id="view_building_tree" model="ir.ui.view">
+        <field name="name">building.tree</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <tree string="Buildings">
+                <field name="no"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="location"/>
+                <field name="owner"/>
+                <field name="is_active"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View Definition -->
+    <record id="view_building_form" model="ir.ui.view">
+        <field name="name">building.form</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <form string="Building">
+                <sheet>
+                    <group>
+                        <field name="no"/>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="location"/>
+                        <field name="owner"/>
+                        <field name="is_active"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+
+                <!-- Chatter Section -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+    <!--view_building_search-->
+    <record id="view_building_search" model="ir.ui.view">
+        <field name="name">building.search</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <!-- Filter by Building Number -->
+                <field name="no" string="Building Number"/>
+
+                <!-- Filter by Building Code -->
+                <field name="code" string="Building Code"/>
+                <field name="name" string="Building name"/>
+
+                <!-- Filter by Location -->
+                <field name="location" string="Location"/>
+
+                <!-- Filter by Owner -->
+                <field name="owner" string="Owner"/>
+
+                <!-- Filter by Active Status -->
+                <field name="is_active" string="Is Active" widget="boolean"/>
+                <!-- Custom Filters -->
+                <filter string="Active Buildings" name="active_buildings" domain="[('is_active', '=', True)]"/>
+                <filter string="Inactive Buildings" name="inactive_buildings" domain="[('active', '=', False)]"/>
+                <filter name="group_owner" string=" group by owner" context="{'group_by':'owner'}"/>
+                <filter name="group_location" string=" group by location" context="{'group_by':'location'}"/>
+                <filter name="group_code" string=" group by code" context="{'group_by':'code'}"/>
+                <filter name="group_name" string=" group by name" context="{'group_by':'name'}"/>
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Action Definition -->
+    <record id="action_building" model="ir.actions.act_window">
+        <field name="name">Buildings</field>
+        <field name="res_model">building</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_building_tree"/>
+        <field name="search_view_id" ref="view_building_search"/>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_building_management" name="Building Management" parent="menu_building" action="action_building"/>
+
+</odoo>

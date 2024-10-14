@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!--    main menu -->
+        <menuitem id="menu_todo_root" name="To-Do App"/>
+        <!--    sub menus-->
+        <menuitem id="menu_todo_all_tasks" name="All Tasks" parent="menu_todo_root"/>
+    </data>
+</odoo>

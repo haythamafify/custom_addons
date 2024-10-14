@@ -1,0 +1,56 @@
+<odoo>
+
+
+    <!--create tree view-->
+    <record id="owner_tree_view" model="ir.ui.view">
+        <field name="name">owner tree</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="property_ids"/>
+            </tree>
+        </field>
+    </record>
+    <!--create form view-->
+    <record id="owner_form_view" model="ir.ui.view">
+        <field name="name">owner.form</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="owner Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group string="General Information">
+                        <field name="phone"/>
+                        <field name="address"/>
+
+
+                    </group>
+                    <group>
+                        <field name="property_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Create owner Action-->
+    <record id="owner_action" model="ir.actions.act_window">
+        <field name="name">owner</field>
+        <field name="res_model">owner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- create menu item for owner  -->
+
+    <menuitem id="owner_menu_item" name="owners" parent="configuration_menu" action="owner_action"/>
+
+
+</odoo>

@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+
+        <!-- Tree View for the tasks -->
+        <record id="view_todo_task_list" model="ir.ui.view">
+            <field name="name">todo.task.list</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="task_name"/>
+                    <field name="user"/>
+                    <field name="due_date"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View for the tasks -->
+        <record id="view_todo_task_form" model="ir.ui.view">
+            <field name="name">todo.task.form</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <header>
+                            <field name="status" widget="statusbar" statusbar_visible="new,inprogress,completed"
+                                   options="{'clickable': True}"/>
+                        </header>
+                        <group>
+                            <field name="task_name"/>
+                            <field name="user"/>
+                            <field name="description"/>
+                            <field name="due_date"/>
+                            <field name="status"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter" name="note_thread">
+                        <field name="message_ids" widget="mail.thread" nolabel="True"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_todo_task_search" model="ir.ui.view">
+            <field name="name">todo.task.search</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Search Filter for task_name -->
+                    <field name="task_name" string="Task Name"/>
+                    <!-- Search Filter for user -->
+                    <field name="user" string="Assigned User"/>
+                    <!-- Search Filter for due_date -->
+                    <field name="due_date" string="Due Date"/>
+                    <!-- Search Filter for status -->
+                    <field name="status" string="Status"/>
+                    <filter name="is-new" string="New" domain="[('status','=','new')]"/>
+                    <filter name="In_Progress" string="In Progress" domain="[('status','=','inprogress')]"/>
+                    <filter name="is-completed" string="Completed" domain="[('status','=','completed')]"/>
+                    <filter name="is-hold" string="Hold" domain="[('status','=','hold')]"/>
+                    <filter name="group_user" string=" group by user" context="{'group_by':'user'}"/>
+                    <filter name="group_status" string=" group by status" context="{'group_by':'status'}"/>
+                    <filter name="group_due_date" string=" group by Due Date" context="{'group_by':'due_date'}"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action to Open Tasks -->
+        <record id="action_todo_task" model="ir.actions.act_window">
+            <field name="name">To-Do Tasks</field>
+            <field name="res_model">todo.task</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_todo_task_search"/>
+        </record>
+
+        <!-- Menu Item for Tasks -->
+        <menuitem id="todo_task" name="Tasks" parent="menu_todo_all_tasks" action="action_todo_task"/>
+
+    </data>
+</odoo>

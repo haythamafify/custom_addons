@@ -1,0 +1,38 @@
+<odoo>
+    <!--create tree view-->
+    <record id="tags_tree_view" model="ir.ui.view">
+        <field name="name">tags tree</field>
+        <field name="model">tags</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <!--create form view-->
+    <record id="tags_form_view" model="ir.ui.view">
+        <field name="name">property.tags</field>
+        <field name="model">tags</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Tag Name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+   <!-- Create tags Action-->
+    <record id="tags_action" model="ir.actions.act_window">
+        <field name="name">tags</field>
+        <field name="res_model">tags</field>
+
+    </record>
+ <!-- create menu item for tags  -->
+    <menuitem id="tags_menu_item" name="tags" parent="configuration_menu" action="tags_action"/>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <data>
+        <!--    main menu -->
+        <menuitem id="real_state_menu_root" name="Real Estate"/>
+        <menuitem id="menu_building" name="Buildings" parent="real_state_menu_root" sequence="10"/>
+        <!--    sub menus-->
+        <menuitem id="properties_menu" name="properties menu" parent="real_state_menu_root"/>
+        <menuitem id="configuration_menu" name="configuration menu" parent="real_state_menu_root"/>
+    </data>
+</odoo>
