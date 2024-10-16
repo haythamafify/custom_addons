@@ -11,6 +11,8 @@ class Property(models.Model):
     description = fields.Text(tracking=1)
     postcode = fields.Char(required=True)
     date_availability = fields.Date(default=fields.Date.today(), tracking=True)
+    expected_date_selling = fields.Date(tracking=True)
+    is_late = fields.Boolean()
     expected_price = fields.Float()
     diff = fields.Float(compute='_compute_diff', store=True, readonly=True)
     selling_price = fields.Float()
@@ -74,6 +76,12 @@ class Property(models.Model):
         for rec in self:
             rec.state = 'closed'
 
+    def check_expect_selling_date(self):
+
+        property_ids = self.search([])
+        for rec in property_ids:
+            if rec.expected_date_selling and rec.expected_date_selling < fields.date.today():
+                rec.is_late = True
 
 
 class PropertyLine(models.Model):

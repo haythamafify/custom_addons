@@ -5,7 +5,7 @@
         <field name="name">property tree</field>
         <field name="model">property</field>
         <field name="arch" type="xml">
-            <tree class="property-tree">
+            <tree class="property-tree" decoration-danger="is_late">
                 <field name="name"/>
                 <field name="postcode"/>
                 <field name="date_availability"/>
@@ -14,10 +14,10 @@
                 <field name="diff"/>
                 <field name="garden"/>
                 <field name="owner_id"/>
-                <field name="bedrooms" optional="1"/>
-                <field name="garage" optional="1"/>
+                <field name="bedrooms"/>
+                <field name="garage"/>
                 <field name="state"/>
-
+                <field name="is_late"/>
             </tree>
         </field>
     </record>
@@ -51,8 +51,10 @@
                         <field name="description" required="1"/>
                         <field name="postcode"/>
                         <field name="date_availability" required="True"/>
+                        <field name="expected_date_selling"/>
                         <field name="selling_price"/>
                         <field name="expected_price"/>
+                        <field name="is_late" invisible="1"/>
                         <field name="diff"/>
                     </group>
 
@@ -133,6 +135,23 @@
             action = records.action_closed()
         </field>
     </record>
+
+    <!-- create automation action cron job-->
+    <record id="cheek_selling_expect_date_cron" model="ir.cron">
+        <field name="name">Property:check selling date</field>
+        <field name="model_id" ref="model_property"/>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">model.check_expect_selling_date()
+        </field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">True</field>
+
+
+    </record>
+
 
     <!-- create menu item for properties  -->
     <menuitem id="properties_menu_item" name="properties" parent="properties_menu" action="property_action"/>
