@@ -17,7 +17,7 @@
                 <field name="bedrooms"/>
                 <field name="garage"/>
                 <field name="state"/>
-                <field name="is_late"/>
+                <field name="is_late" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -146,10 +146,9 @@
         </field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
+        <!--  unlimited call with -1-->
         <field name="numbercall">-1</field>
         <field name="active">True</field>
-
-
     </record>
 
 

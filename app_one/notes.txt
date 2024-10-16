@@ -1,3 +1,5 @@
 
 [34]-Odoo 17 ​Development Course​(33) - Inheritance Techniques in Odoo.
 [44]-Odoo 17 ​Development Course​(43) - Adding Server Actions from the UI in Odoo.​
+
+[47]-Odoo 17 ​Development Course​(46) - Reports Actions (Pdf & Html) in Odoo 16-10-2024  time 22  .
