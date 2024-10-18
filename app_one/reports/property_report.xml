@@ -8,19 +8,71 @@
             <field name="binding_type">report</field>
             <field name="report_name">app_one.property_report_template</field>
         </record>
+
         <template id="property_report_template">
             <t t-call="web.html_container">
-
                 <t t-call="web.external_layout">
+                    <h1>Property Report</h1>
                     <t t-foreach="docs" t-as="o">
-                        <h1>property report</h1>
+                        <!-- Inline styles for the table -->
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                margin: 20px 0;
+                                font-family: Arial, sans-serif;
+                            }
+                            thead th {
+                                background-color: #4CAF50;
+                                color: white;
+                                padding: 12px 8px;
+                                text-align: left;
+                                font-size: 16px;
+                                font-weight: bold;
+                            }
+                            thead th[colspan="4"] {
+                                text-align: center;
+                                font-size: 18px;
+                                background-color: #cccccc;
+                                color: white;
+                            }
+                            td {
+                                padding: 10px 8px;
+                                text-align: left;
+                                border: 1px solid #ddd;
+                            }
+                            tbody tr:nth-child(even) {
+                                background-color: #f9f9f9;
+                            }
+                            tbody tr:hover {
+                                background-color: #f1f1f1;
+                            }
+                            tfoot td {
+                                font-weight: bold;
+                                background-color: #f2f2f2;
+                                padding: 10px 8px;
+                            }
+                            th, td {
+                                vertical-align: middle;
+                            }
+                        </style>
+
+                        <!-- Table structure -->
+                        <table>
+                            <thead>
+                                   <th colspan="4">General Information</th>
+                                <tr>
+
+                                    <td>Property Name</td>
+                                    <td><t t-esc="o.name"/></td>
+                                    <td>Postcode</td>
+                                    <td><t t-esc="o.postcode"/></td>
+                                </tr>
+                            </thead>
+                        </table>
                     </t>
-
-
                 </t>
-
             </t>
         </template>
     </data>
 </odoo>
-
