@@ -11,51 +11,25 @@
             <field name="report_name">app_one.property_report_template</field>
         </record>
         <!--qweb report template-->
-    <!-- QWeb Report Template -->
+        <!-- QWeb Report Template -->
         <template id="property_report_template">
             <t t-call="web.html_container">
                 <t t-call="web.external_layout">
-                    <h1 style="text-align:center;">Property Report</h1>
+
+                    <!-- Centering the Title -->
+                    <h1 style="text-align: center;">Property Report</h1>
+
+                    <!-- Link to Bootstrap 5 CSS -->
+                    <style>
+                        @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css');
+                    </style>
 
                     <!-- Loop through the properties (docs) -->
                     <t t-foreach="docs" t-as="o">
-                        <!-- Table with styles -->
-                        <style>
-                            table {
-                                width: 100%;
-                                border-collapse: collapse;
-                                margin: 20px 0;
-                                font-family: Arial, sans-serif;
-                            }
-                            thead th {
-                                background-color: gray;
-                                color: white;
-                                padding: 12px 8px;
-                                text-align: left;
-                                font-size: 16px;
-                                font-weight: bold;
-                            }
-                            td {
-                                padding: 10px 8px;
-                                text-align: left;
-                                border: 1px solid #ddd;
-                            }
-                            tbody tr:nth-child(even) {
-                                background-color: #f9f9f9;
-                            }
-                            tbody tr:hover {
-                                background-color: #f1f1f1;
-                            }
-                            tfoot td {
-                                font-weight: bold;
-                                background-color: #f2f2f2;
-                                padding: 10px 8px;
-                            }
-                        </style>
 
                         <!-- General Information Section -->
-                        <table>
-                            <thead>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-primary text-center">
                                 <tr>
                                     <th colspan="2">General Information</th>
                                 </tr>
@@ -63,30 +37,40 @@
                             <tbody>
                                 <tr>
                                     <td>Property Name:</td>
-                                    <td><t t-esc="o.name"/></td>
+                                    <td>
+                                        <t t-esc="o.name"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Description:</td>
-                                    <td><t t-esc="o.description"/></td>
+                                    <td>
+                                        <t t-esc="o.description"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Postcode:</td>
-                                    <td><t t-esc="o.postcode"/></td>
+                                    <td>
+                                        <t t-esc="o.postcode"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Availability Date:</td>
-                                    <td><t t-esc="o.date_availability"/></td>
+                                    <td>
+                                        <t t-esc="o.date_availability"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Expected Selling Date:</td>
-                                    <td><t t-esc="o.expected_date_selling"/></td>
+                                    <td>
+                                        <t t-esc="o.expected_date_selling"/>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <!-- Pricing Information Section -->
-                        <table>
-                            <thead>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-primary text-center">
                                 <tr>
                                     <th colspan="2">Pricing Information</th>
                                 </tr>
@@ -94,22 +78,28 @@
                             <tbody>
                                 <tr>
                                     <td>Expected Price:</td>
-                                    <td><t t-esc="o.expected_price"/></td>
+                                    <td>
+                                        <t t-esc="o.expected_price"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Selling Price:</td>
-                                    <td><t t-esc="o.selling_price"/></td>
+                                    <td>
+                                        <t t-esc="o.selling_price"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Price Difference:</td>
-                                    <td><t t-esc="o.diff"/></td>
+                                    <td>
+                                        <t t-esc="o.diff"/>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <!-- Property Features Section -->
-                        <table>
-                            <thead>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-primary text-center">
                                 <tr>
                                     <th colspan="2">Property Features</th>
                                 </tr>
@@ -117,34 +107,46 @@
                             <tbody>
                                 <tr>
                                     <td>Bedrooms:</td>
-                                    <td><t t-esc="o.bedrooms"/></td>
+                                    <td>
+                                        <t t-esc="o.bedrooms"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Living Area:</td>
-                                    <td><t t-esc="o.living_area"/></td>
+                                    <td>
+                                        <t t-esc="o.living_area"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Garage:</td>
-                                    <td><t t-esc="o.garage"/></td>
+                                    <td>
+                                        <t t-esc="o.garage"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Garden:</td>
-                                    <td><t t-esc="o.garden"/></td>
+                                    <td>
+                                        <t t-esc="o.garden"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Garden Area:</td>
-                                    <td><t t-esc="o.garden_area"/></td>
+                                    <td>
+                                        <t t-esc="o.garden_area"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Garden Orientation:</td>
-                                    <td><t t-esc="o.garden_orientation"/></td>
+                                    <td>
+                                        <t t-esc="o.garden_orientation"/>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <!-- Property State Section -->
-                        <table>
-                            <thead>
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-primary text-center">
                                 <tr>
                                     <th colspan="2">Property State</th>
                                 </tr>
@@ -152,11 +154,15 @@
                             <tbody>
                                 <tr>
                                     <td>Status:</td>
-                                    <td><t t-esc="o.state"/></td>
+                                    <td>
+                                        <t t-esc="o.state"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Late:</td>
-                                    <td><t t-esc="o.is_late"/></td>
+                                    <td>
+                                        <t t-esc="o.is_late"/>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -165,5 +171,6 @@
                 </t>
             </t>
         </template>
+
     </data>
 </odoo>
