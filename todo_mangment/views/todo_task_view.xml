@@ -28,9 +28,25 @@
                         </header>
                         <group>
                             <field name="task_name"/>
+
+                        </group>
+                        <group>
+
                             <field name="user"/>
+
+                        </group>
+                        <group>
+
                             <field name="description"/>
+
+                        </group>
+                        <group>
+
                             <field name="due_date"/>
+
+                        </group>
+                        <group>
+
                             <field name="status"/>
                         </group>
                     </sheet>

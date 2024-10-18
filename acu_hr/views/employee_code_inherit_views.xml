@@ -1,121 +1,180 @@
-
 <odoo>
     <record id="view_hr_employee_form_inherit" model="ir.ui.view">
         <field name="name">hr.employee.form.inherit</field>
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='mobile_phone']" position="before">
-                <field name="code" placeholder="أدخل كود الموظف"/>
-            </xpath>
-            <xpath expr="//field[@name='work_email']" position="after">
-                <field name="contract_type" placeholder="اختر نوع التعاقد"/>
-            </xpath>
-            <xpath expr="//field[@name='contract_type']" position="after">
-                <field name="hiring_date" placeholder="تاريخ التعيين"/>
-            </xpath>
-            <xpath expr="//field[@name='hiring_date']" position="after">
-                <field name="insurance_number" placeholder="الرقم التأميني"/>
-            </xpath>
-            <xpath expr="//field[@name='insurance_number']" position="after">
-                <field name="insurance_date" placeholder="تاريخ التأمين"/>
-            </xpath>
-            <xpath expr="//field[@name='insurance_date']" position="after">
-                <field name="insurance_status" placeholder="الموقف التأميني"/>
-            </xpath>
-            <xpath expr="//field[@name='insurance_status']" position="after">
-                <field name="birth_date" placeholder="تاريخ الميلاد"/>
-            </xpath>
-            <xpath expr="//field[@name='birth_date']" position="after">
-                <field name="national_id" placeholder="الرقم القومي"/>
-            </xpath>
-            <xpath expr="//field[@name='national_id']" position="after">
-                <field name="national_id_expiry_date" placeholder="تاريخ انتهاء الرقم القومي"/>
-            </xpath>
-            <xpath expr="//field[@name='national_id_expiry_date']" position="after">
-                <field name="gender" placeholder="اختر النوع"/>
-            </xpath>
-            <xpath expr="//field[@name='gender']" position="after">
-                <field name="marital_status" placeholder="الحالة الاجتماعية"/>
-            </xpath>
-            <xpath expr="//field[@name='marital_status']" position="after">
-                <field name="service_duration" placeholder="مدة الخدمة (بالسنوات)"/>
-            </xpath>
-            <xpath expr="//field[@name='service_duration']" position="after">
-                <field name="loan_start_date" placeholder="تاريخ بداية الإعارة"/>
-            </xpath>
-            <xpath expr="//field[@name='loan_start_date']" position="after">
-                <field name="loan_end_date" placeholder="تاريخ نهاية الإعارة"/>
-            </xpath>
-            <xpath expr="//field[@name='loan_end_date']" position="after">
-                <field name="work_place" placeholder="جهة العمل"/>
-            </xpath>
-            <xpath expr="//field[@name='work_place']" position="after">
-                <field name="other_job_leave_start" placeholder="تاريخ بداية الإجازة من جهة العمل الأخرى"/>
-            </xpath>
-            <xpath expr="//field[@name='other_job_leave_start']" position="after">
-                <field name="other_job_leave_end" placeholder="تاريخ نهاية الإجازة من جهة العمل الأخرى"/>
-            </xpath>
-            <xpath expr="//field[@name='other_job_leave_end']" position="after">
-                <field name="leave_start_date" placeholder="تاريخ بداية الإجازة بدون مرتب"/>
-            </xpath>
-            <xpath expr="//field[@name='leave_start_date']" position="after">
-                <field name="leave_end_date" placeholder="تاريخ نهاية الإجازة بدون مرتب"/>
-            </xpath>
-            <xpath expr="//field[@name='leave_end_date']" position="after">
-                <field name="leave_duration" readonly="1" placeholder="مدة الإجازة بدون مرتب"/>
-            </xpath>
-            <xpath expr="//field[@name='leave_duration']" position="after">
-                <field name="military_status" placeholder="الموقف من التجنيد"/>
-            </xpath>
-            <xpath expr="//field[@name='military_status']" position="after">
-                <field name="military_expiry_date" placeholder="تاريخ انتهاء التجنيد"/>
-            </xpath>
-            <xpath expr="//field[@name='military_expiry_date']" position="after">
-                <field name="education_level" placeholder="المؤهل الدراسي"/>
-            </xpath>
-            <xpath expr="//field[@name='education_level']" position="after">
-                <field name="university_ids" placeholder="اسم الجامعة"/>
-            </xpath>
-            <xpath expr="//field[@name='university_ids']" position="after">
-                <field name="master_degree" placeholder="درجة الماجستير"/>
-            </xpath>
-            <xpath expr="//field[@name='master_degree']" position="after">
-                <field name="master_degree_date" placeholder="تاريخ الحصول على الماجستير"/>
-            </xpath>
-            <xpath expr="//field[@name='master_degree_date']" position="after">
-                <field name="phd_degree" placeholder="درجة الدكتوراه"/>
-            </xpath>
-            <xpath expr="//field[@name='phd_degree']" position="after">
-                <field name="phd_degree_date" placeholder="تاريخ الحصول على الدكتوراه"/>
-            </xpath>
-            <xpath expr="//field[@name='phd_degree_date']" position="after">
-                <field name="assistant_professor_degree" placeholder="درجة الأستاذ المساعد"/>
-            </xpath>
-            <xpath expr="//field[@name='assistant_professor_degree']" position="after">
-                <field name="assistant_professor_date" placeholder="تاريخ الحصول على درجة الأستاذ المساعد"/>
-            </xpath>
-            <xpath expr="//field[@name='assistant_professor_date']" position="after">
-                <field name="professor_degree" placeholder="درجة الأستاذ"/>
-            </xpath>
-            <xpath expr="//field[@name='professor_degree']" position="after">
-                <field name="professor_date" placeholder="تاريخ الحصول على درجة الأستاذ"/>
-            </xpath>
-            <xpath expr="//field[@name='professor_date']" position="after">
-                <field name="qualification_duration" placeholder="المدة القانونية للمؤهل (بالسنوات)"/>
-            </xpath>
-            <xpath expr="//field[@name='qualification_duration']" position="after">
-                <field name="health_status" placeholder="الحالة الصحية"/>
-            </xpath>
-            <xpath expr="//field[@name='health_status']" position="after">
-                <field name="id_card_image" placeholder="قم بتحميل صورة البطاقة"/>
-            </xpath>
-            <xpath expr="//field[@name='id_card_image']" position="after">
-                <field name="annual_activity_score" placeholder="درجة النشاط السنوي"/>
-            </xpath>
-            <xpath expr="//field[@name='annual_activity_score']" position="after">
-                <field name="notes" placeholder="أدخل ملاحظات هنا..."/>
-            </xpath>
+            <!-- دفتر الملاحظات (Tabs) لتحسين التنظيم -->
+            <notebook>
+                <page string="المعلومات الشخصية">
+                    <group>
+                        <field name="code" placeholder="أدخل كود الموظف"/>
+                        <field name="gender" placeholder="اختر النوع"/>
+                        <field name="marital_status" placeholder="الحالة الاجتماعية"/>
+                        <field name="birth_date" placeholder="تاريخ الميلاد"/>
+                        <field name="national_id" placeholder="الرقم القومي"/>
+                        <field name="national_id_expiry_date" placeholder="تاريخ انتهاء الرقم القومي"/>
+                    </group>
+                </page>
+
+                <page string="التوظيف والتعاقد">
+                    <group>
+                        <field name="contract_type" placeholder="اختر نوع التعاقد"/>
+                        <field name="hiring_date" placeholder="تاريخ التعيين"/>
+                        <field name="insurance_number" placeholder="الرقم التأميني"/>
+                        <field name="insurance_date" placeholder="تاريخ التأمين"/>
+                        <field name="insurance_status" placeholder="الموقف التأميني"/>
+                    </group>
+                </page>
+
+                <page string="الإعارة والإجازات">
+                    <group>
+                        <field name="loan_start_date" placeholder="تاريخ بداية الإعارة"/>
+                        <field name="loan_end_date" placeholder="تاريخ نهاية الإعارة"/>
+                        <field name="work_place" placeholder="جهة العمل"/>
+                        <field name="other_job_leave_start" placeholder="تاريخ بداية الإجازة من جهة العمل الأخرى"/>
+                        <field name="other_job_leave_end" placeholder="تاريخ نهاية الإجازة من جهة العمل الأخرى"/>
+                        <field name="leave_start_date" placeholder="تاريخ بداية الإجازة بدون مرتب"/>
+                        <field name="leave_end_date" placeholder="تاريخ نهاية الإجازة بدون مرتب"/>
+                        <field name="leave_duration" readonly="1" placeholder="مدة الإجازة بدون مرتب"/>
+                    </group>
+                </page>
+
+                <page string="التعليم والتدريب">
+                    <group>
+                        <field name="education_level" placeholder="المؤهل الدراسي"/>
+                        <field name="university_ids" placeholder="اسم الجامعة"/>
+                        <field name="master_degree" placeholder="درجة الماجستير"/>
+                        <field name="master_degree_date" placeholder="تاريخ الحصول على الماجستير"/>
+                        <field name="phd_degree" placeholder="درجة الدكتوراه"/>
+                        <field name="phd_degree_date" placeholder="تاريخ الحصول على الدكتوراه"/>
+                        <field name="assistant_professor_degree" placeholder="درجة الأستاذ المساعد"/>
+                        <field name="assistant_professor_date" placeholder="تاريخ الحصول على درجة الأستاذ المساعد"/>
+                        <field name="professor_degree" placeholder="درجة الأستاذ"/>
+                        <field name="professor_date" placeholder="تاريخ الحصول على درجة الأستاذ"/>
+                        <field name="qualification_duration" placeholder="المدة القانونية للمؤهل (بالسنوات)"/>
+                    </group>
+                </page>
+
+                <page string="التقييم والصحة">
+                    <group>
+                        <field name="military_status" placeholder="الموقف من التجنيد"/>
+                        <field name="military_expiry_date" placeholder="تاريخ انتهاء التجنيد"/>
+                        <field name="health_status" placeholder="الحالة الصحية"/>
+                        <field name="annual_activity_score" placeholder="درجة النشاط السنوي"/>
+                    </group>
+                </page>
+
+                <page string="ملاحظات وصورة">
+                    <group>
+                        <field name="id_card_image" placeholder="قم بتحميل صورة البطاقة"/>
+                        <field name="notes" placeholder="أدخل ملاحظات هنا..."/>
+                    </group>
+                </page>
+            </notebook>
+
+<!--            &lt;!&ndash; تخصيص مكان الحقول &ndash;&gt;-->
+<!--            <xpath expr="//field[@name='mobile_phone']" position="before">-->
+<!--                <field name="code" placeholder="أدخل كود الموظف"/>-->
+<!--            </xpath>-->
+
+<!--            &lt;!&ndash; تخصيص الحقول المتعلقة بالتواريخ &ndash;&gt;-->
+<!--            <xpath expr="//field[@name='work_email']" position="after">-->
+<!--                <field name="contract_type" placeholder="اختر نوع التعاقد"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='contract_type']" position="after">-->
+<!--                <field name="hiring_date" placeholder="تاريخ التعيين"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='hiring_date']" position="after">-->
+<!--                <field name="insurance_number" placeholder="الرقم التأميني"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='insurance_number']" position="after">-->
+<!--                <field name="insurance_date" placeholder="تاريخ التأمين"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='insurance_date']" position="after">-->
+<!--                <field name="insurance_status" placeholder="الموقف التأميني"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='insurance_status']" position="after">-->
+<!--                <field name="birth_date" placeholder="تاريخ الميلاد"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='birth_date']" position="after">-->
+<!--                <field name="national_id" placeholder="الرقم القومي"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='national_id']" position="after">-->
+<!--                <field name="national_id_expiry_date" placeholder="تاريخ انتهاء الرقم القومي"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='national_id_expiry_date']" position="after">-->
+<!--                <field name="gender" placeholder="اختر النوع"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='gender']" position="after">-->
+<!--                <field name="marital_status" placeholder="الحالة الاجتماعية"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='marital_status']" position="after">-->
+<!--                <field name="service_duration" placeholder="مدة الخدمة (بالسنوات)"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='service_duration']" position="after">-->
+<!--                <field name="loan_start_date" placeholder="تاريخ بداية الإعارة"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='loan_start_date']" position="after">-->
+<!--                <field name="loan_end_date" placeholder="تاريخ نهاية الإعارة"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='loan_end_date']" position="after">-->
+<!--                <field name="work_place" placeholder="جهة العمل"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='work_place']" position="after">-->
+<!--                <field name="other_job_leave_start" placeholder="تاريخ بداية الإجازة من جهة العمل الأخرى"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='other_job_leave_start']" position="after">-->
+<!--                <field name="other_job_leave_end" placeholder="تاريخ نهاية الإجازة من جهة العمل الأخرى"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='other_job_leave_end']" position="after">-->
+<!--                <field name="leave_start_date" placeholder="تاريخ بداية الإجازة بدون مرتب"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='leave_start_date']" position="after">-->
+<!--                <field name="leave_end_date" placeholder="تاريخ نهاية الإجازة بدون مرتب"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='leave_end_date']" position="after">-->
+<!--                <field name="leave_duration" readonly="1" placeholder="مدة الإجازة بدون مرتب"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='leave_duration']" position="after">-->
+<!--                <field name="military_status" placeholder="الموقف من التجنيد"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='military_status']" position="after">-->
+<!--                <field name="military_expiry_date" placeholder="تاريخ انتهاء التجنيد"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='military_expiry_date']" position="after">-->
+<!--                <field name="education_level" placeholder="المؤهل الدراسي"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='education_level']" position="after">-->
+<!--                <field name="university_ids" placeholder="اسم الجامعة"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='university_ids']" position="after">-->
+<!--                <field name="master_degree" placeholder="درجة الماجستير"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='master_degree']" position="after">-->
+<!--                <field name="master_degree_date" placeholder="تاريخ الحصول على الماجستير"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='master_degree_date']" position="after">-->
+<!--                <field name="phd_degree" placeholder="درجة الدكتوراه"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='phd_degree']" position="after">-->
+<!--                <field name="phd_degree_date" placeholder="تاريخ الحصول على الدكتوراه"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='phd_degree_date']" position="after">-->
+<!--                <field name="assistant_professor_degree" placeholder="درجة الأستاذ المساعد"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='assistant_professor_degree']" position="after">-->
+<!--                <field name="assistant_professor_date" placeholder="تاريخ الحصول على درجة الأستاذ المساعد"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='assistant_professor_date']" position="after">-->
+<!--                <field name="professor_degree" placeholder="درجة الأستاذ"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='professor_degree']" position="after">-->
+<!--                <field name="professor_date" placeholder="تاريخ الحصول على درجة الأستاذ"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='professor_date']" position="after">-->
+<!--                <field name="qualification_duration" placeholder="المدة القانونية للمؤهل (بالسنوات)"/>-->
+<!--            </xpath>-->
         </field>
     </record>
 </odoo>

@@ -4,7 +4,7 @@ from odoo import fields, models
 class TodoTask(models.Model):
     _name = "todo.task"
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = "Task for To-Do App"
+    _description = "Task for To-Do App"  # display name for user
 
     # Task Name
     task_name = fields.Char(string="Task Name", required=True)
@@ -27,6 +27,3 @@ class TodoTask(models.Model):
 
     # Optional: Related field to display User's Name in the task form view
     user_name = fields.Char(related="user.name", string="User Name", store=True)
-
-    # Optional: Adding default description or computed field logic
-    default_description = fields.Text(string="Default Description", default="This is a default task description")

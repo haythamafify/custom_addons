@@ -7,9 +7,10 @@
 
     'depends': ['base','mail'],
     'data': [
+        'security/ir.model.access.csv',
         'views/base_menu_view.xml',
         'views/todo_task_view.xml',
-        'security/ir.model.access.csv',
+
     ],
 
     'application': True,

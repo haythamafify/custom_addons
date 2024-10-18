@@ -75,7 +75,7 @@ class Property(models.Model):
     def action_closed(self):
         for rec in self:
             rec.state = 'closed'
-
+    # automation action for check expected selling date
     def check_expect_selling_date(self):
 
         property_ids = self.search([])
