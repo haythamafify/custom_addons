@@ -31,6 +31,8 @@
             <form>
                 <sheet>
                     <header>
+                        <button name="action" type="object" string="action" class="btn-primary"/>
+
                         <button name="action_draft" type="object" string="set to draft" class="btn-primary"
                                 invisible=" state == 'draft'"/>
                         <button name="action_pending" type="object" string="set to pending" class="btn-secondary"

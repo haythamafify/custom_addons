@@ -75,16 +75,24 @@ class Property(models.Model):
     def action_closed(self):
         for rec in self:
             rec.state = 'closed'
+
     # automation action for check expected selling date
     def check_expect_selling_date(self):
 
         property_ids = self.search([])
-        print(property_ids,"root")
+        print(property_ids, "root")
         for rec in property_ids:
             print(rec, "rec")
 
             if rec.expected_date_selling and rec.expected_date_selling < fields.date.today():
                 rec.is_late = True
+
+    def action(self):
+
+        # print(self.env['owner'].create({
+        #     "name": "haytham gamal", "phone": "123456789"
+        # }))
+        print(self.env['owner'].search([]))
 
 
 class PropertyLine(models.Model):
