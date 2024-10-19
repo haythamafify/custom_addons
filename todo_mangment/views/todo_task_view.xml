@@ -11,6 +11,8 @@
                     <field name="user"/>
                     <field name="due_date"/>
                     <field name="status"/>
+                    <field name="user_name"/>
+                    <field name="active"/>
                 </tree>
             </field>
         </record>
@@ -49,6 +51,15 @@
 
                             <field name="status"/>
                         </group>
+                        <group>
+
+                            <field name="user_name"/>
+                        </group>
+                        <group>
+
+                            <field name="active"/>
+                        </group>
+
                     </sheet>
                     <div class="oe_chatter" name="note_thread">
                         <field name="message_ids" widget="mail.thread" nolabel="True"/>
@@ -63,6 +74,7 @@
             <field name="model">todo.task</field>
             <field name="arch" type="xml">
                 <search>
+                    <!-- Search Filters -->
                     <!-- Search Filter for task_name -->
                     <field name="task_name" string="Task Name"/>
                     <!-- Search Filter for user -->
@@ -71,10 +83,16 @@
                     <field name="due_date" string="Due Date"/>
                     <!-- Search Filter for status -->
                     <field name="status" string="Status"/>
+
+                    <!-- All Filters -->
+                    <filter name="is-active" string="Active" domain="[('active','=','True')]"/>
+                    <filter name="is-not-active" string="Not Active" domain="[('active','=','False')]"/>
                     <filter name="is-new" string="New" domain="[('status','=','new')]"/>
                     <filter name="In_Progress" string="In Progress" domain="[('status','=','inprogress')]"/>
                     <filter name="is-completed" string="Completed" domain="[('status','=','completed')]"/>
-                    <filter name="is-hold" string="Hold" domain="[('status','=','hold')]"/>
+                    <filter name="is-hold" string="On Hold" domain="[('status','=','on_hold')]"/>
+
+                    <!-- Grouping Filters -->
                     <filter name="group_user" string=" group by user" context="{'group_by':'user'}"/>
                     <filter name="group_status" string=" group by status" context="{'group_by':'status'}"/>
                     <filter name="group_due_date" string=" group by Due Date" context="{'group_by':'due_date'}"/>

@@ -18,12 +18,32 @@ class TodoTask(models.Model):
     # Due Date for the task
     due_date = fields.Datetime(string="Due Date")
 
+
     # Status of the Task (New, In Progress, Completed)
     status = fields.Selection(
         [('new', 'New'), ('inprogress', 'In Progress'), ('completed', 'Completed'), ('on_hold', 'On Hold')],
         string="Status",
         default='new'
     )
+    active = fields.Boolean(default=True)
 
     # Optional: Related field to display User's Name in the task form view
     user_name = fields.Char(related="user.name", string="User Name", store=True)
+    estimate_time = fields.Float(string="Estimated Time (in hours)",
+                                 help="Estimated time to complete the task in hours")
+
+    def action_new(self):
+        for rec in self:
+            rec.status = 'new'
+
+    def action_inprogress(self):
+        for rec in self:
+            rec.status = 'inprogress'
+
+    def action_completed(self):
+        for rec in self:
+            rec.status = 'completed'
+
+    def action_on_hold(self):
+        for rec in self:
+            rec.status = 'on_hold'
