@@ -95,6 +95,13 @@ class Property(models.Model):
         # }))
         print(self.env['owner'].search([]))
 
+    @api.model
+    def create(self, vals):
+        res = super(Property, self).create(vals)
+        if res.ref == 'new':
+            res.ref = self.env['ir.sequence'].next_by_code('property_seq')
+        return res
+
 
 class PropertyLine(models.Model):
     _name = "property.line"

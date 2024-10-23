@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Custom',
     'summary': 'ACU HR  module',
-    'depends': ['base', 'hr'],
+    'depends': ['base', 'hr', 'hr_holidays'],
     'data': [
         'security/ir.model.access.csv',
         'views/employee_code_inherit_views.xml',
