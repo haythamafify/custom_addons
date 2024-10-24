@@ -18,6 +18,7 @@
         'views/tags_view.xml',
         'views/owner_view.xml',
         'views/property_view.xml',
+        'views/property_historyview.xml',
         'reports/property_report.xml',
     ],
     'assets': {

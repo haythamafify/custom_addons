@@ -1,0 +1,65 @@
+<odoo>
+
+    <!--create tree view-->
+    <record id="property_history_tree_view" model="ir.ui.view">
+        <field name="name">property history tree</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <tree edit="0" create="0" delete="0" >
+                <field name="user_id"/>
+                <field name="property_id"/>
+                <field name="old_state"/>
+                <field name="new_state"/>
+
+
+            </tree>
+        </field>
+    </record>
+
+
+    <!--create form view-->
+    <record id="property_history_form_view" model="ir.ui.view">
+        <field name="name">property_history.form</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <form edit="0" create="0" delete="0" >
+                <sheet>
+
+
+                    <group>
+                        <field name="user_id"/>
+                        <field name="property_id"/>
+
+                    </group>
+
+                    <group>
+
+                        <field name="old_state"/>
+                        <field name="new_state"/>
+                    </group>
+
+
+                </sheet>
+
+
+            </form>
+        </field>
+    </record>
+
+
+
+
+    <!-- Create property Action-->
+    <record id="property_history_action" model="ir.actions.act_window">
+        <field name="name">property_history</field>
+        <field name="res_model">property.history</field>
+
+    </record>
+
+
+
+
+    <!-- create menu item for properties_menu_item_history  -->
+        <menuitem id="properties_menu_item_history" name="History" parent="properties_menu" action="property_history_action"/>
+
+</odoo>

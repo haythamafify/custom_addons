@@ -35,7 +35,7 @@
                         <button name="action" type="object" string="action" class="btn-primary"/>
 
                         <button name="action_draft" type="object" string="set to draft" class="btn-primary"
-                                invisible=" state == 'draft'"/>
+                                invisible=" state in ('draft','closed')"/>
                         <button name="action_pending" type="object" string="set to pending" class="btn-secondary"
                                 invisible=" state != 'draft '"/>
                         <button name="action_sold" type="object" string="set to sold" class="btn-success"
@@ -51,32 +51,32 @@
                         </h1>
                         <label for="name" string="Property Name"/>
                         <h3>
-                            <field name="name"/>
+                            <field name="name" readonly="state == 'closed'"/>
                         </h3>
                     </div>
 
                     <group string="General Information">
-                        <field name="description" required="1"/>
+                        <field name="description" required="1" />
                         <field name="postcode"/>
-                        <field name="date_availability" required="True"/>
-                        <field name="expected_date_selling"/>
-                        <field name="selling_price"/>
-                        <field name="expected_price"/>
-                        <field name="is_late" invisible="1"/>
+                        <field name="date_availability" required="True" readonly="state == 'closed'"/>
+                        <field name="expected_date_selling" readonly="state == 'closed'"/>
+                        <field name="selling_price" readonly="state == 'closed'"/>
+                        <field name="expected_price" readonly="state == 'closed'"/>
+                        <field name="is_late" invisible="1" readonly="state == 'closed'"/>
                         <field name="diff"/>
                     </group>
 
                     <group string="Property Details">
-                        <field name="bedrooms"/>
-                        <field name="living_area"/>
-                        <field name="facades"/>
-                        <field name="garage"/>
-                        <field name="garden"/>
-                        <field name="garden_area"/>
+                        <field name="bedrooms" readonly="state == 'closed'"/>
+                        <field name="living_area" readonly="state == 'closed'"/>
+                        <field name="facades" readonly="state == 'closed'"/>
+                        <field name="garage" readonly="state == 'closed'"/>
+                        <field name="garden" readonly="state == 'closed'"/>
+                        <field name="garden_area" readonly="state == 'closed'"/>
                     </group>
 
                     <group string="Garden Orientation">
-                        <field name="garden_orientation"/>
+                        <field name="garden_orientation" readonly="state == 'closed'"/>
                         <field name="tag_ids" widget="many2many_tags"/>
                         <field name="state"/>
                     </group>
