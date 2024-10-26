@@ -1,0 +1,37 @@
+<odoo>
+
+
+    <!--create form view-->
+    <record id="change_state_wizard_form_view" model="ir.ui.view">
+        <field name="name">change_state.form</field>
+        <field name="model">change.state</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="property_id" invisile="1"/>
+                    <field name="state" required="1"/>
+                    <field name="reason"/>
+                </group>
+                <footer>
+
+                    <button name="action_confirm" type="object" string="Confirm" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+
+
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Create property Action-->
+    <record id="change_state_wizard_action" model="ir.actions.act_window">
+        <field name="name">change state wizard</field>
+        <field name="res_model">change.state</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+
+    </record>
+
+
+</odoo>

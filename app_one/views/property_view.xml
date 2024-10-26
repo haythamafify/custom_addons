@@ -143,7 +143,16 @@
             action = records.action_closed()
         </field>
     </record>
-
+    <!-- Change State Action server-->
+    <record id="change_state_actions_server" model="ir.actions.server">
+        <field name="name">Change State </field>
+        <field name="model_id" ref="model_property"/>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_change_state_wizard()
+        </field>
+    </record>
     <!-- create automation action cron job-->
     <record id="cheek_selling_expect_date_cron" model="ir.cron">
         <field name="name">Property:check selling date</field>

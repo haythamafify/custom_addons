@@ -23,20 +23,12 @@ class Property(models.Model):
     garage = fields.Boolean()
     garden = fields.Boolean()
     garden_area = fields.Integer()
-    garden_orientation = fields.Selection([('north', 'North'),
-                                           ('south', 'South'),
-                                           ('east', 'East'),
-                                           ('west', 'West'),
-                                           ('northeast', 'Northeast'),
-                                           ('southeast', 'Southeast'),
-                                           ('southwest', 'Southwest'),
-                                           ('northwest', 'Northwest'),
-                                           ('no_garden', 'No Garden')], string="Garden Orientation", default="north")
-    state = fields.Selection([('draft', 'Draft'),
-                              ('pending', 'Pending'),
-                              ('sold', 'Sold'),
-                              ('closed', 'Closed'),
-                              ], default='pending')
+    garden_orientation = fields.Selection(
+        [('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West'), ('northeast', 'Northeast'),
+         ('southeast', 'Southeast'), ('southwest', 'Southwest'), ('northwest', 'Northwest'),
+         ('no_garden', 'No Garden')], string="Garden Orientation", default="north")
+    state = fields.Selection([('draft', 'Draft'), ('pending', 'Pending'), ('sold', 'Sold'), ('closed', 'Closed'), ],
+                             default='pending')
 
     owner_id = fields.Many2one('owner', string="Owner")
     tag_ids = fields.Many2many("tags")
@@ -44,10 +36,8 @@ class Property(models.Model):
     owner_phone = fields.Char(related="owner_id.phone")
     line_ids = fields.One2many("property.line", "property_id")
 
-    _sql_constraints = [
-        ('unique_name', 'UNIQUE(name)', 'الاسم يجب ان لايتكرر.'),
-        ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")
-    ]
+    _sql_constraints = [('unique_name', 'UNIQUE(name)', 'الاسم يجب ان لايتكرر.'),
+        ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")]
 
     @api.depends('selling_price', 'expected_price')
     def _compute_diff(self):
@@ -106,14 +96,24 @@ class Property(models.Model):
             res.ref = self.env['ir.sequence'].next_by_code('property_seq')
         return res
 
-    def create_history_record(self, old_state, new_state):
+    def create_history_record(self, old_state, new_state, reason):
         for rec in self:
-            rec.env['property.history'].create({
-                'user_id': rec.env.uid,
-                'property_id': rec.id,
-                'old_state': old_state,
-                'new_state': new_state,
-            })
+            rec.env['property.history'].create(
+                {'user_id': rec.env.uid,
+                 'property_id': rec.id, 'old_state': old_state,
+                 'new_state': new_state,
+                 'reason': reason,
+
+
+                 })
+
+
+
+
+    def action_change_state_wizard(self):
+        action = self.env['ir.actions.actions']._for_xml_id('app_one.change_state_wizard_action')
+        action['context'] = {'default_property_id': self.id}
+        return action
 
 
 class PropertyLine(models.Model):
