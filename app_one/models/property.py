@@ -1,5 +1,7 @@
+
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from datetime import timedelta
 
 
 class Property(models.Model):
@@ -35,9 +37,10 @@ class Property(models.Model):
     owner_address = fields.Char(related="owner_id.address")
     owner_phone = fields.Char(related="owner_id.phone")
     line_ids = fields.One2many("property.line", "property_id")
-
+    create_time = fields.Datetime(default=fields.Datetime.now)
+    next_time = fields.Datetime(compute="_compute_next_time")
     _sql_constraints = [('unique_name', 'UNIQUE(name)', 'الاسم يجب ان لايتكرر.'),
-        ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")]
+                        ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")]
 
     @api.depends('selling_price', 'expected_price')
     def _compute_diff(self):
@@ -96,24 +99,28 @@ class Property(models.Model):
             res.ref = self.env['ir.sequence'].next_by_code('property_seq')
         return res
 
-    def create_history_record(self, old_state, new_state, reason):
+    def create_history_record(self, old_state, new_state, reason=""):
         for rec in self:
             rec.env['property.history'].create(
                 {'user_id': rec.env.uid,
                  'property_id': rec.id, 'old_state': old_state,
                  'new_state': new_state,
                  'reason': reason,
-
-
+                 'line_ids': [(0, 0, {'description': line.description, 'area': line.area}) for line in rec.line_ids]
                  })
-
-
-
 
     def action_change_state_wizard(self):
         action = self.env['ir.actions.actions']._for_xml_id('app_one.change_state_wizard_action')
         action['context'] = {'default_property_id': self.id}
         return action
+
+    @api.depends('create_time')
+    def _compute_next_time(self):
+        for rec in self:
+            if rec.create_time:
+                rec.next_time = rec.create_time + timedelta(hours=6)
+            else:
+                rec.next_time = False
 
 
 class PropertyLine(models.Model):

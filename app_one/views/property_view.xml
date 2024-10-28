@@ -56,7 +56,10 @@
                     </div>
 
                     <group string="General Information">
-                        <field name="description" required="1" />
+
+                        <field name="create_time"  readonly="1"/>
+                        <field name="next_time" />
+                        <field name="description" required="1"/>
                         <field name="postcode"/>
                         <field name="date_availability" required="True" readonly="state == 'closed'"/>
                         <field name="expected_date_selling" readonly="state == 'closed'"/>
@@ -145,7 +148,7 @@
     </record>
     <!-- Change State Action server-->
     <record id="change_state_actions_server" model="ir.actions.server">
-        <field name="name">Change State </field>
+        <field name="name">Change State</field>
         <field name="model_id" ref="model_property"/>
         <field name="binding_model_id" ref="model_property"/>
         <field name="state">code</field>

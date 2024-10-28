@@ -36,7 +36,17 @@
                         <field name="new_state"/>
                         <field name="reason"/>
                     </group>
+                    <notebook>
+                        <page string="Bed Rooms">
+                            <field name="line_ids" readonly="1">
+                                <tree>
 
+                                    <field name="area"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
 
                 </sheet>
 
