@@ -66,6 +66,6 @@
 
     <!-- create menu item for properties_menu_item_history  -->
     <menuitem id="properties_menu_item_history" name="History" parent="properties_menu"
-              action="property_history_action"/>
+              action="property_history_action" groups="app_one.property_manager_group"/>
 
 </odoo>

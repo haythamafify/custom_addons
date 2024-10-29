@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <!--        create category-->
+        <record id="property_category" model="ir.module.category">
+            <field name="name">Real State</field>
+        </record>
+        <!--        create groups-->
+        <record id="property_manager_group" model="res.groups">
+            <field name="name">Property Manger</field>
+            <field name="category_id"  ref="app_one.property_category"/>
+
+        </record>
+
+        <record id="property_user_group" model="res.groups">
+            <field name="name">Property User</field>
+        </record>
+
+
+    </data>
+</odoo>

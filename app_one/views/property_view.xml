@@ -59,7 +59,7 @@
 
                         <field name="create_time"  readonly="1"/>
                         <field name="next_time" />
-                        <field name="description" required="1"/>
+                        <field name="description" required="1" groups="app_one.property_manager_group"/>
                         <field name="postcode"/>
                         <field name="date_availability" required="True" readonly="state == 'closed'"/>
                         <field name="expected_date_selling" readonly="state == 'closed'"/>

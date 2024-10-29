@@ -22,7 +22,7 @@ class Property(models.Model):
     bedrooms = fields.Integer(default=1)
     living_area = fields.Integer()
     facades = fields.Integer()
-    garage = fields.Boolean()
+    garage = fields.Boolean(groups="app_one.property_manager_group")
     garden = fields.Boolean()
     garden_area = fields.Integer()
     garden_orientation = fields.Selection(
@@ -90,7 +90,11 @@ class Property(models.Model):
         # print(self.env['owner'].create({
         #     "name": "haytham gamal", "phone": "123456789"
         # }))
-        print(self.env['owner'].search([]))
+        print(self.env['property'].search(['!',('name','=','gggggggg'),('postcode','=','h')]))
+
+
+
+
 
     @api.model
     def create(self, vals):

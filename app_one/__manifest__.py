@@ -9,6 +9,7 @@
     'license': 'LGPL-3',  # إضافة مفتاح الترخيص هنا
     'depends': ['base', 'sale_management', 'account', 'mail', 'contacts', 'product'],
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'views/base_menu.xml',
