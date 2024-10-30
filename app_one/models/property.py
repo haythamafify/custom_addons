@@ -1,3 +1,4 @@
+from email.policy import default
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
@@ -39,6 +40,8 @@ class Property(models.Model):
     line_ids = fields.One2many("property.line", "property_id")
     create_time = fields.Datetime(default=fields.Datetime.now)
     next_time = fields.Datetime(compute="_compute_next_time")
+    active = fields.Boolean(default=True)
+
     _sql_constraints = [('unique_name', 'UNIQUE(name)', 'الاسم يجب ان لايتكرر.'),
                         ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")]
 
@@ -90,11 +93,7 @@ class Property(models.Model):
         # print(self.env['owner'].create({
         #     "name": "haytham gamal", "phone": "123456789"
         # }))
-        print(self.env['property'].search(['!',('name','=','gggggggg'),('postcode','=','h')]))
-
-
-
-
+        print(self.env['property'].search(['!', ('name', '=', 'gggggggg'), ('postcode', '=', 'h')]))
 
     @api.model
     def create(self, vals):
