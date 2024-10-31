@@ -1,1 +1,7 @@
-54
+to chnage fonts in report
+first step  in manifest
+
+'web.report.assets_common': ['app_one/static/src/css/font.css'],
+download fonts
+add it fonts folder
+css file
