@@ -33,7 +33,8 @@
             <form>
                 <sheet>
                     <div name="button_box" class="oe_button_box">
-                        <button name="action_open_related_owner" type="object" icon="fa-user" string="owner" invisible="not owner_id"/>
+                        <button name="action_open_related_owner" type="object" icon="fa-user" string="owner"
+                                invisible="not owner_id"/>
                     </div>
                     <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
                     <widget name="web_ribbon" title="Sold" bg_color="text-bg-success" invisible="state!='sold'"/>
@@ -53,7 +54,7 @@
                         <label for="ref" string="Ref"/>
 
                         <h1>
-                            <field name="ref"/>
+                            <field name="ref" readonly="state != 'draft'"/>
                         </h1>
                         <label for="name" string="Property Name"/>
                         <h3>
@@ -67,7 +68,7 @@
                         <field name="next_time"/>
                         <field name="active"/>
                         <field name="description" required="1" groups="app_one.property_manager_group"/>
-                        <field name="postcode"/>
+                        <field name="postcode" />
                         <field name="date_availability" required="True" readonly="state == 'closed'"/>
                         <field name="expected_date_selling" readonly="state == 'closed'"/>
                         <field name="selling_price" readonly="state == 'closed'"/>
@@ -75,7 +76,6 @@
                         <field name="is_late" invisible="1" readonly="state == 'closed'"/>
                         <field name="diff"/>
                     </group>
-
                     <group string="Property Details">
                         <field name="bedrooms" readonly="state == 'closed'"/>
                         <field name="living_area" readonly="state == 'closed'"/>
