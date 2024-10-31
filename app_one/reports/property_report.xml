@@ -17,7 +17,7 @@
                 <t t-call="web.external_layout">
 
                     <!-- Centering the Title -->
-                    <h1 style="text-align: center;">Property Report</h1>
+                    <h1 style="text-align: center;font-family: 'Workbench-Regular';">Property Report</h1>
 
                     <!-- Link to Bootstrap 5 CSS -->
                     <style>
@@ -31,7 +31,7 @@
                         <table class="table table-bordered table-striped table-hover">
                             <thead class="table-primary text-center">
                                 <tr>
-                                    <th colspan="2">General Information</th>
+                                    <th colspan="2" style="   font-family: 'Workbench-Regular-VariableFont_BLED,SCAN.ttf';">General Information</th>
                                 </tr>
                             </thead>
                             <tbody>
