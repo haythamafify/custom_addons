@@ -1,8 +1,6 @@
 from odoo import http
 
-
-class Test(http.Controller):
-    @http.route()
+class TestApi(http.Controller):
+    @http.route("/api/test", methods=["GET"], auth="none", csrf=True)
     def test_endpoint(self):
-        print("inside test_endpoint")
-        
+        return "Hello, this is a test endpoint!"
