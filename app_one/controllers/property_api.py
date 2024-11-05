@@ -2,7 +2,7 @@ import json
 
 from docutils.nodes import status
 from odoo import http
-from odoo.http import request
+from odoo.http import request, route
 
 
 class PropertyApi(http.Controller):
@@ -46,3 +46,28 @@ class PropertyApi(http.Controller):
             return request.make_json_response({
                 "message": str(error),
             }, status=400)
+
+
+
+    class PropertyController(http.Controller):
+
+        @route("/v1/property/<int:property_id>", methods=["PUT"], type="http", auth="none", csrf=False)
+        def update_property(self, property_id):
+            property_record = request.env['property'].sudo().search([("id", "=", property_id)])
+
+            if not property_record:
+                return request.make_json_response({"message": "Property not found"}, 404)
+
+            try:
+                args = request.httprequest.data.decode()
+                vals = json.loads(args)
+                property_record.write(vals)
+
+                return request.make_json_response({
+                    "message": "Property has been updated successfully",
+                    "id": property_record.id,
+                    "name": property_record.name,
+                }, status=200)  # Note the explicit status parameter
+
+            except json.JSONDecodeError:
+                return request.make_json_response({"message": "Invalid JSON data"}, 400)
