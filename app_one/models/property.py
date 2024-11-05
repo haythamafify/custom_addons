@@ -10,10 +10,11 @@ class Property(models.Model):
     _description = "Property"
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
-    ref = fields.Char(default="new", raedonly="True")
-    name = fields.Char(required=True)
-    description = fields.Text(tracking=1)
-    postcode = fields.Char(required=True)
+    ref = fields.Char(default="new", readonly=True, translate=True)
+
+    name = fields.Char(required=True, translate=True)
+    description = fields.Text(tracking=1, translate=True)
+    postcode = fields.Char(required=True, translate=True)
     date_availability = fields.Date(default=fields.Date.today(), tracking=True)
     expected_date_selling = fields.Date(tracking=True)
     is_late = fields.Boolean()
