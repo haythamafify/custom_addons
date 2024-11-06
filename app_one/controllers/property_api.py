@@ -4,6 +4,7 @@ from logging import exception
 from docutils.nodes import status
 from odoo import http
 from odoo.http import request, route
+from urllib.parse import parse_qs
 
 
 class PropertyApi(http.Controller):
@@ -85,7 +86,7 @@ class PropertyApi(http.Controller):
                         }, status=200)
 
                 else:
-                    return request.make_json_response({"message": "property_id not exists"}, status=400)
+                    return request.make_json_response({"message": "Property ID does not exist"}, status=400)
 
             except Exception as error:
                 return request.make_json_response({"message": error}, status=400)
@@ -102,7 +103,38 @@ class PropertyApi(http.Controller):
                         }, status=200)
 
                 else:
-                    return request.make_json_response({"message": "property_id not exists"}, status=400)
+                    return request.make_json_response({"message": "Property ID does not exist"}, status=400)
 
             except Exception as error:
                 return request.make_json_response({"message": error}, status=400)
+
+        @http.route("/v1/properties", methods=["GET"], type="http", auth="none", csrf=False)
+        def get_property_list(self):
+            try:
+
+                params = parse_qs(request.httprequest.query_string.decode('utf-8'))
+                property_domain = []
+                print(params)
+                print("before", property_domain)
+
+                if params.get('state'):
+                    property_domain += [('state', '=', params.get('state')[0])]
+                print("after", property_domain)
+
+                property_records = request.env['property'].sudo().search(property_domain)
+                print("property_records", property_records)
+
+                if not property_records:
+                    return request.make_json_response({"message": "Property IDs do not exist"}, status=400)
+
+                return request.make_json_response(
+                    [{
+                        "name": property_record.name,
+                        "description": property_record.description,
+                        "postcode": property_record.postcode,
+                        "state": property_record.state,
+                    } for property_record in property_records], status=200)
+
+            except Exception as error:
+
+                return request.make_json_response({"message": str(error)}, status=400)
