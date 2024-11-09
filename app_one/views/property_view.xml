@@ -40,6 +40,7 @@
                     <widget name="web_ribbon" title="Sold" bg_color="text-bg-success" invisible="state!='sold'"/>
                     <header>
                         <button name="action" type="object" string="action" class="btn-primary"/>
+                        <button name="get_properties" type="object" string="get properties" class="btn-primary"/>
 
                         <button name="action_draft" type="object" string="set to draft" class="btn-primary"
                                 invisible=" state in ('draft','closed')"/>

@@ -1,8 +1,8 @@
-from email.policy import default
+from datetime import timedelta
 
+import requests
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
-from datetime import timedelta
 
 
 class Property(models.Model):
@@ -133,6 +133,24 @@ class Property(models.Model):
         action['views'] = [(view_id, 'form')]
 
         return action
+
+    # call api by function get_properties
+    def get_properties(self):
+        payload = dict()
+
+        try:
+            res = requests.get("http://127.0.0.1:8069/v2/properties", data=payload)
+            if res.status_code==200:
+                print(res, "res")
+                print(res.content, "res.content")
+                print(res.status_code, "res.status_code")
+                print("successfully")
+            else:
+                print("Failed")
+
+
+        except Exception as error:
+            raise ValidationError(str(error))
 
 
 class PropertyLine(models.Model):

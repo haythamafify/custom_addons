@@ -1,4 +1,5 @@
 import json
+import math
 from urllib.parse import parse_qs
 
 from odoo import http
@@ -6,13 +7,15 @@ from odoo.http import request
 
 
 # دوال الاستجابة العامة
-def valid_response(data, status=200, message="Success"):
+def valid_response(data, pagination_info, status=200, message="Success"):
     """إرجاع استجابة JSON ناجحة."""
     response_body = {
         'status': status,
         'message': message,
         'data': data,
     }
+    if pagination_info:
+        response_body['pagination_info'] = pagination_info
     return request.make_json_response(response_body, status=status)
 
 
@@ -109,12 +112,29 @@ class PropertyController(http.Controller):
         try:
             params = parse_qs(request.httprequest.query_string.decode('utf-8'))
             property_domain = []
+            page = offset = None
+            limit = 5
+            if params:
+
+                if params.get('limit'):
+                    limit = int(params.get('limit')[0])
+                    print(limit, "limit")
+                if params.get('page'):
+                    page = int(params.get('page')[0])
+                    print(page, "page")
+            if page:
+                offset = (page * limit) - limit
+                print(offset, "offset")
 
             # تصفية العقارات بناءً على الحالة إذا تم توفيرها
             if params.get('state'):
                 property_domain.append(('state', '=', params['state'][0]))
 
-            property_records = request.env['property'].sudo().search(property_domain)
+            property_records = request.env['property'].sudo().search(property_domain, offset=offset, limit=limit,
+                                                                     order="id desc")
+            property_records_count = request.env['property'].sudo().search_count(property_domain)
+            print(property_records)
+            print(property_records_count)
 
             if not property_records:
                 return invalid_response("No properties found", status=404)
@@ -126,7 +146,16 @@ class PropertyController(http.Controller):
                 "postcode": record.postcode,
                 "state": record.state,
             } for record in property_records]
+            pagination_info = {
+                "page": page if page else 1,
+                "limit": limit,
+                "pages": math.ceil(property_records_count / limit) if limit else 1,
+                "count": property_records_count,
 
-            return valid_response(data, status=200, message="Properties retrieved successfully")
+            }
+
+            return valid_response(data, pagination_info, status=200, message="Properties retrieved successfully")
+
         except Exception as error:
+
             return invalid_response(str(error), status=500)
