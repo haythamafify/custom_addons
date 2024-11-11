@@ -3,7 +3,7 @@ import math
 from urllib.parse import parse_qs
 
 from odoo import http
-from odoo.http import request
+from odoo.http import request, Response
 
 
 # دوال الاستجابة العامة
@@ -55,7 +55,10 @@ class PropertyController(http.Controller):
         except Exception as error:
             return invalid_response(str(error), status=500)
 
+    #     http://127.0.0.1:8069/v3/property
+
     # استرجاع بيانات عقار بناءً على ID
+
     @http.route("/v2/property/<int:property_id>", methods=["GET"], type="http", auth="none", csrf=False)
     def get_property(self, property_id):
         try:
@@ -159,3 +162,114 @@ class PropertyController(http.Controller):
         except Exception as error:
 
             return invalid_response(str(error), status=500)
+
+    # @http.route("/v3/property", methods=["POST"], type="http", auth="none", csrf=False)
+    # def create_property(self):
+    #     try:
+    #         args = request.httprequest.data.decode()
+    #         vals = json.loads(args)
+    #
+    #         # التحقق من وجود الحقول المطلوبة
+    #         if not vals.get("name"):
+    #             return invalid_response("Field 'name' is required", status=400)
+    #
+    #         # إنشاء السجل
+    #         # res = request.env["property"].sudo().create(vals)
+    #
+    #         cr = request.env.cr
+    #
+    #         print(cr)
+    #         # query static
+    #         # query = """
+    #         # INSERT INTO property (name, postcode)
+    #         # VALUES ('sql re', '123355')
+    #         # RETURNING id, name, postcode;"""
+    #
+    #         columns = ','.join(vals.keys())
+    #         values = ','.join(['%s'] * len(vals))
+    #
+    #         query = f"""
+    #                   INSERT INTO property ({columns})
+    #                   VALUES ({values})
+    #                   RETURNING id, name, postcode;"""
+    #         cr.execute(query, tuple(vals.values()))
+    #         res = cr.fetchone()
+    #         print(res)
+    #
+    #         if res:
+    #             return valid_response({
+    #                 "id": res[0],
+    #                 "name": res[1],
+    #                 "postcode": res[2],
+    #             }, status=201, message="Property created successfully")
+    #     except json.JSONDecodeError:
+    #         return invalid_response("Invalid JSON data", status=400)
+    #     except Exception as error:
+    #         return invalid_response(str(error), status=500)
+
+
+    @http.route("/v3/property", methods=["POST"], type="json", auth="none", csrf=False)
+    def create_property(self):
+        try:
+            # قراءة البيانات المرسلة عبر JSON
+            vals = request.jsonrequest
+
+            # التحقق من وجود الحقول المطلوبة
+            if not vals or not vals.get("name"):
+                return Response(
+                    json.dumps({"status": 400, "message": "Field 'name' is required"}),
+                    content_type='application/json',
+                    status=400
+                )
+
+            # الحصول على Cursor لقاعدة البيانات
+            cr = request.env.cr
+
+            # بناء استعلام SQL ديناميكي
+            columns = ', '.join(vals.keys())
+            values = ', '.join(['%s'] * len(vals))
+
+            query = f"""
+                INSERT INTO property ({columns})
+                VALUES ({values})
+                RETURNING id, name, postcode;
+            """
+
+            # تنفيذ الاستعلام
+            cr.execute(query, tuple(vals.values()))
+            res = cr.fetchone()
+
+            # التحقق من النتيجة وإرجاع استجابة ناجحة
+            if res:
+                return Response(
+                    json.dumps({
+                        "status": 201,
+                        "message": "Property created successfully",
+                        "data": {
+                            "id": res[0],
+                            "name": res[1],
+                            "postcode": res[2],
+                        }
+                    }),
+                    content_type='application/json',
+                    status=201
+                )
+            else:
+                return Response(
+                    json.dumps({"status": 500, "message": "Failed to create property"}),
+                    content_type='application/json',
+                    status=500
+                )
+
+        except json.JSONDecodeError:
+            return Response(
+                json.dumps({"status": 400, "message": "Invalid JSON data"}),
+                content_type='application/json',
+                status=400
+            )
+        except Exception as error:
+            return Response(
+                json.dumps({"status": 500, "message": str(error)}),
+                content_type='application/json',
+                status=500
+            )

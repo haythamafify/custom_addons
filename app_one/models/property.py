@@ -12,9 +12,9 @@ class Property(models.Model):
 
     ref = fields.Char(default="new", readonly=True, translate=True)
 
-    name = fields.Char(required=True, translate=True)
+    name = fields.Char(required=True)
     description = fields.Text(tracking=1, translate=True)
-    postcode = fields.Char(required=True, translate=True)
+    postcode = fields.Char(required=True)
     date_availability = fields.Date(default=fields.Date.today(), tracking=True)
     expected_date_selling = fields.Date(tracking=True)
     is_late = fields.Boolean()
