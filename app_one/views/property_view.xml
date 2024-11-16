@@ -6,6 +6,10 @@
         <field name="model">property</field>
         <field name="arch" type="xml">
             <tree class="property-tree" decoration-danger="is_late">
+                <header>
+                    <button string="print property Report Excel" name="property_report_excel" type="object"
+                            class="btn btn-primary"/>
+                </header>
                 <field name="ref"/>
                 <field name="name"/>
                 <field name="postcode"/>
@@ -69,7 +73,7 @@
                         <field name="next_time"/>
                         <field name="active"/>
                         <field name="description" required="1" groups="app_one.property_manager_group"/>
-                        <field name="postcode" />
+                        <field name="postcode"/>
                         <field name="date_availability" required="True" readonly="state == 'closed'"/>
                         <field name="expected_date_selling" readonly="state == 'closed'"/>
                         <field name="selling_price" readonly="state == 'closed'"/>

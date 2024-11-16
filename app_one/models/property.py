@@ -45,6 +45,14 @@ class Property(models.Model):
     _sql_constraints = [('unique_name', 'UNIQUE(name)', 'الاسم يجب ان لايتكرر.'),
                         ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")]
 
+    def property_report_excel(self):
+        # print(" inside property_report_excel")
+        return {
+            'type': 'ir.actions.act_url',
+            'url': f'/property/excel/report/{self.env.context.get("active_ids")}',
+            'target': 'new'
+        }
+
     @api.depends('selling_price', 'expected_price')
     def _compute_diff(self):
         for rec in self:
@@ -140,7 +148,7 @@ class Property(models.Model):
 
         try:
             res = requests.get("http://127.0.0.1:8069/v2/properties", data=payload)
-            if res.status_code==200:
+            if res.status_code == 200:
                 print(res, "res")
                 print(res.content, "res.content")
                 print(res.status_code, "res.status_code")
