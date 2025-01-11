@@ -208,7 +208,8 @@ class PropertyController(http.Controller):
     #         return invalid_response(str(error), status=500)
 
 
-    @http.route("/v3/property", methods=["POST"], type="json", auth="none", csrf=False)
+    # @http.route("/v3/property", methods=["POST"], type="json", auth="none", csrf=False)
+    @http.route("/v3/property", methods=["POST"], type="http", auth="none", csrf=False)
     def create_property(self):
         try:
             # قراءة البيانات المرسلة عبر JSON

@@ -4,7 +4,7 @@
     'category': 'Learn',
     'summary': 'A brief description of the module',
     'description': 'A more detailed description of the module.',
-    'author': 'Your Name',
+    'author': 'haytham',
     'website': 'http://yourwebsite.com',
     'license': 'LGPL-3',  # إضافة مفتاح الترخيص هنا
     'depends': ['base', 'sale_management', 'account', 'mail', 'contacts', 'product'],
@@ -27,9 +27,16 @@
     'assets': {
         'web.assets_backend': [
             'app_one/static/src/css/property.css',
+            'app_one/static/src/components/listView/listView.js',
+            'app_one/static/src/components/listView/listView.css',
+            'app_one/static/src/components/listView/listView.xml',
+
+
+
         ],
         'web.assets_frontend': [],
         'web.report.assets_common': ['app_one/static/src/css/font.css'],
+
     },
     'application': True,
 }

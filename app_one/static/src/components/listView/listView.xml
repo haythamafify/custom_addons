@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="app_one.ListView">
+        <div class="list-view">
+            <h1>List View Actions</h1>
+            <p>This is a custom OWL component.</p>
+        </div>
+    </t>
+</templates>

@@ -186,4 +186,13 @@
 
     <!-- create menu item for properties  -->
     <menuitem id="properties_menu_item" name="properties" parent="properties_menu" action="property_action"/>
+
+    <!--create owl action   -->
+    <record id="list_view_owl_action" model="ir.actions.client">
+        <field name="name">properties list view</field>
+        <field name="tag">app_one.actions_list_view</field>
+    </record>
+<!--menu for owl action client-->
+    <menuitem id="properties_menu_owl_action" name="properties owl" parent="properties_menu" action="list_view_owl_action"/>
+
 </odoo>
