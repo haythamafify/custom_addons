@@ -13,7 +13,10 @@ export class ListViewActions extends Component {
              properties: [], // قائمة الوحدات التي تم إنشاؤها});
         });
         this.orm = useService("orm"); // استخدام الخدمة الأساسية للأنظمة الأساسية
-        this.LoadRecords(); // تحميل السجلات عند تهيئة المكون
+        this.rpc = useService("rpc"); // استخدام الخدمة الأساسية للأنظمة الأساسية
+       // this.LoadRecords(); // تحميل السجلات عند تهيئة المكون
+        this.load_records_rpc(); // تحميل السجلات بواسطة الرابط الخاص بالخدمة الأساسية
+
     }
 
     async LoadRecords() {
@@ -26,6 +29,41 @@ export class ListViewActions extends Component {
             console.error("Failed to load records:", error); // معالجة الأخطاء
         }
     }
+
+
+
+async load_records_rpc() {
+    try {
+        const res = await this.rpc("web/dataset/call_kw", {
+            model: "property",
+            method: "search_read",
+            args: [[]], // يمكنك تحديد شروط البحث هنا إذا لزم الأمر
+            kwargs: {
+                fields: [
+                    "ref",
+                    "name",
+                    "description",
+                    "postcode",
+                    "date_availability",
+                    "expected_date_selling",
+                    "state",
+                    "owner_id",
+                    "tag_ids"
+                ],
+            },
+        });
+
+        // معالجة البيانات المستلمة
+        console.log("Loaded records:", res);
+        this.state.properties = res; // إذا كنت تستخدم حالة لتخزين البيانات
+    } catch (error) {
+        console.error("Failed to load records:", error); // معالجة الأخطاء
+    }
+}
+
+
+
+
 }
 
 // تسجيل المكون كإجراء (action)
