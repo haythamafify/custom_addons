@@ -3,6 +3,7 @@ with open("property_records.xml", "w", encoding="utf-8") as file:
     # اكتب بداية ملف XML
     file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     file.write('<odoo>\n')
+    file.write('<data>\n')
 
     # إنشاء 50 سجلًا
     for i in range(1, 51):
@@ -34,4 +35,5 @@ with open("property_records.xml", "w", encoding="utf-8") as file:
         file.write(record)  # اكتب السجل في الملف
 
     # اكتب نهاية ملف XML
+    file.write('</data>\n')
     file.write('</odoo>\n')

@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
 
         <record id="property_01" model="property">
             <field name="ref">new</field>
@@ -1198,4 +1201,5 @@
             <field name="next_time">2025-01-15 10:00:00</field>
             <field name="active">True</field>
         </record>
-       
+        </data>
+</odoo>
