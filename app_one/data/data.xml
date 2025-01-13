@@ -1,0 +1,1230 @@
+<odoo>
+    <data noupdate="1">
+        <record id="property_01" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 01</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12345</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">250000.0</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">120</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">50</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_01" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 01</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12345</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">260000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">125</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">52</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_02" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 02</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12346</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">270000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">130</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">54</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_03" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 03</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12347</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">280000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">135</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">56</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_04" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 04</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12348</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">290000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">140</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">58</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_05" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 05</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12349</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">300000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">145</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">60</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_06" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 06</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12350</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">310000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">150</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">62</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_07" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 07</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12351</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">320000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">155</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">64</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_08" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 08</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12352</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">330000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">160</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">66</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_09" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 09</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12353</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">340000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">165</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">68</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_10" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 10</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12354</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">350000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">170</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">70</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_11" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 11</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12355</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">360000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">175</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">72</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_12" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 12</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12356</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">370000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">180</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">74</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_13" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 13</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12357</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">380000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">185</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">76</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_14" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 14</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12358</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">390000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">190</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">78</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_15" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 15</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12359</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">400000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">195</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">80</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_16" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 16</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12360</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">410000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">200</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">82</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_17" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 17</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12361</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">420000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">205</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">84</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_18" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 18</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12362</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">430000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">210</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">86</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_19" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 19</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12363</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">440000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">215</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">88</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_20" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 20</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12364</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">450000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">220</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">90</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_21" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 21</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12365</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">460000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">225</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">92</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_22" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 22</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12366</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">470000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">230</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">94</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_23" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 23</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12367</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">480000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">235</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">96</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_24" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 24</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12368</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">490000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">240</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">98</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_25" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 25</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12369</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">500000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">245</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">100</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_26" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 26</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12370</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">510000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">250</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">102</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_27" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 27</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12371</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">520000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">255</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">104</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_28" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 28</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12372</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">530000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">260</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">106</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_29" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 29</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12373</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">540000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">265</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">108</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_30" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 30</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12374</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">550000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">270</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">110</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_31" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 31</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12375</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">560000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">275</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">112</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_32" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 32</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12376</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">570000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">280</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">114</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_33" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 33</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12377</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">580000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">285</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">116</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_34" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 34</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12378</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">590000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">290</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">118</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_35" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 35</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12379</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">600000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">295</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">120</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_36" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 36</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12380</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">610000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">300</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">122</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_37" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 37</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12381</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">620000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">305</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">124</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_38" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 38</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12382</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">630000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">310</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">126</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_39" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 39</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12383</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">640000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">315</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">128</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_40" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 40</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12384</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">650000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">320</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">130</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_41" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 41</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12385</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">660000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">325</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">132</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_42" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 42</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12386</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">670000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">330</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">134</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_43" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 43</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12387</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">680000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">335</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">136</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_44" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 44</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12388</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">690000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">340</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">138</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_45" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 45</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12389</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">700000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">345</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">140</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_46" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 46</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12390</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">710000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">350</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">142</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_47" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 47</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12391</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">720000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">355</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">144</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_48" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 48</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12392</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">730000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">360</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">146</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_49" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 49</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12393</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">740000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">365</field>
+            <field name="facades">3</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">148</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+        <record id="property_50" model="property">
+            <field name="ref">new</field>
+            <field name="name">Property 50</field>
+            <field name="description">A beautiful property with many features.</field>
+            <field name="postcode">12394</field>
+            <field name="date_availability">2025-01-13</field>
+            <field name="expected_date_selling">2025-06-01</field>
+            <field name="is_late">False</field>
+            <field name="expected_price">750000</field>
+            <field name="diff">0.0</field>
+            <field name="selling_price">0.0</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">370</field>
+            <field name="facades">2</field>
+            <field name="garage">True</field>
+            <field name="garden">True</field>
+            <field name="garden_area">150</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="create_time">2025-01-13 10:00:00</field>
+            <field name="next_time">2025-01-15 10:00:00</field>
+            <field name="active">True</field>
+        </record>
+
+
+
+    </data>
+</odoo>

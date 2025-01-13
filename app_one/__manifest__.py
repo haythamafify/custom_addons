@@ -12,6 +12,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/data.xml',
         'views/base_menu.xml',
         'views/building_view.xml',
         'views/res_partner_view.xml',
