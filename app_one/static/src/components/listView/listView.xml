@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="app_one.ListView">
-        <div class="list-view">
-            <h1>List View Actions</h1>
-            <p>This is a custom OWL component.</p>
+        <div class="table-header">
+            <h1>Property List</h1>
+        </div>
+        <div class="table-responsive"> <!-- إضافة div للتمرير الأفقي -->
+            <table class="table table-bordered table-striped table-hover"> <!-- تحسين فئات الجدول -->
+                <thead class="thead-dark"> <!-- تحسين رأس الجدول -->
+                    <tr>
+                        <th>Reference</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Postcode</th>
+                        <th>Available From</th>
+                        <th>Expected Selling Date</th>
+                        <th>Status</th>
+                        <th>Owner</th>
+                        <th>Tags</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="state.properties" t-as="property" t-key="property.id">
+                        <tr>
+                            <td data-label="Reference"><t t-esc="property.ref"/></td>
+                            <td data-label="Name"><t t-esc="property.name"/></td>
+                            <td data-label="Description"><t t-esc="property.description"/></td>
+                            <td data-label="Postcode"><t t-esc="property.postcode"/></td>
+                            <td data-label="Available From"><t t-esc="property.date_availability"/></td>
+                            <td data-label="Expected Selling Date"><t t-esc="property.expected_date_selling"/></td>
+                            <td data-label="Status"><t t-esc="property.state"/></td>
+                            <td data-label="Owner"><t t-esc="property.owner_id.name"/></td>
+                            <td data-label="Tags">
+                                <t t-foreach="property.tag_ids" t-as="tag" t-key="tag.id">
+                                    <span class="badge badge-primary mr-1"><t t-esc="tag.name"/></span>
+                                </t>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
         </div>
     </t>
 </templates>
