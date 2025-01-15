@@ -1,60 +1,14 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="test_pos_custom.list">
-      <field name="name">test_pos_custom list</field>
-      <field name="model">test_pos_custom.test_pos_custom</field>
+    <record id="view_partner_form" model="ir.ui.view">
+      <field name="name">res.partner.form.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
+        <xpath expr="//field[@name='vat']" position="after">
+          <field name="code" />
+        </xpath>
       </field>
     </record>
--->
-
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="test_pos_custom.action_window">
-      <field name="name">test_pos_custom window</field>
-      <field name="res_model">test_pos_custom.test_pos_custom</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="test_pos_custom.action_server">
-      <field name="name">test_pos_custom server</field>
-      <field name="model_id" ref="model_test_pos_custom_test_pos_custom"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
-
-    <!-- Top menu item -->
-<!--
-    <menuitem name="test_pos_custom" id="test_pos_custom.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="test_pos_custom.menu_1" parent="test_pos_custom.menu_root"/>
-    <menuitem name="Menu 2" id="test_pos_custom.menu_2" parent="test_pos_custom.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="test_pos_custom.menu_1_list" parent="test_pos_custom.menu_1"
-              action="test_pos_custom.action_window"/>
-    <menuitem name="Server to list" id="test_pos_custom" parent="test_pos_custom.menu_2"
-              action="test_pos_custom.action_server"/>
--->
   </data>
 </odoo>
