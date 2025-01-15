@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_test_pos_custom_test_pos_custom,test_pos_custom.test_pos_custom,model_test_pos_custom_test_pos_custom,base.group_user,1,1,1,1
