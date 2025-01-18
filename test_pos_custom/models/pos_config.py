@@ -1,4 +1,5 @@
-from odoo import models, fields, api
+from odoo import models, fields
+
 
 class PosConfig(models.Model):
     _inherit = "pos.config"
@@ -7,3 +8,4 @@ class PosConfig(models.Model):
         string="طريقة الدفع الافتراضية",
         help="ستُستخدم هذه الطريقة للدفع كطريقة افتراضية للجلسات الجديدة."
     )
+    discount_pass_code = fields.Char(string="Discount PassCode")
