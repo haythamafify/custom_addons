@@ -1,0 +1,65 @@
+<odoo>
+    <!-- ✅ Form View -->
+    <record id="view_form_patient" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="Patient">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                             <field name="date_of_birth"/>
+                            <field name="age"/>
+                            <field name="gender"/>
+                        </group>
+                        <group>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="blood_type"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ✅ Tree View -->
+    <record id="view_tree_patient" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree string="Patients">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="date_of_birth"/>
+                <field name="gender"/>
+                <field name="phone"/>
+                <field name="blood_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ✅ Action -->
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first patient record
+            </p>
+        </field>
+    </record>
+
+    <!-- ✅ Menu Items -->
+    <menuitem id="hospital_root_menu" name="Hospital"/>
+    <menuitem id="menu_patient" name="Patients" parent="hospital_root_menu"/>
+    <menuitem id="submenu_patient" name="Patient Records" parent="menu_patient" action="action_patient"/>
+</odoo>

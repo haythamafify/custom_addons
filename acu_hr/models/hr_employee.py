@@ -1,7 +1,8 @@
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 import re
 from datetime import date
+
+from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
 
 class HREmployee(models.Model):
@@ -15,6 +16,12 @@ class HREmployee(models.Model):
         ('on_loan', 'معار'),
         ('permanent', 'دائم'),
     ], string='نوع التعاقد', required=True)
+    # حقل لتحديد تصنيف الموظف، هل هو إداري أم عضو هيئة تدريس
+    employee_category = fields.Selection([
+        ('admin', 'إداري'),
+        ('faculty', 'عضو هيئة تدريس')
+    ], string="تصنيف الموظف", required=True)
+
     hiring_date = fields.Date(string='تاريخ التعيين')
     insurance_number = fields.Char(string='الرقم التأميني', size=10)
     insurance_date = fields.Date(string='تاريخ التأمين')
