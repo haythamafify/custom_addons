@@ -1,0 +1,12 @@
+<odoo>
+    <!-- ✅ Main Root Menu -->
+    <menuitem id="hospital_root_menu" name="Hospital" sequence="10"/>
+
+    <!-- ✅ Patients Menu -->
+    <menuitem id="menu_patient" name="Patients" parent="hospital_root_menu" sequence="10"/>
+    <menuitem id="submenu_patient" name="Patient Records" parent="menu_patient" action="action_patient" sequence="10"/>
+
+    <!-- ✅ Appointments Menu -->
+    <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_root_menu" sequence="20"/>
+    <menuitem id="hospital_appointment_menu_records" name="Appointment Records" parent="hospital_appointment_menu" action="action_hospital_appointment" sequence="10"/>
+</odoo>
