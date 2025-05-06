@@ -10,7 +10,7 @@
                 <field name="date"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
-                 <field name="status"/>
+                <field name="status"/>
             </tree>
         </field>
     </record>
@@ -21,6 +21,18 @@
         <field name="model">hospital.appointment</field>
         <field name="arch" type="xml">
             <form string="Appointment" class="o_form">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,cancelled"/>
+
+                    <button name="print_test"
+                            string="Button To Test"
+                            type="object"
+                            class="btn-primary"
+                            icon="fa-save"
+                            confirm="Are you sure you want to print text?"
+                            help="This button will print text in the logs"/>
+
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>

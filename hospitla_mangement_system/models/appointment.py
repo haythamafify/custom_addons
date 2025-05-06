@@ -24,3 +24,12 @@ class Appointment(models.Model):
         string="Status",
         default='new',
         required=True)
+
+    def print_test(self):
+        for rec in self:
+            print("self is name", rec.name )
+            print("self is date", rec.date )
+            print("self is start_time", rec.start_time )
+            print("self is end_time", rec.end_time )
+
+
