@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+
+        <!-- ✅ Tree View -->
+        <record id="view_hospital_surgery_tree" model="ir.ui.view">
+            <field name="name">hospital.surgery.tree</field>
+            <field name="model">hospital.surgery</field>
+            <field name="arch" type="xml">
+                <tree string="Surgeries">
+                    <field name="patient_id"/>
+                    <field name="doctor_id"/>
+                    <field name="room_id"/>
+                    <field name="scheduled_time"/>
+                    <field name="surgery_type"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ✅ Form View -->
+        <record id="view_hospital_surgery_form" model="ir.ui.view">
+            <field name="name">hospital.surgery.form</field>
+            <field name="model">hospital.surgery</field>
+            <field name="arch" type="xml">
+                <form string="Surgery Form">
+                    <sheet>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="doctor_id"/>
+                            <field name="room_id"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_time"/>
+                            <field name="surgery_type"/>
+                            <field name="status"/>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                      <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- ✅ Action -->
+        <record id="action_hospital_surgery" model="ir.actions.act_window">
+            <field name="name">Surgeries</field>
+            <field name="res_model">hospital.surgery</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hospital_surgery_tree"/>
+        </record>
+
+
+    </data>
+</odoo>

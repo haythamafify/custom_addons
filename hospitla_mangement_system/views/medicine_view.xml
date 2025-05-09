@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- ✅ Tree View -->
+    <record id="view_tree_medicine" model="ir.ui.view">
+        <field name="name">hospital.medicine.tree</field>
+        <field name="model">hospital.medicine</field>
+        <field name="arch" type="xml">
+            <tree string="Medicines">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="price"/>
+                <field name="quantity"/>
+                <field name="expiry_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- ✅ Form View -->
+    <record id="view_form_medicine" model="ir.ui.view">
+        <field name="name">hospital.medicine.form</field>
+        <field name="model">hospital.medicine</field>
+        <field name="arch" type="xml">
+            <form string="Medicine">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category_id"/>
+                            <field name="price"/>
+                            <field name="quantity"/>
+                            <field name="expiry_date"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- ✅ Search View -->
+    <record id="view_medicine_search" model="ir.ui.view">
+        <field name="name">medicine.search</field>
+        <field name="model">hospital.medicine</field>
+        <field name="arch" type="xml">
+            <search string="Search Medicines">
+                <field name="name"/>
+                <field name="category_id"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- ✅ Action -->
+    <record id="action_hospital_medicine" model="ir.actions.act_window">
+        <field name="name">Medicines</field>
+        <field name="res_model">hospital.medicine</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_medicine_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first medicine record.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

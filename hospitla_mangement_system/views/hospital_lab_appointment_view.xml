@@ -1,0 +1,51 @@
+<odoo>
+
+    <!-- Tree View for Hospital Lab Appointments -->
+    <record id="view_hospital_lab_appointment_tree" model="ir.ui.view">
+        <field name="name">hospital.lab.appointment.tree</field>
+        <field name="model">hospital.lab.appointment</field>
+        <field name="arch" type="xml">
+            <tree string="Hospital Lab Appointments">
+                <field name="patient_id"/>
+                <field name="test_type"/>
+                <field name="appointment_date"/>
+                <field name="status"/>
+                <field name="lab_technician_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Hospital Lab Appointments -->
+    <record id="view_hospital_lab_appointment_form" model="ir.ui.view">
+        <field name="name">hospital.lab.appointment.form</field>
+        <field name="model">hospital.lab.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Hospital Lab Appointment">
+                <sheet>
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="test_type"/>
+                        <field name="appointment_date"/>
+                        <field name="status"/>
+                        <field name="lab_technician_id"/>
+                    </group>
+                </sheet>
+
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open Hospital Lab Appointments -->
+    <record id="action_hospital_lab_appointment" model="ir.actions.act_window">
+        <field name="name">Hospital Lab Appointments</field>
+        <field name="res_model">hospital.lab.appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+
+</odoo>

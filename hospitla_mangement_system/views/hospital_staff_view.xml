@@ -1,0 +1,38 @@
+<odoo>
+    <!-- Form View Extension -->
+    <record id="view_hr_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <!-- Add a new page to the notebook -->
+            <notebook position="inside">
+                <page string="Hospital Information">
+                    <group>
+                        <field name="role_in_hospital"/>
+                        <field name="hospital_department_id"/>
+                        <field name="shift_type"/>
+                        <field name="is_active_medical_staff"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+        <!-- Action to open Hospital Staff (HR Employees with hospital role) -->
+    <record id="action_hospital_staff" model="ir.actions.act_window">
+        <field name="name">Hospital Staff</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role_in_hospital', '!=', False)]</field>
+        <field name="context">{'default_role_in_hospital': 'doctor'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create or select hospital staff members.</p>
+        </field>
+    </record>
+
+
+
+
+</odoo>
+

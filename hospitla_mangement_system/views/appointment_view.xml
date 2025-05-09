@@ -10,6 +10,8 @@
                 <field name="date"/>
                 <field name="start_time"/>
                 <field name="end_time"/>
+                <field name="patient_id"/>
+
                 <field name="status"/>
             </tree>
         </field>
@@ -22,26 +24,43 @@
         <field name="arch" type="xml">
             <form string="Appointment" class="o_form">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,confirmed,done,cancelled"/>
+                    <field name="status" widget="statusbar"
+                           statusbar_visible="new,scheduled,in_progress,done,cancelled"/>
+
 
                     <button name="print_test"
-                            string="Button To Test"
+                            string="Print Info"
                             type="object"
                             class="btn-primary"
-                            icon="fa-save"
-                            confirm="Are you sure you want to print text?"
-                            help="This button will print text in the logs"/>
+                            icon="fa-print"
+                            confirm="Are you sure you want to print appointment details?"/>
+
 
                 </header>
                 <sheet>
-                    <group>
+                    <group string="Details">
                         <field name="name"/>
                         <field name="date"/>
                         <field name="start_time"/>
                         <field name="end_time"/>
-                        <field name="status"/>
+                        <field name="patient_id" domain="[('age', '>=', 30)]"
+                        />
+                        <field name="medicine_ids" widget="many2many_tags"/>
+
+
+                        <field name="doctor_id"/>
+
 
                     </group>
+
+                    <group string="Fees">
+                        <field name="appointment_fees"/>
+                        <field name="chair_rent_fees" widget="float_input"/>
+                        <field name="xray_fees" widget="float_input"/>
+                        <field name="total_price" widget="float_input"/>
+                    </group>
+
+
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
@@ -58,7 +77,14 @@
         <field name="res_model">hospital.appointment</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
-            <p class="o_view_nocontent_smiling_face">هنا تقدر تسجل المواعيد الطبية بسهولة</p>
+            <p class="o_view_nocontent_smiling_face">
+
+                لم يتم إضافة مواعيد حتى الآن.
+                <br/>
+                اضغط على "إنشاء" لتسجيل موعد جديد.
+
+
+            </p>
         </field>
     </record>
 

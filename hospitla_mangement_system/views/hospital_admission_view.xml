@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+
+        <!-- Tree View (لعرض السجلات بشكل شجري) -->
+        <record id="view_hospital_admission_tree" model="ir.ui.view">
+            <field name="name">hospital.admission.tree</field>
+            <field name="model">hospital.admission</field>
+            <field name="arch" type="xml">
+                <tree string="Hospital Admissions">
+                    <field name="patient_id"/>
+                    <field name="admission_date"/>
+                    <field name="discharge_date"/>
+                    <field name="room_number"/>
+                    <field name="reason"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View (لإضافة وتعديل السجلات) -->
+        <record id="view_hospital_admission_form" model="ir.ui.view">
+            <field name="name">hospital.admission.form</field>
+            <field name="model">hospital.admission</field>
+            <field name="arch" type="xml">
+                <form string="Hospital Admission">
+                    <sheet>
+                        <group>
+                            <field name="patient_id"/>
+                            <field name="admission_date"/>
+                            <field name="discharge_date"/>
+                            <field name="room_number"/>
+                            <field name="reason"/>
+                        </group>
+                    </sheet>
+                        <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+
+                </form>
+            </field>
+        </record>
+
+        <!-- Action (إجراء لفتح السجلات) -->
+        <record id="action_hospital_admission" model="ir.actions.act_window">
+            <field name="name">Hospital Admissions</field>
+            <field name="res_model">hospital.admission</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_hospital_admission_tree"/>
+        </record>
+
+
+    </data>
+</odoo>

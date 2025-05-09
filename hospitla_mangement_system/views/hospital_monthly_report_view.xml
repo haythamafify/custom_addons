@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="view_hospital_monthly_report_tree" model="ir.ui.view">
+        <field name="name">hospital.monthly.report.tree</field>
+        <field name="model">hospital.monthly.report</field>
+        <field name="arch" type="xml">
+            <tree string="Hospital Monthly Report">
+                <field name="report_month"/>
+                <field name="total_patients"/>
+                <field name="total_appointments"/>
+                <field name="total_income"/>
+                <field name="total_expenses"/>
+                <field name="most_common_disease"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_hospital_monthly_report_form" model="ir.ui.view">
+        <field name="name">hospital.monthly.report.form</field>
+        <field name="model">hospital.monthly.report</field>
+        <field name="arch" type="xml">
+            <form string="Hospital Monthly Report">
+                <sheet>
+                    <group>
+                        <field name="report_month"/>
+                        <field name="total_patients"/>
+                        <field name="total_appointments"/>
+                        <field name="total_income"/>
+                        <field name="total_expenses"/>
+                        <field name="most_common_disease"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_hospital_monthly_report" model="ir.actions.act_window">
+        <field name="name">Hospital Monthly Reports</field>
+        <field name="res_model">hospital.monthly.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_hospital_monthly_report_tree"/>
+    </record>
+
+
+</odoo>

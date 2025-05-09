@@ -7,11 +7,29 @@
             <form string="Patient">
                 <sheet>
                     <group>
+
+
                         <group>
+
+
                             <field name="name"/>
+                            <field name="image" widget="image" class="oe_avatar"/>
+
                             <field name="date_of_birth"/>
+
                             <field name="age"/>
+                            <field name="age_display"/>
+
+
                             <field name="gender"/>
+                            <field name="national_id_number"/>
+                        </group>
+
+                        <group>
+                            <field name="country_id"/>
+                            <field name="city_id" domain="[('country_id', '=', country_id)]"/>
+
+
                         </group>
                         <group>
                             <field name="phone"/>
@@ -23,7 +41,25 @@
                         <page string="Notes">
                             <field name="notes"/>
                         </page>
+                        <page string="Appointments">
+                            <field name="appointment_ids">
+                                <tree string="Appointments">
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="start_time"/>
+                                    <field name="end_time"/>
+                                    <field name="status"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Appointments 2">
+                            <field name="appointment_ids" widget="one2many_list"/>
+
+                        </page>
+
+
                     </notebook>
+
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
@@ -47,6 +83,19 @@
                 <field name="phone"/>
                 <field name="blood_type"/>
             </tree>
+        </field>
+    </record>
+    <!--    search view-->
+    <record id="view_patient_search" model="ir.ui.view">
+        <field name="name">patient.search</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <search string="Search Patients">
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="date_of_birth"/>
+                <filter name="adult_patients" string="Adult Patients" domain="[('age', '>=', 18)]"/>
+            </search>
         </field>
     </record>
 

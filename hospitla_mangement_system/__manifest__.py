@@ -18,14 +18,29 @@ Simple Hospital Management System
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'hr'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/patient_views.xml',
         'views/appointment_view.xml',
+        'views/medicine_view.xml',
         'views/templates.xml',
+        'views/doctor_view.xml',
+        'views/department_view.xml',
+        'views/medical_record_view.xml',
+        'views/hospital_invoice_views.xml',
+        'views/medicine_category_view.xml',
+        'views/hospital_admission_view.xml',
+        'views/hospital_lab_test_view.xml',
+        'views/hospital_operation_room_view.xml',
+        'views/hospital_surgery_view.xml',
+        'views/hospital_nurse_view.xml',
+        'views/hospital_staff_view.xml',
+        'views/hospital_lab_appointment_view.xml',
+        'views/hospital_monthly_report_view.xml',
+
         'views/hospital_menus.xml',
 
     ],
@@ -33,5 +48,6 @@ Simple Hospital Management System
     'demo': [
         'demo/demo.xml',
     ],
-'icon': '/hospital_management_system/static/description/icon.png'
+    'icon': '/hospital_management_system/static/description/icon.png',
+'license': 'LGPL-3',
 }

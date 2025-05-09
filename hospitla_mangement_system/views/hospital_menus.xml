@@ -8,5 +8,120 @@
 
     <!-- ✅ Appointments Menu -->
     <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_root_menu" sequence="20"/>
-    <menuitem id="hospital_appointment_menu_records" name="Appointment Records" parent="hospital_appointment_menu" action="action_hospital_appointment" sequence="10"/>
+    <menuitem id="hospital_appointment_menu_records" name="Appointment Records" parent="hospital_appointment_menu"
+              action="action_hospital_appointment" sequence="10"/>
+
+
+    <!-- ✅ Medicine Menu -->
+    <menuitem id="hospital_medicine_menu" name="Medicine" parent="hospital_root_menu" sequence="30"/>
+    <menuitem id="hospital_medicine_menu_records" name="Medicine Records" parent="hospital_medicine_menu"
+              action="action_hospital_medicine" sequence="10"/>
+    <!-- Menu Item for Doctor -->
+    <menuitem id="menu_hospital_doctor" name="Doctors" parent="hospital_root_menu" sequence="40"/>
+    <menuitem id="menu_hospital_doctor_records" name="Doctors Records" parent="menu_hospital_doctor"
+              action="action_hospital_doctor" sequence="10"/>
+
+    <!-- Menu (under a main Hospital menu) -->
+    <menuitem id="menu_hospital_Departments" name="Departments" parent="hospital_root_menu" sequence="50"/>
+
+    <menuitem id="menu_hospital_department_records"
+              name="Departments Records"
+              parent="menu_hospital_Departments"
+              action="action_hospital_department" sequence="10"/>
+
+    <!-- Menu Item  for medical records -->
+    <menuitem id="menu_hospital_medical_root" name="Medical Records" parent="hospital_root_menu" sequence="60"/>
+    <menuitem id="menu_hospital_medical_record" name="Medical Records" parent="menu_hospital_medical_root"
+              action="action_medical_record" sequence="10"/>
+    <!-- Menu Item  hospital_invoice-->
+    <menuitem id="menu_hospital_invoice_root"
+              name="Hospital Invoices"
+              parent="hospital_root_menu"
+              sequence="70"/>
+
+    <menuitem id="menu_hospital_invoice"
+              name="Invoices Records"
+              parent="menu_hospital_invoice_root"
+              action="action_hospital_invoice"
+              sequence="10"/>
+
+
+    <!--menu item for medicine category-->
+    <menuitem id="menu_medicine_category"
+              name="Medicine Categories"
+              parent="hospital_root_menu"
+              sequence="80"
+    />
+    <menuitem id="menu_medicine_category_records"
+              name="Medicine Categories Records"
+              parent="menu_medicine_category"
+              action="action_medicine_category"
+              sequence="10"/>
+
+
+    <!--menu item for hospital admission-->
+    <menuitem id="menu_hospital_admission" name="Hospital Admissions" parent="hospital_root_menu" sequence="90"/>
+    <menuitem id="menu_hospital_admission_records" name="Admission Records" parent="menu_hospital_admission"
+              action="action_hospital_admission" sequence="10"/>
+    <!-- menu item for hospital lab test -->
+    <menuitem id="menu_hospital_lab_test" name="Lab Tests" parent="hospital_root_menu" sequence="100"/>
+    <menuitem id="menu_hospital_lab_test_records"
+              name="Lab Test Records"
+              parent="menu_hospital_lab_test"
+              action="action_hospital_lab_test"
+              sequence="10"/>
+
+    <!-- menu item for hospital operation room -->
+    <menuitem id="menu_hospital_operation_room"
+              name="Operation Rooms"
+              parent="hospital_root_menu"
+              sequence="110"/>
+
+    <menuitem id="menu_hospital_operation_room_records"
+              name="Room Records"
+              parent="menu_hospital_operation_room"
+              action="action_hospital_operation_room"
+              sequence="10"/>
+
+
+    <!-- menu item for hospital nurse -->
+    <menuitem id="menu_hospital_nurse" name="Nurses" parent="hospital_root_menu" sequence="120"/>
+    <menuitem id="menu_hospital_nurse_records" name="Nurse Records" parent="menu_hospital_nurse"
+              action="action_hospital_nurse" sequence="10"/>
+
+    <!--   menu item for hospital surgery -->
+    <menuitem id="menu_hospital_surgery"
+              name="Surgeries"
+              parent="hospital_root_menu"
+              sequence="120"/>
+
+    <menuitem id="menu_hospital_surgery_records"
+              name="Surgery Records"
+              parent="menu_hospital_surgery"
+              action="action_hospital_surgery"
+              sequence="10"/>
+
+
+<odoo>
+    <!-- Top-level Menu: Hospital -->
+    <menuitem id="menu_hospital_staff" name="Staff" parent="hospital_root_menu" sequence="140"/>
+
+    <!-- Sub-menu: Staff Records -->
+    <menuitem id="menu_hospital_staff_records" name="Staff Records" parent="menu_hospital_staff"
+              action="action_hospital_staff" sequence="10"/>
+
+
+      <!-- Menu Item for Hospital Lab Appointments -->
+    <menuitem id="menu_hospital_lab_appointments" name="Lab Appointments" parent="hospital_root_menu" sequence="150"/>
+
+
+    <menuitem id="menu_hospital_lab_appointment_records" name="Lab Appointments Records" parent="menu_hospital_lab_appointments" action="action_hospital_lab_appointment" sequence="10"/>
+
+     <!-- Menu Item: لإضافة القائمة في واجهة المستخدم -->
+    <menuitem id="menu_hospital_monthly_report" name="Hospital Monthly Reports"
+              parent="hospital_root_menu" sequence="160" />
+    <menuitem id="menu_hospital_monthly_report_records" name="Monthly Report Records" parent="menu_hospital_monthly_report" action="action_hospital_monthly_report" sequence="10"/>
+
+</odoo>
+
 </odoo>

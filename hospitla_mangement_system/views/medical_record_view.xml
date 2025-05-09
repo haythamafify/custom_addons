@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_medical_record_tree" model="ir.ui.view">
+        <field name="name">hospital.medical.record.tree</field>
+        <field name="model">hospital.medical.record</field>
+        <field name="arch" type="xml">
+            <tree string="Medical Records">
+                <field name="name"/>
+                <field name="patient_id"/>
+                <field name="doctor_id"/>
+                <field name="record_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_medical_record_form" model="ir.ui.view">
+        <field name="name">hospital.medical.record.form</field>
+        <field name="model">hospital.medical.record</field>
+        <field name="arch" type="xml">
+            <form string="Medical Record">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="record_date"/>
+                        <field name="patient_id"/>
+                        <field name="doctor_id"/>
+                    </group>
+                    <group>
+                        <field name="diagnosis"/>
+                        <field name="prescription"/>
+                    </group>
+                </sheet>
+                    <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_medical_record" model="ir.actions.act_window">
+        <field name="name">Medical Records</field>
+        <field name="res_model">hospital.medical.record</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first medical record
+            </p>
+        </field>
+    </record>
+
+
+</odoo>
