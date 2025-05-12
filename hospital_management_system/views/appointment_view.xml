@@ -46,10 +46,8 @@
                         <field name="patient_id" domain="[('age', '>=', 30)]"
                         />
                         <field name="medicine_ids" widget="many2many_tags"/>
-
-
                         <field name="doctor_id"/>
-
+                        <field name="room_id"/>
 
                     </group>
 

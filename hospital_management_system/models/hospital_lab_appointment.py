@@ -12,6 +12,7 @@ class HospitalLabAppointment(models.Model):
     _description = 'Hospital Lab Appointment'  # Model description
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _rec_name = 'name'
 
     # Field definitions
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True)

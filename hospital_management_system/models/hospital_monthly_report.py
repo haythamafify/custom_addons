@@ -5,6 +5,7 @@ class HospitalMonthlyReport(models.Model):
     _description = 'Hospital Monthly Report'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _rec_name = 'name'
 
     report_month = fields.Date(string='Report Month', required=True)  # Field for the month of the report
     total_patients = fields.Integer(string='Total Patients', default=0)  # Total number of patients in the month

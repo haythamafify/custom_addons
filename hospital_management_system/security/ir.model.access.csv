@@ -14,6 +14,7 @@ access_hospital_surgery,hospital.surgery,model_hospital_surgery,,1,1,1,1
 access_hospital_nurse,hospital.nurse,model_hospital_nurse,base.group_user,1,1,1,1
 access_hospital_lab_appointment,hospital.lab.appointment,model_hospital_lab_appointment,base.group_user,1,1,1,1
 access_hospital_monthly_report,hospital.monthly.report,model_hospital_monthly_report,base.group_user,1,1,1,1
+access_hospital_appointment_medicine_line,hospital.appointment.medicine.line,model_hospital_appointment_medicine_line,base.group_user,1,1,1,1
 
 
 

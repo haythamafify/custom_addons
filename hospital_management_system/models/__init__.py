@@ -16,4 +16,5 @@ from . import hospital_nurse
 from . import hospital_staff
 from . import hospital_lab_appointment
 from . import hospital_monthly_report
+from . import hospital_appointment_medicine_line_
 

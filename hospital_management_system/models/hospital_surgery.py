@@ -5,6 +5,7 @@ class HospitalSurgery(models.Model):
     _description = 'Hospital Surgery'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _rec_name = 'name'
 
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True)
     doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True)

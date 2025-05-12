@@ -3,6 +3,7 @@ from odoo import models, fields
 class HospitalStaff(models.Model):
     _inherit = 'hr.employee'
     _log_access = True
+    _rec_name = 'name'
 
     role_in_hospital = fields.Selection([
         ('doctor', 'Doctor'),

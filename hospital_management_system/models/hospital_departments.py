@@ -9,6 +9,7 @@ class Department(models.Model):
     _description = 'Hospital Department'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
     name = fields.Char(string='Name', required=True, tracking=True)
     description = fields.Text(string='Description', tracking=True)

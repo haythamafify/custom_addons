@@ -6,6 +6,7 @@ class HospitalAdmission(models.Model):
     _description = 'Hospital Admission'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _rec_name = 'name'
 
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True)
     admission_date = fields.Datetime(string='Admission Date', default=fields.Datetime.now, required=True)

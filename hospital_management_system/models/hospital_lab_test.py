@@ -8,6 +8,7 @@ class HospitalLabTest(models.Model):
     _description = 'Hospital Lab Test'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _rec_name = 'name'
 
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True)
     test_type = fields.Selection([

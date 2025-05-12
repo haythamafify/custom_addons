@@ -9,6 +9,7 @@ class HospitalInvoice(models.Model):
     _description = 'Hospital Invoice'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    # _rec_name = 'name'
 
     patient_id = fields.Many2one(
         "hospital.patient",

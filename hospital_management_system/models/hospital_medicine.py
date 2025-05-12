@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import re
-from datetime import datetime
-
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -12,6 +9,7 @@ class Medicine(models.Model):
     _description = 'medicine'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
     name = fields.Char(string='Medicine Name', required=True, tracking=True)
     category_id = fields.Many2one('hospital.medicine.category', string='Category', tracking=True)

@@ -12,6 +12,7 @@ class Patient(models.Model):
     _description = 'Patient'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
     # الحقول
     name = fields.Char(string='Name', required=True, tracking=True)

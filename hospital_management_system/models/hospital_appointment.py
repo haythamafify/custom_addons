@@ -10,11 +10,13 @@ class Appointment(models.Model):
     _description = 'hospital appointment'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
     name = fields.Char(string='Appointment Name', required=True)
     date = fields.Date(string='Date', required=True)
     start_time = fields.Datetime(string='Start Time', required=True)
     end_time = fields.Datetime(string='End Time', required=True)
+    medicine_line_ids = fields.One2many('hospital.appointment.medicine.line', 'appointment_id', string='Medicines')
     status = fields.Selection(
         [('new', 'New'), ('scheduled', 'Scheduled'), ('in_progress', 'In Progress'), ('done', 'Done'),
          ('cancelled', 'Cancelled')], string="Status", default='new', required=True)
@@ -22,8 +24,9 @@ class Appointment(models.Model):
                                  ondelete='restrict', domain="[('age', '>', 50)]"
 
                                  )
-    doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True, tracking=True, )
 
+    doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True, tracking=True, )
+    room_id = fields.Many2one("hospital.operation.room", "Room", required=True, tracking=True)
     appointment_fees = fields.Float(string='Appointment Fees', required=True)
     chair_rent_fees = fields.Float(string="Chair Rent Fees")
     xray_fees = fields.Float(string="Xray Fees")

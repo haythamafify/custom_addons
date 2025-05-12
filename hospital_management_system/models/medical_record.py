@@ -9,6 +9,7 @@ class MedicalRecord(models.Model):
     _description = 'Medical Record'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
     # الحقول
     name = fields.Char(string='Name', required=True, tracking=True)

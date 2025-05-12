@@ -5,6 +5,7 @@ class HospitalOperationRoom(models.Model):
     _description = 'Hospital Operation Room'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
 
     name = fields.Char(string="Room Name", required=True)

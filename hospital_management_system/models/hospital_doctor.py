@@ -12,6 +12,7 @@ class Doctor(models.Model):
     _description = 'doctor'
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _rec_name = 'name'
 
     name = fields.Char(string='Name', required=True, tracking=True)
     specialization = fields.Char(string='Specialization', tracking=True)
