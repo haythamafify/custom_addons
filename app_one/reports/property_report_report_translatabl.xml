@@ -1,0 +1,88 @@
+<odoo>
+    <data>
+
+        <!-- Report Action -->
+        <record id="property_report_translatable" model="ir.actions.report">
+            <field name="name">Property Report Translatable</field>
+            <field name="model">property</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="binding_model_id" ref="model_property"/>
+            <field name="binding_type">report</field>
+            <field name="report_name">app_one.property_report_translatable_template</field>
+        </record>
+
+        <!-- Main Report Template -->
+        <template id="property_report_translatable_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+
+                        <!-- Report Title -->
+                        <div class="text-center mb-4">
+                            <h2 style="font-weight: bold; color: #2c3e50;">🏠 <span t-translation="on">Property Report</span></h2>
+                        </div>
+
+                        <!-- Property Details Section -->
+                        <p class="section-title">📋 <span t-translation="on">General Information</span></p>
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td><span t-translation="on">Property Name</span></td>
+                                    <td><t t-esc="o.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span t-translation="on">Description</span></td>
+                                    <td><t t-esc="o.description"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span t-translation="on">Postcode</span></td>
+                                    <td><t t-esc="o.postcode"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span t-translation="on">Availability Date</span></td>
+                                    <td><t t-esc="o.date_availability"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Pricing Info Section -->
+                        <p class="section-title">💰 <span t-translation="on">Pricing Information</span></p>
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td><span t-translation="on">Expected Price</span></td>
+                                    <td><t t-esc="o.expected_price"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span t-translation="on">Selling Price</span></td>
+                                    <td><t t-esc="o.selling_price"/></td>
+                                </tr>
+                                <tr>
+                                    <td><span t-translation="on">Price Difference</span></td>
+                                    <td><t t-esc="o.diff"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Footer Info Section -->
+                        <p style="font-size: 12px; margin-top: 30px;">
+                            <strong><span t-translation="on">Printed at:</span></strong>
+                            <t t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                            <br/>
+                            <strong><span t-translation="on">User:</span></strong>
+                            <t t-esc="user.name"/>
+                            |
+                            <strong><span t-translation="on">Company:</span></strong>
+                            <t t-esc="res_company.name"/>
+                            <br/>
+                            <strong><span t-translation="on">Report Date:</span></strong>
+                            <t t-esc="context_timestamp(o.create_date).strftime('%Y-%m-%d %H:%M:%S')"/>
+                        </p>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

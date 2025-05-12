@@ -1,7 +1,7 @@
 from datetime import timedelta
 
 import requests
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
@@ -9,6 +9,7 @@ class Property(models.Model):
     _name = "property"
     _description = "Property"
     _inherit = ['mail.thread', 'mail.activity.mixin']
+    _log_access = True
 
     ref = fields.Char(default="new", readonly=True, translate=True)
 

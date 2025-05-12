@@ -24,6 +24,7 @@
         'views/account_move_view.xml',
         'wizard/change_state_wizzard_view.xml',
         'reports/property_report.xml',
+        'reports/property_report_report_translatabl.xml',
     ],
     'assets': {
         'web.assets_backend': [
@@ -32,12 +33,10 @@
             'app_one/static/src/components/listView/listView.css',
             'app_one/static/src/components/listView/listView.xml',
 
-
-
         ],
         'web.assets_frontend': [],
         'web.report.assets_common': ['app_one/static/src/css/font.css'],
 
-    },
+    }, 'license': 'LGPL-3',
     'application': True,
 }
