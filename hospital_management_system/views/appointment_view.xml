@@ -56,8 +56,24 @@
                         <field name="chair_rent_fees" widget="float_input"/>
                         <field name="xray_fees" widget="float_input"/>
                         <field name="total_price" widget="float_input"/>
+                        <field name="total_medicine_quantity" widget="float_input"/>
+
+
                     </group>
 
+                    <notebook>
+                        <page string="Medicine Lines">
+                            <field name="medicine_line_ids">
+                                <tree editable="bottom">
+                                    <field name="medicine_id"/>
+                                    <field name="quantity"/>
+                                    <field name="dose_per_day"/>
+
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
 
                 </sheet>
                 <div class="oe_chatter">

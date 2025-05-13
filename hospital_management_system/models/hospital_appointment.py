@@ -31,6 +31,17 @@ class Appointment(models.Model):
     chair_rent_fees = fields.Float(string="Chair Rent Fees")
     xray_fees = fields.Float(string="Xray Fees")
     total_price = fields.Float(string='Total Price', store=True, compute='_compute_total_price')
+    total_medicine_quantity = fields.Float(string="total medicine", compute="_compute_total_medicine")
+
+
+    @api.depends("medicine_line_ids")
+    def _compute_total_medicine(self):
+        print("inside _compute_total_medicine ")
+        for appointment in self:
+            total_qty = 0
+            for line in appointment.medicine_line_ids:
+                total_qty += line.quantity
+            appointment.total_medicine_quantity = total_qty
 
     @api.depends('appointment_fees', 'xray_fees', 'chair_rent_fees')
     def _compute_total_price(self):

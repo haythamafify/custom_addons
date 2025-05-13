@@ -14,7 +14,7 @@ class HospitalStaff(models.Model):
 
     hospital_department_id = fields.Many2one(
         'hospital.department',
-        string='Department',
+        string='Hospital Department',
         required=True
     )
 

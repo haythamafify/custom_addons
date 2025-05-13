@@ -16,6 +16,6 @@ class HospitalAppointmentMedicineLine(models.Model):
         required=True,
         tracking=True
     )
-    quantity = fields.Float(string="Quantity", digit=("20", "2"), required=True, tracking=True)
+    quantity = fields.Float(string="Quantity", digits=(20, 2), required=True, tracking=True)
     dose_per_day = fields.Float(string="Dosage", required=True, tracking=True)
     appointment_id = fields.Many2one("hospital.appointment", string="Appointment", required=True, tracking=True)
