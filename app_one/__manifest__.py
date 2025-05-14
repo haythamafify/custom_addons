@@ -25,6 +25,7 @@
         'wizard/change_state_wizzard_view.xml',
         'reports/property_report.xml',
         'reports/property_report_report_translatabl.xml',
+        'reports/sale_report_inheritance.xml',
     ],
     'assets': {
         'web.assets_backend': [

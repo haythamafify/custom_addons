@@ -1,0 +1,21 @@
+<odoo>
+    <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+        <!-- إضافة رقم الهاتف بعد مجموعة معلومات العميل -->
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div class="col-auto col-3 mw-100 mb-2">
+                <strong>رقم الهاتف: </strong>
+                <span t-field="doc.partner_id.phone"/>
+            </div>
+        </xpath>
+
+        <!-- إضافة إجمالي الخصم أسفل الجدول -->
+        <xpath expr="//table[contains(@class, 'o_main_table')]" position="after">
+            <div class="row mt-3">
+                <div class="col-12 text-end">
+                    <strong>إجمالي الخصم: </strong>
+                    <span t-field="doc.total_discount" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
