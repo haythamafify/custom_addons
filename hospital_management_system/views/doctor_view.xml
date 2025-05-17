@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <tree string="Doctors">
                 <field name="name"/>
+                <field name="license_number"/>
                 <field name="specialization"/>
                 <field name="mobile"/>
                 <field name="email"/>
@@ -21,10 +22,20 @@
         <field name="name">hospital.doctor.form</field>
         <field name="model">hospital.doctor</field>
         <field name="arch" type="xml">
-            <form string="Doctor">
-                <sheet>
+            <form string="Doctor" create="1" edit="1" update="1">
+                <sheet string="Doctor">
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" class="mr-3"/>
+                        </h1>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar oe_left"
+                           options="{'preview_image': 'image_medium'}"/>
                     <group>
-                        <field name="name"/>
+
+
+                        <field name="license_number"/>
                         <field name="specialization"/>
                         <field name="mobile"/>
                         <field name="email"/>
@@ -35,7 +46,7 @@
                         <field name="is_available"/>
                     </group>
                 </sheet>
-                  <div class="oe_chatter">
+                <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers"/>
                     <field name="activity_ids" widget="mail_activity"/>
                     <field name="message_ids" widget="mail_thread"/>
@@ -50,6 +61,11 @@
         <field name="res_model">hospital.doctor</field>
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_hospital_doctor_tree"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                create your first doctor !
+            </p>
+        </field>
     </record>
 
 

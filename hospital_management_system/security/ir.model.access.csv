@@ -11,10 +11,9 @@ access_hospital_admission,hospital.admission,model_hospital_admission,,1,1,1,1
 access_hospital_lab_test,hospital.lab.test,model_hospital_lab_test,,1,1,1,1
 access_hospital_operation_room,hospital.operation.room,model_hospital_operation_room,,1,1,1,1
 access_hospital_surgery,hospital.surgery,model_hospital_surgery,,1,1,1,1
-access_hospital_nurse,hospital.nurse,model_hospital_nurse,base.group_user,1,1,1,1
-access_hospital_lab_appointment,hospital.lab.appointment,model_hospital_lab_appointment,base.group_user,1,1,1,1
-access_hospital_monthly_report,hospital.monthly.report,model_hospital_monthly_report,base.group_user,1,1,1,1
+access_hospital_nurse,hospital.nurse,model_hospital_nurse,,1,1,1,1
+access_hospital_lab_appointment,hospital.lab.appointment,model_hospital_lab_appointment,,1,1,1,1
+access_hospital_monthly_report,hospital.monthly.report,model_hospital_monthly_report,,1,1,1,1
 access_hospital_appointment_medicine_line,hospital.appointment.medicine.line,model_hospital_appointment_medicine_line,base.group_user,1,1,1,1
-
-
+access_hospital_room_user,hospital.room,model_hospital_room,,1,1,1,1
 

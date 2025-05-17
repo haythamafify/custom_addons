@@ -122,6 +122,20 @@
               parent="hospital_root_menu" sequence="160" />
     <menuitem id="menu_hospital_monthly_report_records" name="Monthly Report Records" parent="menu_hospital_monthly_report" action="action_hospital_monthly_report" sequence="10"/>
 
+
+
+
+
+
+
+
+
+        <!-- Menu Item: لإضافة القائمة في واجهة المستخدم -->
+    <menuitem id="menu_hospital_rooms_patient" name="Rooms for Patients"
+              parent="hospital_root_menu" sequence="180" />
+    <menuitem id="menu_hospital_rooms_patient_record" name="Rooms for patient Records" parent="menu_hospital_rooms_patient" action="action_view_hospital_room" sequence="10"/>
+
+
 </odoo>
 
 </odoo>

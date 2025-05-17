@@ -1,0 +1,86 @@
+<odoo>
+    <!--regular doctor group-->
+    <record id="group_regular_doctors" model="res.groups">
+        <field name="name">Regular Doctor</field>
+    </record>
+    <!--regular doctor rule-->
+    <record id="ir_rule_regular_doctors" model="ir.rule">
+        <field name="name">Regular Doctor Rule</field>
+        <field name="model_id" ref="hospital_management_system.model_hospital_appointment"/>
+        <field name="domain_force">[('doctor_id', '=', user.doctor_id.id)]
+        </field>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('hospital_management_system.group_regular_doctors'))]"/>
+    </record>
+
+    <!--staff doctor group-->
+    <record id="group_staff_doctors" model="res.groups">
+        <field name="name">Staff Doctor</field>
+    </record>
+    <!--regular doctor rule-->
+    <record id="ir_rule_staff_doctors" model="ir.rule">
+        <field name="name">Staff Doctor Rule</field>
+        <field name="model_id" ref="hospital_management_system.model_hospital_appointment"/>
+
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('hospital_management_system.group_staff_doctors'))]"/>
+    </record>
+
+
+    <!--male patient group-->
+    <record id="group_male_patients" model="res.groups">
+        <field name="name">Male patient</field>
+    </record>
+    <!--male patient rule-->
+    <record id="ir_rule_male_patients" model="ir.rule">
+        <field name="name">Male patient Rule</field>
+
+        <field name="model_id" ref="hospital_management_system.model_hospital_patient"/>
+        <field name="domain_force">[('gender', '=', 'male')]
+        </field>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('hospital_management_system.group_male_patients'))]"/>
+    </record>
+
+    <!--    female patient group-->
+    <record id="group_female_patients" model="res.groups">
+        <field name="name">Female patient</field>
+    </record>
+    <!--female patient rule-->
+    <record id="ir_rule_female_patients" model="ir.rule">
+        <field name="name">Female patient Rule</field>
+
+        <field name="model_id" ref="hospital_management_system.model_hospital_patient"/>
+        <field name="domain_force">[('gender', '=', 'female')]
+        </field>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('hospital_management_system.group_female_patients'))]"/>
+    </record>
+
+
+    <!-- Department group-->
+    <record id="group_department_manger" model="res.groups">
+        <field name="name">Department Manger</field>
+    </record>
+    <!-- department rule-->
+    <record id="ir_rule_department_manger" model="ir.rule">
+        <field name="name">Department Manger Rule</field>
+        <field name="model_id" ref="hospital_management_system.model_hospital_department"/>
+        <field name="domain_force">[('manager_id', '=', user.doctor_id.id)]</field>
+
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="groups" eval="[(4,ref('hospital_management_system.group_department_manger'))]"/>
+    </record>
+
+
+</odoo>

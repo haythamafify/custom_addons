@@ -32,6 +32,8 @@ This module helps manage core hospital functionalities, including:
     # Data files
     'data': [
         # Security
+
+        'security/security.xml',
         'security/ir.model.access.csv',
 
         # Patient & Appointments
@@ -41,6 +43,7 @@ This module helps manage core hospital functionalities, including:
 
         # Staff
         'views/doctor_view.xml',
+        'views/users_view.xml',
         'views/hospital_nurse_view.xml',
         'views/hospital_staff_view.xml',
 
@@ -49,6 +52,7 @@ This module helps manage core hospital functionalities, including:
         'views/hospital_admission_view.xml',
         'views/hospital_operation_room_view.xml',
         'views/hospital_surgery_view.xml',
+        'views/room_view.xml',
 
         # Medicine & Inventory
         'views/medicine_view.xml',
