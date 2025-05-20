@@ -28,11 +28,12 @@ class Appointment(models.Model):
     doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True, tracking=True, )
     room_id = fields.Many2one("hospital.operation.room", "Room", required=True, tracking=True)
     appointment_fees = fields.Float(string='Appointment Fees', required=True)
+    notes = fields.Text(string="notes")
+
     chair_rent_fees = fields.Float(string="Chair Rent Fees")
     xray_fees = fields.Float(string="Xray Fees")
     total_price = fields.Float(string='Total Price', store=True, compute='_compute_total_price')
     total_medicine_quantity = fields.Float(string="total medicine", compute="_compute_total_medicine")
-
 
     @api.depends("medicine_line_ids")
     def _compute_total_medicine(self):

@@ -43,6 +43,9 @@ class Property(models.Model):
     next_time = fields.Datetime(compute="_compute_next_time")
     active = fields.Boolean(default=True)
 
+    def print_report(self):
+        return self.env.ref("app_one.property_report").report_action(self)
+
     _sql_constraints = [('unique_name', 'UNIQUE(name)', 'الاسم يجب ان لايتكرر.'),
                         ('price_positive', 'check(price > 0)', "السعر يجب ان يكون موجب ")]
 

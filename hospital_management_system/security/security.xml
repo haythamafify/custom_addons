@@ -81,6 +81,22 @@
         <field name="perm_unlink" eval="True"/>
         <field name="groups" eval="[(4,ref('hospital_management_system.group_department_manger'))]"/>
     </record>
+    <!--group Show  Appoiments Note-->
 
+    <record id="group_show_appointments_note" model="res.groups">
+        <field name="name">Show Appointments Note</field>
+    </record>
+    <!--group create department-->
+
+    <record id="group_create_department" model="res.groups">
+        <field name="name">Create Department</field>
+    </record>
+
+
+    <!--group General department-->
+
+    <record id="group_general_department" model="res.groups">
+        <field name="name">General Department</field>
+    </record>
 
 </odoo>

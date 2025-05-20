@@ -48,6 +48,7 @@
                         <field name="medicine_ids" widget="many2many_tags"/>
                         <field name="doctor_id"/>
                         <field name="room_id"/>
+                        <field name="notes" groups="hospital_management_system.group_show_appointments_note"/>
 
                     </group>
 

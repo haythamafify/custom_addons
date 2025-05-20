@@ -35,6 +35,15 @@
         <field name="model">property</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="print_report"
+                            string="️ طباعة التقرير"
+                            type="object"
+                            class="btn btn-primary"
+                            icon="fa-print"/>
+                </header>
+
+
                 <sheet>
                     <div name="button_box" class="oe_button_box">
                         <button name="action_open_related_owner" type="object" icon="fa-user" string="owner"
@@ -192,7 +201,8 @@
         <field name="name">properties list view</field>
         <field name="tag">app_one.actions_list_view</field>
     </record>
-<!--menu for owl action client-->
-    <menuitem id="properties_menu_owl_action" name="properties owl" parent="properties_menu" action="list_view_owl_action"/>
+    <!--menu for owl action client-->
+    <menuitem id="properties_menu_owl_action" name="properties owl" parent="properties_menu"
+              action="list_view_owl_action"/>
 
 </odoo>
