@@ -31,7 +31,7 @@
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids"
-                           groups="base.group_no_ne"/>
+                         />
                     <field name="activity_ids"/>
                     <field name="message_ids"/>
                 </div>

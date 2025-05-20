@@ -3,8 +3,8 @@ access_hospital_patient,hospital.patient,model_hospital_patient,,1,1,1,1
 access_hospital_appointment,hospital.appointment,model_hospital_appointment,,1,1,1,1
 access_hospital_medicine,hospital.medicine,model_hospital_medicine,,1,1,1,1
 access_hospital_doctor,hospital.doctor,model_hospital_doctor,,1,1,1,1
-access_hospital_general_department,hospital_department_general_department,model_hospital_department,hospital_management_system.group_general_department,1,1,1,1
-access_hospital_manger_department,.hospital_department_department_manger,model_hospital_department,hospital_management_system.group_department_manger,1,1,0,0
+access_hospital_general_department,hospital_department_general_department,model_hospital_department,hospital_management_system.group_general_department,1,1,0,0
+access_hospital_manger_department,.hospital_department_department_manger,model_hospital_department,hospital_management_system.group_department_manger,1,1,1,1
 access_hospital_medical_record,hospital.medical.record,model_hospital_medical_record,,1,1,1,1
 access_hospital_invoice,hospital.invoice,model_hospital_invoice,,1,1,1,1
 access_hospital_medicine_category,medicine.category,model_hospital_medicine_category,,1,1,1,1

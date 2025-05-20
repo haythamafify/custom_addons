@@ -2,9 +2,16 @@
     <!-- ✅ Main Root Menu -->
     <menuitem id="hospital_root_menu" name="Hospital" sequence="10"/>
 
-    <!-- ✅ Patients Menu -->
+    <!-- ✅ all Patients Menu -->
     <menuitem id="menu_patient" name="Patients" parent="hospital_root_menu" sequence="10"/>
-    <menuitem id="submenu_patient" name="Patient Records" parent="menu_patient" action="action_patient" sequence="10"/>
+    <menuitem id="submenu_patient" name="All Patient Records" parent="menu_patient" action="action_patient"
+              sequence="10"/>
+    <menuitem id="submenu_patient_male" name="Male Patient Records" parent="menu_patient" action="action_patient_male"
+              sequence="20"/>
+    <menuitem id="submenu_patient_female" name="Female Patient Records" parent="menu_patient"
+              action="action_patient_female"
+              sequence="30"/>
+
 
     <!-- ✅ Appointments Menu -->
     <menuitem id="hospital_appointment_menu" name="Appointments" parent="hospital_root_menu" sequence="20"/>
@@ -102,40 +109,37 @@
               sequence="10"/>
 
 
-<odoo>
-    <!-- Top-level Menu: Hospital -->
-    <menuitem id="menu_hospital_staff" name="Staff" parent="hospital_root_menu" sequence="140"/>
+    <odoo>
+        <!-- Top-level Menu: Hospital -->
+        <menuitem id="menu_hospital_staff" name="Staff" parent="hospital_root_menu" sequence="140"/>
 
-    <!-- Sub-menu: Staff Records -->
-    <menuitem id="menu_hospital_staff_records" name="Staff Records" parent="menu_hospital_staff"
-              action="action_hospital_staff" sequence="10"/>
-
-
-      <!-- Menu Item for Hospital Lab Appointments -->
-    <menuitem id="menu_hospital_lab_appointments" name="Lab Appointments" parent="hospital_root_menu" sequence="150"/>
+        <!-- Sub-menu: Staff Records -->
+        <menuitem id="menu_hospital_staff_records" name="Staff Records" parent="menu_hospital_staff"
+                  action="action_hospital_staff" sequence="10"/>
 
 
-    <menuitem id="menu_hospital_lab_appointment_records" name="Lab Appointments Records" parent="menu_hospital_lab_appointments" action="action_hospital_lab_appointment" sequence="10"/>
-
-     <!-- Menu Item: لإضافة القائمة في واجهة المستخدم -->
-    <menuitem id="menu_hospital_monthly_report" name="Hospital Monthly Reports"
-              parent="hospital_root_menu" sequence="160" />
-    <menuitem id="menu_hospital_monthly_report_records" name="Monthly Report Records" parent="menu_hospital_monthly_report" action="action_hospital_monthly_report" sequence="10"/>
+        <!-- Menu Item for Hospital Lab Appointments -->
+        <menuitem id="menu_hospital_lab_appointments" name="Lab Appointments" parent="hospital_root_menu"
+                  sequence="150"/>
 
 
+        <menuitem id="menu_hospital_lab_appointment_records" name="Lab Appointments Records"
+                  parent="menu_hospital_lab_appointments" action="action_hospital_lab_appointment" sequence="10"/>
 
-
-
-
-
+        <!-- Menu Item: لإضافة القائمة في واجهة المستخدم -->
+        <menuitem id="menu_hospital_monthly_report" name="Hospital Monthly Reports"
+                  parent="hospital_root_menu" sequence="160"/>
+        <menuitem id="menu_hospital_monthly_report_records" name="Monthly Report Records"
+                  parent="menu_hospital_monthly_report" action="action_hospital_monthly_report" sequence="10"/>
 
 
         <!-- Menu Item: لإضافة القائمة في واجهة المستخدم -->
-    <menuitem id="menu_hospital_rooms_patient" name="Rooms for Patients"
-              parent="hospital_root_menu" sequence="180" />
-    <menuitem id="menu_hospital_rooms_patient_record" name="Rooms for patient Records" parent="menu_hospital_rooms_patient" action="action_view_hospital_room" sequence="10"/>
+        <menuitem id="menu_hospital_rooms_patient" name="Rooms for Patients"
+                  parent="hospital_root_menu" sequence="180"/>
+        <menuitem id="menu_hospital_rooms_patient_record" name="Rooms for patient Records"
+                  parent="menu_hospital_rooms_patient" action="action_view_hospital_room" sequence="10"/>
 
 
-</odoo>
+    </odoo>
 
 </odoo>

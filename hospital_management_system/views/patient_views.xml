@@ -95,15 +95,40 @@
                 <field name="gender"/>
                 <field name="date_of_birth"/>
                 <filter name="adult_patients" string="Adult Patients" domain="[('age', '>=', 18)]"/>
+            <filter name="filter_males" string="Males" domain="[('gender','=','male')]"/>
+            <filter name="filter_females" string="Females" domain="[('gender','=','female')]"/>
+
             </search>
         </field>
     </record>
 
     <!-- ✅ Action -->
     <record id="action_patient" model="ir.actions.act_window">
-        <field name="name">Patients</field>
+        <field name="name">All Patients</field>
         <field name="res_model">hospital.patient</field>
         <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first patient record
+            </p>
+        </field>
+    </record>
+    <record id="action_patient_male" model="ir.actions.act_window">
+        <field name="name">Male Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('gender','=','male')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first patient record
+            </p>
+        </field>
+    </record>
+    <record id="action_patient_female" model="ir.actions.act_window">
+        <field name="name">Female Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('gender','=','female')]</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create the first patient record

@@ -98,7 +98,7 @@ class Patient(models.Model):
         ('male', 'Male'),
         ('female', 'Female')
     ], string='Gender', tracking=True)
-    phone = fields.Char(string='Phone', required=True)
+    phone = fields.Char(string='Phone')
 
     email = fields.Char(string='Email')
 
