@@ -1,0 +1,25 @@
+<!-- views/appointment_change_doctor_wizard.xml -->
+<odoo>
+    <record id="view_appointment_change_doctor_wizard" model="ir.ui.view">
+        <field name="name">appointment.change.doctor.wizard.form</field>
+        <field name="model">appointment.change.doctor.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Change Doctor">
+                <group>
+                    <field name="doctor_id"/>
+                </group>
+                <footer>
+                    <button string="Change Doctor" type="object" name="action_change_doctor" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_appointment_change_doctor_wizard" model="ir.actions.act_window">
+        <field name="name">Change Doctor</field>
+        <field name="res_model">appointment.change.doctor.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

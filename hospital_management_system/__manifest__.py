@@ -35,6 +35,9 @@ This module helps manage core hospital functionalities, including:
 
         'security/security.xml',
         'security/ir.model.access.csv',
+        'wizards/appoint_wizard_view.xml',
+        'wizards/appointment_change_doctor_wizard.xml',
+
 
         # Patient & Appointments
         'views/patient_views.xml',

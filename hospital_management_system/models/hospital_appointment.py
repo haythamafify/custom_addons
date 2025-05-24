@@ -63,3 +63,9 @@ class Appointment(models.Model):
             print("self is date", rec.date)
             print("self is start_time", rec.start_time)
             print("self is end_time", rec.end_time)
+
+    def action_open_appointment_wizard(self):
+        self.ensure_one()
+        action = self.env["ir.actions.actions"]._for_xml_id("hospital_management_system.action_view_appointment_wizard")
+        # action['res_id'] = self.id
+        return action

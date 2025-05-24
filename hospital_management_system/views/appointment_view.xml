@@ -34,7 +34,20 @@
                             class="btn-primary"
                             icon="fa-print"
                             confirm="Are you sure you want to print appointment details?"/>
+                    <button name="%(hospital_management_system.action_view_appointment_wizard)d"
+                            string="Test Button Action"
+                            type="action"/>
 
+
+                    <button name="action_open_appointment_wizard"
+                            string="Test Button Function"
+                            type="object"/>
+
+                    <button name="%(hospital_management_system.action_view_appointment_change_doctor_wizard)d"
+                            string="Change Doctor"
+                            type="action"
+                            class="btn-secondary"
+                            icon="fa-user-md"/>
 
                 </header>
                 <sheet>
