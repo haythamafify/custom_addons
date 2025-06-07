@@ -13,6 +13,7 @@ class Patient(models.Model):
     _log_access = True
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'name'
+    _order = 'id desc'
 
     # الحقول
     name = fields.Char(string='Name', required=True, tracking=True)
@@ -23,7 +24,6 @@ class Patient(models.Model):
     country_id = fields.Many2one('res.country', string='Country', tracking=True)
     city_id = fields.Many2one('res.country.state', string="State")
     nurse_id = fields.Many2one('hospital.nurse', string='Assigned Nurse')
-
 
     @api.depends('date_of_birth')
     def _compute_full_age(self):
@@ -88,11 +88,11 @@ class Patient(models.Model):
             else:
                 rec.age = 0
 
-    @api.constrains('age')
-    def _check_age(self):
-        for rec in self:
-            if rec.age < 18:
-                raise ValidationError("Patient must be 18 or older.")
+    # @api.constrains('age')
+    # def _check_age(self):
+    #     for rec in self:
+    #         if rec.age < 18:
+    #             raise ValidationError("Patient must be 18 or older.")
 
     gender = fields.Selection([
         ('male', 'Male'),
@@ -101,6 +101,7 @@ class Patient(models.Model):
     phone = fields.Char(string='Phone')
 
     email = fields.Char(string='Email')
+    address = fields.Char(string='Address')
 
     @api.constrains('email')
     def _check_email(self):
@@ -121,7 +122,6 @@ class Patient(models.Model):
     notes = fields.Text(string='Notes')
     national_id_number = fields.Char(string='National ID Number')
     image = fields.Image(string="Profile Image", max_width=512, max_height=512)
-
 
     @api.constrains('national_id_number')
     def _check_national_id_number(self):

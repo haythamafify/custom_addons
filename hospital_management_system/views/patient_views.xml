@@ -24,7 +24,7 @@
 
 
                             <field name="gender"/>
-                            <field name="national_id_number"/>
+                            <field name="national_id_number" required="age &gt;16"/>
                         </group>
 
                         <group>
@@ -34,8 +34,9 @@
 
                         </group>
                         <group>
-                            <field name="phone"/>
+                            <field name="phone" invisible="age &lt; 16" required="age &gt; 16 "/>
                             <field name="email"/>
+                            <field name="address" required="age &gt; 16" invisible="age &lt; 16"/>
                             <field name="blood_type"/>
                         </group>
                     </group>
@@ -97,8 +98,8 @@
                 <field name="gender"/>
                 <field name="date_of_birth"/>
                 <filter name="adult_patients" string="Adult Patients" domain="[('age', '>=', 18)]"/>
-            <filter name="filter_males" string="Males" domain="[('gender','=','male')]"/>
-            <filter name="filter_females" string="Females" domain="[('gender','=','female')]"/>
+                <filter name="filter_males" string="Males" domain="[('gender','=','male')]"/>
+                <filter name="filter_females" string="Females" domain="[('gender','=','female')]"/>
 
             </search>
         </field>

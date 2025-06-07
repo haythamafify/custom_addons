@@ -25,29 +25,58 @@
             <form string="Appointment" class="o_form">
                 <header>
                     <field name="status" widget="statusbar"
-                           statusbar_visible="new,scheduled,in_progress,done,cancelled"/>
+                           statusbar_visible="new,scheduled,in_progress,done,cancelled" nolabel="1"/>
 
 
-                    <button name="print_test"
-                            string="Print Info"
-                            type="object"
-                            class="btn-primary"
-                            icon="fa-print"
-                            confirm="Are you sure you want to print appointment details?"/>
-                    <button name="%(hospital_management_system.action_view_appointment_wizard)d"
-                            string="Test Button Action"
-                            type="action"/>
+                    <!--                    <button name="print_test"-->
+                    <!--                            string="Print Info"-->
+                    <!--                            type="object"-->
+                    <!--                            class="btn-primary"-->
+                    <!--                            icon="fa-print"-->
+                    <!--                            confirm="Are you sure you want to print appointment details?"/>-->
+                    <!--                    <button name="%(hospital_management_system.action_view_appointment_wizard)d"-->
+                    <!--                            string="Test Button Action"-->
+                    <!--                            type="action"/>-->
 
 
-                    <button name="action_open_appointment_wizard"
-                            string="Test Button Function"
-                            type="object"/>
+                    <!--                    <button name="action_open_appointment_wizard"-->
+                    <!--                            string="Test Button Function"-->
+                    <!--                            type="object"/>-->
 
-                    <button name="%(hospital_management_system.action_view_appointment_change_doctor_wizard)d"
-                            string="Change Doctor"
-                            type="action"
+                    <!--                    <button name="%(hospital_management_system.action_view_appointment_change_doctor_wizard)d"-->
+                    <!--                            string="Change Doctor"-->
+                    <!--                            type="action"-->
+                    <!--                            class="btn-secondary"-->
+                    <!--                            icon="fa-user-md"/>-->
+
+
+                    <button name="action_new" string="Reset to New" type="object"
                             class="btn-secondary"
-                            icon="fa-user-md"/>
+                            invisible="status in[ 'new','done']"
+                            icon="fa-undo"
+                            confirm="Reset this record to draft status?"
+                    />
+
+                    <button name="action_scheduled" string="Set Scheduled" type="object"
+                            class="btn-secondary"
+                            invisible="status not in ['new']"/>
+
+                    <button name="action_confirm" string="Set Confirmed" type="object"
+                            class="btn-primary"
+                            invisible="status not in ['confirm']"/>
+
+                    <button name="action_in_progress" string="Set In Progress" type="object"
+                            class="btn-info"
+                            invisible="status not in ['confirm']"/>
+
+                    <button name="action_done" string="Set Done" type="object"
+                            class="btn-success"
+                            invisible="status not in ['in_progress']"/>
+
+                    <button name="action_cancelled" string="Set Cancelled" type="object"
+                            class="btn-danger"
+                            invisible="status in ['done', 'cancelled']"/>
+
 
                 </header>
                 <sheet>
@@ -62,6 +91,11 @@
                         <field name="doctor_id"/>
                         <field name="room_id"/>
                         <field name="notes" groups="hospital_management_system.group_show_appointments_note"/>
+                        <!-- للدكاترة - قابل للتعديل -->
+                        <field name="symptoms"
+                               placeholder="Describe the patient symptoms..."
+                               groups="hospital_management_system.group_staff_doctors"/>
+
 
                     </group>
 

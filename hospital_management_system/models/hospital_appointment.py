@@ -19,7 +19,7 @@ class Appointment(models.Model):
     medicine_line_ids = fields.One2many('hospital.appointment.medicine.line', 'appointment_id', string='Medicines')
     status = fields.Selection(
         [('new', 'New'), ('scheduled', 'Scheduled'), ('in_progress', 'In Progress'), ('done', 'Done'),
-         ('cancelled', 'Cancelled')], string="Status", default='new', required=True)
+         ('confirm', 'confirm'), ('cancelled', 'Cancelled')], string="Status", default='new', required=True)
     patient_id = fields.Many2one('hospital.patient', string='Patient', required=True, tracking=True,
                                  ondelete='restrict', domain="[('age', '>', 50)]"
 
@@ -29,6 +29,7 @@ class Appointment(models.Model):
     room_id = fields.Many2one("hospital.operation.room", "Room", required=True, tracking=True)
     appointment_fees = fields.Float(string='Appointment Fees', required=True)
     notes = fields.Text(string="notes")
+    symptoms = fields.Text(string=_("Symptoms"), tracking=True)
 
     chair_rent_fees = fields.Float(string="Chair Rent Fees")
     xray_fees = fields.Float(string="Xray Fees")
@@ -69,3 +70,39 @@ class Appointment(models.Model):
         action = self.env["ir.actions.actions"]._for_xml_id("hospital_management_system.action_view_appointment_wizard")
         # action['res_id'] = self.id
         return action
+
+    # status = fields.Selection(
+    #     [('new', 'New'), ('scheduled', 'Scheduled'), ('in_progress', 'In Progress'), ('done', 'Done'),
+    #      ('cancelled', 'Cancelled')], string="Status", default='new', required=True)
+
+    # Actions to change status
+    def action_new(self):
+        for record in self:
+            record.status = 'new'
+
+    def action_scheduled(self):
+        for record in self:
+            record.status = 'scheduled'
+
+    def action_confirm(self):
+        for record in self:
+            record.status = 'confirm'
+
+    def action_in_progress(self):
+        for record in self:
+            record.status = 'in_progress'
+
+    def action_done(self):
+        for record in self:
+            record.status = 'done'
+
+    def action_cancelled(self):
+        for record in self:
+            record.status = 'cancelled'
+
+
+    @api.onchange("symptoms")
+    def check_is_doctor(self):
+        if not self.env.user.has_group('hospital_management_system.group_staff_doctors'):
+            raise ValidationError(_("Only doctors can create symptoms"))
+
