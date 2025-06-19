@@ -19,5 +19,6 @@ access_hospital_appointment_medicine_line,hospital.appointment.medicine.line,mod
 access_hospital_room_user,hospital.room,model_hospital_room,,1,1,1,1
 access_appointment_wizard,appointment.wizard,hospital_management_system.model_appointment_wizard,,1,1,1,0
 access_appointment_change_doctor_wizard_user,appointment.change.doctor.wizard,model_appointment_change_doctor_wizard,,1,1,1,1
+access_new_appointment_wizard,new.appointment.wizard,model_new_appointment_wizard,,1,1,1,1
 
 

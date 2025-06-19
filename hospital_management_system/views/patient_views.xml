@@ -5,6 +5,12 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form string="Patient">
+                <header>
+                    <button name="%(action_new_appointment_wizard)d"
+                            string="New Appointment"
+                            type="action"
+                            class="btn-primary"/>
+                </header>
                 <sheet>
 
 

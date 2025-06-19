@@ -13,3 +13,4 @@ class HospitalAdmission(models.Model):
     discharge_date = fields.Datetime(string='Discharge Date')
     room_number = fields.Char(string='Room Number')
     reason = fields.Text(string='Reason for Admission')
+

@@ -27,7 +27,7 @@ class Appointment(models.Model):
 
     doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True, tracking=True, )
     room_id = fields.Many2one("hospital.operation.room", "Room", required=True, tracking=True)
-    appointment_fees = fields.Float(string='Appointment Fees', required=True)
+    appointment_fees = fields.Float(string='Appointment Fees')
     notes = fields.Text(string="notes")
     symptoms = fields.Text(string=_("Symptoms"), tracking=True)
 
