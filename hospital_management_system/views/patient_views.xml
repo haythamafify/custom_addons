@@ -9,7 +9,19 @@
                     <button name="%(action_new_appointment_wizard)d"
                             string="New Appointment"
                             type="action"
-                            class="btn-primary"/>
+                            class="btn-primary"
+                            context="{'default_patient_id': active_id}"/>
+
+
+                    />
+
+
+                    <button name="%(action_update_doctor_wizard)d"
+                            string="Change Doctor"
+                            type="action"
+                            class="btn-primary"
+                            context="{'default_patient_id': active_id}"/>
+
                 </header>
                 <sheet>
 

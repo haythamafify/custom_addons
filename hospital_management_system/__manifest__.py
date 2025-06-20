@@ -38,6 +38,7 @@ This module helps manage core hospital functionalities, including:
         'wizards/appoint_wizard_view.xml',
         'wizards/appointment_change_doctor_wizard.xml',
         'wizards/new_appointment_wizard_view.xml',
+        'wizards/update_doctor_wizard.xml',
 
 
         # Patient & Appointments

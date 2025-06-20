@@ -16,6 +16,15 @@ class AppointmentWizard(models.TransientModel):
     doctor_id = fields.Many2one('hospital.doctor', string='Doctor', required=True)
     room_id = fields.Many2one("hospital.operation.room", string="Room", required=True)
 
+
+    @api.model
+    def default_get(self, fields):
+        res = super().default_get(fields)
+        if self.env.context.get('default_patient_id'):
+            res['patient_id'] = self.env.context.get('default_patient_id')
+        return res
+
+
     def action_new_appointment_wizard(self):
         # إنشاء السجل الفعلي في hospital.appointment
         self.env['hospital.appointment'].create({
