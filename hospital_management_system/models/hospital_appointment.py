@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
@@ -13,9 +12,11 @@ class Appointment(models.Model):
     _rec_name = 'name'
 
     name = fields.Char(string='Appointment Name', required=True)
-    date = fields.Date(string='Date', required=True)
-    start_time = fields.Datetime(string='Start Time', required=True)
-    end_time = fields.Datetime(string='End Time', required=True)
+
+    appointment_date = fields.Datetime(string='Start Time', required=True)
+
+    appointment_time = fields.Float(string='Time', required=True, tracking=True,
+                                    help="Example: 13.5 = 1:30 PM")
     medicine_line_ids = fields.One2many('hospital.appointment.medicine.line', 'appointment_id', string='Medicines')
     status = fields.Selection(
         [('new', 'New'), ('scheduled', 'Scheduled'), ('in_progress', 'In Progress'), ('done', 'Done'),
@@ -36,6 +37,36 @@ class Appointment(models.Model):
     total_price = fields.Float(string='Total Price', store=True, compute='_compute_total_price')
     total_medicine_quantity = fields.Float(string="total medicine", compute="_compute_total_medicine")
 
+    from odoo.exceptions import ValidationError
+
+    def search_for_available_doctor(self):
+        for record in self:
+            # Debug فقط: طباعة كل الأطباء (اختياري)
+            all_doctors = self.env["hospital.doctor"].search([])
+            all_doctors_count = self.env["hospital.doctor"].search_count([])
+            print("number of doctors ====>", all_doctors_count)
+            print("كل الأطباء ====>", all_doctors)
+            for doctor in all_doctors:
+                print("اسم الدكتور:", doctor.name)
+                print("وقت بداية الشيفت:", doctor.available_from)
+                print("وقت نهاية الشيفت:", doctor.available_to)
+
+            # البحث عن دكتور متاح وقت الموعد
+            available_doctor = self.env['hospital.doctor'].search([
+                ('available_from', '<=', record.appointment_time),
+                ('available_to', '>=', record.appointment_time)
+            ], limit=1)
+
+            print("الأطباء المتاحين ===>", available_doctor)
+
+            if available_doctor:
+                first_available_doctor = available_doctor[0]
+                print("أول دكتور متاح ===>", first_available_doctor.name)
+                record.doctor_id = first_available_doctor.id
+                print("✅ تم تخصيص الدكتور:", first_available_doctor.name)
+            else:
+                raise ValidationError("❌ لا يوجد طبيب متاح في هذا الوقت.")
+
     @api.depends("medicine_line_ids")
     def _compute_total_medicine(self):
         print("inside _compute_total_medicine ")
@@ -55,15 +86,15 @@ class Appointment(models.Model):
     @api.constrains('start_time', 'end_time')
     def _check_time_validity(self):
         for rec in self:
-            if rec.start_time and rec.end_time and rec.start_time >= rec.end_time:
+            if rec.appointment_date and rec.appointment_time and rec.appointment_date >= rec.appointment_time:
                 raise ValidationError("End time must be after start time.")
 
     def print_test(self):
         for rec in self:
             print("self is name", rec.name)
             print("self is date", rec.date)
-            print("self is start_time", rec.start_time)
-            print("self is end_time", rec.end_time)
+            print("self is start_time", rec.appointment_date)
+            print("self is end_time", rec.appointment_time)
 
     def action_open_appointment_wizard(self):
         self.ensure_one()
@@ -100,9 +131,20 @@ class Appointment(models.Model):
         for record in self:
             record.status = 'cancelled'
 
+    def unlink(self):
+        for rec in self:
+            if rec.status in ["done", "cancelled"]:
+                raise ValidationError(_("لا يمكن حذف الموعد لأنه مكتمل أو ملغي."))
+        return super(Appointment, self).unlink()
 
-    @api.onchange("symptoms")
-    def check_is_doctor(self):
-        if not self.env.user.has_group('hospital_management_system.group_staff_doctors'):
-            raise ValidationError(_("Only doctors can create symptoms"))
+    def get_appointment_id(self):
+        appointment = self.env["hospital.appointment"].search([("id", "=", 8)])
+        print("appointment id from search function ", appointment.id)
+        appointment_browse = self.env["hospital.appointment"].browse(8)
+        print("appointment id from browse function ", appointment_browse.id)
 
+
+@api.onchange("symptoms")
+def check_is_doctor(self):
+    if not self.env.user.has_group('hospital_management_system.group_staff_doctors'):
+        raise ValidationError(_("Only doctors can create symptoms"))

@@ -66,9 +66,8 @@
                             <field name="appointment_ids">
                                 <tree string="Appointments">
                                     <field name="name"/>
-                                    <field name="date"/>
-                                    <field name="start_time"/>
-                                    <field name="end_time"/>
+                                    <field name="appointment_date"/>
+                                    <field name="appointment_time"/>
                                     <field name="status"/>
                                 </tree>
                             </field>
