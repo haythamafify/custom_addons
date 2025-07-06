@@ -140,6 +140,22 @@
                   parent="menu_hospital_rooms_patient" action="action_view_hospital_room" sequence="10"/>
 
 
+
+
+        <menuitem id="menu_hospital_hospital_investor" name="hospital investor"
+                  parent="hospital_root_menu" sequence="190"/>
+        <menuitem id="menu_hospital_investor_record" name="hospital investor Records"
+                  parent="menu_hospital_hospital_investor" action="action_hospital_investor" sequence="10"/>
+
+
+
+         <!-- 📂 Menu Item -->
+        <menuitem id="menu_hospital_owner" name="hospital owner"
+                  parent="hospital_root_menu" sequence="200"/>
+    <menuitem id="menu_hospital_owner_record"
+              name="Hospital Owners  Records"
+              parent="menu_hospital_owner"
+              action="action_hospital_owner"/>
     </odoo>
 
 </odoo>

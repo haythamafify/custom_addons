@@ -21,4 +21,6 @@ access_appointment_wizard,appointment.wizard,hospital_management_system.model_ap
 access_appointment_change_doctor_wizard_user,appointment.change.doctor.wizard,model_appointment_change_doctor_wizard,,1,1,1,1
 access_new_appointment_wizard,new.appointment.wizard,model_new_appointment_wizard,,1,1,1,1
 access_update_doctor_wizard,update.doctor.wizard,model_update_doctor_wizard,,1,1,1,1
+access_hospital_investor,hospital.investor,model_hospital_investor,,1,1,1,1
+access_hospital_owner,hospital.owner,model_hospital_owner,,1,1,1,1
 

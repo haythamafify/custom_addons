@@ -70,6 +70,8 @@ This module helps manage core hospital functionalities, including:
 
         # Invoicing
         'views/hospital_invoice_views.xml',
+        'views/hospital_investor_view.xml',
+        'views/hospital_owner_views.xml',
 
         # Menus & Templates
         'views/hospital_menus.xml',

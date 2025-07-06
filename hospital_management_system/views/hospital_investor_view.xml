@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_hospital_investor_form" model="ir.ui.view">
+    <field name="name">hospital.investor.form</field>
+    <field name="model">hospital.investor</field>
+    <field name="arch" type="xml">
+        <form string="Investor">
+            <sheet>
+                <group>
+                    <field name="partner_id">
+                        <form>
+                            <field name="name"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </form>
+                    </field>
+                    <field name="investment_amount"/>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="view_hospital_investor_tree" model="ir.ui.view">
+    <field name="name">hospital.investor.tree</field>
+    <field name="model">hospital.investor</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="partner_id"/>
+            <field name="investment_amount"/>
+        </tree>
+    </field>
+</record>
+<record id="action_hospital_investor" model="ir.actions.act_window">
+    <field name="name">Investors</field>
+    <field name="res_model">hospital.investor</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+
+</odoo>

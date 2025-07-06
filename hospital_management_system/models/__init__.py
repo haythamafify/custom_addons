@@ -19,4 +19,7 @@ from . import hospital_monthly_report
 from . import hospital_appointment_medicine_line
 from . import room
 from . import res_users
+from . import res_partner
+from . import hospital_investor
+from . import hospital_owner
 
