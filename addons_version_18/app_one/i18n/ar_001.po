@@ -1,0 +1,2163 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* app_one
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-31 12:12+0000\n"
+"PO-Revision-Date: 2025-12-31 12:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "%s (copy)"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "(Late)"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "(متأخر)"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid ""
+")\n"
+"                                        differs from property selling price ("
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid ""
+"<i class=\"fa fa-exclamation-triangle\" title=\"Warning\" style=\"font-size:"
+" 24px; margin-right: 10px;\"/>"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid ""
+"<i class=\"fa fa-info-circle\" title=\"Information\"/>\n"
+"                            <strong>Property Link Active</strong>"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "<span>View Property</span>"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid ""
+"<strong><i class=\"fa fa-exclamation-triangle\"/> No Reason "
+"Provided</strong>"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "<strong><i class=\"fa fa-info-circle\"/> Reason for Change:</strong>"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid ""
+"<strong>⚠️ Closed Property:</strong>\n"
+"                        This property is closed.\n"
+"                        Modifications through the wizard are disabled.\n"
+"                        Please reopen the property if changes are needed."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "<strong>⚠️ Price Mismatch Detected!</strong>"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_needaction
+#: model:ir.model.fields,field_description:app_one.field_clients__message_needaction
+#: model:ir.model.fields,field_description:app_one.field_owner__message_needaction
+#: model:ir.model.fields,field_description:app_one.field_property__message_needaction
+#: model:ir.model.fields,field_description:app_one.field_tag__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__active
+#: model:ir.model.fields,field_description:app_one.field_property__active
+#: model_terms:ir.ui.view,arch_db:app_one.building_search_view
+msgid "Active"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Active Status"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_ids
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_ids
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_ids
+#: model:ir.model.fields,field_description:app_one.field_property__activity_ids
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_exception_decoration
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_exception_decoration
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_exception_decoration
+#: model:ir.model.fields,field_description:app_one.field_property__activity_exception_decoration
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_state
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_state
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_state
+#: model:ir.model.fields,field_description:app_one.field_property__activity_state
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_type_icon
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_type_icon
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_type_icon
+#: model:ir.model.fields,field_description:app_one.field_property__activity_type_icon
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Add any additional notes..."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.building_form_view
+msgid "Add building description..."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Additional Info"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "Additional Notes"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_clients__address
+#: model:ir.model.fields,field_description:app_one.field_owner__address
+#: model:ir.model.fields,field_description:app_one.field_property__owner_address
+msgid "Address"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Address:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.building_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "Archived"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_line__area
+msgid "Area"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Area (m²)"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Area (sqm)"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_attachment_count
+#: model:ir.model.fields,field_description:app_one.field_clients__message_attachment_count
+#: model:ir.model.fields,field_description:app_one.field_owner__message_attachment_count
+#: model:ir.model.fields,field_description:app_one.field_property__message_attachment_count
+#: model:ir.model.fields,field_description:app_one.field_tag__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Auto-filled"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "Availability Date"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Available Date:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__date_availability
+msgid "Available From"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "Available This Month"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__bedrooms
+msgid "Bedrooms"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Bedrooms must be greater than zero!"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Bedrooms must be greater than zero."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Bedrooms:"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__code
+msgid "Building Code"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_building
+msgid "Building Management"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__name
+#: model_terms:ir.ui.view,arch_db:app_one.building_form_view
+msgid "Building Name"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__no
+msgid "Building Number"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.constraint,message:app_one.constraint_building_unique_building_code
+msgid "Building code already exists!"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/building.py:0
+msgid "Building number must be greater than zero!"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.constraint,message:app_one.constraint_building_unique_building_no
+msgid "Building number must be unique!"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.act_window,name:app_one.action_building
+msgid "Buildings"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid ""
+"Cannot modify closed property!\n"
+"Property \"%s\" is in closed state and cannot be modified through the wizard.\n"
+"Please reopen the property first if you need to make changes."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__change_date
+msgid "Change Date"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__change_dates
+msgid "Change Dates"
+msgstr "تغيير التواريخ"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "Change Details"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "Change Information"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__change_owner
+msgid "Change Owner/Responsible"
+msgstr "تغيير المالك / المسؤول"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__change_price
+msgid "Change Pricing"
+msgstr "تغيير الأسعار"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__change_details
+msgid "Change Property Details"
+msgstr "تغيير تفاصيل الملكية"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__change_state
+msgid "Change State"
+msgstr "تغيير الحالة"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__change_type
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Change Type"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__user_id
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Changed By"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_clients
+msgid "Clients Management"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.server,name:app_one.action_property_close
+msgid "Close Properties"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__state__closed
+#: model:ir.model.fields.selection,name:app_one.selection__property_change_wizard__new_state__closed
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Closed"
+msgstr "مغلق"
+
+#. module: app_one
+#: model:ir.ui.menu,name:app_one.configuration_menu
+msgid "Configuration"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.owner_form_view
+msgid "Contact Information"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__create_time
+msgid "Create Time"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_building
+msgid "Create your first building"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_owner
+msgid "Create your first owner"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_property
+msgid "Create your first property"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_tag
+msgid "Create your first tag"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property_history__change_type__create
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Created"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__create_uid
+#: model:ir.model.fields,field_description:app_one.field_clients__create_uid
+#: model:ir.model.fields,field_description:app_one.field_owner__create_uid
+#: model:ir.model.fields,field_description:app_one.field_property__create_uid
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__create_uid
+#: model:ir.model.fields,field_description:app_one.field_property_history__create_uid
+#: model:ir.model.fields,field_description:app_one.field_property_line__create_uid
+#: model:ir.model.fields,field_description:app_one.field_tag__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__create_date
+#: model:ir.model.fields,field_description:app_one.field_clients__create_date
+#: model:ir.model.fields,field_description:app_one.field_owner__create_date
+#: model:ir.model.fields,field_description:app_one.field_property__create_date
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__create_date
+#: model:ir.model.fields,field_description:app_one.field_property_history__create_date
+#: model:ir.model.fields,field_description:app_one.field_property_line__create_date
+#: model:ir.model.fields,field_description:app_one.field_tag__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_date_availability
+msgid "Current Availability Date"
+msgstr "تاريخ التوفر الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_bedrooms
+msgid "Current Bedrooms"
+msgstr "عدد غرف النوم الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_expected_price
+msgid "Current Expected Price"
+msgstr "السعر المتوقع الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_expected_date_selling
+msgid "Current Expected Selling Date"
+msgstr "تاريخ البيع المتوقع الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_facades
+msgid "Current Facades"
+msgstr "عدد الواجهات الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_garage
+msgid "Current Garage"
+msgstr "المرآب الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_garden
+msgid "Current Garden"
+msgstr "الحديقة الحالية"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_garden_area
+msgid "Current Garden Area"
+msgstr "مساحة الحديقة الحالية"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_living_area
+msgid "Current Living Area"
+msgstr "مساحة المعيشة الحالية"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_owner
+msgid "Current Owner"
+msgstr "المالك الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_user
+msgid "Current Responsible"
+msgstr "المسؤول الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_selling_price
+msgid "Current Selling Price"
+msgstr "سعر البيع الحالي"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__current_state
+msgid "Current State"
+msgstr "الحالة الحالية"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Date"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Dates"
+msgstr "التواريخ"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__description
+#: model:ir.model.fields,field_description:app_one.field_property__description
+#: model:ir.model.fields,field_description:app_one.field_property_line__description
+#: model_terms:ir.ui.view,arch_db:app_one.building_form_view
+msgid "Description"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Description:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Difference"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__display_name
+#: model:ir.model.fields,field_description:app_one.field_clients__display_name
+#: model:ir.model.fields,field_description:app_one.field_owner__display_name
+#: model:ir.model.fields,field_description:app_one.field_property__display_name
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__display_name
+#: model:ir.model.fields,field_description:app_one.field_property_history__display_name
+#: model:ir.model.fields,field_description:app_one.field_property_line__display_name
+#: model:ir.model.fields,field_description:app_one.field_tag__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__state__draft
+#: model:ir.model.fields.selection,name:app_one.selection__property_change_wizard__new_state__draft
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__east
+msgid "East"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Email:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Empty"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__expected_date_selling
+msgid "Expected Date Selling"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__expected_price
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Expected Price"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Expected Selling Date"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Expected Selling Date:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Expected date"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Expected price cannot be negative!"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid ""
+"Expected selling date is in %s day(s).\n"
+"Date: %s\n"
+"Please prepare and contact customer."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_property_history__reason
+msgid "Explanation for why this change was made"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__facades
+msgid "Facades"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Facades cannot be negative!"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Facades:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Field \"%s\" changed from \"%s\" to \"%s\""
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__field_label
+msgid "Field Label"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__field_name
+msgid "Field Name"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Follow up late property: %s"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_follower_ids
+#: model:ir.model.fields,field_description:app_one.field_clients__message_follower_ids
+#: model:ir.model.fields,field_description:app_one.field_owner__message_follower_ids
+#: model:ir.model.fields,field_description:app_one.field_property__message_follower_ids
+#: model:ir.model.fields,field_description:app_one.field_tag__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_partner_ids
+#: model:ir.model.fields,field_description:app_one.field_clients__message_partner_ids
+#: model:ir.model.fields,field_description:app_one.field_owner__message_partner_ids
+#: model:ir.model.fields,field_description:app_one.field_property__message_partner_ids
+#: model:ir.model.fields,field_description:app_one.field_tag__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__activity_type_icon
+#: model:ir.model.fields,help:app_one.field_clients__activity_type_icon
+#: model:ir.model.fields,help:app_one.field_owner__activity_type_icon
+#: model:ir.model.fields,help:app_one.field_property__activity_type_icon
+#: model:ir.model.fields,help:app_one.field_tag__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__garage
+msgid "Garage"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Garage:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__garden
+msgid "Garden"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid ""
+"Garden\n"
+"                                                        Area:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid ""
+"Garden\n"
+"                                                        Orientation:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__garden_area
+msgid "Garden Area"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__garden_orientation
+msgid "Garden Orientation"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Garden area cannot be negative!"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Garden:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "General Information"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Group By"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "Has Garage"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "Has Garden"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__has_message
+#: model:ir.model.fields,field_description:app_one.field_clients__has_message
+#: model:ir.model.fields,field_description:app_one.field_owner__has_message
+#: model:ir.model.fields,field_description:app_one.field_property__has_message
+#: model:ir.model.fields,field_description:app_one.field_tag__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__history_ids
+#: model:ir.ui.menu,name:app_one.menu_property_history
+msgid "History"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__history_count
+msgid "History Count"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_property_history
+msgid "History will be automatically created when properties are modified."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__id
+#: model:ir.model.fields,field_description:app_one.field_clients__id
+#: model:ir.model.fields,field_description:app_one.field_owner__id
+#: model:ir.model.fields,field_description:app_one.field_property__id
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__id
+#: model:ir.model.fields,field_description:app_one.field_property_history__id
+#: model:ir.model.fields,field_description:app_one.field_property_line__id
+#: model:ir.model.fields,field_description:app_one.field_tag__id
+msgid "ID"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_exception_icon
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_exception_icon
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_exception_icon
+#: model:ir.model.fields,field_description:app_one.field_property__activity_exception_icon
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__activity_exception_icon
+#: model:ir.model.fields,help:app_one.field_clients__activity_exception_icon
+#: model:ir.model.fields,help:app_one.field_owner__activity_exception_icon
+#: model:ir.model.fields,help:app_one.field_property__activity_exception_icon
+#: model:ir.model.fields,help:app_one.field_tag__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__message_needaction
+#: model:ir.model.fields,help:app_one.field_clients__message_needaction
+#: model:ir.model.fields,help:app_one.field_owner__message_needaction
+#: model:ir.model.fields,help:app_one.field_property__message_needaction
+#: model:ir.model.fields,help:app_one.field_tag__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__message_has_error
+#: model:ir.model.fields,help:app_one.field_building__message_has_sms_error
+#: model:ir.model.fields,help:app_one.field_clients__message_has_error
+#: model:ir.model.fields,help:app_one.field_clients__message_has_sms_error
+#: model:ir.model.fields,help:app_one.field_owner__message_has_error
+#: model:ir.model.fields,help:app_one.field_owner__message_has_sms_error
+#: model:ir.model.fields,help:app_one.field_property__message_has_error
+#: model:ir.model.fields,help:app_one.field_property__message_has_sms_error
+#: model:ir.model.fields,help:app_one.field_tag__message_has_error
+#: model:ir.model.fields,help:app_one.field_tag__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/account_move.py:0
+msgid "Invoice %s has been posted for this property with amount %s %s."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/account_move.py:0
+msgid "Invoice Posted"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Invoice total ("
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_account_move
+msgid "Invoice with Property Integration"
+msgstr "قيد اليومية"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_is_follower
+#: model:ir.model.fields,field_description:app_one.field_clients__message_is_follower
+#: model:ir.model.fields,field_description:app_one.field_owner__message_is_follower
+#: model:ir.model.fields,field_description:app_one.field_property__message_is_follower
+#: model:ir.model.fields,field_description:app_one.field_tag__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__is_late
+msgid "Is Late"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__write_uid
+#: model:ir.model.fields,field_description:app_one.field_clients__write_uid
+#: model:ir.model.fields,field_description:app_one.field_owner__write_uid
+#: model:ir.model.fields,field_description:app_one.field_property__write_uid
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__write_uid
+#: model:ir.model.fields,field_description:app_one.field_property_history__write_uid
+#: model:ir.model.fields,field_description:app_one.field_property_line__write_uid
+#: model:ir.model.fields,field_description:app_one.field_tag__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__write_date
+#: model:ir.model.fields,field_description:app_one.field_clients__write_date
+#: model:ir.model.fields,field_description:app_one.field_owner__write_date
+#: model:ir.model.fields,field_description:app_one.field_property__write_date
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__write_date
+#: model:ir.model.fields,field_description:app_one.field_property_history__write_date
+#: model:ir.model.fields,field_description:app_one.field_property_line__write_date
+#: model:ir.model.fields,field_description:app_one.field_tag__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "Late"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Late Property Alert"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_account_bank_statement_line__property_id
+#: model:ir.model.fields,help:app_one.field_account_move__property_id
+msgid "Link this invoice to a sold property"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_clients__partner_id
+#: model:ir.model.fields,help:app_one.field_owner__partner_id
+msgid "Link this owner to a customer/vendor in the system"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.owner_form_view
+msgid "Link this owner to an existing contact"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__living_area
+msgid "Living Area"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Living Area:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Living area cannot be negative!"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_owner
+msgid "Manage property owners and their contact information."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_has_error
+#: model:ir.model.fields,field_description:app_one.field_clients__message_has_error
+#: model:ir.model.fields,field_description:app_one.field_owner__message_has_error
+#: model:ir.model.fields,field_description:app_one.field_property__message_has_error
+#: model:ir.model.fields,field_description:app_one.field_tag__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_ids
+#: model:ir.model.fields,field_description:app_one.field_clients__message_ids
+#: model:ir.model.fields,field_description:app_one.field_owner__message_ids
+#: model:ir.model.fields,field_description:app_one.field_property__message_ids
+#: model:ir.model.fields,field_description:app_one.field_tag__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property_history__change_type__write
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Modified"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Modify property fields with documented reason"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__my_activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_clients__my_activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_owner__my_activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_property__my_activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_tag__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+msgid "My Properties"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__name
+#: model:ir.model.fields,field_description:app_one.field_tag__name
+msgid "Name"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Name:"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_date_availability
+msgid "New Availability Date"
+msgstr "تاريخ التوفر الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_bedrooms
+msgid "New Bedrooms"
+msgstr "عدد غرف النوم الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_expected_price
+msgid "New Expected Price"
+msgstr "السعر المتوقع الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_expected_date_selling
+msgid "New Expected Selling Date"
+msgstr "تاريخ البيع المتوقع الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_facades
+msgid "New Facades"
+msgstr "عدد الواجهات الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_garage
+msgid "New Garage"
+msgstr "المرآب الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_garden
+msgid "New Garden"
+msgstr "الحديقة الجديدة"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_garden_area
+msgid "New Garden Area (sqm)"
+msgstr "مساحة الحديقة الجديدة (م٢)"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_living_area
+msgid "New Living Area (sqm)"
+msgstr "مساحة المعيشة الجديدة (م٢)"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_owner_id
+msgid "New Owner"
+msgstr "المالك الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_user_id
+msgid "New Responsible"
+msgstr "المسؤول الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_selling_price
+msgid "New Selling Price"
+msgstr "سعر البيع الجديد"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__new_state
+msgid "New State"
+msgstr "الحالة الجديدة"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__new_value
+msgid "New Value"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_property__activity_date_deadline
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_summary
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_summary
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_summary
+#: model:ir.model.fields,field_description:app_one.field_property__activity_summary
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_type_id
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_type_id
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_type_id
+#: model:ir.model.fields,field_description:app_one.field_property__activity_type_id
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__next_time
+msgid "Next Time"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "No"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__no_garden
+msgid "No Garden"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid ""
+"No Owner Assigned!\n"
+"Property \"%s\" does not have an owner assigned.\n"
+"Please assign an owner first."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/account_move.py:0
+msgid ""
+"No Property Linked!\n"
+"This invoice is not linked to any property."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "No actual changes detected. Please modify at least one value."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_property_history
+msgid "No history records yet"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "No owner assigned"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "No reason provided"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "No responsible assigned"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__north
+msgid "North"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__northeast
+msgid "Northeast"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__northwest
+msgid "Northwest"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Not specified"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__note
+msgid "Notes"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_needaction_counter
+#: model:ir.model.fields,field_description:app_one.field_clients__message_needaction_counter
+#: model:ir.model.fields,field_description:app_one.field_owner__message_needaction_counter
+#: model:ir.model.fields,field_description:app_one.field_property__message_needaction_counter
+#: model:ir.model.fields,field_description:app_one.field_tag__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_has_error_counter
+#: model:ir.model.fields,field_description:app_one.field_clients__message_has_error_counter
+#: model:ir.model.fields,field_description:app_one.field_owner__message_has_error_counter
+#: model:ir.model.fields,field_description:app_one.field_property__message_has_error_counter
+#: model:ir.model.fields,field_description:app_one.field_tag__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__message_needaction_counter
+#: model:ir.model.fields,help:app_one.field_clients__message_needaction_counter
+#: model:ir.model.fields,help:app_one.field_owner__message_needaction_counter
+#: model:ir.model.fields,help:app_one.field_property__message_needaction_counter
+#: model:ir.model.fields,help:app_one.field_tag__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__message_has_error_counter
+#: model:ir.model.fields,help:app_one.field_clients__message_has_error_counter
+#: model:ir.model.fields,help:app_one.field_owner__message_has_error_counter
+#: model:ir.model.fields,help:app_one.field_property__message_has_error_counter
+#: model:ir.model.fields,help:app_one.field_tag__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_history__old_value
+msgid "Old Value"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__owner_id
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Owner"
+msgstr "المالك"
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property_history__change_type__owner_change
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Owner Changed"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__owner_count
+msgid "Owner Count"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Owner Information"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_clients__name
+#: model:ir.model.fields,field_description:app_one.field_owner__name
+#: model_terms:ir.ui.view,arch_db:app_one.owner_form_view
+msgid "Owner Name"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.constraint,message:app_one.constraint_clients_unique_owner_name
+#: model:ir.model.constraint,message:app_one.constraint_owner_unique_owner_name
+msgid "Owner name already exists"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Owner/Responsible"
+msgstr "المالك / المسؤول"
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Owner: %s"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.act_window,name:app_one.action_owner
+msgid "Owners"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__state__pending
+#: model:ir.model.fields.selection,name:app_one.selection__property_change_wizard__new_state__pending
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Pending"
+msgstr "قيد الانتظار"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_clients__phone
+#: model:ir.model.fields,field_description:app_one.field_owner__phone
+#: model:ir.model.fields,field_description:app_one.field_property__owner_phone
+msgid "Phone"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Phone:"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_property_change_wizard__reason
+msgid "Please explain why you are making these changes"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Please explain why you are making these changes..."
+msgstr "من فضلك اشرح سبب إجراء هذه التغييرات..."
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Please select at least one field to change!"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Please verify the amounts before posting."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__postcode
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Postcode"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property_history__change_type__price_change
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Price Changed"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__diff
+msgid "Price Difference"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Pricing"
+msgstr "التسعير"
+
+#. module: app_one
+#: model:ir.actions.act_window,name:app_one.action_property
+#: model:ir.model.fields,field_description:app_one.field_clients__property_count
+#: model:ir.model.fields,field_description:app_one.field_clients__property_ids
+#: model:ir.model.fields,field_description:app_one.field_owner__property_count
+#: model:ir.model.fields,field_description:app_one.field_owner__property_ids
+#: model:ir.ui.menu,name:app_one.menu_property_list
+#: model:ir.ui.menu,name:app_one.menu_property_root
+#: model_terms:ir.ui.view,arch_db:app_one.owner_form_view
+msgid "Properties"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/owner.py:0
+msgid "Properties of %s"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__property_id
+#: model:ir.model.fields,field_description:app_one.field_property_history__property_id
+#: model:ir.model.fields,field_description:app_one.field_property_line__property_id
+#: model:ir.model.fields,field_description:app_one.field_sale_order__property_id
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Property"
+msgstr "الملكية"
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_property_change_wizard
+msgid "Property Change Wizard"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_account_bank_statement_line__property_count
+#: model:ir.model.fields,field_description:app_one.field_account_move__property_count
+msgid "Property Count"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Property Details"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.act_window,name:app_one.action_property_history
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_list
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Property History"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Property History: %s"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Property Information"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_property_line
+msgid "Property Line Details"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__line_ids
+msgid "Property Lines"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Property Lines - Description"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_property
+msgid "Property Management"
+msgstr ""
+
+#. module: app_one
+#: model:res.groups,name:app_one.property_manager_group
+msgid "Property Manager"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_property_history
+msgid "Property Modification History"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Property Name"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_owner
+msgid "Property Owner"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_account_bank_statement_line__property_postcode
+#: model:ir.model.fields,field_description:app_one.field_account_move__property_postcode
+msgid "Property Postcode"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_account_bank_statement_line__property_selling_price
+#: model:ir.model.fields,field_description:app_one.field_account_move__property_selling_price
+msgid "Property Price"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Property Ref"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_account_bank_statement_line__property_ref
+#: model:ir.model.fields,field_description:app_one.field_account_move__property_ref
+#: model:ir.model.fields,field_description:app_one.field_property_history__property_ref
+msgid "Property Reference"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.report,name:app_one.action_report_property
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Property Report"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/account_move.py:0
+msgid "Property Sale: %s"
+msgstr ""
+
+#. module: app_one
+#: model:res.groups,name:app_one.property_user_group
+msgid "Property User"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Property created with reference: %s"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid ""
+"Property is %s day(s) overdue.\n"
+"Expected date: %s\n"
+"Please contact customer immediately."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/account_move.py:0
+#: code:addons/app_one/models/property_history.py:0
+msgid "Property: %s"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.server,name:app_one.check_expected_date_selling_cron_ir_actions_server
+msgid "Property: Check Selling Dates"
+msgstr ""
+
+#. module: app_one
+#: model:ir.module.category,name:app_one.property_Category
+msgid "Real Estate"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_list
+msgid "Reason"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property_change_wizard__reason
+#: model:ir.model.fields,field_description:app_one.field_property_history__reason
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "Reason for Change"
+msgstr "سبب التغيير"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__ref
+msgid "Ref"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Reference"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_property_history__property_ref
+msgid "Reference of the property at the time of change"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_clients__partner_id
+#: model:ir.model.fields,field_description:app_one.field_owner__partner_id
+msgid "Related Contact"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_account_bank_statement_line__property_id
+#: model:ir.model.fields,field_description:app_one.field_account_move__property_id
+msgid "Related Property"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__user_id
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Responsible"
+msgstr "المسؤول"
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__activity_user_id
+#: model:ir.model.fields,field_description:app_one.field_clients__activity_user_id
+#: model:ir.model.fields,field_description:app_one.field_owner__activity_user_id
+#: model:ir.model.fields,field_description:app_one.field_property__activity_user_id
+#: model:ir.model.fields,field_description:app_one.field_tag__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Rooms"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__message_has_sms_error
+#: model:ir.model.fields,field_description:app_one.field_clients__message_has_sms_error
+#: model:ir.model.fields,field_description:app_one.field_owner__message_has_sms_error
+#: model:ir.model.fields,field_description:app_one.field_property__message_has_sms_error
+#: model:ir.model.fields,field_description:app_one.field_tag__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model,name:app_one.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "Select a property..."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__selling_price
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Selling Price"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/wizard/property_wizard.py:0
+msgid "Selling price cannot be negative!"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Set to Closed"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Set to Draft"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Set to Pending"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Set to Sold"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__state__sold
+#: model:ir.model.fields.selection,name:app_one.selection__property_change_wizard__new_state__sold
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Sold"
+msgstr "مباع"
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__south
+msgid "South"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__southeast
+msgid "Southeast"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__southwest
+msgid "Southwest"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+#: model:ir.model.fields,field_description:app_one.field_property__state
+#: model_terms:ir.ui.view,arch_db:app_one.property_search_view
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "State"
+msgstr "الحالة"
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property_history__change_type__state_change
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "State Changed"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Status"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__activity_state
+#: model:ir.model.fields,help:app_one.field_clients__activity_state
+#: model:ir.model.fields,help:app_one.field_owner__activity_state
+#: model:ir.model.fields,help:app_one.field_property__activity_state
+#: model:ir.model.fields,help:app_one.field_tag__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.owner_form_view
+msgid "System Link"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_property__tag_ids
+msgid "Tag"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "Tags:"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_property_history__field_name
+msgid "Technical field name that was changed"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "The value must be greater than zero"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "This Month"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "This Week"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_form
+msgid "This change was made without documenting a reason."
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_move_form_custom_inherit
+msgid "This invoice is linked to property:"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "This property is"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.constraint,message:app_one.constraint_property_unique_name
+msgid "This property name already exists!"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Timeline"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Today"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.actions.act_window,help:app_one.action_property
+msgid "Track and manage your real estate properties efficiently."
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__activity_exception_decoration
+#: model:ir.model.fields,help:app_one.field_clients__activity_exception_decoration
+#: model:ir.model.fields,help:app_one.field_owner__activity_exception_decoration
+#: model:ir.model.fields,help:app_one.field_property__activity_exception_decoration
+#: model:ir.model.fields,help:app_one.field_tag__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Upcoming sale: %s"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_change_wizard_form
+msgid "Update Property with Reason"
+msgstr "تحديث الملكية مع توضيح السبب"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "Update with Reason"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_property_history__field_label
+msgid "User-friendly field label"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "Warning"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_building__website_message_ids
+#: model:ir.model.fields,field_description:app_one.field_clients__website_message_ids
+#: model:ir.model.fields,field_description:app_one.field_owner__website_message_ids
+#: model:ir.model.fields,field_description:app_one.field_property__website_message_ids
+#: model:ir.model.fields,field_description:app_one.field_tag__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,help:app_one.field_building__website_message_ids
+#: model:ir.model.fields,help:app_one.field_clients__website_message_ids
+#: model:ir.model.fields,help:app_one.field_owner__website_message_ids
+#: model:ir.model.fields,help:app_one.field_property__website_message_ids
+#: model:ir.model.fields,help:app_one.field_tag__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields.selection,name:app_one.selection__property__garden_orientation__west
+msgid "West"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "With Reason"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.view_property_history_search
+msgid "Without Reason"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property_history.py:0
+msgid "Yes"
+msgstr ""
+
+#. module: app_one
+#: model:ir.ui.menu,name:app_one.menu_building_list
+msgid "building"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "day(s) late"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.owner_form_view
+msgid "e.g. Ahmed Mohamed"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.building_form_view
+msgid "e.g. Main Building"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "e.g. Master Bedroom"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "e.g. Villa in Cairo"
+msgstr ""
+
+#. module: app_one
+#. odoo-python
+#: code:addons/app_one/models/property.py:0
+msgid "from the expected selling date"
+msgstr ""
+
+#. module: app_one
+#: model:ir.ui.menu,name:app_one.menu_owner_list
+msgid "owners"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_res_partner__price
+#: model:ir.model.fields,field_description:app_one.field_res_users__price
+msgid "price"
+msgstr ""
+
+#. module: app_one
+#: model:ir.model.fields,field_description:app_one.field_res_partner__property_id
+#: model:ir.model.fields,field_description:app_one.field_res_users__property_id
+msgid "property"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "sqm"
+msgstr ""
+
+#. module: app_one
+#: model:ir.actions.act_window,name:app_one.action_tag
+#: model:ir.model,name:app_one.model_tag
+msgid "tag"
+msgstr ""
+
+#. module: app_one
+#: model:ir.ui.menu,name:app_one.menu_tag_list
+msgid "tags"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.property_form_view
+msgid "test domain"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid ""
+"اتجاه\n"
+"                                                        الحديقة:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "اسم العقار"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الاسم:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "البريد:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "التاريخ المتوقع للبيع:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الحالة"
+msgstr "الحالة"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الرمز البريدي"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "السعر المتوقع"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "العنوان:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الفرق"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "المالك"
+msgstr "المالك"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "المرجع"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "المسؤول"
+msgstr "المسؤول"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "المساحة (م²)"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الهاتف:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الواجهات:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الوسوم:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "الوصف:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "بنود العقار - الوصف"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "تاريخ التوفر:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "تفاصيل العقار"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "تقرير العقار"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "تم البيع"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "جراج:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "حديقة:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "سعر البيع"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "غرف النوم:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "غير محدد"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "قيد الانتظار"
+msgstr "قيد الانتظار"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "لا يوجد مالك"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "لا يوجد مسؤول"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "م²"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid ""
+"مساحة\n"
+"                                                        الحديقة:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid ""
+"مساحة\n"
+"                                                    المعيشة:"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "مسودة"
+msgstr "مسودة"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "مغلق"
+msgstr "مغلق"
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "✓ Yes"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "✓ نعم"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "✗ No"
+msgstr ""
+
+#. module: app_one
+#: model_terms:ir.ui.view,arch_db:app_one.report_property_template
+msgid "✗ لا"
+msgstr ""

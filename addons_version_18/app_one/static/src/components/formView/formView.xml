@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="app_one.PropertyFormView">
+        <div class="property-form-view">
+            <t t-if="state.isLoading">
+                <div class="loading-container">
+                    <i class="fa fa-spinner loading-spinner"/>
+                    <p>Loading form...</p>
+                </div>
+            </t>
+
+            <t t-else="">
+                <div class="form-header">
+                    <h2>
+                        <t t-if="state.propertyId">Edit Property</t>
+                        <t t-else="">New Property</t>
+                    </h2>
+                    <div class="form-header-actions">
+                        <button class="btn btn-secondary" t-on-click="goBackToList" t-att-disabled="state.isSaving">
+                            <i class="fa fa-times"/> Cancel
+                        </button>
+                        <button class="btn btn-primary" t-on-click="saveProperty" t-att-disabled="state.isSaving">
+                            <i t-if="!state.isSaving" class="fa fa-save"/>
+                            <i t-else="" class="fa fa-spinner fa-spin"/>
+                            <t t-if="!state.isSaving">Save</t>
+                            <t t-else="">Saving...</t>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="form-card-body">
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fa fa-info-circle"/> Basic Information
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label class="form-label">Name <span class="required">*</span></label>
+                                    <input type="text" class="form-control" t-att-class="state.errors.name ? 'is-invalid' : ''" t-model="state.formData.name" placeholder="Enter property name"/>
+                                    <div t-if="state.errors.name" class="invalid-feedback" t-esc="state.errors.name"/>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">Postcode <span class="required">*</span></label>
+                                    <input type="text" class="form-control" t-att-class="state.errors.postcode ? 'is-invalid' : ''" t-model="state.formData.postcode" placeholder="Enter postcode"/>
+                                    <div t-if="state.errors.postcode" class="invalid-feedback" t-esc="state.errors.postcode"/>
+                                </div>
+
+                                <div class="form-field form-grid-full">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-textarea" t-model="state.formData.description" placeholder="Enter property description"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fa fa-home"/> Property Details
+                            </h3>
+                            <div class="form-grid form-grid-thirds">
+                                <div class="form-field">
+                                    <label class="form-label">Bedrooms</label>
+                                    <input type="number" class="form-control" t-att-class="state.errors.bedrooms ? 'is-invalid' : ''" t-model.number="state.formData.bedrooms" min="1"/>
+                                    <div t-if="state.errors.bedrooms" class="invalid-feedback" t-esc="state.errors.bedrooms"/>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">Living Area (m²)</label>
+                                    <input type="number" class="form-control" t-model.number="state.formData.living_area" min="0"/>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">Facades</label>
+                                    <input type="number" class="form-control" t-model.number="state.formData.facades" min="0"/>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" t-model="state.formData.garage" id="garage"/>
+                                    <label class="form-check-label" for="garage">Has Garage</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" t-model="state.formData.garden" id="garden"/>
+                                    <label class="form-check-label" for="garden">Has Garden</label>
+                                </div>
+                            </div>
+
+                            <t t-if="state.formData.garden">
+                                <div class="form-grid">
+                                    <div class="form-field">
+                                        <label class="form-label">Garden Area (m²)</label>
+                                        <input type="number" class="form-control" t-model.number="state.formData.garden_area" min="0"/>
+                                    </div>
+
+                                    <div class="form-field">
+                                        <label class="form-label">Garden Orientation</label>
+                                        <select class="form-select" t-model="state.formData.garden_orientation">
+                                            <t t-foreach="state.gardenOrientations" t-as="orientation" t-key="orientation.value">
+                                                <option t-att-value="orientation.value" t-esc="orientation.label"/>
+                                            </t>
+                                        </select>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fa fa-dollar-sign"/> Pricing
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label class="form-label">Expected Price</label>
+                                    <input type="number" class="form-control" t-att-class="state.errors.expected_price ? 'is-invalid' : ''" t-model.number="state.formData.expected_price" step="0.01" min="0"/>
+                                    <div t-if="state.errors.expected_price" class="invalid-feedback" t-esc="state.errors.expected_price"/>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">Selling Price</label>
+                                    <input type="number" class="form-control" t-model.number="state.formData.selling_price" step="0.01" min="0"/>
+                                </div>
+                            </div>
+
+                            <div t-att-class="'price-diff-display ' + (getDiff() >= 0 ? 'price-diff-positive' : 'price-diff-negative')">
+                                <span>Price Difference:</span>
+                                <span>
+                                    <i t-att-class="getDiff() >= 0 ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"/>
+                                    $<t t-esc="Math.abs(getDiff()).toFixed(2)"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fa fa-calendar"/> Dates
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label class="form-label">Date Availability</label>
+                                    <input type="date" class="form-control" t-model="state.formData.date_availability"/>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">Expected Date Selling</label>
+                                    <input type="date" class="form-control" t-model="state.formData.expected_date_selling"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="form-section-title">
+                                <i class="fa fa-users"/> Relations &amp; Status
+                            </h3>
+                            <div class="form-grid">
+                                <div class="form-field">
+                                    <label class="form-label">Owner</label>
+                                    <select class="form-select" t-model.number="state.formData.owner_id">
+                                        <option value="">-- Select Owner --</option>
+                                        <t t-foreach="state.owners" t-as="owner" t-key="owner.id">
+                                            <option t-att-value="owner.id" t-esc="owner.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">Responsible User</label>
+                                    <select class="form-select" t-model.number="state.formData.user_id">
+                                        <option value="">-- Select User --</option>
+                                        <t t-foreach="state.users" t-as="user" t-key="user.id">
+                                            <option t-att-value="user.id" t-esc="user.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+
+                                <div class="form-field">
+                                    <label class="form-label">State</label>
+                                    <select class="form-select" t-model="state.formData.state">
+                                        <t t-foreach="state.states" t-as="stateOption" t-key="stateOption.value">
+                                            <option t-att-value="stateOption.value" t-esc="stateOption.label"/>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

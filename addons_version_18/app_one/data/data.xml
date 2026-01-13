@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ============================================================ -->
+        <!--                    OWNERS DEMO DATA                          -->
+        <!-- ============================================================ -->
+
+        <record id="owner_demo_1" model="owner">
+            <field name="name">Ahmed Hassan</field>
+            <field name="phone">+20 100 123 4567</field>
+            <field name="address">15 Road 9, Maadi, Cairo</field>
+        </record>
+
+        <record id="owner_demo_2" model="owner">
+            <field name="name">Sara Mohamed</field>
+            <field name="phone">+20 111 234 5678</field>
+            <field name="address">32 Ahmed Heshmat St, Zamalek, Cairo</field>
+        </record>
+
+        <record id="owner_demo_3" model="owner">
+            <field name="name">Khaled Ali</field>
+            <field name="phone">+20 122 345 6789</field>
+            <field name="address">Villa 45, Marina, North Coast</field>
+        </record>
+
+        <record id="owner_demo_4" model="owner">
+            <field name="name">Mona Ibrahim</field>
+            <field name="phone">+20 100 456 7890</field>
+            <field name="address">Building 12, 5th Settlement, New Cairo</field>
+        </record>
+
+        <record id="owner_demo_5" model="owner">
+            <field name="name">Omar Mahmoud</field>
+            <field name="phone">+20 111 567 8901</field>
+            <field name="address">78 Al-Ahram St, Heliopolis, Cairo</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--                     TAGS DEMO DATA                           -->
+        <!-- ============================================================ -->
+
+        <record id="tag_demo_luxury" model="tag">
+            <field name="name">Luxury</field>
+        </record>
+
+        <record id="tag_demo_compound" model="tag">
+            <field name="name">Compound</field>
+        </record>
+
+        <record id="tag_demo_furnished" model="tag">
+            <field name="name">Furnished</field>
+        </record>
+
+        <record id="tag_demo_city_center" model="tag">
+            <field name="name">City Center</field>
+        </record>
+
+        <record id="tag_demo_sea_view" model="tag">
+            <field name="name">Sea View</field>
+        </record>
+
+        <record id="tag_demo_parking" model="tag">
+            <field name="name">Parking</field>
+        </record>
+
+        <record id="tag_demo_new_building" model="tag">
+            <field name="name">New Building</field>
+        </record>
+
+        <record id="tag_demo_investment" model="tag">
+            <field name="name">Investment</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--                  PROPERTIES DEMO DATA                        -->
+        <!-- ============================================================ -->
+
+        <!-- =================== DRAFT PROPERTIES =================== -->
+
+        <record id="property_demo_1" model="property">
+            <field name="name">Luxury Villa in Maadi</field>
+            <field name="description">Beautiful 4-bedroom villa with garden and private pool. Perfect for families looking for spacious living in a premium location.</field>
+            <field name="postcode">11728</field>
+            <field name="date_availability" eval="(DateTime.today() + timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() + timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">5000000</field>
+            <field name="selling_price">5200000</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">350</field>
+            <field name="facades">2</field>
+            <field name="garage" eval="True"/>
+            <field name="garden" eval="True"/>
+            <field name="garden_area">200</field>
+            <field name="garden_orientation">south</field>
+            <field name="state">draft</field>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_1"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_luxury'), ref('tag_demo_compound')])]"/>
+        </record>
+
+        <record id="property_demo_2" model="property">
+            <field name="name">Modern Apartment in Zamalek</field>
+            <field name="description">2-bedroom apartment with stunning Nile view, fully furnished with modern amenities. Walking distance to restaurants and cafes.</field>
+            <field name="postcode">11211</field>
+            <field name="date_availability" eval="(DateTime.today() + timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() + timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">3500000</field>
+            <field name="selling_price">3800000</field>
+            <field name="bedrooms">2</field>
+            <field name="living_area">150</field>
+            <field name="facades">1</field>
+            <field name="garage" eval="False"/>
+            <field name="garden" eval="False"/>
+            <field name="garden_orientation">no_garden</field>
+            <field name="state">draft</field>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_2"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_furnished'), ref('tag_demo_city_center')])]"/>
+        </record>
+
+        <!-- =================== PENDING PROPERTIES =================== -->
+
+        <record id="property_demo_3" model="property">
+            <field name="name">Beach House in North Coast</field>
+            <field name="description">Stunning 3-bedroom beach house with direct sea access. Private beach, swimming pool, and modern interior design.</field>
+            <field name="postcode">51718</field>
+            <field name="date_availability" eval="(DateTime.today() - timedelta(days=10)).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() + timedelta(days=45)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">4200000</field>
+            <field name="selling_price">4500000</field>
+            <field name="bedrooms">3</field>
+            <field name="living_area">200</field>
+            <field name="facades">2</field>
+            <field name="garage" eval="True"/>
+            <field name="garden" eval="True"/>
+            <field name="garden_area">150</field>
+            <field name="garden_orientation">north</field>
+            <field name="state">pending</field>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_3"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_sea_view'), ref('tag_demo_luxury')])]"/>
+        </record>
+
+        <record id="property_demo_4" model="property">
+            <field name="name">Office Space in New Cairo</field>
+            <field name="description">Commercial office space, 200 sqm, ready to move. Located in business hub with easy access to Ring Road.</field>
+            <field name="postcode">11835</field>
+            <field name="date_availability" eval="(DateTime.today()).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() + timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">2800000</field>
+            <field name="selling_price">3000000</field>
+            <field name="bedrooms">1</field>
+            <field name="living_area">200</field>
+            <field name="facades">1</field>
+            <field name="garage" eval="True"/>
+            <field name="garden" eval="False"/>
+            <field name="garden_orientation">no_garden</field>
+            <field name="state">pending</field>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_4"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_parking'), ref('tag_demo_new_building')])]"/>
+        </record>
+
+        <!-- =================== SOLD PROPERTIES =================== -->
+
+        <record id="property_demo_5" model="property">
+            <field name="name">Penthouse in Heliopolis</field>
+            <field name="description">Luxury penthouse with 360° panoramic city view. Top floor with private elevator, jacuzzi, and smart home system.</field>
+            <field name="postcode">11361</field>
+            <field name="date_availability" eval="(DateTime.today() - timedelta(days=90)).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() - timedelta(days=30)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">6000000</field>
+            <field name="selling_price">6500000</field>
+            <field name="bedrooms">5</field>
+            <field name="living_area">400</field>
+            <field name="facades">3</field>
+            <field name="garage" eval="True"/>
+            <field name="garden" eval="False"/>
+            <field name="garden_orientation">no_garden</field>
+            <field name="state">sold</field>
+            <field name="is_late" eval="False"/>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_5"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_luxury'), ref('tag_demo_furnished')])]"/>
+        </record>
+
+        <!-- =================== LATE PROPERTIES =================== -->
+
+        <record id="property_demo_6" model="property">
+            <field name="name">Studio in Dokki</field>
+            <field name="description">Compact studio apartment, needs renovation. Great investment opportunity in prime location near Cairo University.</field>
+            <field name="postcode">12311</field>
+            <field name="date_availability" eval="(DateTime.today() - timedelta(days=120)).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() - timedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">1500000</field>
+            <field name="selling_price">1600000</field>
+            <field name="bedrooms">1</field>
+            <field name="living_area">60</field>
+            <field name="facades">1</field>
+            <field name="garage" eval="False"/>
+            <field name="garden" eval="False"/>
+            <field name="garden_orientation">no_garden</field>
+            <field name="state">pending</field>
+            <field name="is_late" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_1"/>
+            <field name="user_id" ref="base.user_demo"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_investment')])]"/>
+        </record>
+
+        <record id="property_demo_7" model="property">
+            <field name="name">Duplex in 6th October</field>
+            <field name="description">Spacious duplex in gated community with security 24/7. Club house, swimming pool, and kids area available.</field>
+            <field name="postcode">12573</field>
+            <field name="date_availability" eval="(DateTime.today() - timedelta(days=60)).strftime('%Y-%m-%d')"/>
+            <field name="expected_date_selling" eval="(DateTime.today() - timedelta(days=5)).strftime('%Y-%m-%d')"/>
+            <field name="expected_price">4000000</field>
+            <field name="selling_price">4200000</field>
+            <field name="bedrooms">4</field>
+            <field name="living_area">300</field>
+            <field name="facades">2</field>
+            <field name="garage" eval="True"/>
+            <field name="garden" eval="True"/>
+            <field name="garden_area">100</field>
+            <field name="garden_orientation">west</field>
+            <field name="state">draft</field>
+            <field name="is_late" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="owner_id" ref="owner_demo_2"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="tag_ids" eval="[(6, 0, [ref('tag_demo_compound'), ref('tag_demo_parking')])]"/>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--               PROPERTY LINES DEMO DATA (Rooms)               -->
+        <!-- ============================================================ -->
+
+        <!-- Property Lines for Villa in Maadi -->
+        <record id="property_line_demo_1" model="property.line">
+            <field name="property_id" ref="property_demo_1"/>
+            <field name="description">Master Bedroom</field>
+            <field name="area">40</field>
+        </record>
+
+        <record id="property_line_demo_2" model="property.line">
+            <field name="property_id" ref="property_demo_1"/>
+            <field name="description">Living Room</field>
+            <field name="area">60</field>
+        </record>
+
+        <record id="property_line_demo_3" model="property.line">
+            <field name="property_id" ref="property_demo_1"/>
+            <field name="description">Kitchen</field>
+            <field name="area">25</field>
+        </record>
+
+        <record id="property_line_demo_4" model="property.line">
+            <field name="property_id" ref="property_demo_1"/>
+            <field name="description">Guest Bedroom</field>
+            <field name="area">30</field>
+        </record>
+
+        <!-- Property Lines for Beach House -->
+        <record id="property_line_demo_5" model="property.line">
+            <field name="property_id" ref="property_demo_3"/>
+            <field name="description">Sea View Bedroom</field>
+            <field name="area">35</field>
+        </record>
+
+        <record id="property_line_demo_6" model="property.line">
+            <field name="property_id" ref="property_demo_3"/>
+            <field name="description">Terrace</field>
+            <field name="area">50</field>
+        </record>
+
+        <record id="property_line_demo_7" model="property.line">
+            <field name="property_id" ref="property_demo_3"/>
+            <field name="description">Open Kitchen</field>
+            <field name="area">30</field>
+        </record>
+
+        <!-- Property Lines for Penthouse -->
+        <record id="property_line_demo_8" model="property.line">
+            <field name="property_id" ref="property_demo_5"/>
+            <field name="description">Master Suite</field>
+            <field name="area">80</field>
+        </record>
+
+        <record id="property_line_demo_9" model="property.line">
+            <field name="property_id" ref="property_demo_5"/>
+            <field name="description">Panoramic Lounge</field>
+            <field name="area">100</field>
+        </record>
+
+        <record id="property_line_demo_10" model="property.line">
+            <field name="property_id" ref="property_demo_5"/>
+            <field name="description">Rooftop Terrace</field>
+            <field name="area">120</field>
+        </record>
+
+    </data>
+</odoo>

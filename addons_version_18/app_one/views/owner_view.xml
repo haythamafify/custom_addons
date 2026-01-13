@@ -1,0 +1,92 @@
+<odoo>
+
+    <!-- Tree View -->
+    <record id="owner_tree_view" model="ir.ui.view">
+        <field name="name">owner.tree</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="partner_id"/>
+                <field name="property_count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="owner_form_view" model="ir.ui.view">
+        <field name="name">owner.form</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <!-- Smart Button -->
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                                type="object"
+                                name="action_view_properties"
+                                icon="fa-home"
+                                invisible="not property_count">
+                            <field string="Properties"
+                                   name="property_count"
+                                   widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="name" string="Owner Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Ahmed Mohamed"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Contact Information">
+                            <field name="phone" widget="phone"/>
+                            <field name="address"/>
+                        </group>
+                        <group string="System Link">
+                            <field name="partner_id"
+                                   options="{'no_create': True, 'no_open': True}"
+                                   help="Link this owner to an existing contact"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Properties" name="properties">
+                            <field name="property_ids" readonly="1">
+                                <list>
+                                    <field name="ref"/>
+                                    <field name="name"/>
+                                    <field name="postcode"/>
+                                    <field name="selling_price"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_owner" model="ir.actions.act_window">
+        <field name="name">Owners</field>
+        <field name="res_model">owner</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first owner
+            </p>
+            <p>
+                Manage property owners and their contact information.
+            </p>
+        </field>
+    </record>
+
+</odoo>

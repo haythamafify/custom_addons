@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Property History List View -->
+    <record id="view_property_history_list" model="ir.ui.view">
+        <field name="name">property.history.list</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <list string="Property History"
+                  create="0"
+                  delete="0"
+                  edit="0"
+                  decoration-info="change_type == 'create'"
+                  decoration-warning="change_type == 'price_change'"
+                  decoration-danger="change_type == 'state_change'"
+                  decoration-success="reason != False">
+                <field name="change_date"/>
+                <field name="property_ref"/>
+                <field name="property_id"/>
+                <field name="change_type"/>
+                <field name="field_label"/>
+                <field name="old_value"/>
+                <field name="new_value"/>
+                <field name="reason" optional="show" string="Reason"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Property History Form View -->
+    <record id="view_property_history_form" model="ir.ui.view">
+        <field name="name">property.history.form</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <form string="Property History" create="0" delete="0" edit="0">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_property"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-home">
+                            <span>View Property</span>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="display_name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <!-- Alert box for Reason if exists -->
+                    <div class="alert alert-info" role="alert" invisible="reason == False">
+                        <strong><i class="fa fa-info-circle"/> Reason for Change:</strong>
+                        <p class="mb-0 mt-2">
+                            <field name="reason" readonly="1" nolabel="1"/>
+                        </p>
+                    </div>
+
+                    <!-- Show warning if no reason -->
+                    <div class="alert alert-warning" role="alert" invisible="reason != False">
+                        <strong><i class="fa fa-exclamation-triangle"/> No Reason Provided</strong>
+                        <p class="mb-0">This change was made without documenting a reason.</p>
+                    </div>
+
+                    <group>
+                        <group string="Change Information">
+                            <field name="property_id"/>
+                            <field name="property_ref"/>
+                            <field name="change_type"/>
+                            <field name="change_date"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                        </group>
+
+                        <group string="Change Details">
+                            <field name="field_name"/>
+                            <field name="field_label"/>
+                            <field name="old_value"/>
+                            <field name="new_value"/>
+                        </group>
+                    </group>
+
+                    <!-- Reason Section - Always visible for debugging -->
+                    <group string="Reason for Change">
+                        <field name="reason" nolabel="1" readonly="1"
+                               widget="text"
+                               placeholder="No reason provided"/>
+                    </group>
+
+                    <group string="Additional Notes">
+                        <field name="note" nolabel="1" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Property History Search View -->
+    <record id="view_property_history_search" model="ir.ui.view">
+        <field name="name">property.history.search</field>
+        <field name="model">property.history</field>
+        <field name="arch" type="xml">
+            <search string="Property History">
+                <field name="property_id"/>
+                <field name="property_ref"/>
+                <field name="user_id"/>
+                <field name="field_label"/>
+                <field name="reason"/>
+
+                <filter string="With Reason"
+                        name="filter_with_reason"
+                        domain="[('reason', '!=', False)]"/>
+                <filter string="Without Reason"
+                        name="filter_without_reason"
+                        domain="[('reason', '=', False)]"/>
+                <separator/>
+
+                <filter string="Today"
+                        name="today"
+                        domain="[('change_date', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                <filter string="This Week"
+                        name="this_week"
+                        domain="[('change_date', '&gt;=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Month"
+                        name="this_month"
+                        domain="[('change_date', '&gt;=', (context_today().replace(day=1)).strftime('%Y-%m-%d'))]"/>
+
+                <separator/>
+                <filter string="Created"
+                        name="created"
+                        domain="[('change_type', '=', 'create')]"/>
+                <filter string="Modified"
+                        name="modified"
+                        domain="[('change_type', '=', 'write')]"/>
+                <filter string="State Changed"
+                        name="state_changed"
+                        domain="[('change_type', '=', 'state_change')]"/>
+                <filter string="Price Changed"
+                        name="price_changed"
+                        domain="[('change_type', '=', 'price_change')]"/>
+                <filter string="Owner Changed"
+                        name="owner_changed"
+                        domain="[('change_type', '=', 'owner_change')]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Property"
+                            name="group_property"
+                            context="{'group_by': 'property_id'}"/>
+                    <filter string="Change Type"
+                            name="group_change_type"
+                            context="{'group_by': 'change_type'}"/>
+                    <filter string="Changed By"
+                            name="group_user"
+                            context="{'group_by': 'user_id'}"/>
+                    <filter string="Date"
+                            name="group_date"
+                            context="{'group_by': 'change_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Property History Action -->
+    <record id="action_property_history" model="ir.actions.act_window">
+        <field name="name">Property History</field>
+        <field name="res_model">property.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'create': False, 'delete': False, 'edit': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No history records yet
+            </p>
+            <p>
+                History will be automatically created when properties are modified.
+            </p>
+        </field>
+    </record>
+</odoo>

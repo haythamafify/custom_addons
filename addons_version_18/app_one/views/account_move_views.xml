@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ==================== INHERIT INVOICE FORM ==================== -->
+        <record id="view_move_form_custom_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.custom.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <!-- ========== 1. SMART BUTTON للعقار ========== -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button class="oe_stat_button"
+                            type="object"
+                            name="action_view_property"
+                            icon="fa-home"
+                            invisible="not property_id">
+                        <field string="Property"
+                               name="property_count"
+                               widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <!-- ========== 2. إضافة حقل العقار في الـ Header ========== -->
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="property_id"
+                           invisible="move_type == 'entry'"
+                           domain="[('state', '=', 'sold')]"
+                           options="{'no_create': True, 'no_open': True}"
+                           placeholder="Select a property..."/>
+                </xpath>
+
+                <!-- ========== 3. عرض Property Reference بعد العقار ========== -->
+                <xpath expr="//field[@name='property_id']" position="after">
+                    <field name="property_ref"
+                           readonly="1"
+                           invisible="not property_id"
+                           string="Property Ref"
+                           placeholder="Auto-filled"/>
+                </xpath>
+
+                <!-- ========== 4. تبويب جديد لمعلومات العقار ========== -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Property Details"
+                          name="property_details"
+                          invisible="not property_id or move_type == 'entry'">
+
+                        <group>
+                            <group string="Property Information">
+                                <field name="property_ref" readonly="1"/>
+                                <field name="property_postcode" readonly="1"/>
+                            </group>
+                            <group string="Pricing">
+                                <field name="property_selling_price"
+                                       readonly="1"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+
+                        <!-- ========== Alert إذا السعر مختلف - FIXED ========== -->
+                        <div class="alert alert-warning"
+                             role="alert"
+                             style="margin: 15px 0;"
+                             invisible="(amount_total - property_selling_price &lt; 1) and (amount_total - property_selling_price &gt; -1)">
+                            <div style="display: flex; align-items: center;">
+                                <i class="fa fa-exclamation-triangle" title="Warning" style="font-size: 24px; margin-right: 10px;"/>
+                                <div>
+                                    <strong>⚠️ Price Mismatch Detected!</strong>
+                                    <p style="margin: 5px 0 0 0;">
+                                        Invoice total (<field name="amount_total" readonly="1" widget="monetary"/>)
+                                        differs from property selling price (<field name="property_selling_price" readonly="1" widget="monetary"/>).
+                                    </p>
+                                    <p style="margin: 5px 0 0 0; font-size: 90%;">
+                                        Please verify the amounts before posting.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ========== Info Box ========== -->
+                        <div class="alert alert-info"
+                             role="alert"
+                             style="margin: 15px 0;"
+                             invisible="not property_id">
+                            <i class="fa fa-info-circle" title="Information"/>
+                            <strong>Property Link Active</strong>
+                            <p style="margin: 5px 0 0 0; font-size: 90%;">
+                                This invoice is linked to property:
+                                <field name="property_id" readonly="1" nolabel="1"
+                                       options="{'no_open': False}"/>
+                            </p>
+                        </div>
+
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

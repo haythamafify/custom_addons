@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="app_one.PropertyListView">
+        <div class="property-list-view" ref="tableContainer">
+            <div class="list-header">
+                <h2>Property List</h2>
+                <button type="button" class="btn btn-primary" t-on-click="createProperty">
+                    <i class="fa fa-plus"/> Create Property
+                </button>
+            </div>
+
+            <div class="list-toolbar">
+                <div class="search-box">
+                    <i class="fa fa-search"/>
+                    <input type="text" class="form-control" placeholder="Search by name, ref, or postcode..." t-on-input="onSearchInput" t-att-value="state.searchQuery"/>
+                </div>
+
+                <div class="filter-box">
+                    <label>Filter:</label>
+                    <select class="form-select" t-on-change="onFilterChange" t-model="state.filterState">
+                        <option value="all">All States</option>
+                        <option value="draft">Draft</option>
+                        <option value="pending">Pending</option>
+                        <option value="sold">Sold</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+
+                <div class="column-selector">
+                    <button type="button" class="column-selector-btn" t-on-click="toggleColumnSelector">
+                        <i class="fa fa-columns"/>
+                        Columns
+                        <i t-att-class="state.columnSelectorOpen ? 'fa fa-chevron-up' : 'fa fa-chevron-down'"/>
+                    </button>
+
+                    <div t-att-class="'column-selector-dropdown' + (state.columnSelectorOpen ? ' active' : '')">
+                        <t t-foreach="Object.keys(columnLabels)" t-as="columnKey" t-key="columnKey">
+                            <div class="column-option" t-on-click="() => this.toggleColumn(columnKey)">
+                                <input type="checkbox"
+                                       t-att-checked="isColumnVisible(columnKey)"
+                                       t-on-click.stop="() => this.toggleColumn(columnKey)"/>
+                                <label t-esc="columnLabels[columnKey]"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ✅ Selection Actions Bar -->
+            <t t-if="hasSelection">
+                <div class="selection-toolbar">
+                    <div class="selection-info">
+                        <i class="fa fa-check-circle"/>
+                        <strong t-esc="selectedCount"/> selected
+                    </div>
+                    <div class="selection-actions">
+                        <button type="button" class="btn btn-sm btn-danger" t-on-click="deleteSelected">
+                            <i class="fa fa-trash"/> Delete Selected
+                        </button>
+                        <button type="button" class="btn btn-sm btn-secondary" t-on-click="clearSelection">
+                            <i class="fa fa-times"/> Clear Selection
+                        </button>
+                    </div>
+                </div>
+            </t>
+
+            <t t-if="state.hasError">
+                <div class="alert alert-danger">
+                    <i class="fa fa-exclamation-circle"/>
+                    <span t-esc="state.errorMessage"/>
+                    <button class="btn btn-sm btn-secondary" t-on-click="retryLoad">Retry</button>
+                </div>
+            </t>
+
+            <t t-elif="state.isLoading">
+                <div class="loading-container">
+                    <i class="fa fa-spinner fa-spin fa-3x"/>
+                    <p>Loading properties...</p>
+                </div>
+            </t>
+
+            <t t-elif="state.records.length === 0">
+                <div class="empty-state">
+                    <i class="fa fa-inbox"/>
+                    <h3>No Properties Found</h3>
+                    <p>There are no properties matching your search criteria.</p>
+                    <button class="btn btn-primary" t-on-click="createProperty">
+                        <i class="fa fa-plus"/> Create Your First Property
+                    </button>
+                </div>
+            </t>
+
+            <t t-else="">
+                <div class="list-info">
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"/>
+                        Loaded <strong t-esc="state.records.length"/> of <strong t-esc="state.totalRecords"/> properties
+                    </div>
+                </div>
+
+                <div class="property-table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- ✅ Checkbox Column -->
+                                <th class="checkbox-column">
+                                    <input type="checkbox" 
+                                           class="select-all-checkbox"
+                                           t-att-checked="isAllSelected" 
+                                           t-on-click="toggleSelectAll"/>
+                                </th>
+                                <th t-if="isColumnVisible('ref')" t-on-click="() => this.onSort('ref')" class="sortable" data-column="ref">
+                                    REF <i t-att-class="'fa ' + getSortIcon('ref')"/>
+                                </th>
+                                <th t-if="isColumnVisible('name')" t-on-click="() => this.onSort('name')" class="sortable" data-column="name">
+                                    NAME <i t-att-class="'fa ' + getSortIcon('name')"/>
+                                </th>
+                                <th t-if="isColumnVisible('postcode')" data-column="postcode">POSTCODE</th>
+                                <th t-if="isColumnVisible('user')" data-column="user">USER</th>
+                                <th t-if="isColumnVisible('dateAvailability')" data-column="dateAvailability">DATE AVAIL.</th>
+                                <th t-if="isColumnVisible('expectedDateSelling')" data-column="expectedDateSelling">EXP. DATE</th>
+                                <th t-if="isColumnVisible('sellingPrice')" class="text-end" data-column="sellingPrice">SELLING</th>
+                                <th t-if="isColumnVisible('expectedPrice')" class="text-end" data-column="expectedPrice">EXPECTED</th>
+                                <th t-if="isColumnVisible('diff')" class="text-end" data-column="diff">DIFF</th>
+                                <th t-if="isColumnVisible('bedrooms')" class="text-center" data-column="bedrooms">BEDS</th>
+                                <th t-if="isColumnVisible('state')" data-column="state">STATE</th>
+                                <th t-if="isColumnVisible('owner')" data-column="owner">OWNER</th>
+                                <th class="text-end">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="state.records" t-as="record" t-key="record.id">
+                                <tr t-att-class="record.is_late ? 'table-danger' : ''">
+                                    <!-- ✅ Checkbox for each row -->
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" 
+                                               class="row-checkbox"
+                                               t-att-checked="isRecordSelected(record.id)" 
+                                               t-on-click="() => this.toggleSelectRecord(record.id)"/>
+                                    </td>
+                                    <td t-if="isColumnVisible('ref')" data-column="ref"><strong t-esc="record.ref"/></td>
+                                    <td t-if="isColumnVisible('name')" data-column="name" t-esc="record.name"/>
+                                    <td t-if="isColumnVisible('postcode')" data-column="postcode" t-esc="record.postcode"/>
+                                    <td t-if="isColumnVisible('user')" data-column="user">
+                                        <t t-if="record.user_id">
+                                            <span class="badge badge-info" t-esc="getUserName(record.user_id)"/>
+                                        </t>
+                                        <span t-else="" class="text-muted">N/A</span>
+                                    </td>
+                                    <td t-if="isColumnVisible('dateAvailability')" data-column="dateAvailability" t-esc="formatDate(record.date_availability)"/>
+                                    <td t-if="isColumnVisible('expectedDateSelling')" data-column="expectedDateSelling" t-esc="formatDate(record.expected_date_selling)"/>
+                                    <td t-if="isColumnVisible('sellingPrice')" class="text-end" data-column="sellingPrice" t-esc="formatPrice(record.selling_price)"/>
+                                    <td t-if="isColumnVisible('expectedPrice')" class="text-end" data-column="expectedPrice" t-esc="formatPrice(record.expected_price)"/>
+                                    <td t-if="isColumnVisible('diff')" class="text-end" data-column="diff">
+                                        <span t-att-class="record.diff >= 0 ? 'text-success fw-bold' : 'text-danger fw-bold'" t-esc="formatPrice(record.diff)"/>
+                                    </td>
+                                    <td t-if="isColumnVisible('bedrooms')" class="text-center" data-column="bedrooms" t-esc="record.bedrooms"/>
+                                    <td t-if="isColumnVisible('state')" data-column="state">
+                                        <span t-att-class="getStateBadgeClass(record.state)" t-esc="getStateLabel(record.state)"/>
+                                    </td>
+                                    <td t-if="isColumnVisible('owner')" data-column="owner" t-esc="getOwnerName(record.owner_id)"/>
+                                    <td class="text-end">
+                                        <button type="button" class="btn btn-sm btn-primary" t-on-click="() => this.editProperty(record.id)" title="Edit">
+                                            <i class="fa fa-edit"/>
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger" t-on-click="() => this.deleteProperty(record)" t-att-disabled="state.isDeleting === record.id" title="Delete">
+                                            <i t-att-class="state.isDeleting === record.id ? 'fa fa-spinner fa-spin' : 'fa fa-trash'"/>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination-wrapper">
+                    <button class="btn btn-secondary" t-on-click="previousPage" t-att-disabled="!canGoPrevious">
+                        <i class="fa fa-chevron-left"/>
+                    </button>
+                    <span class="page-info">
+                        Page <strong t-esc="state.currentPage"/> of <strong t-esc="totalPages"/>
+                    </span>
+                    <button class="btn btn-secondary" t-on-click="nextPage" t-att-disabled="!canGoNext">
+                        <i class="fa fa-chevron-right"/>
+                    </button>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

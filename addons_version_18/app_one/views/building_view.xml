@@ -1,0 +1,87 @@
+<odoo>
+
+    <!-- Create Tree View -->
+    <record id="building_tree_view" model="ir.ui.view">
+        <field name="name">building.tree</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <list class="building-tree">
+                <field name="name"/>
+                <field name="no"/>
+                <field name="code"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Create Form View -->
+    <record id="building_form_view" model="ir.ui.view">
+        <field name="name">building.form</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Building Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Main Building"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="no"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Add building description..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <!-- Chatter -->
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="building_search_view" model="ir.ui.view">
+        <field name="name">building.search</field>
+        <field name="model">building</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- Search Fields -->
+                <field name="name"/>
+                <field name="code"/>
+                <field name="no"/>
+                <!-- Filters -->
+                <filter string="Active" name="active" domain="[('active','=',True)]"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+
+
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_building" model="ir.actions.act_window">
+        <field name="name">Buildings</field>  <!-- غيّرت من Properties إلى Buildings -->
+        <field name="res_model">building</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>  <!-- إظهار النشط فقط -->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first building
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

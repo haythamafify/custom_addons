@@ -1,0 +1,50 @@
+<odoo>
+
+    <!--create tree view-->
+    <record id="tag_tree_view" model="ir.ui.view">
+        <field name="name">tag tree</field>
+        <field name="model">tag</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!--create form view-->
+    <record id="tag_form_view" model="ir.ui.view">
+        <field name="name">tag.form</field>
+        <field name="model">tag</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -  -->
+    <record id="action_tag" model="ir.actions.act_window">
+        <field name="name">tag</field>
+        <field name="res_model">tag</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first tag
+            </p>
+        </field>
+    </record>
+
+
+
+
+</odoo>

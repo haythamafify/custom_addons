@@ -1,0 +1,530 @@
+/* ============================================================================
+   PROPERTY FORM VIEW - CLEAN WITH ELEGANT SCROLL
+   ============================================================================ */
+
+:root {
+    /* Primary Colors */
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --primary-light: #ede9fe;
+
+    /* Neutral Palette */
+    --surface-0: #ffffff;
+    --surface-1: #f9fafb;
+    --surface-2: #f3f4f6;
+    --border-light: #e5e7eb;
+    --border-medium: #d1d5db;
+    --border-dark: #9ca3af;
+
+    /* Text */
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-tertiary: #9ca3af;
+
+    /* Semantic Colors */
+    --success: #10b981;
+    --success-bg: #d1fae5;
+    --success-border: #6ee7b7;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --danger-border: #fca5a5;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 0.75rem;
+    --space-lg: 1rem;
+    --space-xl: 1.5rem;
+
+    /* Typography */
+    --text-xs: 0.75rem;
+    --text-sm: 0.813rem;
+    --text-base: 0.875rem;
+    --text-lg: 1rem;
+
+    /* Effects */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-focus: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    --transition: all 0.15s ease;
+}
+
+/* ============================================================================
+   BASE CONTAINER WITH CUSTOM SCROLLBAR
+   ============================================================================ */
+
+.property-form-view {
+    padding: 0;
+    background: var(--surface-1);
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+/* Custom Scrollbar - Elegant and Modern */
+.property-form-view::-webkit-scrollbar {
+    width: 8px;
+}
+
+.property-form-view::-webkit-scrollbar-track {
+    background: var(--surface-1);
+}
+
+.property-form-view::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.property-form-view::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}
+
+/* Firefox Scrollbar */
+.property-form-view {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-medium) var(--surface-1);
+}
+
+/* Smooth Scroll Behavior */
+.property-form-view {
+    scroll-behavior: smooth;
+}
+
+/* Loading State */
+.property-form-view .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    color: var(--text-secondary);
+}
+
+.property-form-view .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border-light);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================================================
+   HEADER - Sticky for easy access
+   ============================================================================ */
+
+.property-form-view .form-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--surface-0);
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.property-form-view .form-header h2 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.property-form-view .form-header-actions {
+    display: flex;
+    gap: var(--space-md);
+}
+
+/* ============================================================================
+   CARD CONTAINER - Better spacing
+   ============================================================================ */
+
+.property-form-view .form-card {
+    background: var(--surface-0);
+    margin: var(--space-xl);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.property-form-view .form-card-body {
+    padding: 0;
+}
+
+/* ============================================================================
+   SECTIONS - Clean vertical layout
+   ============================================================================ */
+
+.property-form-view .form-section {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.property-form-view .form-section:last-child {
+    border-bottom: none;
+}
+
+/* Section Headers */
+.property-form-view .form-section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-xl);
+    margin: 0;
+
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+
+    background: var(--surface-1);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.property-form-view .form-section-title i {
+    color: var(--primary);
+    font-size: var(--text-sm);
+    opacity: 0.7;
+}
+
+/* ============================================================================
+   GRID LAYOUT - Responsive 2-column
+   ============================================================================ */
+
+.property-form-view .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: var(--surface-0);
+}
+
+.property-form-view .form-grid-thirds {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.property-form-view .form-grid-full {
+    grid-column: 1 / -1;
+}
+
+/* ============================================================================
+   FORM FIELDS
+   ============================================================================ */
+
+.property-form-view .form-field {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.property-form-view .form-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.4;
+}
+
+.property-form-view .form-label .required {
+    color: var(--danger);
+    margin-left: var(--space-xs);
+}
+
+/* ============================================================================
+   INPUTS
+   ============================================================================ */
+
+.property-form-view .form-control,
+.property-form-view .form-select,
+.property-form-view .form-textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: var(--text-base);
+    font-family: inherit;
+    line-height: 1.5;
+
+    color: var(--text-primary);
+    background: var(--surface-0);
+
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+
+    box-sizing: border-box;
+    transition: var(--transition);
+}
+
+.property-form-view .form-control:hover,
+.property-form-view .form-select:hover,
+.property-form-view .form-textarea:hover {
+    border-color: var(--border-dark);
+}
+
+.property-form-view .form-control:focus,
+.property-form-view .form-select:focus,
+.property-form-view .form-textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: var(--shadow-focus);
+}
+
+.property-form-view .form-control::placeholder,
+.property-form-view .form-textarea::placeholder {
+    color: var(--text-tertiary);
+}
+
+.property-form-view .form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Invalid State */
+.property-form-view .form-control.is-invalid,
+.property-form-view .form-select.is-invalid,
+.property-form-view .form-textarea.is-invalid {
+    border-color: var(--danger);
+}
+
+.property-form-view .invalid-feedback {
+    display: block;
+    margin-top: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--danger);
+}
+
+/* ============================================================================
+   CHECKBOXES
+   ============================================================================ */
+
+.property-form-view .form-check {
+    display: flex;
+    align-items: center;
+    margin: var(--space-md) 0;
+}
+
+.property-form-view .form-check-input {
+    width: 1rem;
+    height: 1rem;
+    margin-right: var(--space-sm);
+
+    border: 1.5px solid var(--border-medium);
+    border-radius: var(--radius-sm);
+    background: var(--surface-0);
+
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.property-form-view .form-check-input:hover {
+    border-color: var(--primary);
+}
+
+.property-form-view .form-check-input:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.property-form-view .form-check-input:focus {
+    box-shadow: var(--shadow-focus);
+}
+
+.property-form-view .form-check-label {
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.property-form-view .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+
+    padding: 0.5rem 1rem;
+    font-size: var(--text-base);
+    font-weight: 500;
+
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.property-form-view .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.property-form-view .btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.property-form-view .btn-primary:hover:not(:disabled) {
+    background: var(--primary-hover);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.property-form-view .btn-secondary {
+    background: var(--surface-0);
+    color: var(--text-secondary);
+    border-color: var(--border-medium);
+}
+
+.property-form-view .btn-secondary:hover:not(:disabled) {
+    background: var(--surface-2);
+    color: var(--text-primary);
+}
+
+/* ============================================================================
+   PRICE DIFFERENCE
+   ============================================================================ */
+
+.property-form-view .price-diff-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: var(--space-lg);
+    margin: var(--space-lg) 0 0 0;
+
+    font-size: var(--text-base);
+    font-weight: 500;
+
+    border-radius: var(--radius-sm);
+    border: 1px solid;
+}
+
+.property-form-view .price-diff-positive {
+    background: var(--success-bg);
+    color: #065f46;
+    border-color: var(--success-border);
+}
+
+.property-form-view .price-diff-negative {
+    background: var(--danger-bg);
+    color: #991b1b;
+    border-color: var(--danger-border);
+}
+
+/* ============================================================================
+   NUMBER INPUTS
+   ============================================================================ */
+
+.property-form-view input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.property-form-view input[type="number"]::-webkit-outer-spin-button,
+.property-form-view input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 1024px) {
+    .property-form-view .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .property-form-view .form-grid-thirds {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .property-form-view .form-card {
+        margin: var(--space-lg);
+    }
+
+    .property-form-view .form-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--space-md);
+    }
+
+    .property-form-view .form-header-actions {
+        width: 100%;
+    }
+
+    .property-form-view .form-header-actions .btn {
+        flex: 1;
+    }
+
+    .property-form-view .form-grid {
+        padding: var(--space-lg);
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 576px) {
+    .property-form-view .form-card {
+        margin: var(--space-md);
+    }
+
+    .property-form-view .form-header {
+        padding: var(--space-md);
+    }
+
+    .property-form-view .form-grid {
+        padding: var(--space-md);
+    }
+
+    .property-form-view .form-header-actions {
+        flex-direction: column;
+    }
+
+    .property-form-view .form-header-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ============================================================================
+   ACCESSIBILITY
+   ============================================================================ */
+
+.property-form-view *:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* ============================================================================
+   PRINT
+   ============================================================================ */
+
+@media print {
+    .property-form-view {
+        background: white;
+        overflow: visible;
+    }
+
+    .property-form-view .form-header-actions,
+    .property-form-view .btn {
+        display: none;
+    }
+}

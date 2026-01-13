@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_property_manager,access.property.manager,model_property,property_manager_group,1,1,1,1
+access_owner_manager,access.owner.manager,model_owner,property_manager_group,1,1,1,1
+access_tag_manager,access.tag.manager,model_tag,property_manager_group,1,1,1,1
+access_property_line_manager,access.property.line.manager,model_property_line,property_manager_group,1,1,1,1
+access_building_manager,access.building.manager,model_building,property_manager_group,1,1,1,1
+access_property_history_manager,access.property.history.manager,model_property_history,property_manager_group,1,1,1,1
+access_property_change_wizard_manager,access.property.change.wizard.manager,model_property_change_wizard,property_manager_group,1,1,1,1
+access_property_user,access.property.user,model_property,property_user_group,1,1,1,0
+access_owner_user,access.owner.user,model_owner,property_user_group,1,0,0,0
+access_tag_user,access.tag.user,model_tag,property_user_group,1,0,0,0
+access_property_line_user,access.property.line.user,model_property_line,property_user_group,1,1,1,0
+access_building_user,access.building.user,model_building,property_user_group,1,0,0,0
+access_property_history_user,access.property.history.user,model_property_history,property_user_group,1,0,0,0
+access_property_change_wizard_user,access.property.change.wizard.user,model_property_change_wizard,property_user_group,1,1,1,0

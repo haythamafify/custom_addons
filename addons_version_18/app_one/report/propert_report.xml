@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_property" model="ir.actions.report">
+        <field name="name">Property Report</field>
+        <field name="model">property</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">app_one.report_property_template</field>
+        <field name="report_file">app_one.report_property_template</field>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+
+    <!-- Report Template with External Layout - Enhanced Multilingual -->
+    <template id="report_property_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <!-- تحديد لغة التقرير -->
+                <t t-set="user_lang" t-value="env.user.lang or 'en_US'"/>
+                <t t-set="is_arabic" t-value="user_lang.startswith('ar')"/>
+
+                <t t-call="web.external_layout">
+                    <!-- تحسين الخط للعربية -->
+                    <!-- ✅ تطبيق الخط العربي -->
+                    <style>
+                        @font-face {
+                        font-family: 'Cairo';
+                        font-weight: 400;
+                        src: url('/app_one/static/src/fonts/Cairo-Regular.ttf') format('truetype');
+                        }
+
+                        @font-face {
+                        font-family: 'Cairo';
+                        font-weight: 600;
+                        src: url('/app_one/static/src/fonts/Cairo-SemiBold.ttf') format('truetype');
+                        }
+
+                        @font-face {
+                        font-family: 'Cairo';
+                        font-weight: 700;
+                        src: url('/app_one/static/src/fonts/Cairo-Bold.ttf') format('truetype');
+                        }
+
+                        * {
+                        font-family: 'Cairo', 'DejaVu Sans', Arial, sans-serif !important;
+                        }
+
+                        body[dir="rtl"] {
+                        text-align: right;
+                        direction: rtl;
+                        }
+
+                        h1, h2, h3, h4, h5, h6 {
+                        font-weight: 700;
+                        }
+
+                        strong {
+                        font-weight: 600;
+                        }
+                    </style>
+
+                    <div class="page" t-att-dir="'rtl' if is_arabic else 'ltr'"
+                         style="font-size: 10pt; line-height: 1.3;">
+
+                        <!-- HEADER -->
+                        <div style="text-align: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #000;">
+                            <h1 style="font-size: 24pt; margin: 0; color: #000;" t-if="is_arabic">تقرير العقار</h1>
+                            <h1 style="font-size: 24pt; margin: 0; color: #000;" t-else="">Property Report</h1>
+                            <p style="font-size: 9pt; color: #666; margin: 5px 0 0 0;">
+                                <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/>
+                            </p>
+                        </div>
+
+                        <!-- BASIC INFO -->
+                        <table style="width: 100%; margin-bottom: 12px; background: #f0f0f0; border: 2px solid #000;">
+                            <tr>
+                                <td t-att-style="'padding: 8px; width: 25%; border-' + ('right' if is_arabic else 'left') + ': 1px solid #999;'">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">اسم العقار</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Property Name</div>
+                                    <div style="font-size: 11pt; font-weight: bold;">
+                                        <t t-esc="o.name"/>
+                                    </div>
+                                </td>
+                                <td t-att-style="'padding: 8px; width: 20%; border-' + ('right' if is_arabic else 'left') + ': 1px solid #999; text-align: center;'">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">المرجع</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Reference</div>
+                                    <div style="font-size: 11pt; font-weight: bold;">
+                                        <t t-esc="o.ref"/>
+                                    </div>
+                                </td>
+                                <td t-att-style="'padding: 8px; width: 20%; border-' + ('right' if is_arabic else 'left') + ': 1px solid #999; text-align: center;'">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">الرمز البريدي</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Postcode</div>
+                                    <div style="font-size: 11pt; font-weight: bold;">
+                                        <t t-esc="o.postcode"/>
+                                    </div>
+                                </td>
+                                <td style="padding: 8px; width: 35%; text-align: center;">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">الحالة</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Status</div>
+                                    <div style="margin-top: 3px;">
+                                        <t t-if="o.state == 'draft'">
+                                            <span style="background: #95a5a6; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-if="is_arabic">مسودة
+                                            </span>
+                                            <span style="background: #95a5a6; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-else="">Draft
+                                            </span>
+                                        </t>
+                                        <t t-elif="o.state == 'pending'">
+                                            <span style="background: #f39c12; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-if="is_arabic">قيد الانتظار
+                                            </span>
+                                            <span style="background: #f39c12; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-else="">Pending
+                                            </span>
+                                        </t>
+                                        <t t-elif="o.state == 'sold'">
+                                            <span style="background: #27ae60; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-if="is_arabic">تم البيع
+                                            </span>
+                                            <span style="background: #27ae60; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-else="">Sold
+                                            </span>
+                                        </t>
+                                        <t t-elif="o.state == 'closed'">
+                                            <span style="background: #e74c3c; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-if="is_arabic">مغلق
+                                            </span>
+                                            <span style="background: #e74c3c; color: white; padding: 5px 12px; font-weight: bold; font-size: 9pt;"
+                                                  t-else="">Closed
+                                            </span>
+                                        </t>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- DESCRIPTION -->
+                        <t t-if="o.description">
+                            <div t-att-style="'margin-bottom: 12px; padding: 8px; background: #f9f9f9; border-' + ('right' if is_arabic else 'left') + ': 3px solid #3498db;'">
+                                <strong style="font-size: 10pt;" t-if="is_arabic">الوصف:</strong>
+                                <strong style="font-size: 10pt;" t-else="">Description:</strong>
+                                <span style="font-size: 9pt; color: #333;">
+                                    <t t-esc="o.description"/>
+                                </span>
+                            </div>
+                        </t>
+
+                        <!-- TWO COLUMNS: OWNER/RESPONSIBLE & DETAILS -->
+                        <table style="width: 100%; margin-bottom: 12px;">
+                            <tr>
+                                <!-- LEFT: OWNER & RESPONSIBLE -->
+                                <td t-att-style="'width: 50%; vertical-align: top; padding-' + ('right' if is_arabic else 'left') + ': 5px;'">
+                                    <!-- OWNER -->
+                                    <div style="border: 2px solid #3498db; padding: 8px; margin-bottom: 8px; background: white;">
+                                        <h4 style="margin: 0 0 6px 0; font-size: 11pt; color: #3498db; border-bottom: 1px solid #3498db; padding-bottom: 4px;"
+                                            t-if="is_arabic">المالك
+                                        </h4>
+                                        <h4 style="margin: 0 0 6px 0; font-size: 11pt; color: #3498db; border-bottom: 1px solid #3498db; padding-bottom: 4px;"
+                                            t-else="">Owner
+                                        </h4>
+                                        <t t-if="o.owner_id">
+                                            <div style="font-size: 9pt; line-height: 1.4;">
+                                                <div>
+                                                    <strong t-if="is_arabic">الاسم:</strong>
+                                                    <strong t-else="">Name:</strong>
+                                                    <t t-esc="o.owner_id.name"/>
+                                                </div>
+                                                <div t-if="o.owner_address">
+                                                    <strong t-if="is_arabic">العنوان:</strong>
+                                                    <strong t-else="">Address:</strong>
+                                                    <t t-esc="o.owner_address"/>
+                                                </div>
+                                                <div t-if="o.owner_phone" style="direction: ltr; text-align: left;">
+                                                    <strong t-if="is_arabic">الهاتف:</strong>
+                                                    <strong t-else="">Phone:</strong>
+                                                    <t t-esc="o.owner_phone"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <p style="text-align: center; color: #999; font-size: 9pt; margin: 8px 0;"
+                                               t-if="is_arabic">لا يوجد مالك
+                                            </p>
+                                            <p style="text-align: center; color: #999; font-size: 9pt; margin: 8px 0;"
+                                               t-else="">No owner assigned
+                                            </p>
+                                        </t>
+                                    </div>
+
+                                    <!-- RESPONSIBLE -->
+                                    <div style="border: 2px solid #9b59b6; padding: 8px; background: white;">
+                                        <h4 style="margin: 0 0 6px 0; font-size: 11pt; color: #9b59b6; border-bottom: 1px solid #9b59b6; padding-bottom: 4px;"
+                                            t-if="is_arabic">المسؤول
+                                        </h4>
+                                        <h4 style="margin: 0 0 6px 0; font-size: 11pt; color: #9b59b6; border-bottom: 1px solid #9b59b6; padding-bottom: 4px;"
+                                            t-else="">Responsible
+                                        </h4>
+                                        <t t-if="o.user_id">
+                                            <div style="font-size: 9pt; line-height: 1.4;">
+                                                <div>
+                                                    <strong t-if="is_arabic">الاسم:</strong>
+                                                    <strong t-else="">Name:</strong>
+                                                    <t t-esc="o.user_id.name"/>
+                                                </div>
+                                                <div t-if="o.user_id.email" style="direction: ltr; text-align: left;">
+                                                    <strong t-if="is_arabic">البريد:</strong>
+                                                    <strong t-else="">Email:</strong>
+                                                    <t t-esc="o.user_id.email"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <p style="text-align: center; color: #999; font-size: 9pt; margin: 8px 0;"
+                                               t-if="is_arabic">لا يوجد مسؤول
+                                            </p>
+                                            <p style="text-align: center; color: #999; font-size: 9pt; margin: 8px 0;"
+                                               t-else="">No responsible assigned
+                                            </p>
+                                        </t>
+                                    </div>
+                                </td>
+
+                                <!-- RIGHT: PROPERTY DETAILS -->
+                                <td t-att-style="'width: 50%; vertical-align: top; padding-' + ('left' if is_arabic else 'right') + ': 5px;'">
+                                    <div style="border: 2px solid #27ae60; padding: 8px; background: white;">
+                                        <h4 style="margin: 0 0 6px 0; font-size: 11pt; color: #27ae60; border-bottom: 1px solid #27ae60; padding-bottom: 4px;"
+                                            t-if="is_arabic">تفاصيل العقار
+                                        </h4>
+                                        <h4 style="margin: 0 0 6px 0; font-size: 11pt; color: #27ae60; border-bottom: 1px solid #27ae60; padding-bottom: 4px;"
+                                            t-else="">Property Details
+                                        </h4>
+                                        <table style="width: 100%; font-size: 9pt;">
+                                            <tr style="background: #e8f8f0;">
+                                                <td style="padding: 4px; font-weight: bold; width: 50%;"
+                                                    t-if="is_arabic">غرف النوم:
+                                                </td>
+                                                <td style="padding: 4px; font-weight: bold; width: 50%;" t-else="">
+                                                    Bedrooms:
+                                                </td>
+                                                <td style="padding: 4px;">
+                                                    <t t-esc="o.bedrooms"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 4px; font-weight: bold;" t-if="is_arabic">مساحة
+                                                    المعيشة:
+                                                </td>
+                                                <td style="padding: 4px; font-weight: bold;" t-else="">Living Area:</td>
+                                                <td style="padding: 4px;">
+                                                    <t t-esc="o.living_area"/>
+                                                    <span t-if="is_arabic">م²</span>
+                                                    <span t-else="">sqm</span>
+                                                </td>
+                                            </tr>
+                                            <tr style="background: #e8f8f0;">
+                                                <td style="padding: 4px; font-weight: bold;" t-if="is_arabic">
+                                                    الواجهات:
+                                                </td>
+                                                <td style="padding: 4px; font-weight: bold;" t-else="">Facades:</td>
+                                                <td style="padding: 4px;">
+                                                    <t t-esc="o.facades"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 4px; font-weight: bold;" t-if="is_arabic">جراج:</td>
+                                                <td style="padding: 4px; font-weight: bold;" t-else="">Garage:</td>
+                                                <td style="padding: 4px;">
+                                                    <t t-if="o.garage">
+                                                        <span style="color: #27ae60;" t-if="is_arabic">✓ نعم</span>
+                                                        <span style="color: #27ae60;" t-else="">✓ Yes</span>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span style="color: #e74c3c;" t-if="is_arabic">✗ لا</span>
+                                                        <span style="color: #e74c3c;" t-else="">✗ No</span>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <tr style="background: #e8f8f0;">
+                                                <td style="padding: 4px; font-weight: bold;" t-if="is_arabic">حديقة:
+                                                </td>
+                                                <td style="padding: 4px; font-weight: bold;" t-else="">Garden:</td>
+                                                <td style="padding: 4px;">
+                                                    <t t-if="o.garden">
+                                                        <span style="color: #27ae60;" t-if="is_arabic">✓ نعم</span>
+                                                        <span style="color: #27ae60;" t-else="">✓ Yes</span>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span style="color: #e74c3c;" t-if="is_arabic">✗ لا</span>
+                                                        <span style="color: #e74c3c;" t-else="">✗ No</span>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <t t-if="o.garden">
+                                                <tr>
+                                                    <td style="padding: 4px; font-weight: bold;" t-if="is_arabic">مساحة
+                                                        الحديقة:
+                                                    </td>
+                                                    <td style="padding: 4px; font-weight: bold;" t-else="">Garden
+                                                        Area:
+                                                    </td>
+                                                    <td style="padding: 4px;">
+                                                        <t t-esc="o.garden_area"/>
+                                                        <span t-if="is_arabic">م²</span>
+                                                        <span t-else="">sqm</span>
+                                                    </td>
+                                                </tr>
+                                                <tr style="background: #e8f8f0;">
+                                                    <td style="padding: 4px; font-weight: bold;" t-if="is_arabic">اتجاه
+                                                        الحديقة:
+                                                    </td>
+                                                    <td style="padding: 4px; font-weight: bold;" t-else="">Garden
+                                                        Orientation:
+                                                    </td>
+                                                    <td style="padding: 4px;">
+                                                        <!-- ترجمة تلقائية لـ Selection -->
+                                                        <t t-esc="dict(o._fields['garden_orientation']._description_selection(o.env)).get(o.garden_orientation)"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- PRICING -->
+                        <table style="width: 100%; margin-bottom: 12px; text-align: center; border: 2px solid #e74c3c;">
+                            <tr style="background: #fdecea;">
+                                <td t-att-style="'padding: 8px; width: 33%; border-' + ('right' if is_arabic else 'left') + ': 1px solid #ccc;'">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">السعر المتوقع</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Expected Price</div>
+                                    <div style="font-size: 12pt; font-weight: bold;">
+                                        <t t-esc="'{:,.0f}'.format(o.expected_price)"/>
+                                        <t t-esc="' ' + o.currency_id.symbol"/>
+                                    </div>
+                                </td>
+                                <td t-att-style="'padding: 8px; width: 33%; border-' + ('right' if is_arabic else 'left') + ': 1px solid #ccc;'">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">سعر البيع</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Selling Price</div>
+                                    <div style="font-size: 12pt; font-weight: bold;">
+                                        <t t-esc="'{:,.0f}'.format(o.selling_price)"/>
+                                        <t t-esc="' ' + o.currency_id.symbol"/>
+                                    </div>
+                                </td>
+                                <td style="padding: 8px; width: 34%;">
+                                    <div style="font-size: 8pt; color: #666;" t-if="is_arabic">الفرق</div>
+                                    <div style="font-size: 8pt; color: #666;" t-else="">Difference</div>
+                                    <div style="font-size: 12pt; font-weight: bold;">
+                                        <span t-if="o.diff >= 0" style="color: #27ae60;">
+                                            +
+                                            <t t-esc="'{:,.0f}'.format(o.diff)"/>
+                                        </span>
+                                        <span t-else="" style="color: #e74c3c;">
+                                            <t t-esc="'{:,.0f}'.format(o.diff)"/>
+                                        </span>
+                                        <t t-esc="' ' + o.currency_id.symbol"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- DATES & TAGS IN ONE ROW -->
+                        <table style="width: 100%; margin-bottom: 12px;">
+                            <tr>
+                                <!-- DATES -->
+                                <td t-att-style="'width: 65%; vertical-align: top; padding-' + ('right' if is_arabic else 'left') + ': 5px;'">
+                                    <table style="width: 100%; border: 2px solid #3498db;">
+                                        <tr style="background: #ebf5fb;">
+                                            <td style="padding: 6px; font-weight: bold; font-size: 9pt; width: 35%;"
+                                                t-if="is_arabic">تاريخ التوفر:
+                                            </td>
+                                            <td style="padding: 6px; font-weight: bold; font-size: 9pt; width: 35%;"
+                                                t-else="">Available Date:
+                                            </td>
+                                            <td style="padding: 6px; font-size: 9pt;">
+                                                <t t-esc="o.date_availability"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 6px; font-weight: bold; font-size: 9pt;"
+                                                t-if="is_arabic">التاريخ المتوقع للبيع:
+                                            </td>
+                                            <td style="padding: 6px; font-weight: bold; font-size: 9pt;" t-else="">
+                                                Expected Selling Date:
+                                            </td>
+                                            <td style="padding: 6px; font-size: 9pt;">
+                                                <t t-if="o.expected_date_selling">
+                                                    <t t-esc="o.expected_date_selling"/>
+                                                    <t t-if="o.is_late">
+                                                        <span style="color: #e74c3c; font-weight: bold;"
+                                                              t-if="is_arabic">(متأخر)
+                                                        </span>
+                                                        <span style="color: #e74c3c; font-weight: bold;" t-else="">
+                                                            (Late)
+                                                        </span>
+                                                    </t>
+                                                </t>
+                                                <t t-else="">
+                                                    <span style="color: #999;" t-if="is_arabic">غير محدد</span>
+                                                    <span style="color: #999;" t-else="">Not specified</span>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <!-- TAGS -->
+                                <td t-att-style="'width: 35%; vertical-align: top; padding-' + ('left' if is_arabic else 'right') + ': 5px;'"
+                                    t-if="o.tag_ids">
+                                    <div style="border: 2px solid #ff9800; padding: 6px; background: white; min-height: 50px;">
+                                        <div style="font-size: 9pt; font-weight: bold; color: #e65100; margin-bottom: 4px;"
+                                             t-if="is_arabic">الوسوم:
+                                        </div>
+                                        <div style="font-size: 9pt; font-weight: bold; color: #e65100; margin-bottom: 4px;"
+                                             t-else="">Tags:
+                                        </div>
+                                        <t t-foreach="o.tag_ids" t-as="tag">
+                                            <span style="background: #fff3e0; color: #e65100; padding: 3px 8px;
+                                                        border: 1px solid #ffb74d; display: inline-block; margin: 2px; font-size: 8pt; font-weight: bold;">
+                                                <t t-esc="tag.name"/>
+                                            </span>
+                                        </t>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- PROPERTY LINES -->
+                        <t t-if="o.line_ids">
+                            <table style="width: 100%; margin-bottom: 10px; border-collapse: collapse; border: 2px solid #000;">
+                                <thead>
+                                    <tr style="background: #34495e; color: white;">
+                                        <th style="padding: 6px; font-size: 9pt; width: 8%; border: 1px solid #000;">#
+                                        </th>
+                                        <th style="padding: 6px; font-size: 9pt; width: 62%; border: 1px solid #000;"
+                                            t-if="is_arabic">بنود العقار - الوصف
+                                        </th>
+                                        <th style="padding: 6px; font-size: 9pt; width: 62%; border: 1px solid #000;"
+                                            t-else="">Property Lines - Description
+                                        </th>
+                                        <th style="padding: 6px; font-size: 9pt; width: 30%; border: 1px solid #000;"
+                                            t-if="is_arabic">المساحة (م²)
+                                        </th>
+                                        <th style="padding: 6px; font-size: 9pt; width: 30%; border: 1px solid #000;"
+                                            t-else="">Area (sqm)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.line_ids" t-as="line">
+                                        <tr>
+                                            <td style="padding: 5px; text-align: center; border: 1px solid #ccc; font-size: 9pt; font-weight: bold;">
+                                                <t t-esc="line_index + 1"/>
+                                            </td>
+                                            <td style="padding: 5px; text-align: center; border: 1px solid #ccc; font-size: 9pt;">
+                                                <t t-esc="line.description or '-'"/>
+                                            </td>
+                                            <td style="padding: 5px; text-align: center; border: 1px solid #ccc; font-size: 9pt; font-weight: bold;">
+                                                <t t-esc="line.area or '0.00'"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </t>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

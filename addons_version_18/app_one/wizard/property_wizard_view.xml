@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Property Change Wizard Form View -->
+    <record id="view_property_change_wizard_form" model="ir.ui.view">
+        <field name="name">property.change.wizard.form</field>
+        <field name="model">property.change.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Update Property with Reason">
+                <sheet>
+                    <!-- Property Info -->
+                    <group>
+                        <field name="property_id" readonly="1"/>
+                    </group>
+
+                    <!-- Reason Field - Required -->
+                    <group string="Reason for Change">
+                        <field name="reason" placeholder="Please explain why you are making these changes..." nolabel="1"/>
+                    </group>
+
+                    <notebook>
+                        <!-- State Changes -->
+                        <page string="State" name="state_changes">
+                            <group>
+                                <field name="change_state"/>
+                            </group>
+                            <group invisible="not change_state">
+                                <group>
+                                    <field name="current_state"/>
+                                </group>
+                                <group>
+                                    <field name="new_state"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Price Changes -->
+                        <page string="Pricing" name="price_changes">
+                            <group>
+                                <field name="change_price"/>
+                            </group>
+                            <group invisible="not change_price">
+                                <group>
+                                    <field name="current_expected_price"/>
+                                    <field name="new_expected_price"/>
+                                </group>
+                                <group>
+                                    <field name="current_selling_price"/>
+                                    <field name="new_selling_price"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Owner/Responsible Changes -->
+                        <page string="Owner/Responsible" name="owner_changes">
+                            <group>
+                                <field name="change_owner"/>
+                            </group>
+                            <group invisible="not change_owner">
+                                <group string="Owner">
+                                    <field name="current_owner"/>
+                                    <field name="new_owner_id"/>
+                                </group>
+                                <group string="Responsible">
+                                    <field name="current_user"/>
+                                    <field name="new_user_id"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Date Changes -->
+                        <page string="Dates" name="date_changes">
+                            <group>
+                                <field name="change_dates"/>
+                            </group>
+                            <group invisible="not change_dates">
+                                <group>
+                                    <field name="current_date_availability"/>
+                                    <field name="new_date_availability"/>
+                                </group>
+                                <group>
+                                    <field name="current_expected_date_selling"/>
+                                    <field name="new_expected_date_selling"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Property Details Changes -->
+                        <page string="Details" name="detail_changes">
+                            <group>
+                                <field name="change_details"/>
+                            </group>
+                            <group invisible="not change_details">
+                                <group>
+                                    <field name="current_bedrooms"/>
+                                    <field name="new_bedrooms"/>
+                                    <field name="current_living_area"/>
+                                    <field name="new_living_area"/>
+                                    <field name="current_facades"/>
+                                    <field name="new_facades"/>
+                                </group>
+                                <group>
+                                    <field name="current_garage"/>
+                                    <field name="new_garage"/>
+                                    <field name="current_garden"/>
+                                    <field name="new_garden"/>
+                                    <field name="current_garden_area" invisible="not current_garden"/>
+                                    <field name="new_garden_area" invisible="not new_garden"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <footer>
+                    <button name="action_apply_changes"
+                            string="Save Changes"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+
