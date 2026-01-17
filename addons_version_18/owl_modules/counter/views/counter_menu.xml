@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_counter" model="ir.actions.client">
+        <field name="name">Counter</field>
+        <field name="tag">counter.action</field>
+    </record>
+
+    <menuitem id="menu_counter_root"
+              name="Counter"
+              sequence="10"/>
+
+    <menuitem id="menu_counter_app"
+              name="Counter App"
+              parent="menu_counter_root"
+              action="action_counter"
+              sequence="1"/>
+</odoo>
