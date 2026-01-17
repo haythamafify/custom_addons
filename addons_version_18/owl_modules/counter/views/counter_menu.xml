@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- Counter Action -->
     <record id="action_counter" model="ir.actions.client">
         <field name="name">Counter</field>
         <field name="tag">counter.action</field>
     </record>
 
+    <!-- Calculator Action -->
+    <record id="action_calculator" model="ir.actions.client">
+        <field name="name">Calculator</field>
+        <field name="tag">calculator.action</field>
+    </record>
+
+    <!-- Root Menu -->
     <menuitem id="menu_counter_root"
-              name="Counter"
+              name="OWL Apps"
               sequence="10"/>
 
+    <!-- Counter Menu -->
     <menuitem id="menu_counter_app"
-              name="Counter App"
+              name="Counter with Timer"
               parent="menu_counter_root"
               action="action_counter"
               sequence="1"/>
+
+    <!-- Calculator Menu -->
+    <menuitem id="menu_calculator_app"
+              name="Simple Calculator"
+              parent="menu_counter_root"
+              action="action_calculator"
+              sequence="2"/>
+
 </odoo>

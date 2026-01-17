@@ -4,7 +4,7 @@
     'category': 'Tools',
     'summary': 'Simple Counter application using OWL framework',
     'author': 'Haytham Gamal',
-    'website': 'https://github.com/haythamafify/custom_addons/tree/main/addons_version_18/counter',
+    'website': 'https://github.com/haythamafify/custom_addons/tree/main/addons_version_18/owl_modules/counter',
     'license': 'LGPL-3',
     'depends': [
         'base',
@@ -18,6 +18,8 @@
         'web.assets_backend': [
             'counter/static/src/components/counter/counter.js',
             'counter/static/src/components/counter/counter.xml',
+            'counter/static/src/components/calculator/calculator.js',
+            'counter/static/src/components/calculator/calculator.xml',
         ],
     },
     'application': True,
