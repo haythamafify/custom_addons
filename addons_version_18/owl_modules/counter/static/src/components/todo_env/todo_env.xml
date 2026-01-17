@@ -3,176 +3,282 @@
 
     <!-- ========== TodoItem Template ========== -->
     <t t-name="counter.TodoItem">
-        <li class="list-group-item d-flex justify-content-between align-items-center mb-2"
-            t-att-style="'border-left: 4px solid ' + props.itemColor + '; border-radius: 8px;'">
+        <li class="list-group-item d-flex justify-content-between align-items-center mb-2 shadow-sm"
+            t-att-style="'border-left: 5px solid ' + props.itemColor + '; border-radius: 10px; transition: all 0.3s;'"
+            style="background: white;">
 
-            <div class="d-flex align-items-center gap-2 flex-grow-1">
+            <div class="d-flex align-items-center gap-3 flex-grow-1">
                 <!-- Checkbox -->
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    t-att-checked="props.todo.done"
-                    t-on-click="toggleTodo"/>
+                <div class="form-check">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        t-att-checked="props.todo.done"
+                        t-on-click="toggleTodo"
+                        style="width: 22px; height: 22px; cursor: pointer;"/>
+                </div>
 
-                <!-- Title -->
-                <span t-att-class="{'text-decoration-line-through text-muted': props.todo.done}">
-                    <strong><t t-esc="props.index + 1"/>.</strong>
-                    <t t-esc="props.todo.title"/>
-                </span>
-
-                <!-- Warning if too long -->
-                <t t-if="isTooLong">
-                    <span class="badge bg-warning text-dark">
-                        <i class="fa fa-exclamation-triangle"/> Too Long!
+                <!-- Title with index -->
+                <div class="flex-grow-1">
+                    <span t-att-class="{'text-decoration-line-through text-muted': props.todo.done}"
+                          style="font-size: 1.05rem;">
+                        <span class="badge bg-secondary me-2" style="font-size: 0.75rem;">
+                            #<t t-esc="props.index + 1"/>
+                        </span>
+                        <t t-esc="props.todo.title"/>
                     </span>
-                </t>
+
+                    <!-- Warning if too long -->
+                    <t t-if="isTooLong">
+                        <span class="badge bg-warning text-dark ms-2">
+                            <i class="fa fa-exclamation-triangle"/> Length Warning
+                        </span>
+                    </t>
+                </div>
 
                 <!-- Priority badge -->
-                <span class="badge text-white" t-att-style="'background-color: ' + props.itemColor">
-                    <t t-esc="props.itemPriority"/>
+                <span class="badge px-3 py-2"
+                      t-att-style="'background-color: ' + props.itemColor + '; font-size: 0.85rem;'">
+                    <i class="fa fa-flag me-1"/>
+                    <t t-esc="props.itemPriority.toUpperCase()"/>
                 </span>
             </div>
 
             <!-- Delete button -->
-            <button class="btn btn-danger btn-sm" t-on-click="deleteTodo">
-                <i class="fa fa-trash"/>
+            <button class="btn btn-outline-danger btn-sm ms-3"
+                    t-on-click="deleteTodo"
+                    style="border-radius: 8px;">
+                <i class="fa fa-trash-o"/>
             </button>
         </li>
     </t>
 
     <!-- ========== TodoEnv Template ========== -->
     <t t-name="counter.TodoEnv">
-        <div class="p-4" t-att-style="state.theme === 'dark' ? 'background: #2c3e50; min-height: 100vh;' : 'background: #ecf0f1; min-height: 100vh;'">
-            <div class="container" style="max-width: 800px;">
+        <!-- Wrapper with scroll -->
+        <div class="todo-env-wrapper"
+             t-att-style="state.theme === 'dark' ?
+                 'background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); min-height: 100vh; padding: 3rem 0; overflow-y: auto; height: 100vh;' :
+                 'background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; padding: 3rem 0; overflow-y: auto; height: 100vh;'">
 
-                <!-- Header Card -->
-                <div class="card shadow-lg mb-4" style="border-radius: 15px;">
-                    <div class="card-header text-white py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px 15px 0 0;">
+            <!-- Main Container - 70% width -->
+            <div class="container" style="max-width: 70%; margin: 0 auto;">
+
+                <!-- Main Card -->
+                <div class="card shadow-lg border-0" style="border-radius: 20px; overflow: hidden;">
+
+                    <!-- Header -->
+                    <div class="card-header border-0 py-4"
+                         style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h2 class="mb-1">
-                                    <i class="fa fa-tasks me-2"/>
-                                    Todo List Demo
-                                </h2>
-                                <small>🎯 Passing data through props</small>
+                                <h1 class="text-white mb-2 fw-bold" style="font-size: 2rem;">
+                                    <i class="fa fa-check-square-o me-3"/>
+                                    Professional Todo Manager
+                                </h1>
+                                <p class="text-white mb-0 opacity-75" style="font-size: 0.95rem;">
+                                    <i class="fa fa-code me-2"/>
+                                    Demonstrating OWL Component Communication via Props
+                                </p>
                             </div>
-                            <button class="btn btn-light" t-on-click="changeTheme">
+                            <button class="btn btn-light btn-lg shadow"
+                                    t-on-click="changeTheme"
+                                    style="border-radius: 12px; min-width: 120px;">
                                 <i t-att-class="state.theme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o'"/>
-                                <t t-esc="state.theme === 'dark' ? ' Light' : ' Dark'"/>
+                                <span class="ms-2 fw-bold">
+                                    <t t-esc="state.theme === 'dark' ? 'Light' : 'Dark'"/>
+                                </span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="card-body p-4">
+                    <div class="card-body p-4" style="background: #f8f9fa;">
 
-                        <!-- Config Info -->
-                        <div class="alert alert-info mb-4">
-                            <h6><i class="fa fa-cog"/> Current Configuration:</h6>
-                            <ul class="mb-0">
-                                <li>Max Title Length: <strong><t t-esc="state.maxTitleLength"/> characters</strong></li>
-                                <li>Theme: <strong><t t-esc="state.theme"/></strong></li>
-                                <li>Total Todos: <strong><t t-esc="state.todos.length"/></strong></li>
-                            </ul>
+                        <!-- Config Info Card -->
+                        <div class="alert border-0 shadow-sm mb-4"
+                             style="background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%); border-radius: 12px;">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fa fa-cog fa-2x me-3" style="color: #00796b;"/>
+                                <h5 class="mb-0 fw-bold" style="color: #00796b;">System Configuration</h5>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <div class="p-2 bg-white rounded">
+                                        <small class="text-muted d-block">Max Title Length</small>
+                                        <strong class="h5 mb-0" style="color: #00796b;">
+                                            <t t-esc="state.maxTitleLength"/> chars
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-2 bg-white rounded">
+                                        <small class="text-muted d-block">Active Theme</small>
+                                        <strong class="h5 mb-0 text-capitalize" style="color: #00796b;">
+                                            <t t-esc="state.theme"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-2 bg-white rounded">
+                                        <small class="text-muted d-block">Total Items</small>
+                                        <strong class="h5 mb-0" style="color: #00796b;">
+                                            <t t-esc="state.todos.length"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Add Todo Input -->
-                        <div class="input-group input-group-lg mb-4">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="What needs to be done?"
-                                t-model="state.newTodo"
-                                t-on-keyup="onKeyup"
-                                style="border-radius: 10px 0 0 10px;"/>
-                            <button class="btn btn-success" t-on-click="addTodo" style="border-radius: 0 10px 10px 0;">
-                                <i class="fa fa-plus me-2"/>
-                                Add Todo
-                            </button>
+                        <!-- Add Todo Section -->
+                        <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+                            <div class="card-body p-4">
+                                <h5 class="mb-3 fw-bold">
+                                    <i class="fa fa-plus-circle me-2" style="color: #667eea;"/>
+                                    Add New Task
+                                </h5>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-text bg-white border-end-0" style="border-radius: 12px 0 0 12px;">
+                                        <i class="fa fa-pencil" style="color: #667eea;"/>
+                                    </span>
+                                    <input
+                                        type="text"
+                                        class="form-control border-start-0 border-end-0"
+                                        placeholder="What needs to be done today?"
+                                        t-model="state.newTodo"
+                                        t-on-keyup="onKeyup"
+                                        style="font-size: 1.1rem; padding: 0.75rem;"/>
+                                    <button class="btn btn-success btn-lg px-4"
+                                            t-on-click="addTodo"
+                                            style="border-radius: 0 12px 12px 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                        <i class="fa fa-plus me-2"/>
+                                        <strong>Add Task</strong>
+                                    </button>
+                                </div>
+                                <small class="text-muted mt-2 d-block">
+                                    <i class="fa fa-info-circle me-1"/>
+                                    Press Enter to quickly add a task
+                                </small>
+                            </div>
                         </div>
 
                         <!-- Todos List -->
-                        <ul class="list-group">
-                            <t t-if="state.todos.length === 0">
-                                <div class="text-center text-muted py-5">
-                                    <i class="fa fa-inbox fa-3x mb-3" style="opacity: 0.3;"/>
-                                    <p class="mb-0">No todos yet! Add your first task above.</p>
-                                </div>
-                            </t>
+                        <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+                            <div class="card-header bg-white border-0 pt-4 pb-3">
+                                <h5 class="mb-0 fw-bold">
+                                    <i class="fa fa-list me-2" style="color: #667eea;"/>
+                                    Your Tasks
+                                    <span class="badge bg-primary ms-2"><t t-esc="state.todos.length"/></span>
+                                </h5>
+                            </div>
+                            <div class="card-body p-4" style="background: #fafbfc;">
+                                <ul class="list-group list-group-flush">
+                                    <t t-if="state.todos.length === 0">
+                                        <div class="text-center py-5">
+                                            <i class="fa fa-inbox fa-4x mb-4" style="opacity: 0.2; color: #667eea;"/>
+                                            <h5 class="text-muted mb-2">No tasks yet!</h5>
+                                            <p class="text-muted">Add your first task above to get started.</p>
+                                        </div>
+                                    </t>
 
-                            <!-- Pass data as props -->
-                            <TodoItem
-                                t-foreach="state.todos"
-                                t-as="todo"
-                                t-key="todo.id"
-                                todo="todo"
-                                index="todo_index"
-                                itemColor="getColorByPriority(todo.priority)"
-                                itemPriority="todo.priority"
-                                maxLength="state.maxTitleLength"
-                                onToggle.bind="toggleTodo"
-                                onDelete.bind="deleteTodo"/>
-                        </ul>
+                                    <TodoItem
+                                        t-foreach="state.todos"
+                                        t-as="todo"
+                                        t-key="todo.id"
+                                        todo="todo"
+                                        index="todo_index"
+                                        itemColor="getColorByPriority(todo.priority)"
+                                        itemPriority="todo.priority"
+                                        maxLength="state.maxTitleLength"
+                                        onToggle.bind="toggleTodo"
+                                        onDelete.bind="deleteTodo"/>
+                                </ul>
+                            </div>
+                        </div>
 
-                        <!-- Stats -->
-                        <div class="mt-4 p-3 rounded" style="background: #f8f9fa;">
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <div class="p-2">
-                                        <h4 class="mb-1"><t t-esc="state.todos.length"/></h4>
-                                        <small class="text-muted">Total Tasks</small>
+                        <!-- Statistics Section -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100" style="border-radius: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    <div class="card-body text-center text-white p-4">
+                                        <i class="fa fa-tasks fa-2x mb-3 opacity-75"/>
+                                        <h2 class="mb-1 fw-bold"><t t-esc="state.todos.length"/></h2>
+                                        <p class="mb-0 opacity-75">Total Tasks</p>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="p-2">
-                                        <h4 class="mb-1 text-success"><t t-esc="completedCount"/></h4>
-                                        <small class="text-muted">Completed</small>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100" style="border-radius: 12px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                                    <div class="card-body text-center text-white p-4">
+                                        <i class="fa fa-check-circle fa-2x mb-3 opacity-75"/>
+                                        <h2 class="mb-1 fw-bold"><t t-esc="completedCount"/></h2>
+                                        <p class="mb-0 opacity-75">Completed</p>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="p-2">
-                                        <h4 class="mb-1 text-warning"><t t-esc="pendingCount"/></h4>
-                                        <small class="text-muted">Pending</small>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0 shadow-sm h-100" style="border-radius: 12px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <div class="card-body text-center text-white p-4">
+                                        <i class="fa fa-clock-o fa-2x mb-3 opacity-75"/>
+                                        <h2 class="mb-1 fw-bold"><t t-esc="pendingCount"/></h2>
+                                        <p class="mb-0 opacity-75">Pending</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Priority Legend -->
-                <div class="card shadow" style="border-radius: 15px;">
-                    <div class="card-body">
-                        <h5 class="mb-3"><i class="fa fa-flag me-2"/>Priority Colors:</h5>
-                        <div class="d-flex gap-3 flex-wrap">
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="badge text-white" style="background-color: #ff6b6b; width: 60px;">High</span>
-                                <small class="text-muted">Urgent tasks</small>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="badge text-white" style="background-color: #ffd93d; width: 60px;">Medium</span>
-                                <small class="text-muted">Normal tasks</small>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                                <span class="badge text-white" style="background-color: #6bcf7f; width: 60px;">Low</span>
-                                <small class="text-muted">Can wait</small>
-                            </div>
-                        </div>
+                        <!-- Priority Legend -->
+                        <div class="card border-0 shadow-sm mb-4" style="border-radius: 15px;">
+                            <div class="card-body p-4">
+                                <h5 class="mb-3 fw-bold">
+                                    <i class="fa fa-flag me-2" style="color: #667eea;"/>
+                                    Priority Levels
+                                </h5>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-4">
+                                        <div class="d-flex align-items-center p-3 rounded" style="background: #fff5f5; border-left: 4px solid #ff6b6b;">
+                                            <span class="badge text-white me-3" style="background-color: #ff6b6b; font-size: 0.9rem; padding: 8px 12px;">HIGH</span>
+                                            <small class="text-muted">Critical and Urgent</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="d-flex align-items-center p-3 rounded" style="background: #fffef5; border-left: 4px solid #ffd93d;">
+                                            <span class="badge text-dark me-3" style="background-color: #ffd93d; font-size: 0.9rem; padding: 8px 12px;">MEDIUM</span>
+                                            <small class="text-muted">Normal Priority</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="d-flex align-items-center p-3 rounded" style="background: #f5fff8; border-left: 4px solid #6bcf7f;">
+                                            <span class="badge text-white me-3" style="background-color: #6bcf7f; font-size: 0.9rem; padding: 8px 12px;">LOW</span>
+                                            <small class="text-muted">Can Wait</small>
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <hr class="my-3"/>
+                                <hr class="my-3"/>
 
-                        <div class="alert alert-light mb-0">
-                            <h6><i class="fa fa-lightbulb-o me-2"/>How it works:</h6>
-                            <ul class="mb-0 small">
-                                <li>Each todo item receives its color based on priority through <strong>props</strong></li>
-                                <li>Parent component passes <code>maxLength</code>, <code>itemColor</code>, and <code>itemPriority</code></li>
-                                <li>Press <kbd>Enter</kbd> to add a new todo</li>
-                                <li>Check browser console (F12) to see data flow logs</li>
-                            </ul>
+                                <div class="alert border-0 mb-0" style="background: #f0f4ff; border-radius: 10px;">
+                                    <div class="d-flex">
+                                        <i class="fa fa-info-circle fa-2x me-3" style="color: #667eea;"/>
+                                        <div>
+                                            <h6 class="fw-bold mb-2" style="color: #667eea;">
+                                                <i class="fa fa-graduation-cap me-2"/>
+                                                Technical Implementation
+                                            </h6>
+                                            <ul class="mb-0 small">
+                                                <li>Each TodoItem component receives color via props</li>
+                                                <li>Parent passes itemColor, itemPriority and maxLength</li>
+                                                <li>No global state - pure component communication</li>
+                                                <li>Open Console to see data flow logs</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </t>
-    
+
 </templates>
