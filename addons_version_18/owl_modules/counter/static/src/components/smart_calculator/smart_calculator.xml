@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="counter.SmartCalculator">
+        <div class="card shadow-lg" style="border-radius: 15px; height: 100%;">
+            <div class="card-header text-center py-3" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); border-radius: 15px 15px 0 0;">
+                <h4 class="mb-0 text-white">
+                    <i class="fa fa-calculator me-2"/>
+                    Smart Calculator
+                </h4>
+            </div>
+
+            <div class="card-body p-4">
+                <!-- Input 1 -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        <i class="fa fa-sort-numeric-asc me-1 text-primary"/>
+                        First Number
+                    </label>
+                    <input
+                        t-ref="input1"
+                        type="number"
+                        class="form-control form-control-lg"
+                        t-att-value="state.number1"
+                        t-on-input="onNumber1Change"
+                        placeholder="Enter number"
+                        style="text-align: center; font-size: 1.3rem;"/>
+                </div>
+
+                <!-- Plus Sign -->
+                <div class="text-center mb-3">
+                    <div class="d-inline-block p-2" style="background: #e8f5e9; border-radius: 50%; width: 50px; height: 50px;">
+                        <i class="fa fa-plus" style="font-size: 1.8rem; color: #11998e;"/>
+                    </div>
+                </div>
+
+                <!-- Input 2 -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">
+                        <i class="fa fa-sort-numeric-asc me-1 text-success"/>
+                        Second Number
+                    </label>
+                    <input
+                        type="number"
+                        class="form-control form-control-lg"
+                        t-att-value="state.number2"
+                        t-on-input="onNumber2Change"
+                        placeholder="Enter number"
+                        style="text-align: center; font-size: 1.3rem;"/>
+                </div>
+
+                <!-- Divider -->
+                <hr style="border-top: 2px solid #11998e;" class="my-3"/>
+
+                <!-- Result -->
+                <div class="result-section p-3 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px;">
+                    <h6 class="text-white mb-1">
+                        <i class="fa fa-equals me-1"/>
+                        Result
+                    </h6>
+                    <h1 class="display-3 fw-bold text-white mb-0">
+                        <t t-esc="state.result"/>
+                    </h1>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="d-grid mt-3">
+                    <button class="btn btn-danger btn-lg" t-on-click="reset">
+                        <i class="fa fa-refresh me-1"/> Reset Calculator
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

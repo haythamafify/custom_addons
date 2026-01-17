@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="counter.IntegratedWorkspace">
+        <div class="integrated-workspace p-4" style="min-height: 100vh; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="container-fluid">
+                <!-- Header -->
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <h1 class="display-4 text-white fw-bold mb-2">
+                            <i class="fa fa-rocket me-2"/>
+                            Integrated Workspace
+                        </h1>
+                        <p class="text-white fs-5">Smart Counter + Smart Calculator</p>
+                    </div>
+                </div>
+
+                <!-- Components Row -->
+                <div class="row g-4">
+                    <!-- Smart Counter -->
+                    <div class="col-lg-6">
+                        <SmartCounter onTimeExceeded.bind="onTimeExceeded"/>
+                    </div>
+
+                    <!-- Smart Calculator -->
+                    <div class="col-lg-6">
+                        <SmartCalculator onMounted.bind="onCalculatorMounted"/>
+                    </div>
+                </div>
+
+                <!-- Info Section -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="alert alert-light shadow" role="alert" style="border-radius: 10px;">
+                            <h5 class="alert-heading">
+                                <i class="fa fa-info-circle me-2 text-primary"/>
+                                How the Integration Works
+                            </h5>
+                            <hr/>
+                            <ul class="mb-0">
+                                <li><strong>Automatic Timer:</strong> Counter starts timing when you open the page</li>
+                                <li><strong>Face Changes:</strong> 😊 (0-60s) → 😠 (60s+)</li>
+                                <li><strong>Auto Focus:</strong> When timer exceeds 60 seconds, calculator input is automatically focused</li>
+                                <li><strong>Notification:</strong> You'll get a warning notification to use the calculator</li>
+                                <li><strong>Real-time Updates:</strong> Calculator result updates as you type</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

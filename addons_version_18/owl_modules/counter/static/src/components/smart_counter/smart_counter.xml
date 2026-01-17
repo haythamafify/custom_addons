@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="counter.SmartCounter">
+        <div class="card shadow-lg" style="border-radius: 15px; height: 100%;">
+            <div class="card-header text-center py-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px 15px 0 0;">
+                <h4 class="mb-0 text-white">
+                    <i class="fa fa-clock-o me-2"/>
+                    Smart Counter with Timer
+                </h4>
+            </div>
+
+            <div class="card-body p-4">
+                <!-- Timer with Face -->
+                <div class="timer-section mb-3 p-3 text-center" style="background: #f8f9fa; border-radius: 10px;">
+                    <div class="d-flex align-items-center justify-content-center gap-3">
+                        <span style="font-size: 3.5rem;"><t t-esc="faceIcon"/></span>
+                        <div>
+                            <h6 class="mb-1 text-muted">Timer</h6>
+                            <h2 t-att-class="'fw-bold mb-0 ' + timerColor">
+                                <t t-esc="formattedTimer"/>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Counter Display -->
+                <div class="counter-display mb-3 p-3 text-center" style="background: #e3f2fd; border-radius: 10px;">
+                    <h6 class="text-muted mb-1">Counter Value</h6>
+                    <h1 class="display-3 fw-bold mb-0" style="color: #667eea;">
+                        <t t-esc="state.counter"/>
+                    </h1>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-grid gap-2">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-danger btn-lg" t-on-click="decrement">
+                            <i class="fa fa-minus me-1"/> -1
+                        </button>
+                        <button class="btn btn-secondary btn-lg" t-on-click="reset">
+                            <i class="fa fa-refresh me-1"/> Reset
+                        </button>
+                        <button class="btn btn-success btn-lg" t-on-click="increment">
+                            <i class="fa fa-plus me-1"/> +1
+                        </button>
+                    </div>
+
+                    <button class="btn btn-warning" t-on-click="resetTimer">
+                        <i class="fa fa-clock-o me-1"/> Reset Timer Only
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
