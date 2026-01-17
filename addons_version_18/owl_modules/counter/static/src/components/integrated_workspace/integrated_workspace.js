@@ -25,7 +25,7 @@ export class IntegratedWorkspace extends Component {
 
             // Show notification
             this.env.services.notification.add(
-                "⚠️ Time limit exceeded! Please use the calculator to verify your work.",
+                "Time limit exceeded! Please use the calculator to verify your work.",
                 { type: "warning", sticky: false }
             );
         }

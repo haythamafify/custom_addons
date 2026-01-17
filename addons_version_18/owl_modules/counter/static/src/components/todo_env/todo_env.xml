@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- ========== TodoItem Template ========== -->
+    <t t-name="counter.TodoItem">
+        <li class="list-group-item d-flex justify-content-between align-items-center mb-2"
+            t-att-style="'border-left: 4px solid ' + props.itemColor + '; border-radius: 8px;'">
+
+            <div class="d-flex align-items-center gap-2 flex-grow-1">
+                <!-- Checkbox -->
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    t-att-checked="props.todo.done"
+                    t-on-click="toggleTodo"/>
+
+                <!-- Title -->
+                <span t-att-class="{'text-decoration-line-through text-muted': props.todo.done}">
+                    <strong><t t-esc="props.index + 1"/>.</strong>
+                    <t t-esc="props.todo.title"/>
+                </span>
+
+                <!-- Warning if too long -->
+                <t t-if="isTooLong">
+                    <span class="badge bg-warning text-dark">
+                        <i class="fa fa-exclamation-triangle"/> Too Long!
+                    </span>
+                </t>
+
+                <!-- Priority badge -->
+                <span class="badge text-white" t-att-style="'background-color: ' + props.itemColor">
+                    <t t-esc="props.itemPriority"/>
+                </span>
+            </div>
+
+            <!-- Delete button -->
+            <button class="btn btn-danger btn-sm" t-on-click="deleteTodo">
+                <i class="fa fa-trash"/>
+            </button>
+        </li>
+    </t>
+
+    <!-- ========== TodoEnv Template ========== -->
+    <t t-name="counter.TodoEnv">
+        <div class="p-4" t-att-style="state.theme === 'dark' ? 'background: #2c3e50; min-height: 100vh;' : 'background: #ecf0f1; min-height: 100vh;'">
+            <div class="container" style="max-width: 800px;">
+
+                <!-- Header Card -->
+                <div class="card shadow-lg mb-4" style="border-radius: 15px;">
+                    <div class="card-header text-white py-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px 15px 0 0;">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h2 class="mb-1">
+                                    <i class="fa fa-tasks me-2"/>
+                                    Todo List Demo
+                                </h2>
+                                <small>🎯 Passing data through props</small>
+                            </div>
+                            <button class="btn btn-light" t-on-click="changeTheme">
+                                <i t-att-class="state.theme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o'"/>
+                                <t t-esc="state.theme === 'dark' ? ' Light' : ' Dark'"/>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4">
+
+                        <!-- Config Info -->
+                        <div class="alert alert-info mb-4">
+                            <h6><i class="fa fa-cog"/> Current Configuration:</h6>
+                            <ul class="mb-0">
+                                <li>Max Title Length: <strong><t t-esc="state.maxTitleLength"/> characters</strong></li>
+                                <li>Theme: <strong><t t-esc="state.theme"/></strong></li>
+                                <li>Total Todos: <strong><t t-esc="state.todos.length"/></strong></li>
+                            </ul>
+                        </div>
+
+                        <!-- Add Todo Input -->
+                        <div class="input-group input-group-lg mb-4">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="What needs to be done?"
+                                t-model="state.newTodo"
+                                t-on-keyup="onKeyup"
+                                style="border-radius: 10px 0 0 10px;"/>
+                            <button class="btn btn-success" t-on-click="addTodo" style="border-radius: 0 10px 10px 0;">
+                                <i class="fa fa-plus me-2"/>
+                                Add Todo
+                            </button>
+                        </div>
+
+                        <!-- Todos List -->
+                        <ul class="list-group">
+                            <t t-if="state.todos.length === 0">
+                                <div class="text-center text-muted py-5">
+                                    <i class="fa fa-inbox fa-3x mb-3" style="opacity: 0.3;"/>
+                                    <p class="mb-0">No todos yet! Add your first task above.</p>
+                                </div>
+                            </t>
+
+                            <!-- Pass data as props -->
+                            <TodoItem
+                                t-foreach="state.todos"
+                                t-as="todo"
+                                t-key="todo.id"
+                                todo="todo"
+                                index="todo_index"
+                                itemColor="getColorByPriority(todo.priority)"
+                                itemPriority="todo.priority"
+                                maxLength="state.maxTitleLength"
+                                onToggle.bind="toggleTodo"
+                                onDelete.bind="deleteTodo"/>
+                        </ul>
+
+                        <!-- Stats -->
+                        <div class="mt-4 p-3 rounded" style="background: #f8f9fa;">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="p-2">
+                                        <h4 class="mb-1"><t t-esc="state.todos.length"/></h4>
+                                        <small class="text-muted">Total Tasks</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2">
+                                        <h4 class="mb-1 text-success"><t t-esc="completedCount"/></h4>
+                                        <small class="text-muted">Completed</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="p-2">
+                                        <h4 class="mb-1 text-warning"><t t-esc="pendingCount"/></h4>
+                                        <small class="text-muted">Pending</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Priority Legend -->
+                <div class="card shadow" style="border-radius: 15px;">
+                    <div class="card-body">
+                        <h5 class="mb-3"><i class="fa fa-flag me-2"/>Priority Colors:</h5>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge text-white" style="background-color: #ff6b6b; width: 60px;">High</span>
+                                <small class="text-muted">Urgent tasks</small>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge text-white" style="background-color: #ffd93d; width: 60px;">Medium</span>
+                                <small class="text-muted">Normal tasks</small>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge text-white" style="background-color: #6bcf7f; width: 60px;">Low</span>
+                                <small class="text-muted">Can wait</small>
+                            </div>
+                        </div>
+
+                        <hr class="my-3"/>
+
+                        <div class="alert alert-light mb-0">
+                            <h6><i class="fa fa-lightbulb-o me-2"/>How it works:</h6>
+                            <ul class="mb-0 small">
+                                <li>Each todo item receives its color based on priority through <strong>props</strong></li>
+                                <li>Parent component passes <code>maxLength</code>, <code>itemColor</code>, and <code>itemPriority</code></li>
+                                <li>Press <kbd>Enter</kbd> to add a new todo</li>
+                                <li>Check browser console (F12) to see data flow logs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+</templates>

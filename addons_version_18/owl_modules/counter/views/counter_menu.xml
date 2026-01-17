@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- القديم -->
     <record id="action_counter" model="ir.actions.client">
         <field name="name">Counter</field>
         <field name="tag">counter.action</field>
@@ -11,45 +12,29 @@
         <field name="tag">calculator.action</field>
     </record>
 
-    <!-- ========== الجديد ========== -->
+    <!-- الجديد -->
     <record id="action_integrated_workspace" model="ir.actions.client">
         <field name="name">Integrated Workspace</field>
         <field name="tag">integrated_workspace.action</field>
     </record>
 
+    <!-- Environment Demo -->
+    <record id="action_todo_env" model="ir.actions.client">
+        <field name="name">Todo with Environment</field>
+        <field name="tag">todo_env.action</field>
+    </record>
+
     <!-- Root Menu -->
-    <menuitem id="menu_counter_root"
-              name="OWL Apps"
-              sequence="10"/>
+    <menuitem id="menu_counter_root" name="OWL Apps" sequence="10"/>
 
     <!-- القديم -->
-    <menuitem id="menu_old_apps"
-              name="📦 Old Apps"
-              parent="menu_counter_root"
-              sequence="10"/>
-
-    <menuitem id="menu_counter_app"
-              name="Counter (Old)"
-              parent="menu_old_apps"
-              action="action_counter"
-              sequence="1"/>
-
-    <menuitem id="menu_calculator_app"
-              name="Calculator (Old)"
-              parent="menu_old_apps"
-              action="action_calculator"
-              sequence="2"/>
+    <menuitem id="menu_old_apps" name="📦 Old Apps" parent="menu_counter_root" sequence="10"/>
+    <menuitem id="menu_counter_app" name="Counter (Old)" parent="menu_old_apps" action="action_counter" sequence="1"/>
+    <menuitem id="menu_calculator_app" name="Calculator (Old)" parent="menu_old_apps" action="action_calculator" sequence="2"/>
 
     <!-- الجديد -->
-    <menuitem id="menu_new_apps"
-              name="🚀 New Apps"
-              parent="menu_counter_root"
-              sequence="1"/>
-
-    <menuitem id="menu_integrated_workspace"
-              name="Integrated Workspace (NEW)"
-              parent="menu_new_apps"
-              action="action_integrated_workspace"
-              sequence="1"/>
+    <menuitem id="menu_new_apps" name="🚀 New Apps" parent="menu_counter_root" sequence="1"/>
+    <menuitem id="menu_integrated_workspace" name="Integrated Workspace" parent="menu_new_apps" action="action_integrated_workspace" sequence="1"/>
+    <menuitem id="menu_todo_env" name="Todo with Environment" parent="menu_new_apps" action="action_todo_env" sequence="2"/>
 
 </odoo>

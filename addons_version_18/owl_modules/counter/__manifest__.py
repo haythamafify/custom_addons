@@ -29,6 +29,8 @@
             'counter/static/src/components/smart_calculator/smart_calculator.xml',
             'counter/static/src/components/integrated_workspace/integrated_workspace.js',
             'counter/static/src/components/integrated_workspace/integrated_workspace.xml',
+            'counter/static/src/components/todo_env/todo_env.js',
+            'counter/static/src/components/todo_env/todo_env.xml'
         ],
     },
     'application': True,
