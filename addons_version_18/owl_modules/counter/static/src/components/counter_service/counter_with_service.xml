@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="counter.CounterWithService">
+        <div class="counter-service-container p-4">
+            <div class="card text-center" style="max-width: 500px; margin: 0 auto;">
+                <div class="card-header bg-primary text-white">
+                    <h3>Counter with Service</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h1 class="display-1 my-4 text-primary">
+                            <t t-esc="counterValue"/>
+                        </h1>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-danger btn-lg" t-on-click="onDecrement">
+                            <i class="fa fa-minus"/> Decrement
+                        </button>
+                        <button class="btn btn-secondary btn-lg" t-on-click="onReset">
+                            <i class="fa fa-refresh"/> Reset
+                        </button>
+                        <button class="btn btn-success btn-lg" t-on-click="onIncrement">
+                            <i class="fa fa-plus"/> Increment
+                        </button>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Using Counter Service
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

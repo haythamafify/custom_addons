@@ -1,48 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="counter.IntegratedWorkspace">
-        <div class="integrated-workspace p-4" style="min-height: 100vh; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-            <div class="container-fluid">
-                <!-- Header -->
-                <div class="row mb-4">
-                    <div class="col-12 text-center">
-                        <h1 class="display-4 text-white fw-bold mb-2">
-                            <i class="fa fa-rocket me-2"/>
-                            Integrated Workspace
-                        </h1>
-                        <p class="text-white fs-5">Smart Counter + Smart Calculator</p>
+        <div class="integrated-workspace-container p-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-header bg-dark text-white">
+                                <h3>Integrated Workspace - Services Demo</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Components Row -->
-                <div class="row g-4">
-                    <!-- Smart Counter -->
-                    <div class="col-lg-6">
-                        <SmartCounter onTimeExceeded.bind="onTimeExceeded"/>
+                <div class="row">
+                    <!-- Counter Section -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white">
+                                <h4>Counter Service</h4>
+                            </div>
+                            <div class="card-body text-center">
+                                <h1 class="display-2 text-primary my-4">
+                                    <t t-esc="counterValue"/>
+                                </h1>
+                                <div class="btn-group-vertical w-100" role="group">
+                                    <button class="btn btn-success btn-lg mb-2" t-on-click="onIncrement">
+                                        <i class="fa fa-plus"/> Increment
+                                    </button>
+                                    <button class="btn btn-danger btn-lg mb-2" t-on-click="onDecrement">
+                                        <i class="fa fa-minus"/> Decrement
+                                    </button>
+                                    <button class="btn btn-secondary btn-lg" t-on-click="onReset">
+                                        <i class="fa fa-refresh"/> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Smart Calculator -->
-                    <div class="col-lg-6">
-                        <SmartCalculator onMounted.bind="onCalculatorMounted"/>
+                    <!-- Weather Section -->
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-info text-white">
+                                <h4>Weather Service</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Select City:</label>
+                                    <select class="form-select" t-on-change="onCityChange">
+                                        <option value="">Choose a city...</option>
+                                        <option value="Cairo">Cairo</option>
+                                        <option value="Alexandria">Alexandria</option>
+                                        <option value="London">London</option>
+                                        <option value="New York">New York</option>
+                                        <option value="Dubai">Dubai</option>
+                                    </select>
+                                </div>
+
+                                <t t-if="isLoading">
+                                    <div class="text-center my-5">
+                                        <div class="spinner-border text-info" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <p class="mt-2">Loading weather data...</p>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div class="weather-display text-center">
+                                        <h3 class="mb-3">
+                                            <i class="fa fa-map-marker"/> <t t-esc="currentCity"/>
+                                        </h3>
+                                        <h1 class="display-4 text-warning mb-3">
+                                            <i class="fa fa-sun-o"/> <t t-esc="temperature"/>°C
+                                        </h1>
+                                        <div class="alert alert-info">
+                                            <h5><t t-esc="condition"/></h5>
+                                            <p class="mb-0">
+                                                <i class="fa fa-tint"/> Humidity: <t t-esc="humidity"/>%
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Info Section -->
-                <div class="row mt-4">
+                <div class="row">
                     <div class="col-12">
-                        <div class="alert alert-light shadow" role="alert" style="border-radius: 10px;">
-                            <h5 class="alert-heading">
-                                <i class="fa fa-info-circle me-2 text-primary"/>
-                                How the Integration Works
-                            </h5>
-                            <hr/>
-                            <ul class="mb-0">
-                                <li><strong>Automatic Timer:</strong> Counter starts timing when you open the page</li>
-                                <li><strong>Face Changes:</strong> 😊 (0-60s) → 😠 (60s+)</li>
-                                <li><strong>Auto Focus:</strong> When timer exceeds 60 seconds, calculator input is automatically focused</li>
-                                <li><strong>Notification:</strong> You'll get a warning notification to use the calculator</li>
-                                <li><strong>Real-time Updates:</strong> Calculator result updates as you type</li>
-                            </ul>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">About This Workspace</h5>
+                                <p class="card-text">
+                                    This integrated workspace demonstrates the use of multiple services in a single component.
+                                    Both Counter and Weather services are being used simultaneously, showing how services
+                                    can be shared across different parts of your application.
+                                </p>
+                                <div class="alert alert-success mb-0">
+                                    <strong>Services Active:</strong> Counter Service and Weather Service
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

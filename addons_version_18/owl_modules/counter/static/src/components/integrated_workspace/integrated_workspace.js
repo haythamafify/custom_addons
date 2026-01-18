@@ -2,32 +2,56 @@
 
 import { Component } from "@odoo/owl";
 import { registry } from "@web/core/registry";
-import { SmartCounter } from "../smart_counter/smart_counter";
-import { SmartCalculator } from "../smart_calculator/smart_calculator";
+import { useService } from "@web/core/utils/hooks";
 
 export class IntegratedWorkspace extends Component {
     static template = "counter.IntegratedWorkspace";
-    static components = { SmartCounter, SmartCalculator };
 
     setup() {
-        this.calculatorFocusCallback = null;
+        this.counterService = useService("counter");
+        this.weatherService = useService("weather");
     }
 
-    onCalculatorMounted(focusCallback) {
-        // Save the callback when calculator is mounted
-        this.calculatorFocusCallback = focusCallback;
+    get counterValue() {
+        return this.counterService.value;
     }
 
-    onTimeExceeded() {
-        // Call the focus callback
-        if (this.calculatorFocusCallback) {
-            this.calculatorFocusCallback();
+    get currentCity() {
+        return this.weatherService.city;
+    }
 
-            // Show notification
-            this.env.services.notification.add(
-                "Time limit exceeded! Please use the calculator to verify your work.",
-                { type: "warning", sticky: false }
-            );
+    get temperature() {
+        return this.weatherService.temperature;
+    }
+
+    get condition() {
+        return this.weatherService.condition;
+    }
+
+    get humidity() {
+        return this.weatherService.humidity;
+    }
+
+    get isLoading() {
+        return this.weatherService.isLoading;
+    }
+
+    onIncrement() {
+        this.counterService.increment();
+    }
+
+    onDecrement() {
+        this.counterService.decrement();
+    }
+
+    onReset() {
+        this.counterService.reset();
+    }
+
+    async onCityChange(ev) {
+        const city = ev.target.value;
+        if (city) {
+            await this.weatherService.fetchWeather(city);
         }
     }
 }

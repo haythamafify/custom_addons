@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- القديم -->
+    <!-- Old Components -->
     <record id="action_counter" model="ir.actions.client">
         <field name="name">Counter</field>
         <field name="tag">counter.action</field>
@@ -12,7 +12,18 @@
         <field name="tag">calculator.action</field>
     </record>
 
-    <!-- الجديد -->
+    <!-- Service-Based Components -->
+    <record id="action_counter_service" model="ir.actions.client">
+        <field name="name">Counter with Service</field>
+        <field name="tag">counter_service.action</field>
+    </record>
+
+    <record id="action_weather" model="ir.actions.client">
+        <field name="name">Weather Service</field>
+        <field name="tag">weather.action</field>
+    </record>
+
+    <!-- Integrated Workspace -->
     <record id="action_integrated_workspace" model="ir.actions.client">
         <field name="name">Integrated Workspace</field>
         <field name="tag">integrated_workspace.action</field>
@@ -27,13 +38,18 @@
     <!-- Root Menu -->
     <menuitem id="menu_counter_root" name="OWL Apps" sequence="10"/>
 
-    <!-- القديم -->
-    <menuitem id="menu_old_apps" name="📦 Old Apps" parent="menu_counter_root" sequence="10"/>
+    <!-- Old Apps Section -->
+    <menuitem id="menu_old_apps" name="Old Apps" parent="menu_counter_root" sequence="10"/>
     <menuitem id="menu_counter_app" name="Counter (Old)" parent="menu_old_apps" action="action_counter" sequence="1"/>
     <menuitem id="menu_calculator_app" name="Calculator (Old)" parent="menu_old_apps" action="action_calculator" sequence="2"/>
 
-    <!-- الجديد -->
-    <menuitem id="menu_new_apps" name="🚀 New Apps" parent="menu_counter_root" sequence="1"/>
+    <!-- Services Section -->
+    <menuitem id="menu_services" name="Services" parent="menu_counter_root" sequence="1"/>
+    <menuitem id="menu_counter_service" name="Counter Service" parent="menu_services" action="action_counter_service" sequence="1"/>
+    <menuitem id="menu_weather_service" name="Weather Service" parent="menu_services" action="action_weather" sequence="2"/>
+
+    <!-- New Apps Section -->
+    <menuitem id="menu_new_apps" name="New Apps" parent="menu_counter_root" sequence="5"/>
     <menuitem id="menu_integrated_workspace" name="Integrated Workspace" parent="menu_new_apps" action="action_integrated_workspace" sequence="1"/>
     <menuitem id="menu_todo_env" name="Todo with Environment" parent="menu_new_apps" action="action_todo_env" sequence="2"/>
 

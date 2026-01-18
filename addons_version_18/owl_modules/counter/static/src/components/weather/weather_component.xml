@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="counter.WeatherComponent">
+        <div class="weather-container p-4">
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
+                <div class="card-header bg-info text-white">
+                    <h3>Weather Data Service</h3>
+                </div>
+                <div class="card-body">
+
+                    <!-- Current Weather Display -->
+                    <div class="text-center mb-4">
+                        <h2 class="mb-3"><t t-esc="currentCity"/></h2>
+                        <t t-if="isLoading">
+                            <div class="spinner-border text-info" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div class="weather-info">
+                                <h1 class="display-3 text-warning mb-3">
+                                    <i class="fa fa-sun-o"/> <t t-esc="temperature"/>°C
+                                </h1>
+                                <h4 class="text-muted mb-2"><t t-esc="condition"/></h4>
+                                <p class="text-secondary">
+                                    <i class="fa fa-tint"/> Humidity: <t t-esc="humidity"/>%
+                                </p>
+                            </div>
+                        </t>
+                    </div>
+
+                    <hr/>
+
+                    <!-- City Search -->
+                    <div class="mb-4">
+                        <label class="form-label">Search City:</label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Enter city name"
+                                t-model="state.searchCity"
+                                t-on-input="onInputChange"/>
+                            <button
+                                class="btn btn-primary"
+                                t-on-click="onSearchCity">
+                                <i class="fa fa-search"/> Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick City Selection -->
+                    <div>
+                        <label class="form-label">Quick Select:</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            <t t-foreach="cities" t-as="city" t-key="city">
+                                <button
+                                    class="btn btn-outline-info"
+                                    t-on-click="() => this.onCityClick(city)">
+                                    <t t-esc="city"/>
+                                </button>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Using Weather Service
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
