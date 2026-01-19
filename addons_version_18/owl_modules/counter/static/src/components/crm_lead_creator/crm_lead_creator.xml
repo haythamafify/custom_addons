@@ -2,69 +2,143 @@
 <templates xml:space="preserve">
     <t t-name="counter.CRMLeadCreator">
         <div class="container mt-5">
-            <div class="card shadow">
-                <div class="card-header bg-primary text-white">
-                    <h3>🎯 إدارة CRM Leads</h3>
+            <div class="row">
+                <!-- Form Section -->
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-success text-white">
+                            <h4>📝 إنشاء Lead جديد</h4>
+                        </div>
+                        
+                        <div class="card-body">
+                            <form>
+                                <!-- اسم العميل -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">اسم العميل *</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="مثال: عميل جديد - شركة ABC"
+                                        t-att-value="state.formData.name"
+                                        t-on-input="(ev) => this.updateField('name', ev)"
+                                        t-att-disabled="state.loading"/>
+                                </div>
+                                
+                                <!-- البريد الإلكتروني -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">البريد الإلكتروني *</label>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        placeholder="مثال: customer@example.com"
+                                        t-att-value="state.formData.email_from"
+                                        t-on-input="(ev) => this.updateField('email_from', ev)"
+                                        t-att-disabled="state.loading"/>
+                                </div>
+                                
+                                <!-- رقم الهاتف -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">رقم الهاتف *</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="مثال: 01234567890"
+                                        t-att-value="state.formData.phone"
+                                        t-on-input="(ev) => this.updateField('phone', ev)"
+                                        t-att-disabled="state.loading"/>
+                                </div>
+                                
+                                <!-- اسم جهة الاتصال -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">اسم جهة الاتصال *</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        placeholder="مثال: أحمد محمد"
+                                        t-att-value="state.formData.contact_name"
+                                        t-on-input="(ev) => this.updateField('contact_name', ev)"
+                                        t-att-disabled="state.loading"/>
+                                </div>
+                                
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2">
+                                    <button 
+                                        type="button"
+                                        class="btn btn-success flex-fill" 
+                                        t-on-click="createLead"
+                                        t-att-disabled="state.loading">
+                                        <i class="fa fa-plus-circle"></i>
+                                        <t t-if="state.loading"> جاري الإنشاء...</t>
+                                        <t t-else=""> إنشاء Lead</t>
+                                    </button>
+                                    
+                                    <button 
+                                        type="button"
+                                        class="btn btn-secondary" 
+                                        t-on-click="clearForm"
+                                        t-att-disabled="state.loading">
+                                        <i class="fa fa-eraser"></i>
+                                        مسح
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="card-body">
-                    <!-- زر إنشاء Lead جديد -->
-                    <div class="mb-4">
-                        <button 
-                            class="btn btn-success btn-lg" 
-                            t-on-click="createLead"
-                            t-att-disabled="state.loading">
-                            <i class="fa fa-plus-circle"></i>
-                            <t t-if="state.loading">جاري الإنشاء...</t>
-                            <t t-else="">إنشاء Lead جديد</t>
-                        </button>
+                <!-- Latest Lead Section -->
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h4>📋 آخر Lead تم إنشاؤه</h4>
+                            <button 
+                                class="btn btn-light btn-sm" 
+                                t-on-click="loadLatestLead"
+                                t-att-disabled="state.loading">
+                                <i class="fa fa-refresh"></i>
+                                تحديث
+                            </button>
+                        </div>
                         
-                        <button 
-                            class="btn btn-info btn-lg ms-2" 
-                            t-on-click="loadLatestLead"
-                            t-att-disabled="state.loading">
-                            <i class="fa fa-refresh"></i>
-                            تحديث
-                        </button>
-                    </div>
-                    
-                    <!-- عرض آخر Lead -->
-                    <div t-if="state.latestLead" class="alert alert-info">
-                        <h4>📋 آخر Lead تم إنشاؤه:</h4>
-                        <table class="table table-bordered mt-3">
-                            <tbody>
-                                <tr>
-                                    <th>الرقم</th>
-                                    <td><t t-esc="state.latestLead.id"/></td>
-                                </tr>
-                                <tr>
-                                    <th>الاسم</th>
-                                    <td><t t-esc="state.latestLead.name"/></td>
-                                </tr>
-                                <tr>
-                                    <th>البريد الإلكتروني</th>
-                                    <td><t t-esc="state.latestLead.email_from"/></td>
-                                </tr>
-                                <tr>
-                                    <th>الهاتف</th>
-                                    <td><t t-esc="state.latestLead.phone"/></td>
-                                </tr>
-                                <tr>
-                                    <th>اسم جهة الاتصال</th>
-                                    <td><t t-esc="state.latestLead.contact_name"/></td>
-                                </tr>
-                                <tr>
-                                    <th>تاريخ الإنشاء</th>
-                                    <td><t t-esc="state.latestLead.create_date"/></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <!-- رسالة في حالة عدم وجود Leads -->
-                    <div t-else="" class="alert alert-warning">
-                        <i class="fa fa-info-circle"></i>
-                        لا توجد Leads حالياً. اضغط على زر "إنشاء Lead جديد" للبدء.
+                        <div class="card-body">
+                            <!-- عرض آخر Lead -->
+                            <div t-if="state.latestLead">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th class="bg-light" style="width: 40%">الرقم</th>
+                                            <td><t t-esc="state.latestLead.id"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">الاسم</th>
+                                            <td><t t-esc="state.latestLead.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">البريد الإلكتروني</th>
+                                            <td><t t-esc="state.latestLead.email_from"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">الهاتف</th>
+                                            <td><t t-esc="state.latestLead.phone"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">اسم جهة الاتصال</th>
+                                            <td><t t-esc="state.latestLead.contact_name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light">تاريخ الإنشاء</th>
+                                            <td><t t-esc="state.latestLead.create_date"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- رسالة في حالة عدم وجود Leads -->
+                            <div t-else="" class="alert alert-info">
+                                <i class="fa fa-info-circle"></i>
+                                لا توجد Leads حالياً. قم بإنشاء Lead جديد من النموذج على اليسار.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
