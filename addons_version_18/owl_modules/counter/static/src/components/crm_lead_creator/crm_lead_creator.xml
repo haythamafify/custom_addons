@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="counter.CRMLeadCreator">
+        <div class="container mt-5">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3>🎯 إدارة CRM Leads</h3>
+                </div>
+                
+                <div class="card-body">
+                    <!-- زر إنشاء Lead جديد -->
+                    <div class="mb-4">
+                        <button 
+                            class="btn btn-success btn-lg" 
+                            t-on-click="createLead"
+                            t-att-disabled="state.loading">
+                            <i class="fa fa-plus-circle"></i>
+                            <t t-if="state.loading">جاري الإنشاء...</t>
+                            <t t-else="">إنشاء Lead جديد</t>
+                        </button>
+                        
+                        <button 
+                            class="btn btn-info btn-lg ms-2" 
+                            t-on-click="loadLatestLead"
+                            t-att-disabled="state.loading">
+                            <i class="fa fa-refresh"></i>
+                            تحديث
+                        </button>
+                    </div>
+                    
+                    <!-- عرض آخر Lead -->
+                    <div t-if="state.latestLead" class="alert alert-info">
+                        <h4>📋 آخر Lead تم إنشاؤه:</h4>
+                        <table class="table table-bordered mt-3">
+                            <tbody>
+                                <tr>
+                                    <th>الرقم</th>
+                                    <td><t t-esc="state.latestLead.id"/></td>
+                                </tr>
+                                <tr>
+                                    <th>الاسم</th>
+                                    <td><t t-esc="state.latestLead.name"/></td>
+                                </tr>
+                                <tr>
+                                    <th>البريد الإلكتروني</th>
+                                    <td><t t-esc="state.latestLead.email_from"/></td>
+                                </tr>
+                                <tr>
+                                    <th>الهاتف</th>
+                                    <td><t t-esc="state.latestLead.phone"/></td>
+                                </tr>
+                                <tr>
+                                    <th>اسم جهة الاتصال</th>
+                                    <td><t t-esc="state.latestLead.contact_name"/></td>
+                                </tr>
+                                <tr>
+                                    <th>تاريخ الإنشاء</th>
+                                    <td><t t-esc="state.latestLead.create_date"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- رسالة في حالة عدم وجود Leads -->
+                    <div t-else="" class="alert alert-warning">
+                        <i class="fa fa-info-circle"></i>
+                        لا توجد Leads حالياً. اضغط على زر "إنشاء Lead جديد" للبدء.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
