@@ -1,5 +1,35 @@
 const { Component, mount, useState, xml } = owl;
 
+class Task extends Component {
+  static template = xml`              <li t-att-style="'background-color: ' + props.task.color" 
+                  class="d-flex justify-content-between align-items-center p-3 border mb-3 rounded-3">
+
+                <div class="form-check form-switch fs-5">
+                  <input class="form-check-input"
+                         type="checkbox"
+                         t-att-id="props.task.id"/>
+                  <label class="form-check-label" 
+                         t-att-for="props.task.id">
+                    <t t-esc="props.task.name"/>
+                  </label>
+                </div>
+
+                <div>
+                  <button class="btn btn-primary me-2">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+
+                  <button class="btn btn-danger">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+
+              </li>
+`;
+
+  static props = ["task"];
+}
+
 class Root extends Component {
   static template = xml`
     <div class="container mt-5">
@@ -25,33 +55,9 @@ class Root extends Component {
               ADD TASK
             </button>
           </div>
-
-          <ul class="d-flex flex-column mt-5 p-0">
+               <ul class="d-flex flex-column mt-5 p-0">
             <t t-foreach="tasks" t-as="task" t-key="task.id">
-              <li t-att-style="'background-color: ' + task.color" 
-                  class="d-flex justify-content-between align-items-center p-3 border mb-3 rounded-3">
-
-                <div class="form-check form-switch fs-5">
-                  <input class="form-check-input"
-                         type="checkbox"
-                         t-att-id="task.id"/>
-                  <label class="form-check-label" 
-                         t-att-for="task.id">
-                    <t t-esc="task.name"/>
-                  </label>
-                </div>
-
-                <div>
-                  <button class="btn btn-primary me-2">
-                    <i class="bi bi-pencil"></i>
-                  </button>
-
-                  <button class="btn btn-danger">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </div>
-
-              </li>
+          <Task  task="task"/>
             </t>
           </ul>
 
@@ -59,7 +65,7 @@ class Root extends Component {
       </div>
     </div>
   `;
-
+  static components = { Task };
   setup() {
     this.state = useState({
       name: "",
