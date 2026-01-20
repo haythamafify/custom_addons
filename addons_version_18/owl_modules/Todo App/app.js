@@ -23,14 +23,14 @@ class Task extends Component {
           <i class="bi bi-pencil"></i>
         </button>
 
-        <button class="btn btn-danger">
+        <button class="btn btn-danger" t-on-click="() => props.onDelete(props.task.id)">
           <i class="bi bi-trash"></i>
         </button>
       </div>
     </li>
   `;
 
-  static props = ["task", "onToggle"];
+  static props = ["task", "onToggle", "onDelete"];
 }
 
 class Root extends Component {
@@ -60,7 +60,7 @@ class Root extends Component {
 
           <ul class="d-flex flex-column mt-5 p-0">
             <t t-foreach="tasks" t-as="task" t-key="task.id">
-              <Task task="task" onToggle.bind="toggleTask"/>
+              <Task task="task" onToggle.bind="toggleTask" onDelete.bind="deleteTask"/>
             </t>
           </ul>
         </div>
@@ -103,6 +103,13 @@ class Root extends Component {
     const task = this.tasks.find(t => t.id === taskId);
     if (task) {
       task.isCompleted = !task.isCompleted;
+    }
+  }
+
+  deleteTask(taskId) {
+    const index = this.tasks.findIndex(t => t.id === taskId);
+    if (index !== -1) {
+      this.tasks.splice(index, 1);
     }
   }
 }
