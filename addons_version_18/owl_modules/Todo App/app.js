@@ -5,32 +5,86 @@ class Task extends Component {
     <li t-att-style="'background-color: ' + props.task.color" 
         class="d-flex justify-content-between align-items-center p-3 border mb-3 rounded-3">
 
-      <div class="form-check form-switch fs-5">
-        <input class="form-check-input"
-               type="checkbox" 
-               t-on-click="() => props.onToggle(props.task.id)"
-               t-att-checked="props.task.isCompleted"
-               t-att-id="props.task.id"/>
-        <label class="form-check-label" 
-               t-att-for="props.task.id"
-               t-attf-class="{{props.task.isCompleted ? 'text-decoration-line-through' : ''}}">
-          <t t-esc="props.task.name"/>
-        </label>
+      <div class="form-check form-switch fs-5 flex-fill">
+        <t t-if="!state.isEditing">
+          <input class="form-check-input"
+                 type="checkbox" 
+                 t-on-click="() => props.onToggle(props.task.id)"
+                 t-att-checked="props.task.isCompleted"
+                 t-att-id="props.task.id"/>
+          <label class="form-check-label" 
+                 t-att-for="props.task.id"
+                 t-attf-class="{{props.task.isCompleted ? 'text-decoration-line-through' : ''}}">
+            <t t-esc="props.task.name"/>
+          </label>
+        </t>
+
+        <t t-else="">
+          <input type="text"
+                 class="form-control"
+                 t-model="state.editedName"
+                 t-on-keyup="handleKeyup"
+                 t-ref="editInput"/>
+        </t>
       </div>
 
       <div>
-        <button class="btn btn-primary me-2">
-          <i class="bi bi-pencil"></i>
-        </button>
+        <t t-if="!state.isEditing">
+          <button class="btn btn-primary me-2" t-on-click="startEdit">
+            <i class="bi bi-pencil"></i>
+          </button>
 
-        <button class="btn btn-danger" t-on-click="() => props.onDelete(props.task.id)">
-          <i class="bi bi-trash"></i>
-        </button>
+          <button class="btn btn-danger" t-on-click="() => props.onDelete(props.task.id)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </t>
+
+        <t t-else="">
+          <button class="btn btn-success me-2" t-on-click="saveEdit">
+            <i class="bi bi-check"></i>
+          </button>
+
+          <button class="btn btn-secondary" t-on-click="cancelEdit">
+            <i class="bi bi-x"></i>
+          </button>
+        </t>
       </div>
     </li>
   `;
 
-  static props = ["task", "onToggle", "onDelete"];
+  static props = ["task", "onToggle", "onDelete", "onEdit"];
+
+  setup() {
+    this.state = useState({
+      isEditing: false,
+      editedName: ""
+    });
+  }
+
+  handleKeyup(event) {
+    if (event.key === "Enter") {
+      this.saveEdit();
+    } else if (event.key === "Escape") {
+      this.cancelEdit();
+    }
+  }
+
+  startEdit() {
+    this.state.isEditing = true;
+    this.state.editedName = this.props.task.name;
+  }
+
+  saveEdit() {
+    if (this.state.editedName.trim()) {
+      this.props.onEdit(this.props.task.id, this.state.editedName.trim());
+      this.state.isEditing = false;
+    }
+  }
+
+  cancelEdit() {
+    this.state.isEditing = false;
+    this.state.editedName = "";
+  }
 }
 
 class Root extends Component {
@@ -60,7 +114,10 @@ class Root extends Component {
 
           <ul class="d-flex flex-column mt-5 p-0">
             <t t-foreach="tasks" t-as="task" t-key="task.id">
-              <Task task="task" onToggle.bind="toggleTask" onDelete.bind="deleteTask"/>
+              <Task task="task" 
+                    onToggle.bind="toggleTask" 
+                    onDelete.bind="deleteTask"
+                    onEdit.bind="editTask"/>
             </t>
           </ul>
         </div>
@@ -110,6 +167,13 @@ class Root extends Component {
     const index = this.tasks.findIndex(t => t.id === taskId);
     if (index !== -1) {
       this.tasks.splice(index, 1);
+    }
+  }
+
+  editTask(taskId, newName) {
+    const task = this.tasks.find(t => t.id === taskId);
+    if (task) {
+      task.name = newName;
     }
   }
 }
