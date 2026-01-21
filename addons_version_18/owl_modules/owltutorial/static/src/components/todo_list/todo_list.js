@@ -1,50 +1,112 @@
 /** @odoo-module **/
 
-import { Component, useState } from "@odoo/owl";
+import { Component, useState, onWillStart, useRef } from "@odoo/owl";
 import { registry } from "@web/core/registry";
+import { useService } from "@web/core/utils/hooks";
 
 export class TodoList extends Component {
     static template = "owl.TodoList";
     
     setup() {
         this.state = useState({
-            tasks: [
-                { id: 1, text: "Learn OWL basics", completed: false },
-                { id: 2, text: "Build Todo app", completed: false }
-            ],
-            newTaskText: ""
+            taskList: [],  // Changed from 'tasks' to 'taskList'
+            task: {        // Added task object for modal
+                id: false,
+                name: "",
+                color: "#000000",
+                completed: false
+            },
+            isEdit: false,
+        });
+        
+        this.orm = useService("orm");
+        this.model = "owl.todo.list";
+        this.searchInput = useRef("search-input");
+        
+        onWillStart(async () => {
+            await this.getAllTasks();
         });
     }
     
-    onKeyup(event) {
-        if (event.key === "Enter") {
-            this.addTask();
-        }
+    async getAllTasks() {
+        this.state.taskList = await this.orm.searchRead(
+            this.model,
+            [],
+            ["name", "completed", "color"]
+        );
     }
     
     addTask() {
-        if (this.state.newTaskText.trim()) {
-            const newTask = {
-                id: Date.now(),
-                text: this.state.newTaskText,
-                completed: false
-            };
-            this.state.tasks.push(newTask);
-            this.state.newTaskText = "";
+        this.state.isEdit = false;
+        this.state.task = {
+            id: false,
+            name: "",
+            color: "#000000",
+            completed: false
+        };
+    }
+    
+    async saveTask() {
+        if (this.state.task.name.trim()) {
+            if (this.state.isEdit) {
+                await this.orm.write(this.model, [this.state.task.id], {
+                    name: this.state.task.name,
+                    color: this.state.task.color,
+                    completed: this.state.task.completed
+                });
+            } else {
+                await this.orm.create(this.model, [{
+                    name: this.state.task.name,
+                    color: this.state.task.color,
+                    completed: this.state.task.completed
+                }]);
+            }
+            
+            await this.getAllTasks();
+            // Close modal programmatically
+            document.querySelector('#exampleModal .btn-close').click();
         }
     }
     
-    toggleTask(taskId) {
-        const task = this.state.tasks.find(t => t.id === taskId);
-        if (task) {
-            task.completed = !task.completed;
-        }
+    editTask(task) {
+        this.state.isEdit = true;
+        this.state.task = {
+            id: task.id,
+            name: task.name,
+            color: task.color,
+            completed: task.completed
+        };
     }
     
-    deleteTask(taskId) {
-        const index = this.state.tasks.findIndex(t => t.id === taskId);
-        if (index !== -1) {
-            this.state.tasks.splice(index, 1);
+    async toggleTask(event, task) {
+        await this.orm.write(this.model, [task.id], {
+            completed: !task.completed
+        });
+        await this.getAllTasks();
+    }
+    
+    async updateColor(event, task) {
+        await this.orm.write(this.model, [task.id], {
+            color: event.target.value
+        });
+        await this.getAllTasks();
+    }
+    
+    async deleteTask(task) {
+        await this.orm.unlink(this.model, [task.id]);
+        await this.getAllTasks();
+    }
+    
+    async searchTasks() {
+        const text = this.searchInput.el.value;
+        if (text.trim()) {
+            this.state.taskList = await this.orm.searchRead(
+                this.model,
+                [["name", "ilike", text]],
+                ["name", "completed", "color"]
+            );
+        } else {
+            await this.getAllTasks();
         }
     }
 }
