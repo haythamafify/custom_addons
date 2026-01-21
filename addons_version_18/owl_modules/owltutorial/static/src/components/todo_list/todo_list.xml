@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl.TodoList">
+        <div class="p-4">
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">My Todo List</h3>
+                </div>
+                
+                <div class="card-body">
+                    <!-- Add Task Form -->
+                    <div class="input-group mb-4">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Add new task..."
+                            t-model="state.newTaskText"
+                            t-on-keyup="onKeyup"/>
+                        <button 
+                            class="btn btn-primary" 
+                            t-on-click="addTask">
+                            Add
+                        </button>
+                    </div>
+                    
+                    <!-- Tasks List -->
+                    <ul class="list-group">
+                        <t t-foreach="state.tasks" t-as="task" t-key="task.id">
+                            <li class="list-group-item d-flex align-items-center">
+                                <input 
+                                    type="checkbox" 
+                                    class="form-check-input me-3"
+                                    t-att-checked="task.completed"
+                                    t-on-click="() => this.toggleTask(task.id)"/>
+                                
+                                <span 
+                                    t-att-class="task.completed ? 'text-decoration-line-through text-muted' : ''"
+                                    class="flex-grow-1">
+                                    <t t-esc="task.text"/>
+                                </span>
+                                
+                                <button 
+                                    class="btn btn-sm btn-danger"
+                                    t-on-click="() => this.deleteTask(task.id)">
+                                    Delete
+                                </button>
+                            </li>
+                        </t>
+                    </ul>
+                    
+                    <!-- Empty State -->
+                    <div t-if="state.tasks.length === 0" class="text-center text-muted mt-4">
+                        No tasks yet. Add one above!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
