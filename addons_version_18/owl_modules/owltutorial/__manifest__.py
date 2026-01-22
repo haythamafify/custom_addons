@@ -10,17 +10,25 @@
         'base',
         'web',
          'mail', 
+         'sale_management',
     ],
     'data': [
         'security/ir.model.access.csv',
         'views/to_do_list_view.xml',
+        'views/res_partne_view.xml',
+
     ],
     'demo': [],
     'assets': {
         'web.assets_backend': [
                  'owltutorial/static/src/components/**/*.js',
         'owltutorial/static/src/components/**/*.xml',
+        
         'owltutorial/static/src/components/**/*.scss', 
+
+ 
+
+
         ],
     },
     'application': True,
