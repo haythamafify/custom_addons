@@ -68,6 +68,8 @@ class ResPartnerListController extends ListController {
       ],
     });
   }
+
+
 }
 
 export const resPartnerListView = {
