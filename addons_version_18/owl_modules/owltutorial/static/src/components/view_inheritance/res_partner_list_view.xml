@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
-    <t t-name="owl.ResPartnerListView" t-inherit="web.ListView" t-inherit-mode="extension">
+    <t t-name="owl.ResPartnerListView" t-inherit="web.ListView" t-inherit-mode="primary">
         <xpath expr="//Layout" position="inside">
             <t t-set-slot="layout-buttons">
                 <button class="btn btn-primary me-2" t-on-click="() => this.openSalesView()">

@@ -6,6 +6,8 @@ import { ListController } from "@web/views/list/list_controller";
 import { useService } from "@web/core/utils/hooks";
 
 class ResPartnerListController extends ListController {
+  static template = "owl.ResPartnerListView";
+
   setup() {
     super.setup();
     this.action = useService("action");
