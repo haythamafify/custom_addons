@@ -22,8 +22,20 @@
                     <attribute name="js_class">res_partner_kanban_view</attribute>
                 </xpath>
             </field>
+
+            
         </record>
 
+        <record id="res_partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.view.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="email" position="attributes">
+                    <attribute name="widget">valid_email</attribute>
+                </field>
+            </field>
+        </record>
 
     </data>
 </odoo>

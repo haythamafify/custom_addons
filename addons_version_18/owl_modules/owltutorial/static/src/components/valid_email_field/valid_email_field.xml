@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl.ValidEmailField" owl="1">
+        <div class="o_field_widget o_field_email">
+            <div class="d-flex align-items-center">
+                <input 
+                    type="email"
+                    class="o_input"
+                    t-att-id="props.id"
+                    t-att-placeholder="props.placeholder"
+                    t-model="props.value"
+                    t-att-readonly="props.readonly"
+                    t-on-input="(ev) => this.update(ev.target.value)"
+                />
+                
+                <a t-if="props.value and this.isValidEmail"
+                   t-att-href="'mailto:' + props.value"
+                   class="ms-2 btn btn-link p-0"
+                   target="_blank"
+                   title="Send Email">
+                    <i class="fa fa-paper-plane text-primary"/>
+                </a>
+            </div>
+            
+            <div t-if="props.value and !this.isValidEmail" 
+                 class="text-danger small mt-1">
+                <i class="fa fa-exclamation-triangle me-1"/>
+                <span t-esc="this.validationMessage"/>
+            </div>
+        </div>
+    </t>
+</templates>
