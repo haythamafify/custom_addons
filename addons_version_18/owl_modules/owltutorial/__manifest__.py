@@ -21,14 +21,9 @@
     'demo': [],
     'assets': {
         'web.assets_backend': [
-                 'owltutorial/static/src/components/**/*.js',
-        'owltutorial/static/src/components/**/*.xml',
-        
-        'owltutorial/static/src/components/**/*.scss', 
-
- 
-
-
+            'owltutorial/static/src/components/**/*.js',
+            'owltutorial/static/src/components/**/*.xml',
+            'owltutorial/static/src/components/**/*.scss',
         ],
     },
     'application': True,
