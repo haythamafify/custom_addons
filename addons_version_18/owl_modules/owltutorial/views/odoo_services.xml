@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Client Action -->
+        <record id="odoo_services_client_action" model="ir.actions.client">
+            <field name="name">Odoo Services</field>
+            <field name="tag">owl.odoo_services</field>
+            <field name="target">current</field>
+        </record>
+
+        <menuitem
+            id="owl_odoo_services_menu"
+            name="Odoo Services"
+            action="odoo_services_client_action"
+            parent="owl_todo_list_main_menu"
+            sequence="10"/>
+    </data>
+</odoo>

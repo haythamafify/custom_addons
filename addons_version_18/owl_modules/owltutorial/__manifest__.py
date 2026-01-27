@@ -15,7 +15,9 @@
     'data': [
         'security/ir.model.access.csv',
         'views/to_do_list_view.xml',
-        'views/res_partne_view.xml',
+        'views/res_partner_view.xml',
+        'views/odoo_services.xml',
+      
 
     ],
     'demo': [],

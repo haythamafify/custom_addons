@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+  <t t-name="owl.OdooServicesTemplate">
+    <div t-attf-class="vh-100 {{ state.dark_theme === 'true' ? 'bg-dark text-white' : 'bg-light' }}">
+      <Layout display="display">
+        <div class="container-fluid p-4">
+          
+          <!-- Current Status -->
+          <div class="alert alert-info mb-4">
+            <h5 class="alert-heading">Current Status</h5>
+            <p class="mb-0">
+              <strong>Theme:</strong> 
+              <span t-if="state.dark_theme === 'true'" class="badge bg-dark">Dark Mode</span>
+              <span t-else="" class="badge bg-light text-dark">Light Mode</span>
+            </p>
+          </div>
+          
+          <!-- Odoo Services Demo -->
+          <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+              <h5 class="mb-0">Odoo Services Demo</h5>
+            </div>
+            <div class="card-body">
+              <button class="btn btn-success btn-lg m-2" t-on-click="showNotification">
+                Notification Service
+              </button>
+              
+              <button class="btn btn-warning btn-lg m-2" t-on-click="showDialog">
+                Dialog Service
+              </button>
+              
+              <button class="btn btn-info btn-lg m-2" t-on-click="showEffect">
+                Effect Service
+              </button>
+            </div>
+          </div>
+          
+          <!-- Theme Toggle -->
+          <div class="card">
+            <div class="card-header bg-secondary text-white">
+              <h5 class="mb-0">Theme Toggle (LocalStorage)</h5>
+            </div>
+            <div class="card-body">
+              <p>This demo uses browser LocalStorage to save your theme preference.</p>
+              <ul class="mb-3">
+                <li>Stays in browser only</li>
+                <li>Never sent to server</li>
+                <li>Persists across sessions</li>
+              </ul>
+              <button 
+                class="btn btn-primary btn-lg w-100" 
+                t-on-click="toggleTheme">
+                <t t-if="state.dark_theme === 'true'">
+                  Switch to Light Theme
+                </t>
+                <t t-else="">
+                  Switch to Dark Theme
+                </t>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </Layout>
+    </div>
+  </t>
+</templates>
