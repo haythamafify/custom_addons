@@ -11,9 +11,12 @@
         'web',
         'crm',
         'sale',
+        'stock',
+        'stock_barcode',
     ],
     'data': [
         'views/counter_menu.xml',
+        'views/stock_picking_views.xml',
     ],
     'demo': [],
     'assets': {

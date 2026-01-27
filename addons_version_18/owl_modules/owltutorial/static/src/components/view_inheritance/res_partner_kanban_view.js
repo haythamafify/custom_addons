@@ -14,7 +14,13 @@ class ResPartnerKanbanController extends KanbanController {
     this.orm = useService("orm")
 
     onWillStart(async () => {
-      this.customerLocations = await this.orm.readGroup("res.partner", [], ['state_id'], ['state_id'])
+
+      try {
+        this.customerLocations = await this.orm.readGroup("res.partner", [], ['state_id'], ['state_id'])
+
+      } catch (error) {
+        console.error("Failed to load customer locations:", error)
+      }
     })
   }
 
