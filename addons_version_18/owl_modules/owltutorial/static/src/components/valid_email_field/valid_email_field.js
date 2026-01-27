@@ -2,9 +2,15 @@
 
 import { registry } from "@web/core/registry";
 import { EmailField } from "@web/views/fields/email/email_field";
+import { standardFieldProps } from "@web/views/fields/standard_field_props";
 import { _t } from "@web/core/l10n/translation";
 
 class ValidEmailField extends EmailField {
+  static template = "owl.ValidEmailField";
+  static props = {
+    ...standardFieldProps,
+  };
+
   setup() {
     super.setup();
   }
@@ -24,8 +30,6 @@ class ValidEmailField extends EmailField {
     this.props.record.update({ [this.props.name]: value });
   }
 }
-
-ValidEmailField.template = "owl.ValidEmailField";
 
 registry.category("fields").add("valid_email", {
   component: ValidEmailField,

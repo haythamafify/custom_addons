@@ -1,26 +1,32 @@
 /** @odoo-module */
 
-import { registry } from "@web/core/registry"
-import { CharField } from "@web/views/fields/char/char_field"
+import { registry } from "@web/core/registry";
+import { CharField } from "@web/views/fields/char/char_field";
+import { standardFieldProps } from "@web/views/fields/standard_field_props";
 
 class UsernameField extends CharField {
-    setup(){
-        super.setup()
-        console.log("Char Field Inherited")
-        console.log(this.props)
-    }
+  static template = "owl.UsernameField";
+  static props = {
+    ...standardFieldProps,
+  };
 
-    get emailDomain(){
-        const { email } = this.props.record.data
-        return email ? email.split('@')[1] : ''
-    }
+  setup() {
+    super.setup();
+    console.log("Char Field Inherited");
+    console.log(this.props);
+  }
 
-    update(value) {
-        this.props.record.update({ [this.props.name]: value });
-    }
+  get emailDomain() {
+    const { email } = this.props.record.data;
+    return email ? email.split("@")[1] : "";
+  }
+
+  update(value) {
+    this.props.record.update({ [this.props.name]: value });
+  }
 }
 
-UsernameField.template = "owl.UsernameField"
-UsernameField.supportedTypes = ["char"]
-
-registry.category("fields").add("username", UsernameField)
+registry.category("fields").add("username", {
+  component: UsernameField,
+  supportedTypes: ["char"],
+});
