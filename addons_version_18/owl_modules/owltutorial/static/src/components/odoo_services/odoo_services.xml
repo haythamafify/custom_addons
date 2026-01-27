@@ -1,68 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-  <t t-name="owl.OdooServicesTemplate">
-    <div t-attf-class="vh-100 {{ state.isDark ? 'bg-dark text-white' : 'bg-light' }}">
-      <Layout display="display">
-        <div class="container-fluid p-4">
-
-          <!-- Current Status -->
-          <div class="alert alert-info mb-4">
-            <h5 class="alert-heading">Current Status</h5>
-            <p class="mb-0">
-              <strong>Theme:</strong>
-              <span t-if="state.isDark" class="badge bg-dark">
-                <t t-esc="themeLabel"/>
-              </span>
-              <span t-else="" class="badge bg-light text-dark">
-                <t t-esc="themeLabel"/>
-              </span>
-            </p>
-          </div>
-
-          <!-- Odoo Services Demo -->
-          <div class="card mb-4">
-            <div class="card-header bg-primary text-white">
-              <h5 class="mb-0">Odoo Services Demo</h5>
-            </div>
-            <div class="card-body">
-              <button class="btn btn-success btn-lg m-2" t-on-click="showNotification">
-                Notification Service
-              </button>
-
-              <button class="btn btn-warning btn-lg m-2" t-on-click="showDialog">
-                Dialog Service
-              </button>
-
-              <button class="btn btn-info btn-lg m-2" t-on-click="showEffect">
-                Effect Service
-              </button>
-            </div>
-          </div>
-
-          <!-- Theme Toggle -->
-          <div class="card">
-            <div class="card-header bg-secondary text-white">
-              <h5 class="mb-0">Theme Toggle (LocalStorage)</h5>
-            </div>
-            <div class="card-body">
-              <p>
-                This demo uses browser LocalStorage to save your theme preference.
-              </p>
-              <ul class="mb-3">
-                <li>Stays in browser only</li>
-                <li>Never sent to server</li>
-                <li>Persists across sessions</li>
-              </ul>
-              <button
-                class="btn btn-primary btn-lg w-100"
-                t-on-click="toggleTheme">
-                <t t-esc="toggleButtonLabel"/>
-              </button>
-            </div>
-          </div>
-
+    <t t-name="owl.OdooServicesTemplate">
+        <!-- Main Container with Better Design -->
+        <div t-attf-class="odoo-services-container {{ state.isDark ? 'dark-mode' : '' }}">
+            
+            <!-- Theme Toggle Button (Fixed) -->
+            <button
+                class="btn theme-toggle-btn"
+                t-attf-class="{{ state.isDark ? 'btn-dark' : 'btn-light' }}"
+                t-att-title="toggleButtonLabel"
+                t-on-click="toggleTheme"
+                type="button">
+                <t t-if="state.isDark">🌙</t>
+                <t t-else="">☀️</t>
+            </button>
+            
+            <Layout display="display">
+                <div class="container-lg pt-4 pb-5">
+                    
+                    <!-- Header Section -->
+                    <div class="text-center services-header">
+                        <h1 class="header-title">🚀 Odoo Services</h1>
+                        <p class="header-subtitle">Explore and test Odoo core services</p>
+                    </div>
+                    
+                    <!-- Theme Info Section -->
+                    <div class="theme-info">
+                        <!-- Theme Icon -->
+                        <div class="theme-icon">
+                            <t t-if="state.isDark">🌙</t>
+                            <t t-else="">☀️</t>
+                        </div>
+                        
+                        <!-- Theme Display -->
+                        <div class="theme-text flex-grow-1 text-start">
+                            <h4 class="mb-1">
+                                <t t-if="state.isDark">Dark Mode</t>
+                                <t t-else="">Light Mode</t>
+                            </h4>
+                            <small>
+                                <t t-esc="themeLabel"/>
+                            </small>
+                        </div>
+                        
+                        <!-- Toggle Buttons (L/D) -->
+                        <div class="btn-group-theme" role="group">
+                            <button 
+                                type="button" 
+                                t-attf-class="btn {{ state.isDark ? 'btn-outline-secondary' : 'btn-primary' }}"
+                                t-on-click="toggleTheme"
+                                title="Light Mode">
+                                ☀️
+                            </button>
+                            <button 
+                                type="button" 
+                                t-attf-class="btn {{ state.isDark ? 'btn-primary' : 'btn-outline-secondary' }}"
+                                t-on-click="toggleTheme"
+                                title="Dark Mode">
+                                🌙
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Services Grid -->
+                    <div class="row g-4 services-grid">
+                        
+                        <!-- Notification Service Card -->
+                        <div class="col-lg-4 col-md-6 col-service">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                        <i class="bi bi-bell-fill text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">Notification Service</h5>
+                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                                        Send beautiful notifications with actions to users
+                                    </p>
+                                    <button 
+                                        class="btn btn-success btn-lg service-btn w-100" 
+                                        t-on-click="showNotification">
+                                        <i class="bi bi-bell me-2"></i>
+                                        Test Notification
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Dialog Service Card -->
+                        <div class="col-lg-4 col-md-6 col-service">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                                        <i class="bi bi-chat-square-text-fill text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">Dialog Service</h5>
+                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                                        Show confirmation dialogs and get user responses
+                                    </p>
+                                    <button 
+                                        class="btn btn-warning btn-lg service-btn w-100" 
+                                        t-on-click="showDialog">
+                                        <i class="bi bi-chat-square-text me-2"></i>
+                                        Open Dialog
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Effect Service Card -->
+                        <div class="col-lg-4 col-md-6 col-service">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                                        <i class="bi bi-stars text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">Effect Service</h5>
+                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                                        Add special visual effects and animations
+                                    </p>
+                                    <button 
+                                        class="btn btn-info btn-lg service-btn w-100" 
+                                        t-on-click="showEffect">
+                                        <i class="bi bi-stars me-2"></i>
+                                        Run Effect
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </Layout>
         </div>
-      </Layout>
-    </div>
-  </t>
+    </t>
 </templates>

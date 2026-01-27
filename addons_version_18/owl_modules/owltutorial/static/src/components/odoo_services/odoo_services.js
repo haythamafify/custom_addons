@@ -28,13 +28,21 @@ export class OdooServicesComponent extends Component {
         const initialDark = stored ? stored === "true" : false;
 
         this.state = useState({
-            isDark: initialDark, // Boolean حقيقي
+            isDark: initialDark,
         });
     }
 
-    // ---------- Helpers ----------
+    // ---------- Computed Properties ----------
     get themeLabel() {
         return this.state.isDark ? _t("Dark Mode") : _t("Light Mode");
+    }
+    
+    get themeIcon() {
+        return this.state.isDark ? "🌙" : "☀️";
+    }
+    
+    get themeClass() {
+        return this.state.isDark ? "bg-dark text-white" : "bg-light";
     }
 
     get toggleButtonLabel() {
@@ -43,21 +51,22 @@ export class OdooServicesComponent extends Component {
             : _t("Switch to Dark Theme");
     }
 
-    // ---------- Notification ----------
+    // ---------- Services ----------
     showNotification() {
-        this.notification.add(_t("Hello from Odoo!"), {
+        this.notification.add(_t("Hello from Odoo! 🎉"), {
             type: "success",
             sticky: true,
             buttons: [
                 {
-                    name: _t("Notification Action"),
+                    name: _t("Awesome!"),
                     primary: true,
                     onClick: () => {
-                        console.log("[OdooServices] Notification Action clicked");
+                        console.log("[OdooServices] User clicked Awesome!");
+                        this.showEffect(); // Bonus: تشغيل Effect تلقائياً
                     },
                 },
                 {
-                    name: _t("Show me Again"),
+                    name: _t("Show Again"),
                     primary: false,
                     onClick: () => this.showNotification(),
                 },
@@ -65,20 +74,25 @@ export class OdooServicesComponent extends Component {
         });
     }
 
-    // ---------- Dialog ----------
     showDialog() {
         let actionTaken = false;
 
         this.dialog.add(ConfirmationDialog, {
-            title: _t("Dialog Service"),
-            body: _t("This is a sample dialog message!"),
+            title: _t("Confirmation Dialog"),
+            body: _t("Are you sure you want to continue? This action cannot be undone."),
             confirm: () => {
                 actionTaken = true;
-                console.log("[OdooServices] Dialog confirmed");
+                console.log("[OdooServices] User confirmed");
+                this.notification.add(_t("Action confirmed!"), {
+                    type: "success",
+                });
             },
             cancel: () => {
                 actionTaken = true;
-                console.log("[OdooServices] Dialog cancelled");
+                console.log("[OdooServices] User cancelled");
+                this.notification.add(_t("Action cancelled."), {
+                    type: "info",
+                });
             },
             close: () => {
                 if (!actionTaken) {
@@ -88,24 +102,23 @@ export class OdooServicesComponent extends Component {
         });
     }
 
-    // ---------- Effect ----------
     showEffect() {
         this.effect.add({
             type: "rainbow_man",
-            message: _t("Congratulations! Effect is working!"),
+            message: _t("🎉 Congratulations! You're awesome! 🌟"),
             fadeout: "slow",
         });
     }
 
-    // ---------- Theme ----------
     toggleTheme() {
         const newDark = !this.state.isDark;
         this.state.isDark = newDark;
         browser.localStorage.setItem(THEME_KEY, newDark ? "true" : "false");
 
+        const icon = newDark ? "🌙" : "☀️";
         const message = newDark
-            ? _t("Dark theme enabled!")
-            : _t("Light theme enabled!");
+            ? _t(`${icon} Dark theme enabled!`)
+            : _t(`${icon} Light theme enabled!`);
 
         this.notification.add(message, {
             type: "success",
