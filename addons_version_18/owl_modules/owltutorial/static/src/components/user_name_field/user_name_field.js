@@ -3,6 +3,7 @@
 import { registry } from "@web/core/registry";
 import { CharField } from "@web/views/fields/char/char_field";
 import { standardFieldProps } from "@web/views/fields/standard_field_props";
+import { useState, onWillUpdateProps } from "@odoo/owl";
 
 class UsernameField extends CharField {
   static template = "owl.UsernameField";
@@ -12,8 +13,14 @@ class UsernameField extends CharField {
 
   setup() {
     super.setup();
-    console.log("Char Field Inherited");
-    console.log(this.props);
+
+    this.state = useState({
+      username: this.props.value || "",
+    });
+
+    onWillUpdateProps((newProps) => {
+      this.state.username = newProps.value || "";
+    });
   }
 
   get emailDomain() {
@@ -22,6 +29,7 @@ class UsernameField extends CharField {
   }
 
   update(value) {
+    this.state.username = value;
     this.props.record.update({ [this.props.name]: value });
   }
 }

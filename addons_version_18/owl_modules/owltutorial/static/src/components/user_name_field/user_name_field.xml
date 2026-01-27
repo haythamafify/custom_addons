@@ -7,11 +7,11 @@
                 class="o_input form-control"
                 t-att-id="props.id"
                 t-att-placeholder="props.placeholder"
-                t-att-value="props.value"
+                t-att-value="this.state.username"
                 t-att-readonly="props.readonly"
                 t-on-input="(ev) => this.update(ev.target.value)"
             />
-            <span class="input-group-text border-0 rounded-0">@<span t-esc="this.emailDomain"/></span>
+            <span class="input-group-text border-0 rounded-0" t-if="this.emailDomain">@<span t-esc="this.emailDomain"/></span>
         </div>
     </t>
 </templates>
