@@ -23,6 +23,7 @@ export class OdooServicesComponent extends Component {
     this.notification = useService("notification");
     this.dialog = useService("dialog");
     this.effect = useService("effect");
+    this.http = useService("http");
 
     const stored = browser.localStorage.getItem(THEME_KEY);
     const initialDark = stored ? stored === "true" : false;
@@ -31,6 +32,8 @@ export class OdooServicesComponent extends Component {
       isDark: initialDark,
       get_http_data: null,
       post_http_data: null,
+      rpc_data: null,
+      isLoading: false,
     });
   }
 
@@ -40,7 +43,7 @@ export class OdooServicesComponent extends Component {
   }
 
   get themeIcon() {
-    return this.state.isDark ? "🌙" : "☀️";
+    return this.state.isDark ? "Dark" : "Light";
   }
 
   get themeClass() {
@@ -55,16 +58,16 @@ export class OdooServicesComponent extends Component {
 
   // ---------- Services ----------
   showNotification() {
-    this.notification.add(_t("Hello from Odoo! 🎉"), {
+    this.notification.add(_t("Hello from Odoo Services"), {
       type: "success",
       sticky: true,
       buttons: [
         {
-          name: _t("Awesome!"),
+          name: _t("Awesome"),
           primary: true,
           onClick: () => {
-            console.log("[OdooServices] User clicked Awesome!");
-            this.showEffect(); // Bonus: تشغيل Effect تلقائياً
+            console.log("[OdooServices] User clicked Awesome");
+            this.showEffect();
           },
         },
         {
@@ -87,14 +90,14 @@ export class OdooServicesComponent extends Component {
       confirm: () => {
         actionTaken = true;
         console.log("[OdooServices] User confirmed");
-        this.notification.add(_t("Action confirmed!"), {
+        this.notification.add(_t("Action confirmed successfully"), {
           type: "success",
         });
       },
       cancel: () => {
         actionTaken = true;
         console.log("[OdooServices] User cancelled");
-        this.notification.add(_t("Action cancelled."), {
+        this.notification.add(_t("Action cancelled"), {
           type: "info",
         });
       },
@@ -109,7 +112,7 @@ export class OdooServicesComponent extends Component {
   showEffect() {
     this.effect.add({
       type: "rainbow_man",
-      message: _t("🎉 Congratulations! You're awesome! 🌟"),
+      message: _t("Congratulations! You are awesome!"),
       fadeout: "slow",
     });
   }
@@ -119,10 +122,9 @@ export class OdooServicesComponent extends Component {
     this.state.isDark = newDark;
     browser.localStorage.setItem(THEME_KEY, newDark ? "true" : "false");
 
-    const icon = newDark ? "🌙" : "☀️";
     const message = newDark
-      ? _t(`${icon} Dark theme enabled!`)
-      : _t(`${icon} Light theme enabled!`);
+      ? _t("Dark theme enabled")
+      : _t("Light theme enabled");
 
     this.notification.add(message, {
       type: "success",
@@ -132,26 +134,30 @@ export class OdooServicesComponent extends Component {
 
   async gethttpService() {
     const http = this.env.services.http;
+    this.state.isLoading = true;
 
     try {
       const data = await http.get("https://dummyjson.com/products");
-      console.log(data);
+      console.log("[HTTP GET] Data received:", data);
 
       this.state.get_http_data = data;
 
-      this.notification.add(_t("تم جلب البيانات بنجاح"), {
+      this.notification.add(_t("Data fetched successfully"), {
         type: "success",
       });
     } catch (error) {
-      console.error(error);
-      this.notification.add(_t("فشل جلب البيانات"), {
+      console.error("[HTTP GET Error]", error);
+      this.notification.add(_t("Failed to fetch data"), {
         type: "danger",
       });
+    } finally {
+      this.state.isLoading = false;
     }
   }
 
   async posthttpService() {
     const http = this.env.services.http;
+    this.state.isLoading = true;
 
     try {
       const newProduct = {
@@ -166,7 +172,7 @@ export class OdooServicesComponent extends Component {
         },
       });
 
-      console.log(data);
+      console.log("[HTTP POST] Response:", data);
 
       this.state.post_http_data = data;
 
@@ -174,15 +180,54 @@ export class OdooServicesComponent extends Component {
         type: "success",
       });
     } catch (error) {
-      console.error(error);
+      console.error("[HTTP POST Error]", error);
       this.notification.add(_t("Failed to send data"), {
         type: "danger",
       });
+    } finally {
+      this.state.isLoading = false;
     }
   }
 
-  getRpcService() {
-    console.log("getRpcService");
+  async getRpcService() {
+    this.state.isLoading = true;
+
+    try {
+      const response = await fetch("/owl/rpc_service", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ limit: 15 }),
+      });
+
+      // Check if response is ok first
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("[RPC Service] HTTP Error:", response.status, text);
+        throw new Error(`HTTP ${response.status}: ${text.substring(0, 100)}`);
+      }
+
+      const responseData = await response.json();
+      console.log("[RPC Service] Response:", responseData);
+
+      if (!responseData.success) {
+        throw new Error(responseData.message || "Server returned error");
+      }
+
+      this.state.rpc_data = responseData.data;
+
+      this.notification.add(_t("RPC data fetched successfully"), {
+        type: "success",
+      });
+    } catch (error) {
+      console.error("[RPC Service Error]", error);
+      this.notification.add(_t("Failed to fetch RPC data: ") + error.message, {
+        type: "danger",
+      });
+    } finally {
+      this.state.isLoading = false;
+    }
   }
 }
 
