@@ -30,6 +30,7 @@ export class OdooServicesComponent extends Component {
     this.state = useState({
       isDark: initialDark,
       get_http_data: null,
+      post_http_data: null,
     });
   }
 
@@ -151,6 +152,36 @@ async gethttpService() {
 }
 
 
+async posthttpService() {
+  const http = this.env.services.http;
+
+  try {
+    const newProduct = {
+      title: 'BMW Pencil',
+      price: 15.99
+    };
+    
+    const data = await http.post('https://dummyjson.com/products/add', {
+      body: JSON.stringify(newProduct),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    console.log(data);
+    
+    this.state.post_http_data = data;
+    
+    this.notification.add(_t("Data sent successfully"), {
+      type: "success",
+    });
+  } catch (error) {
+    console.error(error);
+    this.notification.add(_t("Failed to send data"), {
+      type: "danger",
+    });
+  }
+}
 
 
 
