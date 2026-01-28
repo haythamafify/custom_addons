@@ -229,6 +229,12 @@ export class OdooServicesComponent extends Component {
       this.state.isLoading = false;
     }
   }
+
+
+  getOrmService(){
+
+    
+  }
 }
 
 registry.category("actions").add("owl.odoo_services", OdooServicesComponent);
