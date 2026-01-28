@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="owl.OdooServicesTemplate">
-        <!-- Main Container with Better Design -->
+        <!-- Main Container with Full Width -->
         <div t-attf-class="odoo-services-container {{ state.isDark ? 'dark-mode' : '' }}">
             
             <!-- Theme Toggle Button (Fixed) -->
@@ -16,11 +16,11 @@
             </button>
             
             <Layout display="display">
-                <div class="container-lg pt-4 pb-5">
+                <div class="container-fluid">
                     
                     <!-- Header Section -->
-                    <div class="text-center services-header">
-                        <h1 class="header-title">🚀 Odoo Services</h1>
+                    <div class="text-center services-header mb-3">
+                        <h1 class="header-title mb-2">🚀 Odoo Services</h1>
                         <p class="header-subtitle">Explore and test Odoo core services</p>
                     </div>
                     
@@ -127,9 +127,70 @@
                                 </div>
                             </div>
                         </div>
-                        
+
+                        <!-- HTTP GET Service Card -->
+                        <div class="col-lg-4 col-md-6 col-service">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                                        <i class="bi bi-cloud-arrow-down-fill text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">HTTP Service</h5>
+                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                                        Fetch data from external APIs using GET requests
+                                    </p>
+                                    <button 
+                                        class="btn btn-lg service-btn w-100" 
+                                        t-on-click="gethttpService"
+                                        style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border: none; color: white;">
+                                        <i class="bi bi-cloud-arrow-down me-2"></i>
+                                        Test HTTP GET
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    
+
+                 <!-- Data Table Section -->
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <div class="card shadow-sm" t-if="state.get_http_data and state.get_http_data.products">
+                                <div class="card-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                                    <h4 class="mb-0 text-white">
+                                        <i class="bi bi-table me-2"></i>
+                                        Products List (<t t-esc="state.get_http_data.products.length"/> items)
+                                    </h4>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped mb-0">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Title</th>
+                                                    <th>Price</th>
+                                                    <th>Category</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="state.get_http_data.products" t-as="product" t-key="product.id">
+                                                    <tr>
+                                                        <td><t t-esc="product.id"/></td>
+                                                        <td><t t-esc="product.title"/></td>
+                                                        <td class="text-success fw-bold">$<t t-esc="product.price"/></td>
+                                                        <td><span class="badge bg-secondary"><t t-esc="product.category"/></span></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </Layout>
         </div>
