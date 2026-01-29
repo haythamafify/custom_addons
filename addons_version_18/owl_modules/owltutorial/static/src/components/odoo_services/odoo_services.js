@@ -35,6 +35,9 @@ export class OdooServicesComponent extends Component {
       post_http_data: null,
       rpc_data: null,
       orm_data: null,
+      user_data: null,
+      router_data: null,
+      company_data: null,
       isLoading: false,
     });
   }
@@ -238,8 +241,8 @@ export class OdooServicesComponent extends Component {
     try {
       this.state.orm_data = await this.orm.searchRead(
         "res.partner",
-        [], 
-        ["id", "name", "email", "phone"], 
+        [],
+        ["id", "name", "email", "phone"],
       );
 
       this.notification.add(
@@ -253,6 +256,126 @@ export class OdooServicesComponent extends Component {
       });
     } finally {
       this.state.isLoading = false;
+    }
+  }
+
+  executeActionService() {
+    const action = this.env.services.action;
+    action.doAction({
+      type: "ir.actions.act_window",
+      name: "Action Service",
+      res_model: "res.partner",
+      domain: [],
+      context: {},
+      views: [
+        [false, "list"],
+        [false, "form"],
+        [false, "kanban"],
+      ],
+      view_mode: "list,form,kanban",
+      target: "current",
+    });
+  }
+
+  testRouterService() {
+    try {
+      // Get current URL and router info from browser
+      const currentUrl = browser.location.href;
+      const currentPath = browser.location.pathname;
+      const currentSearch = browser.location.search;
+      const currentHash = browser.location.hash;
+
+      console.log("[Router Service] Current URL:", currentUrl);
+
+      // Extract route information
+      const routeInfo = {
+        url: currentUrl,
+        path: currentPath,
+        search: currentSearch || "No search parameters",
+        hash: currentHash || "No hash",
+        protocol: browser.location.protocol,
+        host: browser.location.host,
+      };
+
+      this.state.router_data = JSON.stringify(routeInfo, null, 2);
+
+      this.notification.add(_t("Router information loaded"), {
+        type: "success",
+      });
+    } catch (error) {
+      console.error("[Router Service Error]", error);
+      this.notification.add(_t("Router service error: ") + error.message, {
+        type: "danger",
+      });
+    }
+  }
+
+  async testUserService() {
+    this.state.isLoading = true;
+    try {
+      // Fetch current user data using ORM
+      const users = await this.orm.searchRead(
+        "res.users",
+        [["id", "=", 2]], // Current user is usually ID 2 (admin)
+        ["id", "name", "email", "login", "company_id"],
+      );
+
+      if (users && users.length > 0) {
+        const user = users[0];
+        const userData = {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          login: user.login,
+          company: user.company_id ? user.company_id[1] : "N/A",
+        };
+        this.state.user_data = JSON.stringify(userData);
+
+        this.notification.add(_t("User data loaded: ") + user.name, {
+          type: "success",
+        });
+      } else {
+        this.notification.add(_t("No user data found"), {
+          type: "warning",
+        });
+      }
+    } catch (error) {
+      console.error("[User Service Error]", error);
+      this.notification.add(_t("User service error: ") + error.message, {
+        type: "danger",
+      });
+    } finally {
+      this.state.isLoading = false;
+    }
+  }
+
+  testCompanyService() {
+    try {
+      const company = this.env.services.company;
+      console.log("[Company Service]", company);
+
+      if (company) {
+        // Extract company information
+        const companyInfo = {
+          allowedCompanies: company.allowedCompanies,
+          currentCompany: company.currentCompany,
+          activeCompanyIds: company.activeCompanyIds,
+        };
+        this.state.company_data = JSON.stringify(companyInfo, null, 2);
+
+        this.notification.add(_t("Company information loaded"), {
+          type: "success",
+        });
+      } else {
+        this.notification.add(_t("Company service not available"), {
+          type: "warning",
+        });
+      }
+    } catch (error) {
+      console.error("[Company Service Error]", error);
+      this.notification.add(_t("Company service error: ") + error.message, {
+        type: "danger",
+      });
     }
   }
 }

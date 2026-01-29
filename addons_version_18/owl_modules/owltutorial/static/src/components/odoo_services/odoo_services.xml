@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="owl.OdooServicesTemplate">
-        <!-- Main Container with Full Width -->
+        <!-- Main Container -->
         <div t-attf-class="odoo-services-container {{ state.isDark ? 'dark-mode' : '' }}">
             
-            <!-- Theme Toggle Button (Fixed) -->
-            <button
-                class="btn theme-toggle-btn"
-                t-attf-class="{{ state.isDark ? 'btn-dark' : 'btn-light' }}"
-                t-att-title="toggleButtonLabel"
-                t-on-click="toggleTheme"
-                type="button">
+            <!-- Theme Toggle Button -->
+            <button class="btn theme-toggle-btn" 
+                    t-attf-class="{{ state.isDark ? 'btn-dark' : 'btn-light' }}" 
+                    t-att-title="toggleButtonLabel" 
+                    t-on-click="toggleTheme" 
+                    type="button">
                 <t t-if="state.isDark">🌙</t>
                 <t t-else="">☀️</t>
             </button>
             
+            <!-- Layout Wrapper -->
             <Layout display="display">
                 <div class="container-fluid">
                     
@@ -24,372 +24,350 @@
                         <p class="header-subtitle">Explore and test Odoo core services</p>
                     </div>
                     
-                    <!-- Theme Info Section -->
-                    <div class="theme-info">
-                        <!-- Theme Icon -->
-                        <div class="theme-icon">
+                    <!-- Theme Info Card -->
+                    <div class="theme-info d-flex align-items-center mb-4 p-3 border rounded shadow-sm">
+                        <div class="theme-icon fs-2 me-3">
                             <t t-if="state.isDark">🌙</t>
                             <t t-else="">☀️</t>
                         </div>
-                        
-                        <!-- Theme Display -->
                         <div class="theme-text flex-grow-1 text-start">
                             <h4 class="mb-1">
                                 <t t-if="state.isDark">Dark Mode</t>
                                 <t t-else="">Light Mode</t>
                             </h4>
-                            <small>
-                                <t t-esc="themeLabel"/>
-                            </small>
+                            <small class="text-muted"><t t-esc="themeLabel"/></small>
                         </div>
-                        
-                        <!-- Toggle Buttons (L/D) -->
-                        <div class="btn-group-theme" role="group">
-                            <button 
-                                type="button" 
-                                t-attf-class="btn {{ state.isDark ? 'btn-outline-secondary' : 'btn-primary' }}"
-                                t-on-click="toggleTheme"
-                                title="Light Mode">
-                                ☀️
-                            </button>
-                            <button 
-                                type="button" 
-                                t-attf-class="btn {{ state.isDark ? 'btn-primary' : 'btn-outline-secondary' }}"
-                                t-on-click="toggleTheme"
-                                title="Dark Mode">
-                                🌙
-                            </button>
+                        <div class="btn-group-theme btn-group" role="group">
+                            <button type="button" 
+                                    t-attf-class="btn {{ !state.isDark ? 'btn-primary' : 'btn-outline-secondary' }}" 
+                                    t-on-click="toggleTheme" title="Light Mode">☀️</button>
+                            <button type="button" 
+                                    t-attf-class="btn {{ state.isDark ? 'btn-primary' : 'btn-outline-secondary' }}" 
+                                    t-on-click="toggleTheme" title="Dark Mode">🌙</button>
                         </div>
                     </div>
                     
                     <!-- Services Grid -->
                     <div class="row g-4 services-grid">
                         
-                        <!-- Notification Service Card -->
-                        <div class="col-lg-4 col-md-6 col-service">
+                        <!-- Notification Service -->
+                        <div class="col-lg-4 col-md-6">
                             <div class="card h-100 text-center service-card">
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
                                     <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                                         <i class="bi bi-bell-fill text-white"></i>
                                     </div>
                                     <h5 class="card-title">Notification Service</h5>
-                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                        Send beautiful notifications with actions to users
-                                    </p>
-                                    <button 
-                                        class="btn btn-success btn-lg service-btn w-100" 
-                                        t-on-click="showNotification">
-                                        <i class="bi bi-bell me-2"></i>
-                                        Test Notification
+                                    <p class="text-muted mb-4">Send beautiful notifications with actions to users</p>
+                                    <button class="btn btn-success btn-lg w-100" t-on-click="showNotification">
+                                        <i class="bi bi-bell me-2"></i> Test Notification
                                     </button>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Dialog Service Card -->
-                        <div class="col-lg-4 col-md-6 col-service">
+                        <!-- Dialog Service -->
+                        <div class="col-lg-4 col-md-6">
                             <div class="card h-100 text-center service-card">
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
                                     <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
                                         <i class="bi bi-chat-square-text-fill text-white"></i>
                                     </div>
                                     <h5 class="card-title">Dialog Service</h5>
-                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                        Show confirmation dialogs and get user responses
-                                    </p>
-                                    <button 
-                                        class="btn btn-warning btn-lg service-btn w-100" 
-                                        t-on-click="showDialog">
-                                        <i class="bi bi-chat-square-text me-2"></i>
-                                        Open Dialog
+                                    <p class="text-muted mb-4">Show confirmation dialogs and get user responses</p>
+                                    <button class="btn btn-warning btn-lg w-100" t-on-click="showDialog">
+                                        <i class="bi bi-chat-square-text me-2"></i> Open Dialog
                                     </button>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Effect Service Card -->
-                        <div class="col-lg-4 col-md-6 col-service">
+                        <!-- Effect Service -->
+                        <div class="col-lg-4 col-md-6">
                             <div class="card h-100 text-center service-card">
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
                                     <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
                                         <i class="bi bi-stars text-white"></i>
                                     </div>
                                     <h5 class="card-title">Effect Service</h5>
-                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                        Add special visual effects and animations
-                                    </p>
-                                    <button 
-                                        class="btn btn-info btn-lg service-btn w-100" 
-                                        t-on-click="showEffect">
-                                        <i class="bi bi-stars me-2"></i>
-                                        Run Effect
+                                    <p class="text-muted mb-4">Add special visual effects and animations</p>
+                                    <button class="btn btn-info btn-lg w-100 text-white" t-on-click="showEffect">
+                                        <i class="bi bi-stars me-2"></i> Run Effect
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- HTTP GET Service Card -->
-                        <div class="col-lg-4 col-md-6 col-service">
+                        <!-- HTTP GET Service -->
+                        <div class="col-lg-4 col-md-6">
                             <div class="card h-100 text-center service-card">
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
                                     <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
                                         <i class="bi bi-cloud-arrow-down-fill text-white"></i>
                                     </div>
                                     <h5 class="card-title">HTTP GET Service</h5>
-                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                        Fetch data from external APIs using GET requests
-                                    </p>
-                                    <button 
-                                        class="btn btn-lg service-btn w-100" 
-                                        t-on-click="gethttpService"
-                                        style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border: none; color: white;">
-                                        <i class="bi bi-cloud-arrow-down me-2"></i>
-                                        Test HTTP GET
+                                    <p class="text-muted mb-4">Fetch data from external APIs using GET requests</p>
+                                    <button class="btn btn-lg w-100 text-white" t-on-click="gethttpService" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border: none;">
+                                        <i class="bi bi-cloud-arrow-down me-2"></i> Test HTTP GET
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- HTTP POST Service Card -->
-                        <div class="col-lg-4 col-md-6 col-service">
+                        <!-- HTTP POST Service -->
+                        <div class="col-lg-4 col-md-6">
                             <div class="card h-100 text-center service-card">
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
                                     <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
                                         <i class="bi bi-cloud-arrow-up-fill text-white"></i>
                                     </div>
                                     <h5 class="card-title">HTTP POST Service</h5>
-                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                        Send data to external APIs using POST requests
-                                    </p>
-                                    <button 
-                                        class="btn btn-lg service-btn w-100" 
-                                        t-on-click="posthttpService"
-                                        style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); border: none; color: white;">
-                                        <i class="bi bi-cloud-arrow-up me-2"></i>
-                                        Test HTTP POST
+                                    <p class="text-muted mb-4">Send data to external APIs using POST requests</p>
+                                    <button class="btn btn-lg w-100 text-white" t-on-click="posthttpService" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); border: none;">
+                                        <i class="bi bi-cloud-arrow-up me-2"></i> Test HTTP POST
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <!-- RPC Service Card -->
 
-                            <div class="col-lg-4 col-md-6 col-service">
-                                <div class="card h-100 text-center service-card">
-                                    <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
-                                        <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
-                                            <i class="bi bi-diagram-3-fill text-white"></i>
-                                        </div>
-                                        <h5 class="card-title">RPC Service</h5>
-                                        <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                            Call Odoo backend methods directly from JavaScript
-                                        </p>
-                                        <button 
-                                            class="btn btn-primary btn-lg service-btn w-100" 
-                                            t-on-click="getRpcService">
-                                            <i class="bi bi-diagram-3 me-2"></i>
-                                            Test RPC Call
-                                        </button>
+                        <!-- RPC Service -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                        <i class="bi bi-diagram-3-fill text-white"></i>
                                     </div>
-                                 
+                                    <h5 class="card-title">RPC Service</h5>
+                                    <p class="text-muted mb-4">Call Odoo backend methods directly from JavaScript</p>
+                                    <button class="btn btn-primary btn-lg w-100" t-on-click="getRpcService">
+                                        <i class="bi bi-diagram-3 me-2"></i> Test RPC Call
+                                    </button>
                                 </div>
                             </div>
+                        </div>
 
-
-                    </div>
-
-                    <!-- ORM Service Card -->
-                        <div class="col-lg-4 col-md-6 col-service">
+                        <!-- ORM Service -->
+                        <div class="col-lg-4 col-md-6">
                             <div class="card h-100 text-center service-card">
                                 <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
                                     <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
                                         <i class="bi bi-database-fill text-white"></i>
                                     </div>
                                     <h5 class="card-title">ORM Service</h5>
-                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
-                                        Direct database access using Odoo ORM from frontend
-                                    </p>
-                                    <button 
-                                        class="btn btn-lg service-btn w-100" 
-                                        t-on-click="getOrmService"
-                                        style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border: none; color: white;">
-                                        <i class="bi bi-database me-2"></i>
-                                        Test ORM Call
+                                    <p class="text-muted mb-4">Direct database access using Odoo ORM from frontend</p>
+                                    <button class="btn btn-lg w-100 text-white" t-on-click="getOrmService" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); border: none;">
+                                        <i class="bi bi-database me-2"></i> Test ORM Call
                                     </button>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Action Service -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);">
+                                        <i class="bi bi-gear-fill text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">Action Service</h5>
+                                    <p class="text-muted mb-4">Execute custom automated actions and workflows</p>
+                                    <button class="btn btn-lg w-100 text-white" t-on-click="executeActionService" style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none;">
+                                        <i class="bi bi-play-circle me-2"></i> Run Action
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                    <!-- GET Data Table Section -->
+                        <!-- Router Service -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);">
+                                        <i class="bi bi-signpost-split-fill text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">Router Service</h5>
+                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                                        Manage browser URL, navigation, and query parameters
+                                    </p>
+                                    <button 
+                                        class="btn btn-lg w-100 text-white" 
+                                        t-on-click="testRouterService"
+                                        style="background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%); border: none;">
+                                        <i class="bi bi-link-45deg me-2"></i>
+                                        Test Navigation
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- User Service -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card h-100 text-center service-card">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                                    <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                                        <i class="bi bi-person-badge-fill text-white"></i>
+                                    </div>
+                                    <h5 class="card-title">User Service</h5>
+                                    <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                                        Fetch current user information and session data
+                                    </p>
+                                    <button 
+                                        class="btn btn-lg w-100 text-white" 
+                                        t-on-click="testUserService"
+                                        style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none;">
+                                        <i class="bi bi-person-fill me-2"></i>
+                                        Load User Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Company Service -->
+                        <div class="col-lg-4 col-md-6">
+    <div class="card h-100 text-center service-card">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center py-5">
+            <div class="icon-circle mb-4" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                <i class="bi bi-building-fill text-white"></i>
+            </div>
+            <h5 class="card-title">Company Service</h5>
+            <p class="text-muted mb-4" style="font-size: 0.95rem;">
+                Retrieve legal entity details, branch info, and global settings
+            </p>
+            <button 
+                class="btn btn-lg w-100 text-white" 
+                t-on-click="testCompanyService"
+                style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border: none;">
+                <i class="bi bi-briefcase-fill me-2"></i>
+                Load Company Data
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+                    </div> 
+
+                    <!-- HTTP Data Table Section -->
+                    <div class="data-results mt-5">
+                        <!-- Products Table -->
+                        <div class="card shadow-sm mb-4" t-if="state.get_http_data and state.get_http_data.products">
+                            <div class="card-header text-white" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                                <h4 class="mb-0"><i class="bi bi-table me-2"></i> Products List (<t t-esc="state.get_http_data.products.length"/>)</h4>
+                            </div>
+                            <div class="card-body p-0 table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr><th>ID</th><th>Title</th><th>Price</th><th>Category</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="state.get_http_data.products" t-as="product" t-key="product.id">
+                                            <tr>
+                                                <td><t t-esc="product.id"/></td>
+                                                <td><t t-esc="product.title"/></td>
+                                                <td class="text-success fw-bold">$<t t-esc="product.price"/></td>
+                                                <td><span class="badge bg-secondary"><t t-esc="product.category"/></span></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Partners Table Section -->
+                        <div class="card shadow-sm mb-4" t-if="(state.rpc_data and state.rpc_data.length) or (state.orm_data and state.orm_data.length)">
+                            <t t-set="current_data" t-value="state.rpc_data.length ? state.rpc_data : state.orm_data"/>
+                            <t t-set="header_color" t-value="state.rpc_data.length ? '#3b82f6' : '#f97316'"/>
+                            
+                            <div class="card-header text-white" t-attf-style="background: linear-gradient(135deg, {{header_color}} 0%, #000 100%);">
+                                <h4 class="mb-0"><i class="bi bi-people-fill me-2"></i> Partners Records</h4>
+                            </div>
+                            <div class="card-body p-0 table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr><th>ID</th><th>Name</th><th>Email</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="current_data" t-as="item" t-key="item.id">
+                                            <tr>
+                                                <td><span class="badge bg-dark"><t t-esc="item.id"/></span></td>
+                                                <td class="fw-bold"><t t-esc="item.name"/></td>
+                                                <td><t t-esc="item.email or 'N/A'"/></td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Data Results -->
+
+                    <!-- User Session Info -->
+                    <div class="card shadow-sm mb-4" t-if="state.user_data">
+                        <div class="card-header text-white" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                            <h4 class="mb-0"><i class="bi bi-person-lines-fill me-2"></i> User Session Info</h4>
+                        </div>
+                        <div class="card-body">
+                            <pre class="bg-light p-3 border rounded"><code><t t-esc="state.user_data"/></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Router Information -->
                     <div class="row mt-5">
                         <div class="col-12">
-                            <div class="card shadow-sm" t-if="state.get_http_data and state.get_http_data.products">
-                                <div class="card-header" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                                    <h4 class="mb-0 text-white">
-                                        <i class="bi bi-table me-2"></i>
-                                        Products List (<t t-esc="state.get_http_data.products.length"/> items)
-                                    </h4>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped mb-0">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Title</th>
-                                                    <th>Price</th>
-                                                    <th>Category</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <t t-foreach="state.get_http_data.products" t-as="product" t-key="product.id">
-                                                    <tr>
-                                                        <td><t t-esc="product.id"/></td>
-                                                        <td><t t-esc="product.title"/></td>
-                                                        <td class="text-success fw-bold">$<t t-esc="product.price"/></td>
-                                                        <td><span class="badge bg-secondary"><t t-esc="product.category"/></span></td>
-                                                    </tr>
-                                                </t>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- POST Data Section -->
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <div class="card shadow-sm" t-if="state.post_http_data">
-                                <div class="card-header" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
-                                    <h4 class="mb-0 text-white">
-                                        <i class="bi bi-check-circle me-2"></i>
-                                        POST Response
-                                    </h4>
+                            <div class="card shadow-sm" t-if="state.router_data">
+                                <div class="card-header text-white" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                                    <h4 class="mb-0"><i class="bi bi-diagram-3-fill me-2"></i> Router Information</h4>
                                 </div>
                                 <div class="card-body">
-                                    <table class="table table-bordered mb-0">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th style="width: 30%;">Property</th>
-                                                <th>Value</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="fw-bold">ID</td>
-                                                <td><span class="badge bg-primary"><t t-esc="state.post_http_data.id"/></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="fw-bold">Title</td>
-                                                <td><t t-esc="state.post_http_data.title"/></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- RPC Data Table Section -->
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <div class="card shadow-sm" t-if="state.rpc_data and state.rpc_data.length">
-                                <div class="card-header" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
-                                    <h4 class="mb-0 text-white">
-                                        <i class="bi bi-people-fill me-2"></i>
-                                        Partners List (<t t-esc="state.rpc_data.length"/> records)
-                                    </h4>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped mb-0">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <t t-foreach="state.rpc_data" t-as="partner" t-key="partner.id">
-                                                    <tr>
-                                                        <td><span class="badge bg-primary"><t t-esc="partner.id"/></span></td>
-                                                        <td><t t-esc="partner.name"/></td>
-                                                        <td>
-                                                            <t t-if="partner.email">
-                                                                <i class="bi bi-envelope me-1"></i>
-                                                                <t t-esc="partner.email"/>
-                                                            </t>
-                                                            <t t-else="">
-                                                                <span class="text-muted">N/A</span>
-                                                            </t>
-                                                        </td>
-                                                        <td>
-                                                            <t t-if="partner.phone">
-                                                                <i class="bi bi-telephone me-1"></i>
-                                                                <t t-esc="partner.phone"/>
-                                                            </t>
-                                                            <t t-else="">
-                                                                <span class="text-muted">N/A</span>
-                                                            </t>
-                                                        </td>
-                                                    </tr>
-                                                </t>
-                                            </tbody>
-                                        </table>
+                                    <div class="bg-light p-4 rounded">
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h6 class="text-primary mb-2"><i class="bi bi-link-45deg me-2"></i> Current Navigation Details</h6>
+                                            </div>
+                                        </div>
+                                        <pre class="bg-white p-3 border rounded" style="max-height: 400px; overflow-y: auto;"><code><t t-esc="state.router_data"/></code></pre>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ORM Data Table Section -->
-                    <div class="row mt-4">
+                    <!-- Company Information -->
+                    <div class="row mt-5">
                         <div class="col-12">
-                            <div class="card shadow-sm" t-if="state.orm_data and state.orm_data.length">
-                                <div class="card-header" style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
-                                    <h4 class="mb-0 text-white">
-                                        <i class="bi bi-database-fill me-2"></i>
-                                        Partners List (<t t-esc="state.orm_data.length"/> records)
-                                    </h4>
+                            <div class="card shadow-sm" t-if="state.company_data">
+                                <div class="card-header text-white" style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);">
+                                    <h4 class="mb-0"><i class="bi bi-building-fill me-2"></i> Company Information</h4>
                                 </div>
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped mb-0">
-                                            <thead class="table-light text-dark">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <t t-foreach="state.orm_data" t-as="partner" t-key="partner.id">
-                                                    <tr>
-                                                        <td><span class="badge bg-warning"><t t-esc="partner.id"/></span></td>
-                                                        <td><strong><t t-esc="partner.name"/></strong></td>
-                                                        <td>
-                                                            <t t-if="partner.email">
-                                                                <i class="bi bi-envelope me-1 text-primary"></i>
-                                                                <t t-esc="partner.email"/>
-                                                            </t>
-                                                            <t t-else="">—</t>
-                                                        </td>
-                                                    </tr>
-                                                </t>
-                                            </tbody>
-                                        </table>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="bg-light p-4 rounded mb-3">
+                                                <h5 class="text-primary mb-3"><i class="bi bi-diagram-3 me-2"></i> Allowed Companies</h5>
+                                                <div style="max-height: 300px; overflow-y: auto;">
+                                                    <pre class="mb-0"><code><t t-esc="state.company_data"/></code></pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="bg-light p-4 rounded mb-3">
+                                                <h5 class="text-success mb-3"><i class="bi bi-check-circle me-2"></i> Current Company Info</h5>
+                                                <div class="alert alert-info mb-0">
+                                                    <p class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                                                    <p class="mb-0"><small>Company data loaded successfully from Odoo system.</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
             </Layout>
+            <!-- End of Layout Wrapper -->
         </div>
+        <!-- End of Main Container -->
     </t>
 </templates>
