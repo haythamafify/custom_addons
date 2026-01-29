@@ -220,13 +220,14 @@ export class OdooServicesComponent extends Component {
         throw new Error(responseData.message || "Server returned error");
       }
 
-      this.state.rpc_data = responseData.data;
+      this.state.rpc_data = responseData.data || [];
 
       this.notification.add(_t("RPC data fetched successfully"), {
         type: "success",
       });
     } catch (error) {
       console.error("[RPC Service Error]", error);
+      this.state.rpc_data = [];
       this.notification.add(_t("Failed to fetch RPC data: ") + error.message, {
         type: "danger",
       });

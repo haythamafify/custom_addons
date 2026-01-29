@@ -250,22 +250,27 @@
                     <!-- HTTP Data Table Section -->
                     <div class="data-results mt-5">
                         <!-- Products Table -->
-                        <div class="card shadow-sm mb-4" t-if="state.get_http_data and state.get_http_data.products">
+                        <div class="card shadow-lg mb-5" t-if="state.get_http_data and state.get_http_data.products" style="border-top: 4px solid #8b5cf6;">
                             <div class="card-header text-white" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                                <h4 class="mb-0"><i class="bi bi-table me-2"></i> Products List (<t t-esc="state.get_http_data.products.length"/>)</h4>
+                                <h4 class="mb-0"><i class="bi bi-cart-fill me-2"></i> Products List - <span class="badge bg-light text-dark"><t t-esc="state.get_http_data.products.length"/></span></h4>
                             </div>
                             <div class="card-body p-0 table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead class="table-light">
-                                        <tr><th>ID</th><th>Title</th><th>Price</th><th>Category</th></tr>
+                                <table class="table table-hover mb-0 table-striped">
+                                    <thead style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                        <tr>
+                                            <th style="font-weight: 600; color: #495057; width: 10%;">ID</th>
+                                            <th style="font-weight: 600; color: #495057; width: 40%;">Title</th>
+                                            <th style="font-weight: 600; color: #495057; width: 25%;">Price</th>
+                                            <th style="font-weight: 600; color: #495057; width: 25%;">Category</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <t t-foreach="state.get_http_data.products" t-as="product" t-key="product.id">
-                                            <tr>
-                                                <td><t t-esc="product.id"/></td>
-                                                <td><t t-esc="product.title"/></td>
-                                                <td class="text-success fw-bold">$<t t-esc="product.price"/></td>
-                                                <td><span class="badge bg-secondary"><t t-esc="product.category"/></span></td>
+                                            <tr style="transition: all 0.2s ease; border-bottom: 1px solid #dee2e6;" class="align-middle">
+                                                <td><span class="badge bg-dark" style="padding: 6px 10px; font-size: 0.85rem;"><t t-esc="product.id"/></span></td>
+                                                <td style="color: #212529; font-size: 0.95rem;"><t t-esc="product.title"/></td>
+                                                <td class="fw-bold" style="color: #10b981; font-size: 0.95rem;">$<t t-esc="product.price"/></td>
+                                                <td><span class="badge" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); padding: 6px 10px; font-size: 0.85rem;"><t t-esc="product.category"/></span></td>
                                             </tr>
                                         </t>
                                     </tbody>
@@ -274,24 +279,28 @@
                         </div>
 
                         <!-- Partners Table Section -->
-                        <div class="card shadow-sm mb-4" t-if="(state.rpc_data and state.rpc_data.length) or (state.orm_data and state.orm_data.length)">
-                            <t t-set="current_data" t-value="state.rpc_data.length ? state.rpc_data : state.orm_data"/>
-                            <t t-set="header_color" t-value="state.rpc_data.length ? '#3b82f6' : '#f97316'"/>
+                        <div class="card shadow-lg mb-5" t-if="(state.rpc_data or state.orm_data)" style="border-top: 4px solid #f97316;">
+                            <t t-set="current_data" t-value="state.rpc_data or state.orm_data"/>
+                            <t t-set="header_color" t-value="state.rpc_data ? '#3b82f6' : '#f97316'"/>
                             
-                            <div class="card-header text-white" t-attf-style="background: linear-gradient(135deg, {{header_color}} 0%, #000 100%);">
-                                <h4 class="mb-0"><i class="bi bi-people-fill me-2"></i> Partners Records</h4>
+                            <div class="card-header text-white" t-attf-style="background: linear-gradient(135deg, {{header_color}} 0%, {{header_color}} 100%);">
+                                <h4 class="mb-0"><i class="bi bi-people-fill me-2"></i> Partners Records - <span class="badge bg-light text-dark"><t t-esc="current_data.length"/></span></h4>
                             </div>
                             <div class="card-body p-0 table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead class="table-light">
-                                        <tr><th>ID</th><th>Name</th><th>Email</th></tr>
+                                <table class="table table-hover mb-0 table-striped">
+                                    <thead style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                                        <tr>
+                                            <th style="font-weight: 600; color: #495057; width: 10%;">ID</th>
+                                            <th style="font-weight: 600; color: #495057; width: 40%;">Name</th>
+                                            <th style="font-weight: 600; color: #495057; width: 50%;">Email</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <t t-foreach="current_data" t-as="item" t-key="item.id">
-                                            <tr>
-                                                <td><span class="badge bg-dark"><t t-esc="item.id"/></span></td>
-                                                <td class="fw-bold"><t t-esc="item.name"/></td>
-                                                <td><t t-esc="item.email or 'N/A'"/></td>
+                                            <tr style="transition: all 0.2s ease; border-bottom: 1px solid #dee2e6;" class="align-middle">
+                                                <td><span class="badge" t-attf-style="background: {{header_color}};" style="padding: 6px 10px; font-size: 0.85rem;"><t t-esc="item.id"/></span></td>
+                                                <td class="fw-bold" style="color: #212529; font-size: 0.95rem;"><t t-esc="item.name"/></td>
+                                                <td style="color: #6c757d; font-size: 0.9rem;"><i class="bi bi-envelope me-2" style="color: #3b82f6;"></i><t t-esc="item.email or 'N/A'"/></td>
                                             </tr>
                                         </t>
                                     </tbody>
@@ -302,30 +311,32 @@
                     <!-- End of Data Results -->
 
                     <!-- User Session Info -->
-                    <div class="card shadow-sm mb-4" t-if="state.user_data">
+                    <div class="card shadow-lg mb-5" t-if="state.user_data" style="border-top: 4px solid #10b981;">
                         <div class="card-header text-white" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                             <h4 class="mb-0"><i class="bi bi-person-lines-fill me-2"></i> User Session Info</h4>
                         </div>
-                        <div class="card-body">
-                            <pre class="bg-light p-3 border rounded"><code><t t-esc="state.user_data"/></code></pre>
+                        <div class="card-body bg-light" style="background-color: #f8f9fa !important;">
+                            <div class="bg-white p-4 rounded border" style="border-left: 4px solid #10b981;">
+                                <pre style="max-height: 350px; overflow-y: auto; margin-bottom: 0; font-size: 0.85rem; background-color: #f5f5f5; padding: 15px; border-radius: 5px;"><code><t t-esc="state.user_data"/></code></pre>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Router Information -->
-                    <div class="row mt-5">
+                    <div class="row mt-5 mb-5">
                         <div class="col-12">
-                            <div class="card shadow-sm" t-if="state.router_data">
+                            <div class="card shadow-lg" t-if="state.router_data" style="border-top: 4px solid #3b82f6;">
                                 <div class="card-header text-white" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
                                     <h4 class="mb-0"><i class="bi bi-diagram-3-fill me-2"></i> Router Information</h4>
                                 </div>
-                                <div class="card-body">
-                                    <div class="bg-light p-4 rounded">
+                                <div class="card-body bg-light" style="background-color: #f8f9fa !important;">
+                                    <div class="bg-white p-4 rounded border" style="border-left: 4px solid #3b82f6;">
                                         <div class="row mb-3">
                                             <div class="col-12">
                                                 <h6 class="text-primary mb-2"><i class="bi bi-link-45deg me-2"></i> Current Navigation Details</h6>
                                             </div>
                                         </div>
-                                        <pre class="bg-white p-3 border rounded" style="max-height: 400px; overflow-y: auto;"><code><t t-esc="state.router_data"/></code></pre>
+                                        <pre style="max-height: 350px; overflow-y: auto; margin-bottom: 0; font-size: 0.85rem; background-color: #f5f5f5; padding: 15px; border-radius: 5px;"><code><t t-esc="state.router_data"/></code></pre>
                                     </div>
                                 </div>
                             </div>
@@ -333,28 +344,31 @@
                     </div>
 
                     <!-- Company Information -->
-                    <div class="row mt-5">
+                    <div class="row mt-5 mb-5">
                         <div class="col-12">
-                            <div class="card shadow-sm" t-if="state.company_data">
+                            <div class="card shadow-lg" t-if="state.company_data" style="border-top: 4px solid #0891b2;">
                                 <div class="card-header text-white" style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);">
                                     <h4 class="mb-0"><i class="bi bi-building-fill me-2"></i> Company Information</h4>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body bg-light" style="background-color: #f8f9fa !important;">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="bg-light p-4 rounded mb-3">
-                                                <h5 class="text-primary mb-3"><i class="bi bi-diagram-3 me-2"></i> Allowed Companies</h5>
-                                                <div style="max-height: 300px; overflow-y: auto;">
-                                                    <pre class="mb-0"><code><t t-esc="state.company_data"/></code></pre>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="bg-white p-4 rounded border" style="border-left: 4px solid #0891b2;">
+                                                <h5 class="text-primary mb-3" style="font-weight: 600;"><i class="bi bi-diagram-3 me-2"></i> Allowed Companies</h5>
+                                                <div style="max-height: 320px; overflow-y: auto;">
+                                                    <pre style="margin-bottom: 0; font-size: 0.85rem; background-color: #f5f5f5; padding: 12px; border-radius: 4px;"><code><t t-esc="state.company_data"/></code></pre>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="bg-light p-4 rounded mb-3">
-                                                <h5 class="text-success mb-3"><i class="bi bi-check-circle me-2"></i> Current Company Info</h5>
-                                                <div class="alert alert-info mb-0">
-                                                    <p class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
-                                                    <p class="mb-0"><small>Company data loaded successfully from Odoo system.</small></p>
+                                            <div class="bg-white p-4 rounded border" style="border-left: 4px solid #10b981;">
+                                                <h5 class="text-success mb-3" style="font-weight: 600;"><i class="bi bi-check-circle me-2"></i> Company Status</h5>
+                                                <div style="display: flex; flex-direction: column; gap: 15px;">
+                                                    <div style="padding: 12px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 4px; color: white;">
+                                                        <p class="mb-1"><strong>Status:</strong></p>
+                                                        <p class="mb-0"><span class="badge bg-light text-success" style="padding: 6px 12px; font-weight: 500;">✓ Active</span></p>
+                                                    </div>
+                                                    <p class="mb-0" style="color: #6c757d; font-size: 0.9rem;"><small><i class="bi bi-info-circle me-2"></i>Company data loaded successfully from Odoo system.</small></p>
                                                 </div>
                                             </div>
                                         </div>
