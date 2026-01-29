@@ -314,10 +314,94 @@ export class OdooServicesComponent extends Component {
   async testUserService() {
     this.state.isLoading = true;
     try {
+      // Try multiple approaches to get current user ID
+      let currentUserId = null;
+
+      // Approach 1: Check env.services.user
+      if (this.env.services?.user?.userId) {
+        currentUserId = this.env.services.user.userId;
+        console.log("[User Service] Got ID from services.user:", currentUserId);
+      }
+
+      // Approach 2: Check session
+      if (!currentUserId && this.env.session?.uid) {
+        currentUserId = this.env.session.uid;
+        console.log("[User Service] Got ID from session:", currentUserId);
+      }
+
+      // Approach 3: Use ORM to get current user without filter
+      if (!currentUserId) {
+        console.log("[User Service] Trying to fetch current user via ORM...");
+        const currentUserData = await this.orm.call(
+          "res.users",
+          "search_read",
+          [],
+          {
+            domain: [["id", "=", this.orm.user_id || false]],
+            fields: ["id", "name", "email", "login", "company_id"],
+            limit: 1,
+          },
+        );
+
+        if (currentUserData && currentUserData.length > 0) {
+          currentUserId = currentUserData[0].id;
+          console.log("[User Service] Got ID from ORM call:", currentUserId);
+        }
+      }
+
+      // If still no ID, fetch via RPC context
+      if (!currentUserId) {
+        console.log("[User Service] Trying RPC method...");
+        const contextData = await this.orm.call("res.users", "context_get", []);
+        console.log("[User Service] Context data:", contextData);
+        currentUserId = contextData?.uid;
+      }
+
+      // Last resort: Just search for current user without domain
+      if (!currentUserId) {
+        console.log("[User Service] Using search_read without domain...");
+        const users = await this.orm.call("res.users", "search_read", [], {
+          domain: [],
+          fields: ["id", "name", "email", "login", "company_id"],
+          limit: 1,
+          context: { active_test: false },
+        });
+
+        if (users && users.length > 0) {
+          const user = users[0];
+          const userData = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            login: user.login,
+            company: user.company_id ? user.company_id[1] : "N/A",
+            note: "Retrieved first user (fallback method)",
+          };
+          this.state.user_data = JSON.stringify(userData, null, 2);
+
+          this.notification.add(_t("User data loaded: ") + user.name, {
+            type: "warning",
+          });
+          return;
+        }
+      }
+
+      if (!currentUserId) {
+        // Log all available environment data for debugging
+        console.log("[User Service] Environment:", {
+          services: Object.keys(this.env.services || {}),
+          session: this.env.session,
+          config: this.env.config,
+        });
+        throw new Error("Could not determine current user ID from any source");
+      }
+
+      console.log("[User Service] Final User ID:", currentUserId);
+
       // Fetch current user data using ORM
       const users = await this.orm.searchRead(
         "res.users",
-        [["id", "=", 2]], // Current user is usually ID 2 (admin)
+        [["id", "=", currentUserId]],
         ["id", "name", "email", "login", "company_id"],
       );
 
@@ -330,7 +414,7 @@ export class OdooServicesComponent extends Component {
           login: user.login,
           company: user.company_id ? user.company_id[1] : "N/A",
         };
-        this.state.user_data = JSON.stringify(userData);
+        this.state.user_data = JSON.stringify(userData, null, 2);
 
         this.notification.add(_t("User data loaded: ") + user.name, {
           type: "success",
