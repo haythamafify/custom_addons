@@ -24,6 +24,7 @@ export class OdooServicesComponent extends Component {
     this.dialog = useService("dialog");
     this.effect = useService("effect");
     this.http = useService("http");
+    this.orm = useService("orm");
 
     const stored = browser.localStorage.getItem(THEME_KEY);
     const initialDark = stored ? stored === "true" : false;
@@ -33,6 +34,7 @@ export class OdooServicesComponent extends Component {
       get_http_data: null,
       post_http_data: null,
       rpc_data: null,
+      orm_data: null,
       isLoading: false,
     });
   }
@@ -230,10 +232,28 @@ export class OdooServicesComponent extends Component {
     }
   }
 
+  async getOrmService() {
+    this.state.isLoading = true;
 
-  getOrmService(){
+    try {
+      this.state.orm_data = await this.orm.searchRead(
+        "res.partner",
+        [], 
+        ["id", "name", "email", "phone"], 
+      );
 
-    
+      this.notification.add(
+        `Loaded ${this.state.orm_data.length} partners successfully`,
+        { type: "success" },
+      );
+    } catch (error) {
+      console.error("ORM Error:", error);
+      this.notification.add("Failed to load partners", {
+        type: "danger",
+      });
+    } finally {
+      this.state.isLoading = false;
+    }
   }
 }
 
