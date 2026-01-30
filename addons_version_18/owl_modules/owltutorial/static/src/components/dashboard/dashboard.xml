@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="owl.OdooDashboardTemplate">
+        <Layout>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-8 col-xl-6 mx-auto p-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-primary text-white">
+                                <h2 class="card-title mb-0 h4">Basic Services</h2>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover mb-0 align-middle">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col" class="ps-4 py-3">Property</th>
+                                                <th scope="col" class="py-3">Value</th>
+                                                <th scope="col" class="py-3 text-center w-25"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" class="ps-4">String</th>
+                                                <td t-esc="getowl_basicService.string"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">Boolean</th>
+                                                <td t-esc="getowl_basicService.boolean"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">Integer</th>
+                                                <td t-esc="getowl_basicService.integer"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">Float</th>
+                                                <td t-esc="getowl_basicService.float"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">Array</th>
+                                                <td t-esc="getowl_basicService.array ? getowl_basicService.array.join(', ') : 'N/A'"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">Object</th>
+                                                <td t-esc="stringifyObject(getowl_basicService.object)"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">Function</th>
+                                                <td>
+                                                    <button t-on-click="getowl_basicService.function"
+                                                            class="btn btn-sm btn-primary me-2">
+                                                        Call Function
+                                                    </button>
+                                                </td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">normal_function</th>
+                                                <td t-esc="getowl_basicService.normal_function()"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">arrow_function</th>
+                                                <td t-esc="getowl_basicService.arrow_function()"/>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="ps-4">html</th>
+                                                <td t-raw="getowl_basicService.html"/>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Layout>
+    </t>
+</templates>
