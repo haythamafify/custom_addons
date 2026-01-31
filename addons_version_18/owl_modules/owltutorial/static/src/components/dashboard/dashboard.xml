@@ -63,7 +63,7 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">html</th>
-                                                <td t-raw="getowl_basicService.html" />
+                                                <td t-out="getowl_basicService.html" />
                                             </tr>
                                         </tbody>
                                     </table>
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Partners</h5>
-                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Partners || 0" />
                                     </div>
                                 </div>
 
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Customers</h5>
-                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Customers || 0" />
                                     </div>
                                 </div>
 
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Individuals</h5>
-                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Individuals || 0" />
                                     </div>
                                 </div>
 
@@ -120,7 +120,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Locations</h5>
-                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Locations || 0" />
                                     </div>
                                 </div>
 

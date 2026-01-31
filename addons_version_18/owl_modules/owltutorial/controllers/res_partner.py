@@ -8,6 +8,8 @@ _logger = logging.getLogger(__name__)
 class ResPartner(http.Controller):
     @http.route('/owl/rpc_service', type='http', auth='user', methods=['POST'], csrf=False)
     def get_customers(self, **kwargs):
+         
+            
         try:
             # Parse JSON body from request
             request_body = http.request.httprequest.get_data(as_text=True)
@@ -64,3 +66,16 @@ class ResPartner(http.Controller):
                 status=500,
                 content_type='application/json'
             )
+            
+            
+    @http.route('/owl/dashboard_service', type='json', auth='user', )
+    def dashboard_service(self,limit):
+        return{
+            "Partners":100,
+            "Customers":200,
+            "Individuals":300,
+            "Locations":400,
+            
+        }
+        
+      
