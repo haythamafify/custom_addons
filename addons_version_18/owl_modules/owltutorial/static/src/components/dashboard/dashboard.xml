@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<templates xml:space="preserve">
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve" owl="1">
     <t t-name="owl.OdooDashboardTemplate">
         <Layout>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-lg-8 col-xl-6 mx-auto p-4">
-                        <div class="card shadow-sm border-0">
+            <div class="container-fluid p-0">
+                <div class="row g-4 m-0">
+                    
+                    <!-- Basic Services Card - LEFT SIDE -->
+                    <div class="col-12 col-md-6 p-3">
+                        <div class="card shadow-sm border-0 h-100">
                             <div class="card-header bg-primary text-white">
                                 <h2 class="card-title mb-0 h4">Basic Services</h2>
                             </div>
@@ -16,64 +18,52 @@
                                             <tr>
                                                 <th scope="col" class="ps-4 py-3">Property</th>
                                                 <th scope="col" class="py-3">Value</th>
-                                                <th scope="col" class="py-3 text-center w-25"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th scope="row" class="ps-4">String</th>
-                                                <td t-esc="getowl_basicService.string"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.string" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">Boolean</th>
-                                                <td t-esc="getowl_basicService.boolean"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.boolean" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">Integer</th>
-                                                <td t-esc="getowl_basicService.integer"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.integer" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">Float</th>
-                                                <td t-esc="getowl_basicService.float"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.float" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">Array</th>
-                                                <td t-esc="getowl_basicService.array ? getowl_basicService.array.join(', ') : 'N/A'"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.array ? getowl_basicService.array.join(', ') : 'N/A'" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">Object</th>
-                                                <td t-esc="stringifyObject(getowl_basicService.object)"/>
-                                                <td></td>
+                                                <td t-esc="stringifyObject(getowl_basicService.object)" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">Function</th>
                                                 <td>
-                                                    <button t-on-click="getowl_basicService.function"
-                                                            class="btn btn-sm btn-primary me-2">
+                                                    <button t-on-click="getowl_basicService.function" class="btn btn-sm btn-primary">
                                                         Call Function
                                                     </button>
                                                 </td>
-                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">normal_function</th>
-                                                <td t-esc="getowl_basicService.normal_function()"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.normal_function()" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">arrow_function</th>
-                                                <td t-esc="getowl_basicService.arrow_function()"/>
-                                                <td></td>
+                                                <td t-esc="getowl_basicService.arrow_function()" />
                                             </tr>
                                             <tr>
                                                 <th scope="row" class="ps-4">html</th>
-                                                <td t-raw="getowl_basicService.html"/>
-                                                <td></td>
+                                                <td t-raw="getowl_basicService.html" />
                                             </tr>
                                         </tbody>
                                     </table>
@@ -81,6 +71,63 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Dashboard Service Card - RIGHT SIDE -->
+                    <div class="col-12 col-md-6 p-3">
+                        <div class="card shadow-sm border-0 h-100">
+                            <div class="card-header bg-success text-white">
+                                <h2 class="card-title mb-0 h4">Dashboard Service</h2>
+                            </div>
+                            <div class="card-body">
+                                
+                                <!-- Partners -->
+                                <div class="d-flex flex-row p-3 mb-3 border rounded align-items-center">
+                                    <div class="me-4">
+                                        <i class="fa fa-users" style="font-size: 50px; color: #6c757d;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 text-muted">Partners</h5>
+                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                    </div>
+                                </div>
+
+                                <!-- Customers -->
+                                <div class="d-flex flex-row p-3 mb-3 border rounded align-items-center">
+                                    <div class="me-4">
+                                        <i class="fa fa-user" style="font-size: 50px; color: #6c757d;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 text-muted">Customers</h5>
+                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                    </div>
+                                </div>
+
+                                <!-- Individuals -->
+                                <div class="d-flex flex-row p-3 mb-3 border rounded align-items-center">
+                                    <div class="me-4">
+                                        <i class="fa fa-user" style="font-size: 50px; color: #6c757d;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 text-muted">Individuals</h5>
+                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                    </div>
+                                </div>
+
+                                <!-- Locations -->
+                                <div class="d-flex flex-row p-3 mb-3 border rounded align-items-center">
+                                    <div class="me-4">
+                                        <i class="fa fa-map-marker" style="font-size: 50px; color: #6c757d;"></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <h5 class="mb-1 text-muted">Locations</h5>
+                                        <h2 class="mb-0 text-primary fw-bold">1000</h2>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </Layout>
