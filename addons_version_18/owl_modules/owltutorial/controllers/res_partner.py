@@ -68,14 +68,14 @@ class ResPartner(http.Controller):
             )
             
             
-    @http.route('/owl/dashboard_service', type='json', auth='user', )
-    def dashboard_service(self,limit):
-        return{
-            "Partners":100,
-            "Customers":200,
-            "Individuals":300,
-            "Locations":400,
-            
+    @http.route('/owl/dashboard_service', type='json', auth='user')
+    def dashboard_service(self, limit=100):
+        Partner = http.request.env["res.partner"]
+
+        return {
+            "Partners": Partner.search_count([]),
+            "Customers": Partner.search_count([("customer_rank", ">", 0)]),
+            "Individuals": Partner.search_count([("is_company", "=", False)]),
+            "Locations": Partner.search_count([("city", "!=", False)]),
         }
-        
-      
+

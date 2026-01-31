@@ -75,9 +75,25 @@
                     <!-- Dashboard Service Card - RIGHT SIDE -->
                     <div class="col-12 col-md-6 p-3">
                         <div class="card shadow-sm border-0 h-100">
-                            <div class="card-header bg-success text-white">
+                            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
                                 <h2 class="card-title mb-0 h4">Dashboard Service</h2>
+                                
+                                <!-- ✅ Refresh Button + Last Update -->
+                                <div class="d-flex align-items-center gap-2">
+                                    <small class="text-white-50" t-if="state.lastUpdate">
+                                        آخر تحديث: <t t-esc="state.lastUpdate" />
+                                    </small>
+                                    <button 
+                                        t-on-click="refreshData" 
+                                        class="btn btn-sm btn-light"
+                                        t-att-disabled="state.isLoading">
+                                        <i class="fa fa-refresh" t-att-class="{'fa-spin': state.isLoading}"></i>
+                                        <span t-if="!state.isLoading"> تحديث</span>
+                                        <span t-if="state.isLoading"> جاري...</span>
+                                    </button>
+                                </div>
                             </div>
+                            
                             <div class="card-body">
                                 
                                 <!-- Partners -->
@@ -87,7 +103,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Partners</h5>
-                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Partners || 0" />
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="state.dashboardData.Partners || 0" />
                                     </div>
                                 </div>
 
@@ -98,7 +114,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Customers</h5>
-                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Customers || 0" />
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="state.dashboardData.Customers || 0" />
                                     </div>
                                 </div>
 
@@ -109,7 +125,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Individuals</h5>
-                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Individuals || 0" />
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="state.dashboardData.Individuals || 0" />
                                     </div>
                                 </div>
 
@@ -120,7 +136,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="mb-1 text-muted">Locations</h5>
-                                        <h2 class="mb-0 text-primary fw-bold" t-esc="dashboardData.Locations || 0" />
+                                        <h2 class="mb-0 text-primary fw-bold" t-esc="state.dashboardData.Locations || 0" />
                                     </div>
                                 </div>
 
