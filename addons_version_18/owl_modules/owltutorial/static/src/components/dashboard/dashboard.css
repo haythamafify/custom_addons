@@ -49,6 +49,7 @@
 .dash-stat-card {
     border-radius: 10px;
     transition: all 0.2s;
+    min-width: 100px;
 }
 
 .dash-stat-card:hover {

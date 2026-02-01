@@ -121,6 +121,7 @@
                                         <div class="card bg-light border-0 dash-stat-card shadow-sm">
                                             <div class="card-body py-3 text-center">
                                                 <i class="bi bi-people text-primary"></i>
+                                                <small class="text-muted d-block text-nowrap">Partners</small>
                                                 <div class="fw-bold" t-esc="state.dashboardData.Partners || 0" />
                                                 <small class="text-success">+12%</small>
                                             </div>
@@ -130,6 +131,7 @@
                                         <div class="card bg-light border-0 dash-stat-card shadow-sm">
                                             <div class="card-body py-3 text-center">
                                                 <i class="bi bi-person text-info"></i>
+                                                <small class="text-muted d-block text-nowrap">Customers</small>
                                                 <div class="fw-bold" t-esc="state.dashboardData.Customers || 0" />
                                                 <small class="text-success">+5%</small>
                                             </div>
@@ -139,6 +141,7 @@
                                         <div class="card bg-light border-0 dash-stat-card shadow-sm">
                                             <div class="card-body py-3 text-center">
                                                 <i class="bi bi-person-badge text-warning"></i>
+                                                <small class="text-muted d-block text-nowrap">Individuals</small>
                                                 <div class="fw-bold" t-esc="state.dashboardData.Individuals || 0" />
                                                 <small class="text-danger">-2%</small>
                                             </div>
@@ -148,6 +151,7 @@
                                         <div class="card bg-light border-0 dash-stat-card shadow-sm">
                                             <div class="card-body py-3 text-center">
                                                 <i class="bi bi-geo-alt text-success"></i>
+                                                <small class="text-muted d-block text-nowrap">Locations</small>
                                                 <div class="fw-bold" t-esc="state.dashboardData.Locations || 0" />
                                                 <small class="text-success">+8%</small>
                                             </div>
