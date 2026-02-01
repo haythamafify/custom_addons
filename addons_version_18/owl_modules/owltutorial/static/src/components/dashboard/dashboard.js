@@ -1,82 +1,105 @@
 /** @odoo-module **/
-import { Component, useSubEnv, useState, onWillStart } from "@odoo/owl";  
-import { useService } from "@web/core/utils/hooks";  
+import { Component, useSubEnv, useState, onWillStart } from "@odoo/owl";
+import { useService } from "@web/core/utils/hooks";
 import { registry } from "@web/core/registry";
 import { Layout } from "@web/search/layout";
 
 export class OdooDashboard extends Component {
-    static template = "owl.OdooDashboardTemplate";
-    static components = { Layout };
+  static template = "owl.OdooDashboardTemplate";
+  static components = { Layout };
 
-    setup() {
-        useSubEnv({ config: this.env.config });
-        
-        // ✅ استخدم useState للبيانات
-        this.state = useState({
-            dashboardData: {
-                Partners: 0,
-                Customers: 0,
-                Individuals: 0,
-                Locations: 0
-            },
-            isLoading: false,
-            lastUpdate: null
-        });
-        
-        // الحصول على الخدمة
-        this.dashboardService = useService("owldashboardsService");
-        
-        // ✅ تحميل البيانات أول مرة
-        onWillStart(async () => {
-            await this.loadDashboardData();
-        });
-        
-        // ✅ تحديث تلقائي كل 30 ثانية
-        this.refreshInterval = setInterval(() => {
-            this.loadDashboardData();
-        }, 30000); // 30 ثانية
-    }
-    
-    // ✅ Function لتحميل البيانات
-    async loadDashboardData() {
-        try {
-            this.state.isLoading = true;
-            
-            const data = await this.dashboardService.fetchDashboardData();
-            
-            // ✅ تحديث الـ state - الـ UI هيتحدث تلقائياً!
-            this.state.dashboardData = data;
-            this.state.lastUpdate = new Date().toLocaleTimeString('ar-EG');
-            this.state.isLoading = false;
-            
-            console.log("Dashboard updated:", this.state.dashboardData);
-            
-        } catch (error) {
-            console.error("Error loading dashboard:", error);
-            this.state.isLoading = false;
-        }
-    }
-    
-    // ✅ Function للتحديث اليدوي (من الزر)
-    async refreshData() {
-        await this.loadDashboardData();
-    }
+  setup() {
+    useSubEnv({ config: this.env.config });
 
-    get getowl_basicService() {
-        const basicService = this.env.services.basicService;
-        return basicService || {};
-    }
+    // ✅ استخدم useState للبيانات
+    this.state = useState({
+      dashboardData: {
+        Partners: 0,
+        Customers: 0,
+        Individuals: 0,
+        Locations: 0,
+      },
+      isLoading: false,
+      lastUpdate: null,
+    });
 
-    stringifyObject(obj) {
-        return JSON.stringify(obj);
+    // الحصول على الخدمة
+    this.dashboardService = useService("owldashboardsService");
+    this.simpleMailService = useService("simpleMailService");
+
+    // ✅ تحميل البيانات أول مرة
+    onWillStart(async () => {
+      await this.loadDashboardData();
+    });
+
+    // ✅ تحديث تلقائي كل 30 ثانية
+    this.refreshInterval = setInterval(() => {
+      this.loadDashboardData();
+    }, 30000); // 30 ثانية
+  }
+
+  // ✅ Function لتحميل البيانات
+  async loadDashboardData() {
+    try {
+      this.state.isLoading = true;
+
+      const data = await this.dashboardService.fetchDashboardData();
+
+      // ✅ تحديث الـ state - الـ UI هيتحدث تلقائياً!
+      this.state.dashboardData = data;
+      this.state.lastUpdate = new Date().toLocaleTimeString("ar-EG");
+      this.state.isLoading = false;
+
+      console.log("Dashboard updated:", this.state.dashboardData);
+    } catch (error) {
+      console.error("Error loading dashboard:", error);
+      this.state.isLoading = false;
     }
+  }
+
+  // ✅ Function للتحديث اليدوي (من الزر)
+  async refreshData() {
+    await this.loadDashboardData();
+  }
+
+  get getowl_basicService() {
+    const basicService = this.env.services.basicService;
+    return basicService || {
+      string: "Default String",
+      boolean: true,
+      integer: 42,
+      float: 3.14,
+      array: ["item1", "item2", "item3"],
+      object: { key: "value", nested: { prop: "test" } },
+      function: () => alert("Function called!"),
+      normal_function: function() { return "Normal function result"; },
+      arrow_function: () => "Arrow function result",
+      html: "<span style='color: red;'>HTML Content</span>"
+    };
+  }
+
+  stringifyObject(obj) {
+    return JSON.stringify(obj);
+  }
+
+  openSimpleMailService() {
+
+    console.log("openSimpleMailService");
     
-    // ✅ تنظيف الـ interval عند إغلاق الـ Component
-    willUnmount() {
-        if (this.refreshInterval) {
-            clearInterval(this.refreshInterval);
-        }
+    this.simpleMailService.open();
+  }
+
+  openSimpleMail() {
+    console.log("openSimpleMail");
+    this.simpleMailService.open();
+  }
+
+  // ✅ تنظيف الـ interval عند إغلاق الـ Component
+  willUnmount() {
+    if (this.refreshInterval) {
+      clearInterval(this.refreshInterval);
     }
+  }
 }
 
 registry.category("actions").add("owl.odoo_dashboard", OdooDashboard);
