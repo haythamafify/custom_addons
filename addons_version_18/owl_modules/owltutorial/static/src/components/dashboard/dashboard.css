@@ -1,0 +1,92 @@
+/* Dashboard - Bootstrap 5 Enhancements */
+
+/* التمرير للصفحة */
+.owl-dashboard.overflow-auto {
+    overflow-y: auto !important;
+}
+
+/* سكرول جدول Basic Services - يظهر كل الصفوف */
+.dash-table-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* تثبيت رأس الجدول عند السكرول */
+.dash-table-scroll .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bs-primary) !important;
+    color: white !important;
+}
+
+.dash-table-scroll .table thead th {
+    border-bottom: none;
+}
+
+/* حركة التحديث */
+@keyframes dash-spin {
+    to { transform: rotate(360deg); }
+}
+
+.dash-spin {
+    display: inline-block;
+    animation: dash-spin 1s linear infinite;
+}
+
+/* تحسين البطاقات */
+.dash-card {
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dash-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* بطاقات الإحصائيات */
+.dash-stat-card {
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+.dash-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+}
+
+.dash-stat-card .bi {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.dash-stat-card .fw-bold {
+    font-size: 1.25rem;
+}
+
+/* بطاقة البريد */
+.dash-mail-card {
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dash-mail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* scrollbar مخصص للجدول */
+.dash-table-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dash-table-scroll::-webkit-scrollbar-thumb {
+    background: #dee2e6;
+    border-radius: 3px;
+}
+
+.dash-table-scroll::-webkit-scrollbar-thumb:hover {
+    background: #adb5bd;
+}

@@ -27,6 +27,7 @@
             # OWL Components
             'owltutorial/static/src/components/**/*.js',
             'owltutorial/static/src/components/**/*.xml',
+            'owltutorial/static/src/components/**/*.css',
             'owltutorial/static/src/components/**/*.scss',
             
             # Bootstrap Icons
