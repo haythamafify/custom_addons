@@ -1,10 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <templates xml:space="preserve" owl="1">
     <t t-name="owl_dashboard.FilePondLibrary">
-        <div class="p-4">
-            <h1>
-                <t t-esc="_t('File Upload Library')"/>
-            </h1>
-            <input t-ref="fileInput" type="file" name="filepond"/>
+        <div class="container py-4 filepond-library-page">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <t t-esc="_t('File Upload Library')" />
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted mb-3">
+                        <t t-esc="_t('Upload your files here. Multiple files supported.')" />
+                    </p>
+                    <!-- File Input -->
+                    <input t-ref="fileInput" name="filepond" type="file" class="filepond" />
+                </div>
+            </div>
         </div>
     </t>
 </templates>

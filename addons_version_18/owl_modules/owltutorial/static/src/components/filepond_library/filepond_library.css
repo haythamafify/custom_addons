@@ -1,0 +1,22 @@
+/* Let the page handle scrolling (no internal FilePond scroll) */
+.filepond--list-scroller {
+  max-height: none;
+  overflow: visible;
+}
+
+/* Enable page scrolling when this view is active */
+body:has(.filepond-library-page) .o_action_manager,
+body:has(.filepond-library-page) .o_content {
+  overflow-y: auto;
+  height: auto;
+}
+
+/* Ensure FilePond doesn't lock its own height */
+.filepond--root {
+  height: auto !important;
+  min-height: 320px;
+}
+
+.filepond--drop-label {
+  min-height: 220px;
+}
