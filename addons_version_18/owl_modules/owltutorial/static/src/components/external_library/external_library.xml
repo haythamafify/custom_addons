@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve" owl="1">
+    <t t-name="owl_dashboard.ExternalLibrary">
+        <div class="row px-5 vh-100 over-flow-y-auto">
+            <div class="col-lg-6 p-5">
+                <div class="h1 mb-3">
+                    <t t-esc="_t('International Telephone Input')"/>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">
+                        <t t-esc="_t('Telephone Input')"/>
+                    </label>
+                    <input t-ref="phone" type="tel" class="form-control" />
+                    <button class="btn btn-primary" type="button" t-on-click="validate">
+                        <t t-esc="_t('Validate')"/>
+                    </button>
+                </div>
+
+                <div class="alert alert-success" role="alert" t-if="state.phoneValid === true">
+                    <t t-esc="_t('Phone valid')"/>
+                </div>
+
+                <div class="alert alert-danger" role="alert" t-if="state.phoneValid === false">
+                    <t t-esc="_t('Phone not valid')"/>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
