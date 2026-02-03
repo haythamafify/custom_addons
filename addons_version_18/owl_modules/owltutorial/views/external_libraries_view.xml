@@ -13,5 +13,18 @@
             action="external_library_action"
             parent="owl_todo_list_main_menu"
             sequence="30"/>
+
+<record id="external_library_action_filepond" model="ir.actions.client">
+    <field name="name">File Upload</field>
+    <field name="tag">owl_dashboard.filepond_library</field>
+    <field name="target">current</field>
+</record>
+
+<menuitem
+    id="external_library_menu_filepond"
+    name="File Upload"
+    action="external_library_action_filepond"
+    parent="owl_todo_list_main_menu"
+    sequence="40"/>
     </data>
 </odoo>

@@ -1,0 +1,10 @@
+<templates xml:space="preserve" owl="1">
+    <t t-name="owl_dashboard.FilePondLibrary">
+        <div class="p-4">
+            <h1>
+                <t t-esc="_t('File Upload Library')"/>
+            </h1>
+            <input t-ref="fileInput" type="file" name="filepond"/>
+        </div>
+    </t>
+</templates>
