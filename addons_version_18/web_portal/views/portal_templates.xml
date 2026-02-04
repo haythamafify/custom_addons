@@ -13,13 +13,21 @@
         </xpath>
     </template>
 
+    <template id="portal_my_properties_breadcrumbs" name="Portal My Properties Breadcrumbs"
+              inherit_id="portal.portal_breadcrumbs" priority="40">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'properties'" class="breadcrumb-item active">
+                Properties
+            </li>
+            <li t-if="page_name == 'property'" class="breadcrumb-item active">
+                <a t-attf-href="/my/properties?{{ keep_query() }}">Properties</a>
+                / <t t-esc="property.name"/>
+            </li>
+        </xpath>
+    </template>
+
     <template id="portal_my_properties" name="Portal My Properties">
         <t t-call="portal.portal_layout">
-            <t t-set="breadcrumbs">
-                <li class="breadcrumb-item"><a href="/my/home">Home</a></li>
-                <li class="breadcrumb-item active">Properties</li>
-            </t>
-
             <div class="o_portal_my_doc">
                 <h3>My Properties</h3>
 
@@ -76,12 +84,6 @@
 
     <template id="portal_my_property" name="Portal My Property">
         <t t-call="portal.portal_layout">
-            <t t-set="breadcrumbs">
-                <li class="breadcrumb-item"><a href="/my/home">Home</a></li>
-                <li class="breadcrumb-item"><a href="/my/properties">Properties</a></li>
-                <li class="breadcrumb-item active"><t t-esc="property.name"/></li>
-            </t>
-
             <div class="o_portal_my_doc">
                 <h3><t t-esc="property.name"/></h3>
 

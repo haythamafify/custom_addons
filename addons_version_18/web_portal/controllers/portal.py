@@ -39,7 +39,7 @@ class PropertyPortal(CustomerPortal):
         )
 
         values.update({
-            'page_name': 'property',
+            'page_name': 'properties',
             'properties': properties,
             'pager': pager,
             'default_url': '/my/properties',
