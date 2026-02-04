@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_owl_todo_list,access.owl.todo.list,model_owl_todo_list,,1,1,1,1
+
