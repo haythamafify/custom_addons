@@ -16,13 +16,20 @@
     <template id="portal_my_properties_breadcrumbs" name="Portal My Properties Breadcrumbs"
               inherit_id="portal.portal_breadcrumbs" priority="40">
         <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
-            <li t-if="page_name == 'properties'" class="breadcrumb-item active">
-                Properties
-            </li>
-            <li t-if="page_name == 'property'" class="breadcrumb-item active">
-                <a t-attf-href="/my/properties?{{ keep_query() }}">Properties</a>
-                / <t t-esc="property.name"/>
-            </li>
+            <t t-if="breadcrumbs">
+                <t t-foreach="breadcrumbs" t-as="crumb">
+                    <li t-att-class="'breadcrumb-item%s' % (' active' if crumb.get('active') else '')">
+                        <t t-if="crumb.get('url')">
+                            <a t-att-href="crumb.get('url')">
+                                <t t-esc="crumb.get('name')"/>
+                            </a>
+                        </t>
+                        <t t-else="">
+                            <t t-esc="crumb.get('name')"/>
+                        </t>
+                    </li>
+                </t>
+            </t>
         </xpath>
     </template>
 
@@ -32,7 +39,15 @@
                 <h3>My Properties</h3>
 
                 <t t-if="properties">
-                    <div class="d-flex justify-content-end mb-2">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-2 gap-2">
+                        <form method="get" action="/my/properties" class="d-flex align-items-center gap-2">
+                            <input type="text" name="search" class="form-control form-control-sm"
+                                   placeholder="Search..." t-att-value="search"/>
+                            <button type="submit" class="btn btn-sm btn-primary">Search</button>
+                            <t t-if="sortby">
+                                <input type="hidden" name="sortby" t-att-value="sortby"/>
+                            </t>
+                        </form>
                         <form method="get" action="/my/properties" class="d-flex align-items-center">
                             <label class="mb-0 me-2 text-muted">Sort by</label>
                             <select name="sortby" class="form-select form-select-sm w-auto" onchange="this.form.submit()">
@@ -43,6 +58,9 @@
                                     </option>
                                 </t>
                             </select>
+                            <t t-if="search">
+                                <input type="hidden" name="search" t-att-value="search"/>
+                            </t>
                         </form>
                     </div>
                     <table class="table table-hover o_portal_my_docs">

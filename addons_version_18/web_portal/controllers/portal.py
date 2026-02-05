@@ -25,6 +25,7 @@ class PropertyPortal(CustomerPortal):
         domain = self._get_property_domain()
 
         sortby = kw.get('sortby') or 'newest'
+        search = (kw.get('search') or '').strip()
         sort_options = [
             {'key': 'newest', 'label': _('Newest'), 'order': 'create_date desc'},
             {'key': 'name', 'label': _('Name'), 'order': 'name asc'},
@@ -33,6 +34,12 @@ class PropertyPortal(CustomerPortal):
         ]
         sortby_map = {opt['key']: opt['order'] for opt in sort_options}
         sort_order = sortby_map.get(sortby, sortby_map['newest'])
+
+        if search:
+            domain = domain + ['|', '|',
+                               ('name', 'ilike', search),
+                               ('ref', 'ilike', search),
+                               ('state', 'ilike', search)]
 
         property_count = Property.search_count(domain)
         page_start = 0
@@ -43,6 +50,8 @@ class PropertyPortal(CustomerPortal):
         url_args = {}
         if sortby:
             url_args['sortby'] = sortby
+        if search:
+            url_args['search'] = search
 
         def _make_page_url(page_number):
             base = '/my/properties' if page_number == 1 else '/my/properties/page/%s' % page_number
@@ -93,6 +102,10 @@ class PropertyPortal(CustomerPortal):
             'default_url': '/my/properties',
             'sortby': sortby,
             'sort_options': sort_options,
+            'search': search,
+            'breadcrumbs': [
+                {'name': _('Properties'), 'active': True},
+            ],
         })
         return request.render('web_portal.portal_my_properties', values)
 
@@ -107,5 +120,9 @@ class PropertyPortal(CustomerPortal):
         values.update({
             'page_name': 'property',
             'property': property_rec,
+            'breadcrumbs': [
+                {'name': _('Properties'), 'url': '/my/properties'},
+                {'name': property_rec.name, 'active': True},
+            ],
         })
         return request.render('web_portal.portal_my_property', values)
