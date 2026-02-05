@@ -165,6 +165,13 @@
                         </table>
                     </div>
                 </div>
+
+                <div class="mt-4">
+                    <h4>Chatter Log</h4>
+                    <t t-call="portal.message_thread">
+                        <t t-set="object" t-value="property"/>
+                    </t>
+                </div>
             </div>
         </t>
     </template>
