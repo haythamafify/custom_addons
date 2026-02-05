@@ -24,36 +24,58 @@ class PropertyPortal(CustomerPortal):
         Property = request.env['property']
         domain = self._get_property_domain()
 
+        sortby = kw.get('sortby') or 'newest'
+        sort_options = [
+            {'key': 'newest', 'label': _('Newest'), 'order': 'create_date desc'},
+            {'key': 'name', 'label': _('Name'), 'order': 'name asc'},
+            {'key': 'price', 'label': _('Expected Price'), 'order': 'expected_price desc'},
+            {'key': 'state', 'label': _('State'), 'order': 'state asc'},
+        ]
+        sortby_map = {opt['key']: opt['order'] for opt in sort_options}
+        sort_order = sortby_map.get(sortby, sortby_map['newest'])
+
         property_count = Property.search_count(domain)
         page_start = 0
         page_end = 0
         if property_count:
             page_start = ((page - 1) * self._items_per_page) + 1
             page_end = min(page * self._items_per_page, property_count)
+        url_args = {}
+        if sortby:
+            url_args['sortby'] = sortby
+
+        def _make_page_url(page_number):
+            base = '/my/properties' if page_number == 1 else '/my/properties/page/%s' % page_number
+            if not url_args:
+                return base
+            query_string = '&'.join('%s=%s' % (key, url_args[key]) for key in sorted(url_args))
+            return '%s?%s' % (base, query_string)
+
         pager = portal_pager(
             url='/my/properties',
             total=property_count,
             page=page,
-            step=self._items_per_page
+            step=self._items_per_page,
+            url_args=url_args,
         )
         page_count = pager.get('page_count', 1)
         page_links = [
             {
                 'num': p,
-                'url': '/my/properties' if p == 1 else '/my/properties/page/%s' % p
+                'url': _make_page_url(p)
             }
             for p in range(1, page_count + 1)
         ]
         prev_url = None
         next_url = None
         if page > 1:
-            prev_url = '/my/properties' if page - 1 == 1 else '/my/properties/page/%s' % (page - 1)
+            prev_url = _make_page_url(page - 1)
         if page < page_count:
-            next_url = '/my/properties/page/%s' % (page + 1)
+            next_url = _make_page_url(page + 1)
 
         properties = Property.search(
             domain,
-            order='create_date desc',
+            order=sort_order,
             limit=self._items_per_page,
             offset=pager['offset']
         )
@@ -69,6 +91,8 @@ class PropertyPortal(CustomerPortal):
             'prev_url': prev_url,
             'next_url': next_url,
             'default_url': '/my/properties',
+            'sortby': sortby,
+            'sort_options': sort_options,
         })
         return request.render('web_portal.portal_my_properties', values)
 
