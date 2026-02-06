@@ -120,7 +120,15 @@
     <template id="portal_my_property" name="Portal My Property">
         <t t-call="portal.portal_layout">
             <div class="o_portal_my_doc">
-                <h3><t t-esc="property.name"/></h3>
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                    <h3 class="mb-0">
+                        <t t-esc="property.name"/>
+                    </h3>
+                    <a class="btn btn-sm btn-primary"
+                       t-att-href="'/my/properties/%s/report' % property.id">
+                        Download PDF
+                    </a>
+                </div>
 
                 <div class="row">
                     <div class="col-12 col-md-6">

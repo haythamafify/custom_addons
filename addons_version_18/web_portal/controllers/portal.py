@@ -126,3 +126,23 @@ class PropertyPortal(CustomerPortal):
             ],
         })
         return request.render('web_portal.portal_my_property', values)
+
+    @http.route(['/my/properties/<int:property_id>/report'], type='http', auth='user', website=True)
+    def portal_property_report(self, property_id, **kw):
+        property_rec = request.env['property'].browse(property_id)
+
+        if not property_rec.exists() or property_rec.user_id.id != request.env.user.id:
+            return request.redirect('/my/properties')
+
+        report = request.env['ir.actions.report'].sudo()
+        pdf_content, _ = report._render_qweb_pdf(
+            'app_one.action_report_property',
+            res_ids=[property_rec.id],
+        )
+        filename = 'Property-%s.pdf' % (property_rec.ref or property_rec.id)
+        headers = [
+            ('Content-Type', 'application/pdf'),
+            ('Content-Length', len(pdf_content)),
+            ('Content-Disposition', 'attachment; filename="%s"' % filename),
+        ]
+        return request.make_response(pdf_content, headers=headers)
