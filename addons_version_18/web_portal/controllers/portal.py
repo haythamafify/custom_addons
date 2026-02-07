@@ -25,6 +25,45 @@ class PropertyPortal(CustomerPortal):
         """Limit properties to the current user."""
         return [('user_id', '=', request.env.user.id)]
 
+    def _get_property_form_values(self, property_rec=None, errors=None, values=None):
+        values = values or {}
+        errors = errors or {}
+        return {
+            'page_name': 'property_form',
+            'property': property_rec,
+            'values': values,
+            'errors': errors,
+            'breadcrumbs': [
+                {'name': _('Properties'), 'url': '/my/properties'},
+                {'name': property_rec.name if property_rec else _('New Property'), 'active': True},
+            ],
+        }
+
+    def _parse_property_form(self, kw):
+        def _to_int(val):
+            return int(val) if val not in (None, '', False) else 0
+
+        def _to_float(val):
+            return float(val) if val not in (None, '', False) else 0.0
+
+        def _to_bool(val):
+            return val in ('on', 'true', 'True', True, '1', 1)
+
+        return {
+            'name': (kw.get('name') or '').strip(),
+            'description': (kw.get('description') or '').strip(),
+            'postcode': (kw.get('postcode') or '').strip(),
+            'expected_price': _to_float(kw.get('expected_price')),
+            'bedrooms': _to_int(kw.get('bedrooms')),
+            'living_area': _to_int(kw.get('living_area')),
+            'facades': _to_int(kw.get('facades')),
+            'garage': _to_bool(kw.get('garage')),
+            'garden': _to_bool(kw.get('garden')),
+            'garden_area': _to_int(kw.get('garden_area')),
+            'garden_orientation': kw.get('garden_orientation') or 'north',
+            'expected_date_selling': kw.get('expected_date_selling') or False,
+        }
+
     @http.route(['/my/properties', '/my/properties/page/<int:page>'], type='http', auth='user', website=True)
     def portal_my_properties(self, page=1, **kw):
         values = self._prepare_portal_layout_values()
@@ -159,6 +198,88 @@ class PropertyPortal(CustomerPortal):
             ],
         })
         return request.render('web_portal.portal_my_properties', values)
+
+    @http.route(['/my/properties/new'], type='http', auth='user', website=True, csrf=True, methods=['GET', 'POST'])
+    def portal_property_create(self, **kw):
+        if request.httprequest.method == 'POST':
+            values = self._parse_property_form(kw)
+            errors = {}
+            if not values.get('name'):
+                errors['name'] = _('Name is required.')
+            if not values.get('postcode'):
+                errors['postcode'] = _('Postcode is required.')
+            if errors:
+                return request.render(
+                    'web_portal.portal_property_form',
+                    self._get_property_form_values(None, errors=errors, values=values)
+                )
+
+            values['user_id'] = request.env.user.id
+            try:
+                request.env['property'].create(values)
+                return request.redirect('/my/properties')
+            except Exception as exc:
+                request.env.cr.rollback()
+                errors['form'] = str(exc)
+                _logger.error("Portal create property failed: %s", exc, exc_info=True)
+                return request.render(
+                    'web_portal.portal_property_form',
+                    self._get_property_form_values(None, errors=errors, values=values)
+                )
+
+        return request.render(
+            'web_portal.portal_property_form',
+            self._get_property_form_values(None, values={})
+        )
+
+    @http.route(['/my/properties/<int:property_id>/edit'], type='http', auth='user', website=True, csrf=True, methods=['GET', 'POST'])
+    def portal_property_edit(self, property_id, **kw):
+        property_rec = request.env['property'].browse(property_id)
+        if not property_rec.exists() or property_rec.user_id.id != request.env.user.id:
+            return request.redirect('/my/properties')
+
+        if request.httprequest.method == 'POST':
+            values = self._parse_property_form(kw)
+            errors = {}
+            if not values.get('name'):
+                errors['name'] = _('Name is required.')
+            if not values.get('postcode'):
+                errors['postcode'] = _('Postcode is required.')
+            if errors:
+                return request.render(
+                    'web_portal.portal_property_form',
+                    self._get_property_form_values(property_rec, errors=errors, values=values)
+                )
+            try:
+                property_rec.write(values)
+                return request.redirect('/my/properties/%s' % property_rec.id)
+            except Exception as exc:
+                request.env.cr.rollback()
+                errors['form'] = str(exc)
+                _logger.error("Portal edit property failed: %s", exc, exc_info=True)
+                return request.render(
+                    'web_portal.portal_property_form',
+                    self._get_property_form_values(property_rec, errors=errors, values=values)
+                )
+
+        values = {
+            'name': property_rec.name or '',
+            'description': property_rec.description or '',
+            'postcode': property_rec.postcode or '',
+            'expected_price': property_rec.expected_price or 0.0,
+            'bedrooms': property_rec.bedrooms or 0,
+            'living_area': property_rec.living_area or 0,
+            'facades': property_rec.facades or 0,
+            'garage': bool(property_rec.garage),
+            'garden': bool(property_rec.garden),
+            'garden_area': property_rec.garden_area or 0,
+            'garden_orientation': property_rec.garden_orientation or 'north',
+            'expected_date_selling': property_rec.expected_date_selling or False,
+        }
+        return request.render(
+            'web_portal.portal_property_form',
+            self._get_property_form_values(property_rec, values=values)
+        )
 
     @http.route(['/my/properties/xlsx_report'], type='http', auth='user', website=True)
     def portal_my_properties_xlsx_report(self, **kw):

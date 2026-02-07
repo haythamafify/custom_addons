@@ -8,6 +8,7 @@
                 <t t-set="title">Properties</t>
                 <t t-set="url" t-value="'/my/properties'"/>
                 <t t-set="text">Follow, view or manage your properties</t>
+                <t t-set="count" t-value="property_count"/>
                 <t t-set="placeholder_count" t-value="'property_count'"/>
             </t>
         </xpath>
@@ -88,6 +89,9 @@
                             </form>
                             <a class="btn btn-sm btn-success" t-att-href="export_url">
                                 Export Excel
+                            </a>
+                            <a class="btn btn-sm btn-outline-primary" href="/my/properties/new">
+                                Create Property
                             </a>
                         </div>
                     </div>
@@ -172,7 +176,12 @@
                     </t>
                 </t>
                 <t t-else="">
-                    <div class="alert alert-info">No properties found.</div>
+                    <div class="alert alert-info d-flex flex-wrap align-items-center justify-content-between gap-2">
+                        <span>No properties found.</span>
+                        <a class="btn btn-sm btn-outline-primary" href="/my/properties/new">
+                            Create Property
+                        </a>
+                    </div>
                 </t>
             </div>
         </t>
@@ -185,14 +194,20 @@
                     <h3 class="mb-0">
                         <t t-esc="property.name"/>
                     </h3>
-                    <a class="btn btn-sm btn-primary"
-                       t-att-href="'/my/properties/%s/report' % property.id">
-                        Download PDF
-                    </a>
-                    <a class="btn btn-sm btn-success"
-                       t-att-href="'/my/properties/%s/xlsx_report' % property.id">
-                        Download Excel
-                    </a>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="btn btn-sm btn-outline-primary"
+                           t-att-href="'/my/properties/%s/edit' % property.id">
+                            Edit
+                        </a>
+                        <a class="btn btn-sm btn-primary"
+                           t-att-href="'/my/properties/%s/report' % property.id">
+                            Download PDF
+                        </a>
+                        <a class="btn btn-sm btn-success"
+                           t-att-href="'/my/properties/%s/xlsx_report' % property.id">
+                            Download Excel
+                        </a>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -245,6 +260,128 @@
                         <t t-set="object" t-value="property"/>
                     </t>
                 </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_property_form" name="Portal Property Form">
+        <t t-call="portal.portal_layout">
+            <div class="o_portal_my_doc">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                    <h3 class="mb-0">
+                        <t t-if="property">Edit Property</t>
+                        <t t-else="">Create Property</t>
+                    </h3>
+                    <a class="btn btn-sm btn-secondary" href="/my/properties">Back to list</a>
+                </div>
+
+                <t t-if="errors and errors.get('form')">
+                    <div class="alert alert-danger">
+                        <t t-esc="errors.get('form')"/>
+                    </div>
+                </t>
+
+                <form method="post"
+                      t-att-action="('/my/properties/%s/edit' % property.id) if property else '/my/properties/new'"
+                      class="row g-3">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control"
+                               t-att-value="values.get('name') or ''" required="required"/>
+                        <t t-if="errors and errors.get('name')">
+                            <div class="text-danger small mt-1">
+                                <t t-esc="errors.get('name')"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label">Postcode</label>
+                        <input type="text" name="postcode" class="form-control"
+                               t-att-value="values.get('postcode') or ''" required="required"/>
+                        <t t-if="errors and errors.get('postcode')">
+                            <div class="text-danger small mt-1">
+                                <t t-esc="errors.get('postcode')"/>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-control" rows="3"><t t-esc="values.get('description') or ''"/></textarea>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Expected Price</label>
+                        <input type="number" step="0.01" name="expected_price" class="form-control"
+                               t-att-value="values.get('expected_price') or 0"/>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Bedrooms</label>
+                        <input type="number" name="bedrooms" class="form-control"
+                               t-att-value="values.get('bedrooms') or 0"/>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Living Area</label>
+                        <input type="number" name="living_area" class="form-control"
+                               t-att-value="values.get('living_area') or 0"/>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Facades</label>
+                        <input type="number" name="facades" class="form-control"
+                               t-att-value="values.get('facades') or 0"/>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Expected Selling Date</label>
+                        <input type="date" name="expected_date_selling" class="form-control"
+                               t-att-value="values.get('expected_date_selling') or ''"/>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Garden Orientation</label>
+                        <select name="garden_orientation" class="form-select">
+                            <t t-set="go" t-value="values.get('garden_orientation') or 'north'"/>
+                            <option value="north" t-att-selected="go == 'north'">North</option>
+                            <option value="south" t-att-selected="go == 'south'">South</option>
+                            <option value="east" t-att-selected="go == 'east'">East</option>
+                            <option value="west" t-att-selected="go == 'west'">West</option>
+                            <option value="northeast" t-att-selected="go == 'northeast'">Northeast</option>
+                            <option value="southeast" t-att-selected="go == 'southeast'">Southeast</option>
+                            <option value="southwest" t-att-selected="go == 'southwest'">Southwest</option>
+                            <option value="northwest" t-att-selected="go == 'northwest'">Northwest</option>
+                            <option value="no_garden" t-att-selected="go == 'no_garden'">No Garden</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" name="garage"
+                                   t-att-checked="values.get('garage') and 'checked' or None"/>
+                            <label class="form-check-label">Garage</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" name="garden"
+                                   t-att-checked="values.get('garden') and 'checked' or None"/>
+                            <label class="form-check-label">Garden</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label class="form-label">Garden Area</label>
+                        <input type="number" name="garden_area" class="form-control"
+                               t-att-value="values.get('garden_area') or 0"/>
+                    </div>
+
+                    <div class="col-12 d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <t t-if="property">Save Changes</t>
+                            <t t-else="">Create</t>
+                        </button>
+                        <a class="btn btn-secondary" href="/my/properties">Cancel</a>
+                    </div>
+                </form>
             </div>
         </t>
     </template>
