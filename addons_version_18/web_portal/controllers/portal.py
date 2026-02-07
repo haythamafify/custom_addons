@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
+import json
+import logging
+from datetime import timedelta
+from urllib.parse import urlencode
+
 from odoo import http, _
 from odoo.http import request
 from odoo.addons.portal.controllers.portal import CustomerPortal, pager as portal_pager
+
+_logger = logging.getLogger(__name__)
 
 
 class PropertyPortal(CustomerPortal):
@@ -25,6 +32,7 @@ class PropertyPortal(CustomerPortal):
         domain = self._get_property_domain()
 
         sortby = kw.get('sortby') or 'newest'
+        groupby = kw.get('groupby') or 'none'
         search = (kw.get('search') or '').strip()
         sort_options = [
             {'key': 'newest', 'label': _('Newest'), 'order': 'create_date desc'},
@@ -32,8 +40,18 @@ class PropertyPortal(CustomerPortal):
             {'key': 'price', 'label': _('Expected Price'), 'order': 'expected_price desc'},
             {'key': 'state', 'label': _('State'), 'order': 'state asc'},
         ]
+        group_options = [
+            {'key': 'none', 'label': _('No Group')},
+            {'key': 'state', 'label': _('State')},
+            {'key': 'name', 'label': _('Name')},
+        ]
         sortby_map = {opt['key']: opt['order'] for opt in sort_options}
         sort_order = sortby_map.get(sortby, sortby_map['newest'])
+        groupby_map = {
+            'state': 'state',
+            'name': 'name',
+        }
+        groupby_field = groupby_map.get(groupby)
 
         if search:
             domain = domain + ['|', '|',
@@ -50,8 +68,16 @@ class PropertyPortal(CustomerPortal):
         url_args = {}
         if sortby:
             url_args['sortby'] = sortby
+        if groupby:
+            url_args['groupby'] = groupby
         if search:
             url_args['search'] = search
+        export_url = '/my/properties/xlsx_report'
+        export_args = {}
+        if search:
+            export_args['search'] = search
+        if export_args:
+            export_url = '%s?%s' % (export_url, urlencode(export_args))
 
         def _make_page_url(page_number):
             base = '/my/properties' if page_number == 1 else '/my/properties/page/%s' % page_number
@@ -89,9 +115,31 @@ class PropertyPortal(CustomerPortal):
             offset=pager['offset']
         )
 
+        grouped_properties = []
+        if groupby_field:
+            label_map = {}
+            field_def = Property._fields.get(groupby_field)
+            if field_def and getattr(field_def, 'selection', None):
+                label_map = dict(field_def.selection)
+            groups = {}
+            for rec in properties:
+                key = getattr(rec, groupby_field) or False
+                label = label_map.get(key) or (key if key else _('Undefined'))
+                if key not in groups:
+                    groups[key] = {
+                        'label': label,
+                        'records': Property.browse(),
+                    }
+                groups[key]['records'] |= rec
+            grouped_properties = sorted(
+                groups.values(),
+                key=lambda g: g['label'] or '',
+            )
+
         values.update({
             'page_name': 'properties',
             'properties': properties,
+            'grouped_properties': grouped_properties,
             'pager': pager,
             'property_count': property_count,
             'page_start': page_start,
@@ -100,14 +148,43 @@ class PropertyPortal(CustomerPortal):
             'prev_url': prev_url,
             'next_url': next_url,
             'default_url': '/my/properties',
+            'export_url': export_url,
             'sortby': sortby,
             'sort_options': sort_options,
+            'groupby': groupby,
+            'group_options': group_options,
             'search': search,
             'breadcrumbs': [
                 {'name': _('Properties'), 'active': True},
             ],
         })
         return request.render('web_portal.portal_my_properties', values)
+
+    @http.route(['/my/properties/xlsx_report'], type='http', auth='user', website=True)
+    def portal_my_properties_xlsx_report(self, **kw):
+        Property = request.env['property']
+        domain = self._get_property_domain()
+        search = (kw.get('search') or '').strip()
+        if search:
+            domain = domain + ['|', '|',
+                               ('name', 'ilike', search),
+                               ('ref', 'ilike', search),
+                               ('state', 'ilike', search)]
+
+        properties = Property.search(domain)
+        property_ids = properties.ids
+        export_window = timedelta(minutes=5)
+        _logger.info(
+            "Portal Excel export for user %s with %s properties (window: %s)",
+            request.env.user.id,
+            len(property_ids),
+            export_window,
+        )
+
+        url = '/property/xlsx_report'
+        if property_ids:
+            url += '?property_ids=%s' % json.dumps(property_ids)
+        return request.redirect(url)
 
     @http.route(['/my/properties/<int:property_id>'], type='http', auth='user', website=True)
     def portal_my_property(self, property_id, **kw):
@@ -126,6 +203,22 @@ class PropertyPortal(CustomerPortal):
             ],
         })
         return request.render('web_portal.portal_my_property', values)
+
+    @http.route(['/my/properties/<int:property_id>/xlsx_report'], type='http', auth='user', website=True)
+    def portal_my_property_xlsx_report(self, property_id, **kw):
+        property_rec = request.env['property'].browse(property_id)
+
+        if not property_rec.exists() or property_rec.user_id.id != request.env.user.id:
+            return request.redirect('/my/properties')
+
+        _logger.info(
+            "Portal Excel export for property %s by user %s",
+            property_rec.id,
+            request.env.user.id,
+        )
+
+        url = '/property/xlsx_report?property_ids=%s' % json.dumps([property_rec.id])
+        return request.redirect(url)
 
     @http.route(['/my/properties/<int:property_id>/report'], type='http', auth='user', website=True)
     def portal_property_report(self, property_id, **kw):
