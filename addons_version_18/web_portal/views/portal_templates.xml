@@ -283,7 +283,7 @@
 
                 <form method="post"
                       t-att-action="('/my/properties/%s/edit' % property.id) if property else '/my/properties/new'"
-                      class="row g-3">
+                      class="property-form row g-3">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
 
                     <div class="col-12 col-md-6">

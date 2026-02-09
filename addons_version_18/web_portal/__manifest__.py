@@ -24,9 +24,12 @@
             'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js',
 
             # OWL Components
-            'web_portal/static/src/components/**/*.js',
-            'web_portal/static/src/components/**/*.xml',
-            'web_portal/static/src/components/**/*.css',
+            'web_portal/static/src/components/property/property_form.xml',
+            'web_portal/static/src/components/property/property_form.js',
+            'web_portal/static/src/components/property/property_form.scss',
+        ],
+        'web.assets_qweb': [
+            'web_portal/static/src/components/property/property_form.xml',
         ],
     },
 

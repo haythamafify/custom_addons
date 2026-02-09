@@ -64,6 +64,83 @@ class PropertyPortal(CustomerPortal):
             'expected_date_selling': kw.get('expected_date_selling') or False,
         }
 
+    def _validate_property_form(self, values):
+        """
+        Server-side validation for property form data.
+        Returns a dictionary of errors. Empty dict means no errors.
+        """
+        errors = {}
+
+        # Required field validation
+        if not values.get('name'):
+            errors['name'] = _('Name is required.')
+        elif len(values.get('name', '').strip()) < 3:
+            errors['name'] = _('Name must be at least 3 characters long.')
+        elif len(values.get('name', '')) > 255:
+            errors['name'] = _('Name cannot exceed 255 characters.')
+
+        if not values.get('postcode'):
+            errors['postcode'] = _('Postcode is required.')
+        elif len(values.get('postcode', '').strip()) < 3:
+            errors['postcode'] = _('Postcode must be at least 3 characters long.')
+        elif len(values.get('postcode', '')) > 20:
+            errors['postcode'] = _('Postcode cannot exceed 20 characters.')
+
+        # Numeric fields validation
+        if values.get('expected_price'):
+            if values['expected_price'] < 0:
+                errors['expected_price'] = _('Expected price cannot be negative.')
+            elif values['expected_price'] > 99999999.99:
+                errors['expected_price'] = _('Expected price is too high.')
+
+        if values.get('bedrooms'):
+            if values['bedrooms'] < 0:
+                errors['bedrooms'] = _('Bedrooms cannot be negative.')
+            elif values['bedrooms'] > 100:
+                errors['bedrooms'] = _('Number of bedrooms is unrealistic.')
+
+        if values.get('living_area'):
+            if values['living_area'] < 0:
+                errors['living_area'] = _('Living area cannot be negative.')
+            elif values['living_area'] > 100000:
+                errors['living_area'] = _('Living area is unrealistic.')
+
+        if values.get('facades'):
+            if values['facades'] < 0:
+                errors['facades'] = _('Facades cannot be negative.')
+            elif values['facades'] > 50:
+                errors['facades'] = _('Number of facades is unrealistic.')
+
+        if values.get('garden_area'):
+            if values['garden_area'] < 0:
+                errors['garden_area'] = _('Garden area cannot be negative.')
+            elif values['garden_area'] > 100000:
+                errors['garden_area'] = _('Garden area is unrealistic.')
+
+        # Conditional validation: If garden is selected, garden_area should be provided
+        if values.get('garden') and values.get('garden_area') == 0:
+            errors['garden_area'] = _('Garden area is required when garden is selected.')
+
+        # Garden orientation validation
+        valid_orientations = ['north', 'south', 'east', 'west', 'northeast', 'northwest', 'southeast', 'southwest']
+        if values.get('garden_orientation') not in valid_orientations:
+            errors['garden_orientation'] = _('Invalid garden orientation.')
+
+        # Description optional but has max length
+        if values.get('description') and len(values['description']) > 2000:
+            errors['description'] = _('Description cannot exceed 2000 characters.')
+
+        # Date validation
+        if values.get('expected_date_selling'):
+            from datetime import datetime
+            try:
+                if isinstance(values['expected_date_selling'], str):
+                    datetime.fromisoformat(values['expected_date_selling'])
+            except (ValueError, TypeError):
+                errors['expected_date_selling'] = _('Invalid date format.')
+
+        return errors
+
     @http.route(['/my/properties', '/my/properties/page/<int:page>'], type='http', auth='user', website=True)
     def portal_my_properties(self, page=1, **kw):
         values = self._prepare_portal_layout_values()
@@ -203,11 +280,8 @@ class PropertyPortal(CustomerPortal):
     def portal_property_create(self, **kw):
         if request.httprequest.method == 'POST':
             values = self._parse_property_form(kw)
-            errors = {}
-            if not values.get('name'):
-                errors['name'] = _('Name is required.')
-            if not values.get('postcode'):
-                errors['postcode'] = _('Postcode is required.')
+            errors = self._validate_property_form(values)
+            
             if errors:
                 return request.render(
                     'web_portal.portal_property_form',
@@ -240,11 +314,8 @@ class PropertyPortal(CustomerPortal):
 
         if request.httprequest.method == 'POST':
             values = self._parse_property_form(kw)
-            errors = {}
-            if not values.get('name'):
-                errors['name'] = _('Name is required.')
-            if not values.get('postcode'):
-                errors['postcode'] = _('Postcode is required.')
+            errors = self._validate_property_form(values)
+            
             if errors:
                 return request.render(
                     'web_portal.portal_property_form',

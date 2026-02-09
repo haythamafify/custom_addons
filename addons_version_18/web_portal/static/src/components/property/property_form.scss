@@ -1,0 +1,19 @@
+.property-form.owl-form {
+  .invalid-feedback {
+    font-size: 0.85rem;
+  }
+
+  .form-check {
+    margin-top: 0.35rem;
+  }
+
+  input.is-invalid,
+  select.is-invalid,
+  textarea.is-invalid {
+    border-color: #dc3545;
+  }
+
+  .text-muted {
+    font-size: 0.9rem;
+  }
+}

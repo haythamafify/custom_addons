@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve" owl="1">
+    <t t-name="web_portal.PropertyForm">
+        <form method="post"
+              t-att-action="props.action"
+              class="property-form owl-form row g-3"
+              t-on-submit.prevent="onSubmit">
+            <input type="hidden" name="csrf_token" t-att-value="props.csrfToken"/>
+
+            <t t-if="state.serverError">
+                <div class="alert alert-danger col-12">
+                    <t t-esc="state.serverError"/>
+                </div>
+            </t>
+
+            <div class="col-12 col-md-6">
+                <label class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" name="name" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('name') }"
+                       t-att-value="state.formData.name"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"
+                       required="required"/>
+                <div t-if="shouldShowError('name')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('name')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <label class="form-label">Postcode <span class="text-danger">*</span></label>
+                <input type="text" name="postcode" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('postcode') }"
+                       t-att-value="state.formData.postcode"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"
+                       required="required"/>
+                <div t-if="shouldShowError('postcode')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('postcode')"/>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea name="description" class="form-control"
+                          t-att-class="{ 'is-invalid': shouldShowError('description') }"
+                          rows="3"
+                          t-on-change="onFieldChange"
+                          t-on-blur="onFieldBlur"><t t-esc="state.formData.description"/></textarea>
+                <div t-if="shouldShowError('description')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('description')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Expected Price</label>
+                <input type="number" step="0.01" name="expected_price" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('expected_price') }"
+                       t-att-value="state.formData.expected_price"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"/>
+                <div t-if="shouldShowError('expected_price')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('expected_price')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Bedrooms</label>
+                <input type="number" name="bedrooms" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('bedrooms') }"
+                       t-att-value="state.formData.bedrooms"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"/>
+                <div t-if="shouldShowError('bedrooms')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('bedrooms')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Living Area</label>
+                <input type="number" name="living_area" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('living_area') }"
+                       t-att-value="state.formData.living_area"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"/>
+                <div t-if="shouldShowError('living_area')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('living_area')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Facades</label>
+                <input type="number" name="facades" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('facades') }"
+                       t-att-value="state.formData.facades"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"/>
+                <div t-if="shouldShowError('facades')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('facades')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Expected Selling Date</label>
+                <input type="date" name="expected_date_selling" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('expected_date_selling') }"
+                       t-att-value="state.formData.expected_date_selling"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"/>
+                <div t-if="shouldShowError('expected_date_selling')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('expected_date_selling')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Garden Orientation</label>
+                <select name="garden_orientation" class="form-select"
+                        t-att-class="{ 'is-invalid': shouldShowError('garden_orientation') }"
+                        t-on-change="onFieldChange"
+                        t-on-blur="onFieldBlur">
+                    <option value="north" t-att-selected="state.formData.garden_orientation == 'north'">North</option>
+                    <option value="south" t-att-selected="state.formData.garden_orientation == 'south'">South</option>
+                    <option value="east" t-att-selected="state.formData.garden_orientation == 'east'">East</option>
+                    <option value="west" t-att-selected="state.formData.garden_orientation == 'west'">West</option>
+                    <option value="northeast" t-att-selected="state.formData.garden_orientation == 'northeast'">Northeast</option>
+                    <option value="southeast" t-att-selected="state.formData.garden_orientation == 'southeast'">Southeast</option>
+                    <option value="southwest" t-att-selected="state.formData.garden_orientation == 'southwest'">Southwest</option>
+                    <option value="northwest" t-att-selected="state.formData.garden_orientation == 'northwest'">Northwest</option>
+                </select>
+                <div t-if="shouldShowError('garden_orientation')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('garden_orientation')"/>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="form-check mt-4">
+                    <input class="form-check-input" type="checkbox" name="garage"
+                           t-att-checked="state.formData.garage"
+                           t-on-change="onFieldChange"/>
+                    <label class="form-check-label">Garage</label>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="form-check mt-4">
+                    <input class="form-check-input" type="checkbox" name="garden"
+                           t-att-checked="state.formData.garden"
+                           t-on-change="onFieldChange"/>
+                    <label class="form-check-label">Garden</label>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <label class="form-label">Garden Area</label>
+                <input type="number" name="garden_area" class="form-control"
+                       t-att-class="{ 'is-invalid': shouldShowError('garden_area') }"
+                       t-att-value="state.formData.garden_area"
+                       t-on-change="onFieldChange"
+                       t-on-blur="onFieldBlur"/>
+                <div t-if="shouldShowError('garden_area')" class="invalid-feedback d-block">
+                    <t t-esc="getFieldError('garden_area')"/>
+                </div>
+            </div>
+
+            <div class="col-12 d-flex gap-2 align-items-center">
+                <button type="submit" class="btn btn-primary" t-att-disabled="state.isSubmitting">
+                    <t t-if="props.isEdit">Save Changes</t>
+                    <t t-else="">Create</t>
+                </button>
+                <a class="btn btn-secondary" href="/my/properties">Cancel</a>
+                <t t-if="state.isSubmitting">
+                    <span class="text-muted">Submitting...</span>
+                </t>
+            </div>
+        </form>
+    </t>
+</templates>
