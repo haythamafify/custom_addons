@@ -1,0 +1,136 @@
+# Arabic translation for stock_analytic_split
+# Copyright (C) 2026
+# This file is distributed under the same license as the stock_analytic_split module.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-18 00:00+0000\n"
+"PO-Revision-Date: 2026-02-18 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: stock_analytic_split
+#: model:ir.model,name:stock_analytic_split.model_stock_analytic_distribution
+msgid "Stock Transfer Analytic Distribution"
+msgstr "التوزيع التحليلي لحركات المخزون"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_analytic_distribution__analytic_account_id
+msgid "Analytic Account"
+msgstr "الحساب التحليلي"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_analytic_distribution__percentage
+msgid "Percentage (%)"
+msgstr "النسبة (%)"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_analytic_distribution__name
+msgid "Label"
+msgstr "التسمية"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_analytic_distribution__sequence
+msgid "Sequence"
+msgstr "الترتيب"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_picking__analytic_distribution_ids
+msgid "Analytic Distribution"
+msgstr "التوزيع التحليلي"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_picking__analytic_distribution_total
+msgid "Total Distribution (%)"
+msgstr "إجمالي التوزيع (%)"
+
+#. module: stock_analytic_split
+#: model:ir.model.fields,field_description:stock_analytic_split.field_stock_picking__analytic_distribution_warning
+msgid "Distribution Warning"
+msgstr "تحذير التوزيع"
+
+#. module: stock_analytic_split
+#: code:addons/stock_analytic_split/models/stock_picking.py:0
+#, python-format
+msgid "The sum of analytic distribution percentages must be 100%%."
+msgstr "مجموع نسب التوزيع التحليلي يجب أن يكون 100%%."
+
+#. module: stock_analytic_split
+#: code:addons/stock_analytic_split/models/stock_picking.py:0
+#, python-format
+msgid "Analytic Lines - %s"
+msgstr "القيود التحليلية - %s"
+
+#. module: stock_analytic_split
+#: code:addons/stock_analytic_split/models/stock_analytic_distribution.py:0
+#, python-format
+msgid "The percentage must be greater than 0. Got: %s%%"
+msgstr "يجب أن تكون النسبة أكبر من صفر. القيمة المدخلة: %s%%"
+
+#. module: stock_analytic_split
+#: code:addons/stock_analytic_split/models/stock_analytic_distribution.py:0
+#, python-format
+msgid "The percentage cannot exceed 100%%. Got: %s%%"
+msgstr "لا يمكن أن تتجاوز النسبة 100%%. القيمة المدخلة: %s%%"
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Analytic Distribution"
+msgstr "التوزيع التحليلي"
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Warning: "
+msgstr "تحذير: "
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "The sum of percentages must equal 100%%."
+msgstr "مجموع النسب يجب أن يساوي 100%%."
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Analytic lines have been created for this transfer."
+msgstr "تم إنشاء القيود التحليلية لهذا النقل."
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "View Analytic Lines"
+msgstr "عرض القيود التحليلية"
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Total Distributed"
+msgstr "إجمالي الموزع"
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Ready"
+msgstr "جاهز"
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Incomplete"
+msgstr "غير مكتمل"
+
+#. module: stock_analytic_split
+#: view:stock.picking:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Add analytic accounts and their percentage share of this transfer's cost."
+msgstr "أضف الحسابات التحليلية مع نسبة مشاركتها في تكلفة هذا النقل."
+
+#. module: stock_analytic_split
+#: model:ir.ui.view,arch_db:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Current total:"
+msgstr "المجموع الحالي:"
+
+#. module: stock_analytic_split
+#: model:ir.ui.view,arch_db:stock_analytic_split.view_picking_form_analytic_inherit
+msgid "Missing:"
+msgstr "المتبقي:"
