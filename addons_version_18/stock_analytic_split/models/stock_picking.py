@@ -23,14 +23,13 @@ class StockPicking(models.Model):
     def action_view_analytic_lines(self):
         """Open analytic lines related to this picking."""
         self.ensure_one()
-        analytic_lines = self.env['account.analytic.line'].search([
-            ('stock_picking_id', '=', self.id),
-            ('company_id', '=', self.company_id.id),
-        ])
         return {
             'type': 'ir.actions.act_window',
             'name': _('Analytic Lines - %s') % self.name,
             'res_model': 'account.analytic.line',
             'view_mode': 'list,form',
-            'domain': [('id', 'in', analytic_lines.ids)],
+            'domain': [
+                ('stock_picking_id', '=', self.id),
+                ('company_id', '=', self.company_id.id),
+            ],
         }

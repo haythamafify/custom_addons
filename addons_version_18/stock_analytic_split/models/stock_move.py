@@ -26,12 +26,12 @@ class StockMove(models.Model):
         if not distribution:
             return
 
-        if analytic_line_obj.search_count([('stock_move_id', '=', self.id)]):
-            _logger.info(
-                'Analytic lines already exist for move %s. Skipping duplicate creation.',
-                self.id,
-            )
-            return
+        existing_lines = analytic_line_obj.search([('stock_move_id', '=', self.id)])
+        existing_distribution_keys = {
+            self._normalize_distribution_key(line._get_analytic_accounts().ids)
+            for line in existing_lines
+            if line._get_analytic_accounts()
+        }
 
         total_cost = self._compute_move_cost()
         if not total_cost:
@@ -40,8 +40,6 @@ class StockMove(models.Model):
                 self.id, self.product_id.display_name,
             )
             return
-
-        analytic_account_obj = self.env['account.analytic.account']
 
         for account_ids_key, percentage in distribution.items():
             if account_ids_key == '__update__':
@@ -55,17 +53,18 @@ class StockMove(models.Model):
                 )
                 continue
 
-            try:
-                account_ids = [int(aid.strip()) for aid in str(account_ids_key).split(',') if aid.strip()]
-            except ValueError:
-                _logger.warning(
-                    'Invalid analytic distribution key %s on move %s. Skipping.',
-                    account_ids_key, self.id,
+            parsed = self._parse_distribution_accounts(account_ids_key)
+            if not parsed:
+                continue
+            distribution_key, accounts = parsed
+            if distribution_key in existing_distribution_keys:
+                _logger.info(
+                    'Analytic lines for distribution key %s already exist on move %s. Skipping.',
+                    distribution_key, self.id,
                 )
                 continue
 
-            accounts = analytic_account_obj.browse(account_ids).exists()
-            if not accounts:
+            if not percentage:
                 continue
 
             analytic_vals = {
@@ -87,6 +86,37 @@ class StockMove(models.Model):
                 analytic_vals[account.plan_id._column_name()] = account.id
 
             analytic_line_obj.create(analytic_vals)
+            existing_distribution_keys.add(distribution_key)
+
+    def _parse_distribution_accounts(self, account_ids_key):
+        try:
+            account_ids = [int(aid.strip()) for aid in str(account_ids_key).split(',') if aid.strip()]
+        except ValueError:
+            _logger.warning(
+                'Invalid analytic distribution key %s on move %s. Skipping.',
+                account_ids_key, self.id,
+            )
+            return False
+
+        if not account_ids:
+            _logger.warning(
+                'Empty analytic distribution key %s on move %s. Skipping.',
+                account_ids_key, self.id,
+            )
+            return False
+
+        normalized_ids = list(dict.fromkeys(account_ids))
+        accounts = self.env['account.analytic.account'].browse(normalized_ids).exists()
+        if len(accounts) != len(normalized_ids):
+            _logger.warning(
+                'Unknown analytic account in key %s on move %s. Skipping.',
+                account_ids_key, self.id,
+            )
+            return False
+        return self._normalize_distribution_key(normalized_ids), accounts
+
+    def _normalize_distribution_key(self, account_ids):
+        return ",".join(str(account_id) for account_id in sorted(set(account_ids)))
 
     def _compute_move_cost(self):
         """Get total cost. Uses valuation layers first, falls back to standard price."""
