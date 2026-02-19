@@ -1,4 +1,4 @@
-from odoo import models, fields, _
+from odoo import models, fields
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -26,6 +26,13 @@ class StockMove(models.Model):
         if not distribution:
             return
 
+        if analytic_line_obj.search_count([('stock_move_id', '=', self.id)]):
+            _logger.info(
+                'Analytic lines already exist for move %s. Skipping duplicate creation.',
+                self.id,
+            )
+            return
+
         total_cost = self._compute_move_cost()
         if not total_cost:
             _logger.warning(
@@ -36,15 +43,35 @@ class StockMove(models.Model):
 
         analytic_account_obj = self.env['account.analytic.account']
 
-        for account_id_str, percentage in distribution.items():
-            account = analytic_account_obj.browse(int(account_id_str))
-            if not account.exists():
+        for account_ids_key, percentage in distribution.items():
+            if account_ids_key == '__update__':
+                continue
+            try:
+                percentage = float(percentage or 0.0)
+            except (TypeError, ValueError):
+                _logger.warning(
+                    'Invalid analytic distribution percentage %s on move %s. Skipping key %s.',
+                    percentage, self.id, account_ids_key,
+                )
                 continue
 
-            analytic_line_obj.create({
+            try:
+                account_ids = [int(aid.strip()) for aid in str(account_ids_key).split(',') if aid.strip()]
+            except ValueError:
+                _logger.warning(
+                    'Invalid analytic distribution key %s on move %s. Skipping.',
+                    account_ids_key, self.id,
+                )
+                continue
+
+            accounts = analytic_account_obj.browse(account_ids).exists()
+            if not accounts:
+                continue
+
+            analytic_vals = {
                 'name': '%s - %s' % (self.picking_id.name or '', self.product_id.display_name),
-                'account_id': account.id,
-                'amount': -(total_cost * percentage / 100.0),
+                'account_id': accounts[:1].id,
+                'amount': total_cost * percentage / 100.0,
                 'date': (self.picking_id.date_done.date()
                          if self.picking_id and self.picking_id.date_done
                          else fields.Date.today()),
@@ -53,14 +80,23 @@ class StockMove(models.Model):
                 'unit_amount': self.quantity * percentage / 100.0,
                 'product_uom_id': self.product_uom.id,
                 'company_id': self.company_id.id,
-            })
+                'stock_move_id': self.id,
+                'stock_picking_id': self.picking_id.id,
+            }
+            for account in accounts:
+                analytic_vals[account.plan_id._column_name()] = account.id
+
+            analytic_line_obj.create(analytic_vals)
 
     def _compute_move_cost(self):
         """Get total cost. Uses valuation layers first, falls back to standard price."""
         self.ensure_one()
         cost = 0.0
-        if hasattr(self, 'stock_valuation_layer_ids') and self.stock_valuation_layer_ids:
-            cost = abs(sum(self.stock_valuation_layer_ids.mapped('value')))
+        if self.stock_valuation_layer_ids:
+            cost = sum(self.stock_valuation_layer_ids.mapped('value'))
         if not cost:
-            cost = self.product_id.standard_price * self.quantity
+            qty = self.quantity
+            if self.location_id.usage == 'internal' and self.location_dest_id.usage != 'internal':
+                qty *= -1
+            cost = self.product_id.standard_price * qty
         return cost

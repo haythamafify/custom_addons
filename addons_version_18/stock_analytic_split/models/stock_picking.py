@@ -1,7 +1,4 @@
-from odoo import models, fields, _
-import logging
-
-_logger = logging.getLogger(__name__)
+from odoo import models, _
 
 
 class StockPicking(models.Model):
@@ -27,7 +24,7 @@ class StockPicking(models.Model):
         """Open analytic lines related to this picking."""
         self.ensure_one()
         analytic_lines = self.env['account.analytic.line'].search([
-            ('ref', '=', self.name),
+            ('stock_picking_id', '=', self.id),
             ('company_id', '=', self.company_id.id),
         ])
         return {
