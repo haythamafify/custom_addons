@@ -16,7 +16,7 @@
     """,
     'category': 'Inventory',
     'author': 'Haytham Afify',
-    'website': 'https://github.com/haythamafify',
+    'website': 'https://github.com/haythamafify/custom_addons',
     'linkedin': 'https://www.linkedin.com/in/haytham-gamal-4165797a/',
     'depends': ['stock', 'product_expiry'],
     'data': [],
