@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>POS ZATCA Async - Odoo 18</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --brand: #0f766e;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --line: #e5e7eb;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .hero img { width: 96px; height: 96px; }
+    h1 { margin: 0 0 6px; font-size: 28px; }
+    p { margin: 0; color: var(--muted); }
+    .grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 16px; color: var(--brand); }
+    .list { margin: 8px 0 0; padding-left: 18px; }
+    .section {
+      margin-top: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .section h2 { margin: 0 0 10px; font-size: 20px; }
+    .pill {
+      display: inline-block;
+      background: #ecfeff;
+      color: #155e75;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <img src="icon.png" alt="POS ZATCA Async" />
+      <div>
+        <h1>POS ZATCA Async - Odoo 18</h1>
+        <p>Eliminate ZATCA chain_index collisions in POS by moving EDI submission to an async cron.</p>
+        <div class="pill">Odoo 18 Compatible</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Problem</h3>
+        <p>High POS traffic causes SerializationFailure due to chain_index locking in the same transaction.</p>
+      </div>
+      <div class="card">
+        <h3>Solution</h3>
+        <p>Generate invoices instantly, then process ZATCA EDI sequentially via background cron.</p>
+      </div>
+      <div class="card">
+        <h3>Result</h3>
+        <p>No lock collisions, reliable chain_index order, and stable POS performance.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Dashboard: ZATCA Sync Monitor</h2>
+      <ul class="list">
+        <li>Stat Cards for Today: Pending / Sent / Error</li>
+        <li>List view for invoices in to_send or error</li>
+        <li>Manual Force Run button for the cron</li>
+        <li>Menu path: Point of Sale → Reporting → ZATCA Sync Monitor</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Technical Notes</h2>
+      <ul class="list">
+        <li>Based on <strong>account.move</strong> (Odoo 18) — no account.edi.document.</li>
+        <li>Safe sequential processing to protect ZATCA chain_index integrity.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
