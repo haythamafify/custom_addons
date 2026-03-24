@@ -1,0 +1,63 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Warehouse User Restriction</h2>
+        <h3 class="oe_slogan">Control which warehouses each user can see and work with</h3>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Key Features</h2>
+        <div class="oe_span6">
+            <h3 class="oe_slogan">Per-User Warehouse Assignment</h3>
+            <p>Assign one or more warehouses to every user directly from the standard <strong>Users</strong> form in Settings.</p>
+        </div>
+        <div class="oe_span6">
+            <h3 class="oe_slogan">Record-Rule Based Security</h3>
+            <p>All restrictions are enforced via Odoo native record rules — no custom code executed at runtime.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">What Is Restricted?</h2>
+        <table class="table table-bordered oe_mt32">
+            <thead class="thead-light">
+                <tr><th>Model</th><th>Technical Name</th><th>Restriction Basis</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Warehouses</td><td><code>stock.warehouse</code></td><td>Directly assigned warehouse IDs</td></tr>
+                <tr><td>Transfers / Pickings</td><td><code>stock.picking</code></td><td>Operation-type warehouse or source/destination location tree</td></tr>
+                <tr><td>Stock Quants</td><td><code>stock.quant</code></td><td>Location under allowed warehouse view location</td></tr>
+                <tr><td>Locations</td><td><code>stock.location</code></td><td>Child of allowed warehouse view location</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Configuration</h2>
+        <ol>
+            <li>Go to <strong>Settings &gt; Users &amp; Companies &gt; Users</strong>.</li>
+            <li>Open a user record.</li>
+            <li>In the <strong>Access Rights</strong> tab, find the <strong>Warehouse Restrictions</strong> section.</li>
+            <li>Select the warehouses the user should be able to access.</li>
+            <li>Save and ask the user to re-login.</li>
+        </ol>
+        <p><strong>Note:</strong> System administrators (<code>base.group_system</code>) are always unrestricted.</p>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced" style="text-align:center;padding:16px 0 8px">
+        <h2 class="oe_slogan">Author</h2>
+        <p>
+            <strong>Haytham Afify</strong><br/>
+            <a href="https://github.com/haythamafify" target="_blank">GitHub: github.com/haythamafify</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="https://www.linkedin.com/in/haytham-gamal-4165797a/" target="_blank">LinkedIn: Haytham Gamal</a>
+        </p>
+    </div>
+</section>
