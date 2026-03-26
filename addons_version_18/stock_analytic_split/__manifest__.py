@@ -15,7 +15,9 @@ Features:
 - Automatically creates analytic lines upon transfer validation
 - Arabic translation included
     """,
-    'author': 'Custom',
+    'author': 'Haytham Afify',
+    'website': 'https://github.com/haythamafify',
+    'images': ['static/description/banner.png'],
     'depends': [
         'stock',
         'analytic',
