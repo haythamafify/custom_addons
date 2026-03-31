@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f2d1a"/>
+      <stop offset="60%" style="stop-color:#1a472a"/>
+      <stop offset="100%" style="stop-color:#2d6a4f"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f4a261"/>
+      <stop offset="100%" style="stop-color:#e76f51"/>
+    </linearGradient>
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4a261"/>
+      <stop offset="100%" style="stop-color:#e76f51"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.3" stroke-opacity="0.05"/>
+  </pattern>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+
+  <!-- Decorative large circles (right side) -->
+  <circle cx="1080" cy="150" r="180" fill="white" fill-opacity="0.025"/>
+  <circle cx="1080" cy="150" r="120" fill="white" fill-opacity="0.025"/>
+  <circle cx="1080" cy="150" r="60" fill="white" fill-opacity="0.04"/>
+
+  <!-- Decorative arc bottom-left -->
+  <circle cx="0" cy="300" r="200" fill="none" stroke="white" stroke-opacity="0.04" stroke-width="1"/>
+  <circle cx="0" cy="300" r="140" fill="none" stroke="white" stroke-opacity="0.04" stroke-width="1"/>
+
+  <!-- Left accent stripe -->
+  <rect x="0" y="0" width="6" height="300" fill="url(#accentGrad)"/>
+
+  <!-- Icon box -->
+  <rect x="50" y="74" width="152" height="152" rx="24" fill="white" fill-opacity="0.07"/>
+  <rect x="54" y="78" width="144" height="144" rx="20" fill="white" fill-opacity="0.06"/>
+
+  <!-- Document icon (pure SVG) -->
+  <!-- Doc shadow -->
+  <rect x="88" y="98" width="76" height="98" rx="8" fill="black" fill-opacity="0.2"/>
+  <!-- Doc body -->
+  <rect x="84" y="94" width="76" height="98" rx="8" fill="white" fill-opacity="0.92"/>
+  <!-- Folded corner -->
+  <polygon points="140,94 160,94 160,114 140,114" fill="#c8dcd0"/>
+  <polygon points="140,94 160,114 140,114" fill="#b0ccba"/>
+  <!-- Doc lines -->
+  <rect x="96" y="122" width="44" height="5" rx="2.5" fill="#2d6a4f" fill-opacity="0.5"/>
+  <rect x="96" y="134" width="34" height="5" rx="2.5" fill="#2d6a4f" fill-opacity="0.3"/>
+  <rect x="96" y="146" width="40" height="5" rx="2.5" fill="#2d6a4f" fill-opacity="0.3"/>
+  <rect x="96" y="158" width="30" height="5" rx="2.5" fill="#2d6a4f" fill-opacity="0.25"/>
+
+  <!-- Warning badge on icon -->
+  <circle cx="152" cy="178" r="30" fill="#0f2d1a"/>
+  <circle cx="152" cy="178" r="27" fill="url(#warnGrad)"/>
+  <!-- Triangle -->
+  <path d="M152 158 L170 190 H134 Z" fill="white"/>
+  <path d="M152 163 L167 188 H137 Z" fill="url(#warnGrad)"/>
+  <!-- Exclamation -->
+  <rect x="149.5" y="168" width="5" height="9" rx="2.5" fill="white"/>
+  <circle cx="152" cy="182" r="2.5" fill="white"/>
+
+  <!-- Module title -->
+  <text x="232" y="130" font-size="38" font-weight="700" fill="white"
+        font-family="Georgia, 'Times New Roman', serif" letter-spacing="-0.5">
+    HR Contract
+  </text>
+  <text x="232" y="175" font-size="38" font-weight="700" fill="white"
+        font-family="Georgia, 'Times New Roman', serif" letter-spacing="-0.5">
+    No End Date Alert
+  </text>
+
+  <!-- Accent underline -->
+  <rect x="232" y="185" width="340" height="3" rx="1.5" fill="url(#accentGrad)" fill-opacity="0.7"/>
+
+  <!-- Subtitle -->
+  <text x="234" y="212" font-size="16" fill="#8fc4a8"
+        font-family="'Segoe UI', Helvetica, sans-serif" letter-spacing="0.3">
+    Smart save alerts  ·  Chatter tracking  ·  Open-ended contract filters
+  </text>
+
+  <!-- Badges -->
+  <!-- Odoo badge -->
+  <rect x="234" y="228" width="105" height="28" rx="14" fill="url(#accentGrad)"/>
+  <text x="287" y="246" font-size="13" font-weight="700" fill="white"
+        text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif">Odoo 18.0</text>
+
+  <!-- HR badge -->
+  <rect x="348" y="228" width="148" height="28" rx="14" fill="white" fill-opacity="0.1"/>
+  <rect x="348" y="228" width="148" height="28" rx="14" fill="none" stroke="white" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="422" y="246" font-size="13" fill="#8fc4a8"
+        text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif">Human Resources</text>
+
+  <!-- LGPL badge -->
+  <rect x="506" y="228" width="76" height="28" rx="14" fill="white" fill-opacity="0.1"/>
+  <rect x="506" y="228" width="76" height="28" rx="14" fill="none" stroke="white" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="544" y="246" font-size="13" fill="#8fc4a8"
+        text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif">LGPL-3</text>
+
+  <!-- i18n badge -->
+  <rect x="592" y="228" width="120" height="28" rx="14" fill="white" fill-opacity="0.1"/>
+  <rect x="592" y="228" width="120" height="28" rx="14" fill="none" stroke="white" stroke-opacity="0.15" stroke-width="1"/>
+  <text x="652" y="246" font-size="13" fill="#8fc4a8"
+        text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif">AR + EN i18n</text>
+
+  <!-- Author tag bottom right -->
+  <text x="1170" y="276" font-size="13" fill="white" fill-opacity="0.3"
+        text-anchor="end" font-family="'Segoe UI', Arial, sans-serif">by Haytham Afify</text>
+</svg>

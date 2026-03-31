@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a472a"/>
+      <stop offset="100%" style="stop-color:#2d6a4f"/>
+    </linearGradient>
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4a261"/>
+      <stop offset="100%" style="stop-color:#e76f51"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded background -->
+  <rect width="256" height="256" fill="url(#bgGrad)" rx="52"/>
+  <rect x="8" y="8" width="240" height="240" fill="none" stroke="white" stroke-opacity="0.06" stroke-width="2" rx="46"/>
+
+  <!-- Document shadow -->
+  <rect x="66" y="46" width="118" height="148" rx="12" fill="black" fill-opacity="0.15"/>
+  <!-- Document body -->
+  <rect x="62" y="42" width="118" height="148" rx="12" fill="white" fill-opacity="0.95"/>
+
+  <!-- Folded corner cut -->
+  <polygon points="146,42 180,42 180,76 146,76" fill="#dce8e0"/>
+  <polygon points="146,42 180,76 146,76" fill="#c5d9cc"/>
+
+  <!-- Text lines on document -->
+  <rect x="78" y="90" width="72" height="7" rx="3.5" fill="#2d6a4f" fill-opacity="0.4"/>
+  <rect x="78" y="106" width="54" height="7" rx="3.5" fill="#2d6a4f" fill-opacity="0.25"/>
+  <rect x="78" y="122" width="62" height="7" rx="3.5" fill="#2d6a4f" fill-opacity="0.25"/>
+  <rect x="78" y="138" width="46" height="7" rx="3.5" fill="#2d6a4f" fill-opacity="0.2"/>
+
+  <!-- Calendar bar at top of doc -->
+  <rect x="78" y="58" width="54" height="22" rx="5" fill="#2d6a4f" fill-opacity="0.12"/>
+  <rect x="80" y="60" width="50" height="18" rx="4" fill="#2d6a4f" fill-opacity="0.15"/>
+  <rect x="80" y="60" width="50" height="7" rx="4" fill="#2d6a4f"/>
+  <!-- calendar dots -->
+  <circle cx="90" cy="75" r="3" fill="#2d6a4f" fill-opacity="0.4"/>
+  <circle cx="100" cy="75" r="3" fill="#2d6a4f" fill-opacity="0.4"/>
+  <circle cx="110" cy="75" r="3" fill="#2d6a4f" fill-opacity="0.4"/>
+  <circle cx="120" cy="75" r="3" fill="#e76f51" fill-opacity="0.9"/>
+
+  <!-- Warning badge -->
+  <circle cx="174" cy="180" r="47" fill="#152e1e"/>
+  <circle cx="174" cy="180" r="43" fill="url(#warnGrad)"/>
+
+  <!-- Triangle warning shape (no emoji) -->
+  <path d="M174 154 L200 200 H148 Z" fill="white"/>
+  <!-- Inner colored triangle -->
+  <path d="M174 161 L196 198 H152 Z" fill="url(#warnGrad)"/>
+  <!-- Exclamation stem -->
+  <rect x="171" y="169" width="6" height="14" rx="3" fill="white"/>
+  <!-- Exclamation dot -->
+  <circle cx="174" cy="190" r="3.5" fill="white"/>
+</svg>
