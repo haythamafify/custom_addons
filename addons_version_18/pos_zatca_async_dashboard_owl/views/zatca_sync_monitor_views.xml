@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_zatca_sync_monitor_move_list" model="ir.ui.view">
+            <field name="name">zatca.sync.monitor.move.list</field>
+            <field name="model">account.move</field>
+            <field name="arch" type="xml">
+                <list string="Pending / Error Invoices">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="invoice_date"/>
+                    <field name="amount_total"/>
+                    <field name="zatca_edi_state_display"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_zatca_sync_monitor_form" model="ir.ui.view">
+            <field name="name">zatca.sync.monitor.form</field>
+            <field name="model">zatca.sync.monitor</field>
+            <field name="arch" type="xml">
+                <form string="ZATCA Sync Monitor" create="0" edit="0">
+                    <header>
+                        <button
+                            name="action_force_run_cron"
+                            type="object"
+                            string="Force Run Cron"
+                            class="btn-primary"
+                        />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="action_open_today_pending" class="oe_stat_button" icon="fa-clock-o">
+                                <field name="pending_today_count" widget="statinfo" string="Pending Today"/>
+                            </button>
+                            <button type="object" name="action_open_today_sent" class="oe_stat_button" icon="fa-check-circle">
+                                <field name="sent_today_count" widget="statinfo" string="Sent Today"/>
+                            </button>
+                            <button type="object" name="action_open_today_error" class="oe_stat_button" icon="fa-exclamation-triangle">
+                                <field name="error_today_count" widget="statinfo" string="Error Today"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <field name="company_id" readonly="1"/>
+                            <field name="date_today" readonly="1"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Pending / Error Invoices">
+                                <field
+                                    name="move_ids"
+                                    nolabel="1"
+                                    readonly="1"
+                                    context="{'tree_view_ref': 'pos_zatca_async_dashboard_owl.view_zatca_sync_monitor_move_list'}"
+                                />
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_zatca_sync_monitor" model="ir.actions.act_window">
+            <field name="name">ZATCA Sync Monitor</field>
+            <field name="res_model">zatca.sync.monitor</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_zatca_sync_monitor_form"/>
+            <field name="res_id" ref="zatca_sync_monitor_main_company"/>
+            <field name="context">{'create': False}</field>
+        </record>
+
+        <menuitem
+            id="menu_zatca_sync_monitor"
+            name="ZATCA Sync Monitor"
+            action="action_zatca_sync_monitor"
+            groups="point_of_sale.group_pos_manager"
+            sequence="60"
+        />
+
+    </data>
+</odoo>

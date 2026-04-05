@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4aa"/>
+      <stop offset="100%" style="stop-color:#00b4d8"/>
+    </linearGradient>
+    <linearGradient id="posGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460"/>
+      <stop offset="100%" style="stop-color:#533483"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="22" fill="url(#bgGrad)"/>
+
+  <!-- POS Terminal (left) -->
+  <rect x="8" y="28" width="38" height="48" rx="5" fill="url(#posGrad)" stroke="#0f3460" stroke-width="1"/>
+  <rect x="12" y="32" width="30" height="20" rx="2" fill="#0d1b2a"/>
+  <!-- Screen content -->
+  <rect x="14" y="34" width="18" height="2" rx="1" fill="#00d4aa" opacity="0.8"/>
+  <rect x="14" y="38" width="12" height="2" rx="1" fill="#ffffff" opacity="0.4"/>
+  <rect x="14" y="42" width="22" height="2" rx="1" fill="#ffffff" opacity="0.3"/>
+  <!-- Keypad dots -->
+  <circle cx="17" cy="58" r="2" fill="#00d4aa" opacity="0.7"/>
+  <circle cx="24" cy="58" r="2" fill="#00d4aa" opacity="0.7"/>
+  <circle cx="31" cy="58" r="2" fill="#00d4aa" opacity="0.7"/>
+  <circle cx="17" cy="65" r="2" fill="#ffffff" opacity="0.4"/>
+  <circle cx="24" cy="65" r="2" fill="#ffffff" opacity="0.4"/>
+  <circle cx="31" cy="65" r="2" fill="#ffffff" opacity="0.4"/>
+  <!-- Receipt strip -->
+  <rect x="18" y="76" width="10" height="8" rx="1" fill="#f5f5f5" opacity="0.9"/>
+  <rect x="20" y="78" width="6" height="1" rx="0.5" fill="#333" opacity="0.5"/>
+  <rect x="20" y="80" width="4" height="1" rx="0.5" fill="#333" opacity="0.5"/>
+  <rect x="20" y="82" width="5" height="1" rx="0.5" fill="#333" opacity="0.5"/>
+
+  <!-- Async Arrow (middle) — dashed curved arrow -->
+  <!-- Arrow body dashed -->
+  <path d="M50 64 Q64 44 78 64" fill="none" stroke="url(#arrowGrad)" stroke-width="2.5" stroke-dasharray="4 3" stroke-linecap="round" filter="url(#glow)"/>
+  <!-- Arrowhead -->
+  <polygon points="78,64 72,59 73,66" fill="#00d4aa" filter="url(#glow)"/>
+  <!-- Clock icon below arrow (async symbol) -->
+  <circle cx="64" cy="76" r="6" fill="none" stroke="#00b4d8" stroke-width="1.5" opacity="0.8"/>
+  <line x1="64" y1="73" x2="64" y2="76" stroke="#00b4d8" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="64" y1="76" x2="67" y2="78" stroke="#00b4d8" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- ZATCA Cloud (right) -->
+  <g filter="url(#glow)">
+    <ellipse cx="104" cy="55" rx="16" ry="11" fill="#0f3460" stroke="#00d4aa" stroke-width="1.5"/>
+    <ellipse cx="96" cy="59" rx="9" ry="7" fill="#0f3460" stroke="#00d4aa" stroke-width="1.5"/>
+    <ellipse cx="112" cy="59" rx="8" ry="6" fill="#0f3460" stroke="#00d4aa" stroke-width="1.5"/>
+    <rect x="89" y="58" width="30" height="10" rx="0" fill="#0f3460"/>
+    <!-- Checkmark inside cloud -->
+    <polyline points="97,56 102,61 113,50" fill="none" stroke="#00d4aa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Bottom label -->
+  <text x="64" y="104" font-family="'Courier New', monospace" font-size="7" font-weight="bold" fill="#00d4aa" text-anchor="middle" letter-spacing="1" opacity="0.9">ZATCA ASYNC</text>
+  <text x="64" y="114" font-family="'Courier New', monospace" font-size="5.5" fill="#ffffff" text-anchor="middle" opacity="0.45" letter-spacing="0.5">POS · ODOO 18</text>
+</svg>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_zatca_async_dashboard_owl.ZatcaDashboard">
+        <div class="o_action_manager">
+            <div class="container-fluid py-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="mb-0">POS ZATCA Async Dashboard</h2>
+                    <button class="btn btn-primary" t-on-click="onRefreshClick" t-att-disabled="state.loading">
+                        <i class="fa fa-refresh me-1"/>
+                        Refresh Statistics
+                    </button>
+                </div>
+
+                <t t-if="state.loading">
+                    <div class="alert alert-info">Loading dashboard data...</div>
+                </t>
+                <t t-else="">
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-md-4">
+                            <div class="card border-warning shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Total Pending Invoices</h6>
+                                    <h3 class="mb-0 text-warning" t-out="state.counters.pending"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card border-success shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Total Sent Invoices</h6>
+                                    <h3 class="mb-0 text-success" t-out="state.counters.sent"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card border-danger shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Total Failed Invoices</h6>
+                                    <h3 class="mb-0 text-danger" t-out="state.counters.failed"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0">Latest 5 Orders</h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>POS Reference</th>
+                                        <th>Customer</th>
+                                        <th>Amount Total</th>
+                                        <th>ZATCA Sync State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-if="state.latestOrders.length === 0">
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted">No data found.</td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="state.latestOrders" t-as="order" t-key="order.id">
+                                        <tr>
+                                            <td t-out="order.pos_reference"/>
+                                            <td t-out="order.customer_id"/>
+                                            <td t-out="order.amount_total"/>
+                                            <td>
+                                                <span class="badge text-bg-secondary" t-out="order.zatca_sync_state"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_zatca_async_dashboard_owl.ZatcaDashboard">
+        <div class="o_action_manager">
+            <div class="container-fluid py-3">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="mb-0">POS ZATCA Async Dashboard</h2>
+                    <button class="btn btn-primary" t-on-click="onRefreshClick" t-att-disabled="state.loading">
+                        <i class="fa fa-refresh me-1"/>
+                        Refresh Statistics
+                    </button>
+                </div>
+
+                <t t-if="state.loading">
+                    <div class="alert alert-info">Loading dashboard data...</div>
+                </t>
+                <t t-else="">
+                    <div class="row g-3 mb-4">
+                        <div class="col-12 col-md-4">
+                            <div class="card border-warning shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Total Pending Invoices</h6>
+                                    <h3 class="mb-0 text-warning" t-esc="state.counters.pending"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card border-success shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Total Sent Invoices</h6>
+                                    <h3 class="mb-0 text-success" t-esc="state.counters.sent"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="card border-danger shadow-sm h-100">
+                                <div class="card-body">
+                                    <h6 class="text-muted mb-2">Total Failed Invoices</h6>
+                                    <h3 class="mb-0 text-danger" t-esc="state.counters.failed"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0">Latest 5 Orders</h5>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>POS Reference</th>
+                                        <th>Customer</th>
+                                        <th>Amount Total</th>
+                                        <th>ZATCA Sync State</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-if="state.latestOrders.length === 0">
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted">No data found.</td>
+                                        </tr>
+                                    </t>
+                                    <t t-foreach="state.latestOrders" t-as="order" t-key="order.id">
+                                        <tr>
+                                            <td t-esc="order.pos_reference"/>
+                                            <td t-esc="order.customer_id"/>
+                                            <td t-esc="order.amount_total"/>
+                                            <td>
+                                                <span class="badge text-bg-secondary" t-esc="order.zatca_sync_state"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>
