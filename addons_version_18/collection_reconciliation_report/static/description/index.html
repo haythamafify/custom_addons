@@ -1,0 +1,188 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h1>Collection Reconciliation Report</h1>
+            <h3>Enterprise-grade payment-to-invoice allocation analytics built on raw SQL — no Odoo ORM overhead, maximal performance.</h3>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <h2>Why This Module Exists</h2>
+            <p>
+                Odoo's native accounting shows you the balance of an invoice. It does <strong>not</strong> tell you
+                exactly which payment settled which portion of which invoice when one payment covers multiple invoices
+                or a single invoice is paid in instalments. This module fills that gap with a
+                SQL-backed analytical view and a real-time KPI dashboard.
+            </p>
+        </div>
+        <div class="oe_span6">
+            <h2>Key Capabilities</h2>
+            <ul>
+                <li><strong>Per-allocation analytics</strong> — every <code>account_partial_reconcile</code> row is normalised into a human-readable line: payment date, invoice, collected amount, residual, delay days.</li>
+                <li><strong>KPI dashboard</strong> — collection efficiency %, recovery ratio %, overdue exposure, monthly growth, average delay, top collectors.</li>
+                <li><strong>Materialised-view toggle</strong> — flip the switch in Settings to use a PostgreSQL materialised view for sub-second queries on 10M+ rows.</li>
+                <li><strong>XLSX export</strong> — grouped, subtotalled, branded Excel with company logo, freeze panes, and professional formatting.</li>
+                <li><strong>Smart buttons</strong> — one-click navigation from a partner form to all their reconciliation records.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>What You Get</h2>
+        </div>
+        <div class="oe_span4">
+            <div class="oe_centered">
+                <img src="icon_lines.png" alt="Transaction Lines" style="max-width: 100%;">
+            </div>
+            <h4>Detailed Reconciliation Lines</h4>
+            <p>Every payment-invoice pair rendered as a row. Filter, group, pivot, graph — whatever your team needs.</p>
+        </div>
+        <div class="oe_span4">
+            <div class="oe_centered">
+                <img src="icon_dashboard.png" alt="KPI Dashboard" style="max-width: 100%;">
+            </div>
+            <h4>KPI Dashboard</h4>
+            <p>Collection efficiency, recovery ratio, overdue exposure, monthly growth, top 3 collectors — SQL-calculated, parameterised, injection-safe.</p>
+        </div>
+        <div class="oe_span4">
+            <div class="oe_centered">
+                <img src="icon_refresh.png" alt="Refresh Controls" style="max-width: 100%;">
+            </div>
+            <h4>Refresh Controls &amp; Audit Trail</h4>
+            <p>One-click refresh of the materialised view. Full refresh history with duration, status, and diagnostics.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>KPI Metrics — All Calculated in Pure SQL</h2>
+        </div>
+        <div class="oe_span6">
+            <table class="table table-bordered">
+                <tr><th>Metric</th><th>What It Tells You</th></tr>
+                <tr><td>Collection Efficiency</td><td>% of invoice amount collected. >80% is healthy.</td></tr>
+                <tr><td>Recovery Ratio</td><td>Collected / (collected + residual) — how much of total debt you've recovered.</td></tr>
+                <tr><td>Monthly Growth</td><td>Month-over-month change in collections. Negative = flag.</td></tr>
+                <tr><td>Overdue Exposure</td><td>Total residual on past-due invoices in your currency.</td></tr>
+                <tr><td>Average Payment Delay</td><td>Days between due date and payment. Driving this down improves cash flow.</td></tr>
+                <tr><td>Unpaid Invoice Ratio</td><td>% of invoices with residual > 0.</td></tr>
+                <tr><td>Top Collectors</td><td>Ranked list of salespeople by collected amount.</td></tr>
+            </table>
+        </div>
+        <div class="oe_span6">
+            <h4>Example Dashboard View</h4>
+            <pre style="background:#f5f5f5; padding:12px; border-radius:6px; font-size:13px;">
+┌──────────────────────┬────────────┐
+│ Metric               │ Value      │
+├──────────────────────┼────────────┤
+│ Total Collected      │ $142,500   │
+│ Collection Efficiency│ 78.3%      │
+│ Recovery Ratio       │ 72.1%      │
+│ Monthly Growth       │ +12.4%     │
+│ Overdue Exposure     │ $18,200    │
+│ Avg Payment Delay    │ 14.2 days  │
+│ Top Collector        │ John (48k) │
+└──────────────────────┴────────────┘
+            </pre>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Technical Highlights — Not Found in Any Competitor Module</h2>
+        </div>
+        <div class="oe_span6">
+            <ul>
+                <li><strong><code>pg_try_advisory_lock</code></strong> — prevents duplicate concurrent materialised-view refreshes. No other Odoo module uses PostgreSQL advisory locks for refresh safety.</li>
+                <li><strong>Multi-stage CTE architecture</strong> — 6 chained <code>WITH</code> clauses (<code>product_data</code> → <code>reconcile_base</code> → <code>normalized</code> → <code>final_allocations</code> → <code>product_data</code> join) for maintainable, optimisable SQL.</li>
+                <li><strong>Materialised-view toggle</strong> — enabled per-database via <code>ir.config_parameter</code>. Standard view for small DBs, materialised for production-scale.</li>
+                <li><strong>Parameterised KPI SQL</strong> — <code>stale_hours</code> is a bind parameter, never interpolated. Injection-safe even if the setting store is compromised.</li>
+                <li><strong>Dynamic XLSX registration</strong> — the XLSX report class only registers when OCA <code>report_xlsx</code> is installed. No broken dependencies.</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <h4>vs. Native Odoo Accounting Reports</h4>
+            <table class="table table-bordered">
+                <tr><th>Feature</th><th>Odoo Native</th><th>This Module</th></tr>
+                <tr><td>Per-allocation breakdown</td><td>✗</td><td>✓</td></tr>
+                <tr><td>Payment delay computation</td><td>✗</td><td>✓</td></tr>
+                <tr><td>KPI dashboard</td><td>✗</td><td>✓</td></tr>
+                <tr><td>Multi-payment/invoice handling</td><td>Partial</td><td>✓ Full</td></tr>
+                <tr><td>XLSX with grouping</td><td>Basic CSV</td><td>✓ Branded</td></tr>
+                <tr><td>Materialised-view performance</td><td>✗</td><td>✓</td></tr>
+                <tr><td>Refresh audit trail</td><td>✗</td><td>✓</td></tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Supported Scenarios</h2>
+        </div>
+        <div class="oe_span4">
+            <h4>✅ Fully Paid On Time</h4>
+            <p>Invoice created, paid before due date. <code>payment_state = 'paid'</code>, delay = 0.</p>
+        </div>
+        <div class="oe_span4">
+            <h4>✅ Fully Paid Late</h4>
+            <p>Payment arrives after due date. Delay days > 0 — visible in the report and KPI average.</p>
+        </div>
+        <div class="oe_span4">
+            <h4>✅ Partially Paid</h4>
+            <p>Customer pays less than invoice total. Residual > 0, <code>payment_state = 'partial'</code>.</p>
+        </div>
+        <div class="oe_span4">
+            <h4>✅ Overdue / Unpaid</h4>
+            <p>Invoice past due with no payment. Contributes to Overdue Exposure KPI.</p>
+        </div>
+        <div class="oe_span4">
+            <h4>✅ Multi-Payment Allocation</h4>
+            <p>One invoice settled by two separate payments. Both allocations appear, <code>allocation_count = 2</code>.</p>
+        </div>
+        <div class="oe_span4">
+            <h4>✅ Credit Note Offset</h4>
+            <p><code>out_refund</code> reconciled against an invoice. Properly normalised with correct polarity.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Dependencies</h2>
+            <ul>
+                <li><strong>Required:</strong> <code>account</code> (Odoo Invoicing / Accounting)</li>
+                <li><strong>Optional:</strong> <code>report_xlsx</code> (OCA — enables XLSX export with grouped totals)</li>
+            </ul>
+            <p>Works on both Odoo Community and Enterprise. Tested on PostgreSQL 12+.</p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2>Support</h2>
+            <p>
+                For bugs, feature requests, or custom development, contact
+                <a href="mailto:haythamgamal6@gmail.com">haythamgamal6@gmail.com</a>
+                or visit the <a href="https://github.com/haythamafify">GitHub repository</a>.
+            </p>
+            <p>
+                Licensed under OPL-1 — full commercial use permitted.
+            </p>
+        </div>
+    </div>
+</section>

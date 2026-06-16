@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_collection_report" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.collection.report</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Collection Analytics" name="collection_analytics" groups="collection_reconciliation_report.group_collection_analytics_manager">
+                    <block title="Collection Reconciliation">
+                        <setting string="Use Materialized Collection View" help="Switch the reporting base relation from VIEW to MATERIALIZED VIEW for large databases.">
+                            <field name="collection_report_use_materialized_view"/>
+                        </setting>
+                        <setting string="Enable Debug Logging" help="Emit structured debug logs for SQL timing, refresh events, and exports.">
+                            <field name="collection_report_debug_logging"/>
+                        </setting>
+                        <setting string="Stale Threshold (Hours)" help="Highlight dashboard data when the last successful refresh is older than this threshold.">
+                            <field name="collection_report_stale_after_hours"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
