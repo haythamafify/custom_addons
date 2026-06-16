@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <menuitem id="menu_collection_reconciliation_root" name="Collection Analytics" parent="account.menu_finance" sequence="85" groups="collection_reconciliation_report.group_collection_analytics_user"/>
-    <menuitem id="menu_collection_reconciliation_dashboard" name="Dashboard" parent="menu_collection_reconciliation_root" action="action_collection_reconciliation_report_dashboard" sequence="10" groups="collection_reconciliation_report.group_collection_analytics_manager"/>
-    <menuitem id="menu_collection_reconciliation_report" name="Reconciliation Lines" parent="menu_collection_reconciliation_root" action="action_collection_reconciliation_report" sequence="20" groups="collection_reconciliation_report.group_collection_analytics_user"/>
-    <menuitem id="menu_collection_reconciliation_refresh_history" name="Refresh History" parent="menu_collection_reconciliation_root" action="action_collection_reconciliation_refresh_history" sequence="30" groups="collection_reconciliation_report.group_collection_analytics_manager"/>
-</odoo>
